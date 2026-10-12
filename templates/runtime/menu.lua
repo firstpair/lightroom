@@ -170,7 +170,7 @@ rawset(db,'gatherMap',state.mapWrapper)
 rawset(db,'gatherArray',state.countWrapper)
 _G.localRepairIncrementalMapCountPilot=state
 write(status('INSTALLED boundedSeconds=7200 maxCalls=30000 maxJournalRows=50000; first5/every100 of each type native oracle; NULL-valued mapping eligibility retained; TEMP journal only; catalog rows unchanged'))
-return 'bounded incremental map pilot installed' 
+return 'bounded incremental map pilot installed'
 
 end
 local ok1,result1=pcall(phase1,request);log('PHASE 1 ok='..tostring(ok1)..' result='..tostring(result1));if not ok1 then return false end
