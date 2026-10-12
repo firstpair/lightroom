@@ -6,7 +6,7 @@ The canonical article is [docs/blog/lightroom-repair/post.md](blog/lightroom-rep
 
 The source is published on GitHub. The FirstPair workflow delivers the stamped, committed and pushed TextPack to `~/icloud/blogs` with a byte comparison; that file delivery does not publish a Ghost story or forum post. The operator's cover is [lightroom-halfdome.png](../cover/lightroom-halfdome.png), referenced by the canonical post and bundled byte-for-byte into its TextPack.
 
-| Field | Prepared value |
+| Field | Value |
 | --- | --- |
 | Title | Making Lightroom usable again after years of stalled imports |
 | Slug | lightroom-repair |
@@ -15,7 +15,7 @@ The source is published on GitHub. The FirstPair workflow delivers the stamped, 
 | Blog routing domain | firstpair.press |
 | Tags | lightroom, photography, recovery, sqlite, open-source |
 | Excerpt | After years of stalled imports, a large Lightroom catalog handled an ordinary October card quickly. The reusable repairs preserve existing edits and separate indexed performance, previews, settings and Sync outcomes. |
-| Status | Prepared article; no blog publication |
+| Status | Published on First Pair Press; live URL verified on 2026-10-12 |
 
 ## TextPack stamping
 
@@ -47,6 +47,10 @@ Commit and push generated artifacts only after inspecting their ZIP integrity, e
 ## Verified stamped handoff
 
 The actual edition 1.0.0 pack is [lightroom-repair.textpack](blog/lightroom-repair/dist/lightroom-repair.textpack), with its [version marker](blog/lightroom-repair/dist/VERSION.md). The versioned handoff is `lightroom-repair (1.0.0-ba02f1).textpack`. It contains the exact article and supplied cover, routes to `firstpair.press` / `lightroom-repair`, and embeds the full [pushed source commit](https://github.com/firstpair/lightroom/commit/ba02f11ff29e1e1c7bc320e5bfd6cb79cde2f297) plus a portable payload SHA. ZIP integrity, cover bytes, source ancestry and version-link target were verified locally before the artifact commit.
+
+## Verified live publication
+
+The operator published the stamped article from Obsidian through Omnighost on 2026-10-12. The [live story](https://firstpair.press/lightroom-repair/) returned HTTP 200 with the exact title and all seven source section headings. Its hosted cover is visible. This publication did not rebuild or change the canonical article, TextPack or supplied artwork. The TextPack's verified source commit and payload SHA remain handoff provenance; the live HTML exposes a separate Omnighost publication SHA rather than that source-commit tag. See [the publication record](LIBRARY-PUBLICATION.md).
 
 ## Forum copy
 

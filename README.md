@@ -2,7 +2,7 @@
 
 Authored starter scripts and a practical [repair cookbook](docs/firstpair-lightroom-repair.md) for a large Lightroom Classic catalog. Public source: <https://github.com/firstpair/lightroom>.
 
-The complete cookbook is published in the [First Pair library](https://firstpair.org/books/lightroom-repair/): [PDF](https://firstpair.org/lightroom-repair/pdf/), [EPUB](https://firstpair.org/lightroom-repair/epub/), [HTML](https://firstpair.org/read/lightroom-repair/) and [chapters](https://firstpair.org/read/lightroom-repair/chapters/). Start with the [HOWTO](HOWTO.md), then use the recipes for your symptom. [Publication and verification](docs/LIBRARY-PUBLICATION.md).
+The complete cookbook is published in the [First Pair library](https://firstpair.org/books/lightroom-repair/): [PDF](https://firstpair.org/lightroom-repair/pdf/), [EPUB](https://firstpair.org/lightroom-repair/epub/), [HTML](https://firstpair.org/read/lightroom-repair/) and [chapters](https://firstpair.org/read/lightroom-repair/chapters/). Read the [story of the repairs](https://firstpair.press/lightroom-repair/). Start with the [HOWTO](HOWTO.md), then use the recipes for your symptom. [Publication and verification](docs/LIBRARY-PUBLICATION.md).
 
 The performance package derives from guards actually run in **Lightroom Classic 15.6 on macOS**. Those private installed controls had real native callbacks, equality checks, normal restart application, and bounded transport cleanup/renewal. This configurable public successor has passed source, syntax and temporary-installation tests; it has **not** yet been run in another user's native Lightroom session. It uses version-sensitive private imports and fails closed when owner, SQL, types, dependency bytes or callback facts differ. It is not an Adobe-supported universal fix.
 
@@ -103,12 +103,12 @@ This marks the owned installation paused, removes future renewal authorization a
 
 The optional persistent SHA index survives quitting. This starter does not drop a catalog index externally. Revert it only through a reviewed native owner-bound schema operation or your verified catalog-family backup, with later edits/imports accounted for. Disabling runtime wrappers does not require rolling back a catalog or deleting originals.
 
-## Reading and publication drafts
+## Reading and publication
 
 - [Start here: HOWTO](HOWTO.md)
 - [Reusable repair cookbook](docs/firstpair-lightroom-repair.md)
 - [Lightroom Queen announcement draft](docs/announcing-firstpair-lightroom-repair.md)
-- [Blog draft](docs/blog/lightroom-repair/post.md) and [TextPack handoff](docs/publication-text-pack.md); repository publication does not post them elsewhere.
+- [Published story](https://firstpair.press/lightroom-repair/), [article source](docs/blog/lightroom-repair/post.md) and [TextPack handoff](docs/publication-text-pack.md).
 
 Private experience includes successfully preserved native repairs and offline preview controls. Matching fingerprints, rendered previews, requested XMP byte identity, native settings adoption, current editing readiness and cloud convergence remain separate claims. The cookbook states each recipe's evidence and remaining holds.
 

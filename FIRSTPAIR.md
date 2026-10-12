@@ -46,6 +46,9 @@ The first full edition and its checks are recorded in
 [docs/LIBRARY-PUBLICATION.md](docs/LIBRARY-PUBLICATION.md). Its actual initial
 release used the publisher with `--no-deploy`, committed and pushed the
 generated library manifests, then deployed with `vercel deploy --prod --yes`.
-The library supports a `post` field for the canonical Story link; add that
-catalog-only field after Ghost publication is verified, preserving `source`
-and all artifact URLs. This requires no book rebuild or artifact re-upload.
+The operator published the [story](https://firstpair.press/lightroom-repair/)
+from Obsidian through Omnighost on 2026-10-12; its live URL, exact title and
+all seven source section headings were verified. The library’s catalog-only
+`post` field is now deployed and verified on both the book page and library
+card. It preserves the separate `source` link and every artifact URL. This
+update required no book rebuild or artifact re-upload.
