@@ -1,5 +1,5 @@
 slug: lightroom-repair
-shelf: technology
+shelf: howto
 default_edition: full
 
 # FirstPair publication contract
