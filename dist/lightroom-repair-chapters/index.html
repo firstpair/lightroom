@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="FirstPair contributors" />
+  <meta name="dcterms.date" content="2026-10-12" />
+  <meta name="description" content="A practical cookbook of verified Lightroom repairs, preservation gates and version-sensitive performance mechanisms." />
+  <title>FirstPair Lightroom Repair</title>
+  <style>
+    div.sitenav { display: flex; flex-direction: row; flex-wrap: wrap; }
+    span.navlink { flex: 1; }
+    span.navlink-label { display: inline-block; min-width: 4em; }
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="book.css" />
+</head>
+<body>
+<nav id="sitenav">
+<div class="sitenav">
+<span class="navlink">
+</span>
+<span class="navlink">
+</span>
+</div>
+<div class="sitenav">
+<span class="navlink">
+<span class="navlink-label">Next:</span> <a href="chapter-001.html" accesskey="n" rel="next">FirstPair Lightroom Repair</a>
+</span>
+<span class="navlink">
+</span>
+</div>
+</nav>
+<header id="title-block-header">
+<h1 class="title">FirstPair Lightroom Repair</h1>
+<p class="subtitle">A practical cookbook for catalogs, previews and
+Sync</p>
+<p class="author">FirstPair contributors</p>
+<p class="date">2026-10-12</p>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="chapter-002.html#a-lightroom-repair-cookbook"
+id="toc-a-lightroom-repair-cookbook"><span
+class="toc-section-number">1</span> A Lightroom repair cookbook</a>
+<ul>
+<li><a href="chapter-003.html#what-has-actually-been-repaired"
+id="toc-what-has-actually-been-repaired"><span
+class="toc-section-number">1.1</span> What has actually been
+repaired</a></li>
+<li><a href="chapter-004.html#which-parts-are-supplied-as-code"
+id="toc-which-parts-are-supplied-as-code"><span
+class="toc-section-number">1.2</span> Which parts are supplied as
+code</a></li>
+<li><a href="chapter-005.html#stage-and-qualify-the-public-installer"
+id="toc-stage-and-qualify-the-public-installer"><span
+class="toc-section-number">1.3</span> Stage and qualify the public
+installer</a></li>
+<li><a
+href="chapter-006.html#choose-the-problem-before-choosing-the-repair"
+id="toc-choose-the-problem-before-choosing-the-repair"><span
+class="toc-section-number">1.4</span> Choose the problem before choosing
+the repair</a></li>
+<li><a href="chapter-007.html#establish-a-recovery-boundary"
+id="toc-establish-a-recovery-boundary"><span
+class="toc-section-number">1.5</span> Establish a recovery
+boundary</a></li>
+<li><a
+href="chapter-008.html#get-an-observation-that-answers-one-question"
+id="toc-get-an-observation-that-answers-one-question"><span
+class="toc-section-number">1.6</span> Get an observation that answers
+one question</a></li>
+<li><a href="chapter-009.html#repair-locations-without-reimporting"
+id="toc-repair-locations-without-reimporting"><span
+class="toc-section-number">1.7</span> Repair locations without
+reimporting</a></li>
+<li><a href="chapter-010.html#find-an-actually-missing-lookup-index"
+id="toc-find-an-actually-missing-lookup-index"><span
+class="toc-section-number">1.8</span> Find an actually missing lookup
+index</a></li>
+<li><a
+href="chapter-011.html#diagnose-sql-affinity-before-adding-an-index"
+id="toc-diagnose-sql-affinity-before-adding-an-index"><span
+class="toc-section-number">1.9</span> Diagnose SQL affinity before
+adding an index</a></li>
+<li><a
+href="chapter-012.html#reduce-large-map-work-without-sharing-mutable-state"
+id="toc-reduce-large-map-work-without-sharing-mutable-state"><span
+class="toc-section-number">1.10</span> Reduce large-map work without
+sharing mutable state</a></li>
+<li><a
+href="chapter-013.html#drain-and-roll-back-a-map-transport-normally"
+id="toc-drain-and-roll-back-a-map-transport-normally"><span
+class="toc-section-number">1.11</span> Drain and roll back a map
+transport normally</a></li>
+<li><a href="chapter-014.html#prevent-format-only-capture-date-requeue"
+id="toc-prevent-format-only-capture-date-requeue"><span
+class="toc-section-number">1.12</span> Prevent format-only capture-date
+requeue</a></li>
+<li><a
+href="chapter-015.html#withdraw-proved-redundant-metadata-work-through-its-owner"
+id="toc-withdraw-proved-redundant-metadata-work-through-its-owner"><span
+class="toc-section-number">1.13</span> Withdraw proved redundant
+metadata work through its owner</a></li>
+<li><a
+href="chapter-016.html#repair-folder-admission-for-download-workers"
+id="toc-repair-folder-admission-for-download-workers"><span
+class="toc-section-number">1.14</span> Repair folder admission for
+download workers</a></li>
+<li><a href="chapter-017.html#renew-bounded-fixes-after-launch"
+id="toc-renew-bounded-fixes-after-launch"><span
+class="toc-section-number">1.15</span> Renew bounded fixes after
+launch</a></li>
+<li><a href="chapter-018.html#separate-sync-stages-and-counts"
+id="toc-separate-sync-stages-and-counts"><span
+class="toc-section-number">1.16</span> Separate Sync stages and
+counts</a></li>
+<li><a
+href="chapter-019.html#verify-a-smart-preview-at-the-level-you-need"
+id="toc-verify-a-smart-preview-at-the-level-you-need"><span
+class="toc-section-number">1.17</span> Verify a Smart Preview at the
+level you need</a></li>
+<li><a
+href="chapter-020.html#reuse-offline-converter-built-smart-previews"
+id="toc-reuse-offline-converter-built-smart-previews"><span
+class="toc-section-number">1.18</span> Reuse offline converter-built
+Smart Previews</a></li>
+<li><a
+href="chapter-021.html#map-and-clone-classic-previews-into-cloud-precisely"
+id="toc-map-and-clone-classic-previews-into-cloud-precisely"><span
+class="toc-section-number">1.19</span> Map and clone Classic previews
+into Cloud precisely</a></li>
+<li><a
+href="chapter-022.html#test-offline-rendering-and-editing-without-overstating-undo"
+id="toc-test-offline-rendering-and-editing-without-overstating-undo"><span
+class="toc-section-number">1.20</span> Test offline rendering and
+editing without overstating Undo</a></li>
+<li><a
+href="chapter-023.html#recover-exact-settings-without-resetting-edits"
+id="toc-recover-exact-settings-without-resetting-edits"><span
+class="toc-section-number">1.21</span> Recover exact settings without
+resetting edits</a></li>
+<li><a href="chapter-024.html#recover-a-selected-proxy-missing-upload"
+id="toc-recover-a-selected-proxy-missing-upload"><span
+class="toc-section-number">1.22</span> Recover a selected proxy-missing
+upload</a></li>
+<li><a
+href="chapter-025.html#recover-verification-after-a-successful-native-action"
+id="toc-recover-verification-after-a-successful-native-action"><span
+class="toc-section-number">1.23</span> Recover verification after a
+successful native action</a></li>
+<li><a
+href="chapter-026.html#classify-identity-before-merging-or-deleting"
+id="toc-classify-identity-before-merging-or-deleting"><span
+class="toc-section-number">1.24</span> Classify identity before merging
+or deleting</a></li>
+<li><a href="chapter-027.html#route-native-fingerprints-by-format"
+id="toc-route-native-fingerprints-by-format"><span
+class="toc-section-number">1.25</span> Route native fingerprints by
+format</a></li>
+<li><a href="chapter-028.html#reconcile-catalog-xmp-ratings-and-dates"
+id="toc-reconcile-catalog-xmp-ratings-and-dates"><span
+class="toc-section-number">1.26</span> Reconcile catalog, XMP, ratings
+and dates</a></li>
+<li><a
+href="chapter-029.html#start-with-supported-performance-maintenance"
+id="toc-start-with-supported-performance-maintenance"><span
+class="toc-section-number">1.27</span> Start with supported performance
+maintenance</a></li>
+<li><a href="chapter-030.html#a-receipt-you-can-reuse"
+id="toc-a-receipt-you-can-reuse"><span
+class="toc-section-number">1.28</span> A receipt you can reuse</a></li>
+</ul></li>
+</ul>
+</nav>
+
+</body>
+</html>

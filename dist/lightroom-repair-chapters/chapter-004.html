@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="FirstPair contributors" />
+  <meta name="dcterms.date" content="2026-10-12" />
+  <meta name="description" content="A practical cookbook of verified Lightroom repairs, preservation gates and version-sensitive performance mechanisms." />
+  <title>Which parts are supplied as code</title>
+  <style>
+    div.sitenav { display: flex; flex-direction: row; flex-wrap: wrap; }
+    span.navlink { flex: 1; }
+    span.navlink-label { display: inline-block; min-width: 4em; }
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="book.css" />
+</head>
+<body>
+<nav id="sitenav">
+<div class="sitenav">
+<span class="navlink">
+<span class="navlink-label">Up:</span> <a href="chapter-002.html" accesskey="u" rel="up">A Lightroom repair cookbook</a>
+</span>
+<span class="navlink">
+<span class="navlink-label">Top:</span> <a href="index.html" accesskey="t" rel="top">FirstPair Lightroom Repair</a>
+</span>
+</div>
+<div class="sitenav">
+<span class="navlink">
+<span class="navlink-label">Next:</span> <a href="chapter-005.html" accesskey="n" rel="next">Stage and qualify the public installer</a>
+</span>
+<span class="navlink">
+<span class="navlink-label">Previous:</span> <a href="chapter-003.html" accesskey="p" rel="previous">What has actually been repaired</a>
+</span>
+</div>
+</nav>
+<h2 data-number="1.2" id="which-parts-are-supplied-as-code"><span
+class="header-section-number">1.2</span> Which parts are supplied as
+code</h2>
+<p>The <a
+href="https://github.com/firstpair/lightroom/blob/ca28ff6bcb64e9776eeeb579e6d4d0d60d4dad1f/README.md">README</a>
+describes the current executable package. It contains our own
+installation/verification CLI, native performance adapters, synthetic
+controls, codecs and lifecycle helper under the MIT license. It imports
+necessary implementation modules from the user’s installed Lightroom;
+those Adobe modules are not redistributed.</p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Recipe</th>
+<th>Public implementation or reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bounded map/count reuse, isolated C copying, point tracking, paired
+map transport, date equivalence and startup renewal</td>
+<td>Configurable source in <a
+href="https://github.com/firstpair/lightroom/tree/ca28ff6bcb64e9776eeeb579e6d4d0d60d4dad1f/templates/runtime">templates/runtime</a>
+and <a
+href="https://github.com/firstpair/lightroom/blob/ca28ff6bcb64e9776eeeb579e6d4d0d60d4dad1f/scripts/manage.py">scripts/manage.py</a>;
+fresh manual native qualification required</td>
+</tr>
+<tr>
+<td>SQL-affinity correction and <code>UPPER(sha256)</code> expression
+index</td>
+<td>Optional advanced routes in the package; <strong>both disabled by
+default</strong></td>
+</tr>
+<tr>
+<td>Destination-folder admission</td>
+<td><a
+href="https://github.com/firstpair/lightroom/blob/ca28ff6bcb64e9776eeeb579e6d4d0d60d4dad1f/examples/folder_resolver.lua">An
+authored example adapter</a>, requiring independent preservation
+admission; it is not automatically dispatched</td>
+</tr>
+<tr>
+<td>Location repair, import, normal preview creation, collections and
+ordinary retries</td>
+<td>Supported UI/native workflows plus the recipes below; no universal
+bulk mutator included</td>
+</tr>
+<tr>
+<td>Converter cache publication, format-specific fingerprints, Cloud
+APFS preview placement and exact-XMP adoption</td>
+<td>Documented verified research and manual/native procedures; the
+starter does not install a general cache publisher or bulk settings
+bridge</td>
+</tr>
+<tr>
+<td>Typed preservation and completed-action verification recovery</td>
+<td>Reusable methodology and a held-stream example; retain local
+incident-specific receipts</td>
+</tr>
+</tbody>
+</table>
+<p>Source/syntax/temporary-installation tests qualify the public
+packaging boundary. The accepted private native controls qualify the
+reference catalog and builds. Neither substitutes for the actual
+callback, equality and restoration receipts from a new installation.</p>
+</body>
+</html>

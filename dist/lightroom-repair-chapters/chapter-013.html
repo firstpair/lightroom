@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="FirstPair contributors" />
+  <meta name="dcterms.date" content="2026-10-12" />
+  <meta name="description" content="A practical cookbook of verified Lightroom repairs, preservation gates and version-sensitive performance mechanisms." />
+  <title>Drain and roll back a map transport normally</title>
+  <style>
+    div.sitenav { display: flex; flex-direction: row; flex-wrap: wrap; }
+    span.navlink { flex: 1; }
+    span.navlink-label { display: inline-block; min-width: 4em; }
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="book.css" />
+</head>
+<body>
+<nav id="sitenav">
+<div class="sitenav">
+<span class="navlink">
+<span class="navlink-label">Up:</span> <a href="chapter-002.html" accesskey="u" rel="up">A Lightroom repair cookbook</a>
+</span>
+<span class="navlink">
+<span class="navlink-label">Top:</span> <a href="index.html" accesskey="t" rel="top">FirstPair Lightroom Repair</a>
+</span>
+</div>
+<div class="sitenav">
+<span class="navlink">
+<span class="navlink-label">Next:</span> <a href="chapter-014.html" accesskey="n" rel="next">Prevent format-only capture-date requeue</a>
+</span>
+<span class="navlink">
+<span class="navlink-label">Previous:</span> <a href="chapter-012.html" accesskey="p" rel="previous">Reduce large-map work without sharing mutable state</a>
+</span>
+</div>
+</nav>
+<h2 data-number="1.11"
+id="drain-and-roll-back-a-map-transport-normally"><span
+class="header-section-number">1.11</span> Drain and roll back a map
+transport normally</h2>
+<p><strong>Prerequisites.</strong> A paired sender/receiver must own the
+exact native listener and its UI callback, with a full-map baseline and
+versioned epoch/sequence contract. Keep both Lua states separate. The
+normal native full-map getter and delivery callback must remain
+available for recovery.</p>
+<p><strong>Procedure.</strong> A delta receiver rebuilds its private map
+and gives the ordinary consumer a fresh isolated full result. It
+acknowledges a sequence only after the normal callback returns.
+Missing/gapped state asks the native owner for a genuine full
+resynchronization; it does not fabricate an answer or continue decoding
+against an unknown baseline.</p>
+<p>Stopping future cycles prevents another controller dispatch. It does
+not erase the current listener, cancel a native request or restore the
+decoder while messages are still in flight. The sender restores only its
+owned methods, records its final sent count, and releases its recovery
+state after all real acknowledgements are present. The receiver remains
+available until its received count equals that final count, then
+restores its exact prior callback. Renewal requires both directions
+released in UI and Main, plus ordinary autocommit/request gates.</p>
+<p><strong>Verify.</strong> For nonzero cycles, require exact sequence
+coverage, full/delta validation, real callback returns and
+acknowledgements, both sender/receiver restoration receipts, and no
+retained owned handle. For a zero-event cycle, there should be no
+envelope or acknowledgement artifacts: literal final zero, sent/received
+zero, and explicit release of owned methods/recovery state are the
+proof. A native sender can legitimately reach its 2,400-second bound
+before that zero-event cleanup.</p>
+<p>The retained restart control did exactly that: both zero-event
+senders and receivers restored, native recovery states released with no
+envelopes, controller <code>DRAINED</code> preceded the next maintenance
+dispatch. Another current WAIT resolved normally without cancellation.
+These prove observed cycles; they do not guarantee indefinite cleanup
+for every future failure.</p>
+<p><strong>Undo.</strong> Disable future renewal, then let the captured
+cycle drain normally. If a sequence error requires recovery, retain the
+original error and accept only the actual native full-resync and
+closure. Restore methods only while exact ownership still holds. If safe
+normal application shutdown is required, retain the incomplete cycle
+rather than label it drained.</p>
+<p><strong>Limits.</strong> Never manufacture ACK files, reset owners,
+clear a handle or mark completion to make a renewal gate pass. Transport
+recovery restores native delivery semantics; it does not change
+catalog/cloud queue states or establish server convergence.</p>
+</body>
+</html>

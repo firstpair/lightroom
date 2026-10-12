@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="FirstPair contributors" />
+  <meta name="dcterms.date" content="2026-10-12" />
+  <meta name="description" content="A practical cookbook of verified Lightroom repairs, preservation gates and version-sensitive performance mechanisms." />
+  <title>Test offline rendering and editing without overstating
+Undo</title>
+  <style>
+    div.sitenav { display: flex; flex-direction: row; flex-wrap: wrap; }
+    span.navlink { flex: 1; }
+    span.navlink-label { display: inline-block; min-width: 4em; }
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="book.css" />
+</head>
+<body>
+<nav id="sitenav">
+<div class="sitenav">
+<span class="navlink">
+<span class="navlink-label">Up:</span> <a href="chapter-002.html" accesskey="u" rel="up">A Lightroom repair cookbook</a>
+</span>
+<span class="navlink">
+<span class="navlink-label">Top:</span> <a href="index.html" accesskey="t" rel="top">FirstPair Lightroom Repair</a>
+</span>
+</div>
+<div class="sitenav">
+<span class="navlink">
+<span class="navlink-label">Next:</span> <a href="chapter-023.html" accesskey="n" rel="next">Recover exact settings without resetting edits</a>
+</span>
+<span class="navlink">
+<span class="navlink-label">Previous:</span> <a href="chapter-021.html" accesskey="p" rel="previous">Map and clone Classic previews into Cloud precisely</a>
+</span>
+</div>
+</nav>
+<h2 data-number="1.20"
+id="test-offline-rendering-and-editing-without-overstating-undo"><span
+class="header-section-number">1.20</span> Test offline rendering and
+editing without overstating Undo</h2>
+<p><strong>Prerequisites.</strong> Keep a complete current
+develop/history baseline and exact preview identities. Define actual
+network and original-source denial. For deliberate edit tests, record
+numeric settings before, during, after Undo and after normal reconnect;
+user permission for the edit is required.</p>
+<p><strong>Procedure.</strong> Cold-start Cloud within the defined
+boundary. Select the exact photo, render at Fit and 100%, and
+distinguish enabled controls from a settings-wait or legacy-update
+panel. If authorized, make one recorded edit, undo it normally, then
+observe both Cloud and Classic after Sync resumes.</p>
+<p><strong>Verify.</strong> Two modern controls, a DNG original and a
+JPEG original with DNG proxy, rendered while Wi-Fi was off; the operator
+reported Auto slider changes and Command-Z. The first persisted settings
+stayed unchanged. For the JPEG, a later native Classic observation
+received Auto settings and a new mobile-origin history step: Exposure
+0→0.04, Contrast 0→5, Blacks 0→−14, Vibrance 0→19, Saturation 0→4.
+Editing succeeded, but exact restoration after Undo is <strong>not
+established</strong>. All four Classic/Cloud preview files retained
+their exact bytes and five-field identities even after that settings
+propagation.</p>
+<p>Two later PENTAX K-7 legacy controls rendered Fit/100% under Cloud
+network and original-source denial with exact clone read-access
+descriptors. Their preview identities, Main settings/history and Cloud
+public develop fields stayed protected. Both demanded Legacy Settings
+Update before editing. No Update, Reset, edit or export was attempted.
+Read-access descriptors are observed open access, not kernel read
+traces.</p>
+<p><strong>Undo.</strong> Normal Undo is an operation to verify, not an
+automatic preservation receipt. If post-reconnect values differ,
+preserve the actual edit/history outcome and ask for a separately
+authorized correction rather than silently restoring old values. A
+render-only test should require no develop changes.</p>
+<p><strong>Limits.</strong> Two modern controls do not prove all modern
+external-XMP images ready. Two legacy renders do not qualify every
+absent-proxy-SHA asset or Classic offline editing. An early unchanged
+persisted snapshot can precede later normal settings Sync.</p>
+</body>
+</html>

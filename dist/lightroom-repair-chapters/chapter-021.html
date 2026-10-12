@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="FirstPair contributors" />
+  <meta name="dcterms.date" content="2026-10-12" />
+  <meta name="description" content="A practical cookbook of verified Lightroom repairs, preservation gates and version-sensitive performance mechanisms." />
+  <title>Map and clone Classic previews into Cloud precisely</title>
+  <style>
+    div.sitenav { display: flex; flex-direction: row; flex-wrap: wrap; }
+    span.navlink { flex: 1; }
+    span.navlink-label { display: inline-block; min-width: 4em; }
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="book.css" />
+</head>
+<body>
+<nav id="sitenav">
+<div class="sitenav">
+<span class="navlink">
+<span class="navlink-label">Up:</span> <a href="chapter-002.html" accesskey="u" rel="up">A Lightroom repair cookbook</a>
+</span>
+<span class="navlink">
+<span class="navlink-label">Top:</span> <a href="index.html" accesskey="t" rel="top">FirstPair Lightroom Repair</a>
+</span>
+</div>
+<div class="sitenav">
+<span class="navlink">
+<span class="navlink-label">Next:</span> <a href="chapter-022.html" accesskey="n" rel="next">Test offline rendering and editing without overstating Undo</a>
+</span>
+<span class="navlink">
+<span class="navlink-label">Previous:</span> <a href="chapter-020.html" accesskey="p" rel="previous">Reuse offline converter-built Smart Previews</a>
+</span>
+</div>
+</nav>
+<h2 data-number="1.19"
+id="map-and-clone-classic-previews-into-cloud-precisely"><span
+class="header-section-number">1.19</span> Map and clone Classic previews
+into Cloud precisely</h2>
+<p><strong>Prerequisites.</strong> Apps are normally closed for file
+publication. Bind each exact Classic image/file UUID to its current
+Cloud asset, requested native proxy SHA, literal native destination and
+settings/auxiliary facts. APFS source and destination placement must
+support cloning. Preserve the destination’s accepted prior bytes and
+metadata.</p>
+<p><strong>Procedure.</strong> Use a clone with an independent inode
+rather than a hard link: later writes can diverge while initial bytes
+remain equal. Keep a no-overwrite intent journal for new destinations.
+For existing cache entries, first prove their accepted whole-byte
+identity and preserve the old inode or a verified rollback before a
+separately authorized exchange. Retain the exact native path, including
+any collision suffix; UUID-only filename formulas can be wrong. A JPEG
+original can legitimately have a DNG proxy.</p>
+<p>The full 170-photo album control had current native proxy SHA
+equality for every Classic preview, 116 matching existing Cloud copies
+and 54 uncached entries. Settings were already local; there were no
+local originals or pending original downloads and no server master link.
+That specific gate supported preview-only work; generic Make Available
+Offline can have a different original-download scope.</p>
+<p><strong>Verify.</strong> Compare every source/destination SHA, stable
+identities and protected filesystem metadata, then check ordinary native
+adoption. The initial 170 invocation published 54 new entries but held
+before the first existing-file exchange over an OS-added provenance
+attribute. Its recovery explicitly retained that exact qualified
+attribute, preserved all other metadata, and processed only the
+untouched 116. The composite proves all 170 publications without forging
+a successful original invocation.</p>
+<p>A normal offline-album action did not immediately register the 54
+entries. A later consistent native roster proved all 170 local proxy
+paths/annotations, no proxy demand, local settings and offline marking.
+That stronger observation supersedes the earlier hold; it does not
+identify the exact adopting action or prove 170 independently traced
+offline renders.</p>
+<p>The larger publication independently audited 473,531 bindings.
+Publication, native recognition, rendered use and edit readiness remain
+separate acceptance steps.</p>
+<p><strong>Undo.</strong> Preserve prior Cloud entries and exact owned
+journals. Withdraw unused owned additions or reverse an authorized
+exchange only after native ownership and later work are accounted for. A
+cache clone is not a backup on another device, and adopting a file is
+not grounds to remove its original.</p>
+<p><strong>Limits.</strong> A missing expected proxy SHA needs a
+separately qualified identity route. The known-SHA recipe cannot
+silently admit that population. The two legacy tests below used such a
+narrower route and qualify only their tested class.</p>
+</body>
+</html>

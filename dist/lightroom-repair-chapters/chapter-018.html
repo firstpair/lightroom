@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="FirstPair contributors" />
+  <meta name="dcterms.date" content="2026-10-12" />
+  <meta name="description" content="A practical cookbook of verified Lightroom repairs, preservation gates and version-sensitive performance mechanisms." />
+  <title>Separate Sync stages and counts</title>
+  <style>
+    div.sitenav { display: flex; flex-direction: row; flex-wrap: wrap; }
+    span.navlink { flex: 1; }
+    span.navlink-label { display: inline-block; min-width: 4em; }
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="book.css" />
+</head>
+<body>
+<nav id="sitenav">
+<div class="sitenav">
+<span class="navlink">
+<span class="navlink-label">Up:</span> <a href="chapter-002.html" accesskey="u" rel="up">A Lightroom repair cookbook</a>
+</span>
+<span class="navlink">
+<span class="navlink-label">Top:</span> <a href="index.html" accesskey="t" rel="top">FirstPair Lightroom Repair</a>
+</span>
+</div>
+<div class="sitenav">
+<span class="navlink">
+<span class="navlink-label">Next:</span> <a href="chapter-019.html" accesskey="n" rel="next">Verify a Smart Preview at the level you need</a>
+</span>
+<span class="navlink">
+<span class="navlink-label">Previous:</span> <a href="chapter-017.html" accesskey="p" rel="previous">Renew bounded fixes after launch</a>
+</span>
+</div>
+</nav>
+<h2 data-number="1.16" id="separate-sync-stages-and-counts"><span
+class="header-section-number">1.16</span> Separate Sync stages and
+counts</h2>
+<p><strong>Prerequisites.</strong> Define which photos, collections,
+revisions, and direction you are measuring. Keep UI counts, pending
+catalog mappings, downloader jobs, binary completion, and server
+evidence as separate populations.</p>
+<p><strong>Procedure.</strong> Use ordinary collection Sync activation.
+Adobe documents that Classic photos sync through synced collections or
+All Synced Photographs, and that Classic-to-cloud sends Smart Previews
+while cloud-to-Classic downloads originals. <a
+href="https://helpx.adobe.com/lightroom-classic/desktop/help/lightroom-mobile-desktop-features.html">Adobe:
+Sync setup</a>, <a
+href="https://helpx.adobe.com/lightroom-classic/desktop/technical-support/workflow-issues/sync-issues/sync-faq.html">Adobe:
+Sync FAQ</a>.</p>
+<p>For a batch, retain exact collection names, parents, and full
+existing-photo membership before enabling Sync. Record all five
+completion arguments when the installed command contract is
+<code>(self, context, descriptor, success, error)</code>. A returned
+command-spec is not a completion promise, and registering a listener
+after the event may not replay it.</p>
+<p><strong>Verify.</strong> Compare complete final collection IDs,
+names, parents and member IDs, then separate album mapping, still
+mapping, binary transfer and server acceptance. The retained batch
+checked 69 collections and 19,314 memberships; all album mappings became
+concrete while some still-image mappings remained pending. Its 283
+videos belonged to membership totals, not the still mapping denominator.
+This is finite native mapping evidence, not an independent Adobe-server
+binary acknowledgement or a global zero backlog.</p>
+<p><strong>Undo.</strong> Change Sync selection through Lightroom after
+considering its normal cloud effects. Keep the exact membership
+manifest; do not delete and recreate catalog records to make a counter
+look right.</p>
+<p><strong>Limits.</strong> Do not replay the completed
+68-new/one-preserved collection batch. A changing UI backlog can include
+different queue stages; subtracting two unrelated counters cannot
+identify completed uploads. A retry receipt must bind actual emitted
+revisions, because the native sequence is globally allocated rather than
+a per-document old-plus-one edit count.</p>
+</body>
+</html>

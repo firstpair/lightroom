@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="FirstPair contributors" />
+  <meta name="dcterms.date" content="2026-10-12" />
+  <meta name="description" content="A practical cookbook of verified Lightroom repairs, preservation gates and version-sensitive performance mechanisms." />
+  <title>Choose the problem before choosing the repair</title>
+  <style>
+    div.sitenav { display: flex; flex-direction: row; flex-wrap: wrap; }
+    span.navlink { flex: 1; }
+    span.navlink-label { display: inline-block; min-width: 4em; }
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="book.css" />
+</head>
+<body>
+<nav id="sitenav">
+<div class="sitenav">
+<span class="navlink">
+<span class="navlink-label">Up:</span> <a href="chapter-002.html" accesskey="u" rel="up">A Lightroom repair cookbook</a>
+</span>
+<span class="navlink">
+<span class="navlink-label">Top:</span> <a href="index.html" accesskey="t" rel="top">FirstPair Lightroom Repair</a>
+</span>
+</div>
+<div class="sitenav">
+<span class="navlink">
+<span class="navlink-label">Next:</span> <a href="chapter-007.html" accesskey="n" rel="next">Establish a recovery boundary</a>
+</span>
+<span class="navlink">
+<span class="navlink-label">Previous:</span> <a href="chapter-005.html" accesskey="p" rel="previous">Stage and qualify the public installer</a>
+</span>
+</div>
+</nav>
+<h2 data-number="1.4"
+id="choose-the-problem-before-choosing-the-repair"><span
+class="header-section-number">1.4</span> Choose the problem before
+choosing the repair</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>What you observe</th>
+<th>First useful question</th>
+<th>Recipe</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A missing-photo badge after moving a drive</td>
+<td>Does the original still exist, and is it the same source?</td>
+<td><a
+href="chapter-009.html#repair-locations-without-reimporting">Repair
+locations</a></td>
+</tr>
+<tr>
+<td>Sync progress appears stuck</td>
+<td>Which exact stage is making, receiving, or completing work?</td>
+<td><a href="chapter-018.html#separate-sync-stages-and-counts">Separate
+Sync stages</a></td>
+</tr>
+<tr>
+<td>A selected upload has a proxy-missing error</td>
+<td>Are the expected historical proxy and current source the same
+admitted identity?</td>
+<td><a
+href="chapter-024.html#recover-a-selected-proxy-missing-upload">Recover
+a proxy upload</a></td>
+</tr>
+<tr>
+<td>Dates gain <code>.000</code> and metadata work returns</td>
+<td>Is the native assignment provably redundant, and is queue removal
+durable?</td>
+<td><a
+href="chapter-014.html#prevent-format-only-capture-date-requeue">Date
+requeue</a></td>
+</tr>
+<tr>
+<td>Each metadata save or relocation takes seconds</td>
+<td>Is native SQL scanning a large table despite an existing index?</td>
+<td><a
+href="chapter-011.html#diagnose-sql-affinity-before-adding-an-index">Diagnose
+SQL affinity</a></td>
+</tr>
+<tr>
+<td>CPU remains high with tiny Sync changes</td>
+<td>Is a full mapping table repeatedly queried, copied, or
+transported?</td>
+<td><a
+href="chapter-012.html#reduce-large-map-work-without-sharing-mutable-state">Reduce
+map work</a></td>
+</tr>
+<tr>
+<td>Downloads repeat but do not become catalog items</td>
+<td>Does the destination resolver need a catalog folder on a
+reader?</td>
+<td><a
+href="chapter-016.html#repair-folder-admission-for-download-workers">Repair
+folder admission</a></td>
+</tr>
+<tr>
+<td>A preview exists but editing is blocked</td>
+<td>Are image data and the exact requested settings both available?</td>
+<td><a
+href="chapter-023.html#recover-exact-settings-without-resetting-edits">Recover
+settings</a></td>
+</tr>
+<tr>
+<td>An import succeeded but its verifier failed</td>
+<td>Did the native action finish before the diagnostic error?</td>
+<td><a
+href="chapter-025.html#recover-verification-after-a-successful-native-action">Recover
+verification</a></td>
+</tr>
+<tr>
+<td>Several files look like duplicates</td>
+<td>Which identity has actually been proved?</td>
+<td><a
+href="chapter-026.html#classify-identity-before-merging-or-deleting">Classify
+identity</a></td>
+</tr>
+<tr>
+<td>A converter preview or shared cache seems reusable</td>
+<td>Do current native identities and actual adoption agree?</td>
+<td><a
+href="chapter-020.html#reuse-offline-converter-built-smart-previews">Converter
+reuse</a>, <a
+href="chapter-021.html#map-and-clone-classic-previews-into-cloud-precisely">Cloud
+clones</a></td>
+</tr>
+<tr>
+<td>A metadata badge conflicts with expected edits</td>
+<td>Which catalog, sidecar or embedded fields differ?</td>
+<td><a
+href="chapter-028.html#reconcile-catalog-xmp-ratings-and-dates">Metadata
+divergence</a></td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

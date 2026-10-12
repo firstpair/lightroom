@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="FirstPair contributors" />
+  <meta name="dcterms.date" content="2026-10-12" />
+  <meta name="description" content="A practical cookbook of verified Lightroom repairs, preservation gates and version-sensitive performance mechanisms." />
+  <title>Reuse offline converter-built Smart Previews</title>
+  <style>
+    div.sitenav { display: flex; flex-direction: row; flex-wrap: wrap; }
+    span.navlink { flex: 1; }
+    span.navlink-label { display: inline-block; min-width: 4em; }
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="book.css" />
+</head>
+<body>
+<nav id="sitenav">
+<div class="sitenav">
+<span class="navlink">
+<span class="navlink-label">Up:</span> <a href="chapter-002.html" accesskey="u" rel="up">A Lightroom repair cookbook</a>
+</span>
+<span class="navlink">
+<span class="navlink-label">Top:</span> <a href="index.html" accesskey="t" rel="top">FirstPair Lightroom Repair</a>
+</span>
+</div>
+<div class="sitenav">
+<span class="navlink">
+<span class="navlink-label">Next:</span> <a href="chapter-021.html" accesskey="n" rel="next">Map and clone Classic previews into Cloud precisely</a>
+</span>
+<span class="navlink">
+<span class="navlink-label">Previous:</span> <a href="chapter-019.html" accesskey="p" rel="previous">Verify a Smart Preview at the level you need</a>
+</span>
+</div>
+</nav>
+<h2 data-number="1.18"
+id="reuse-offline-converter-built-smart-previews"><span
+class="header-section-number">1.18</span> Reuse offline converter-built
+Smart Previews</h2>
+<p><strong>Prerequisites.</strong> Originals remain retained and stable.
+Pin the installed converter version and explicit output options. Use a
+fresh scratch destination and an exact source/output manifest; never
+accept the converter’s default destination if it could overwrite
+originals. The private cache layout and native preview-identity rules
+need separate current qualification.</p>
+<p><strong>Procedure.</strong> Adobe’s DNG Converter is a separate batch
+conversion tool; its normal documented purpose is conversion of camera
+raw files to DNG. <a
+href="https://helpx.adobe.com/camera-raw/desktop/dng-and-file-formats/adobe-dng-converter.html">Adobe:
+DNG Converter</a>. The reference experiment used version 17.2 to build
+fresh DNG 1.7, lossy JPEG XL previews with a 2,560-pixel long edge and
+no embedded preview. Its parallel-batch option used the observed ten-CPU
+queue; no numeric maximum-parallelism option was established.</p>
+<p>Treat those outputs as proposed previews, not replacement masters.
+Match the exact installed preview layout, required raw-image payload and
+identity fields, UUID/name binding and permissions before any
+no-overwrite cache placement. Normal SDK <strong>build Smart
+Previews</strong> remains the adoption/control step.</p>
+<p><strong>Verify.</strong> A 392-file finite batch created its outputs
+in 198.51 seconds, around 246 MB. Guarded cache placement followed by
+normal SDK preview building reported all 392 as already existing in 63
+seconds, with zero failures. Required hashes stayed unregistered in that
+experiment. Seven camera-family controls agreed on encoded native raw
+payload and both required identity digests; four were observed
+current-version creations and three older-version creations with
+unobserved creation steps.</p>
+<p>The 32-missing-plus-seven-control validator initially rejected
+Panasonic files because it selected the wrong image directory. Its
+qualified successor used the declared image role to distinguish
+full-resolution CFA data from auxiliary reduced linear raw data.
+Unknown/multiple full-resolution roles and a narrowly observed camera
+warning remained holds. There was no independent all-pixel decode of
+every output.</p>
+<p><strong>Undo.</strong> Retain scratch outputs, originals and the
+pre-publication cache manifest. Remove only proven owned, unused
+additions through a safe cache recovery after native requests close, or
+restore the protected cache family. Never replace an accepted original
+with a lossy preview.</p>
+<p><strong>Limits.</strong> This is a tested private reuse route, not a
+public Adobe cache-installation contract or a general batch command
+supplied by this starter. Successful adoption does not prove every
+camera, warning, profile, crop or encoded plane is interchangeable.</p>
+</body>
+</html>

@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "edition": "full",
+  "versionStamp": "1.0.0-ca28ff6b",
+  "sourceCommit": "ca28ff6bcb64e9776eeeb579e6d4d0d60d4dad1f",
+  "artifacts": {
+    "lightroom-repair.pdf": {
+      "bytes": 4122962,
+      "sha256": "1a167c59c06345510c3469b0330e491161680f6ea114685a65a3cdc323077a5d"
+    },
+    "lightroom-repair.epub": {
+      "bytes": 5474779,
+      "sha256": "4248fe9942df2040ba98d4874f48791732ae83da1ce42feb00ad6c83ea25eae9"
+    },
+    "lightroom-repair.html": {
+      "bytes": 3766659,
+      "sha256": "40ecfebb02f531488cd73b16507be02f26498a6b155dba187e1eae008b2f7722"
+    }
+  },
+  "chapters": {
+    "files": 34,
+    "htmlFiles": 31,
+    "treeSha256": "05aeb8fab734376c3f19b82c238f3a157e2326fa2a8a499a0006eb606033819c"
+  },
+  "sharedLibraryValidator": "passed",
+  "versionMarkerValidator": "passed",
+  "pdf": {
+    "pages": 22,
+    "allPagesRendered": true,
+    "allPagesContactSheetReviewed": true,
+    "fullSizeReviewedPages": [
+      2,
+      3,
+      4,
+      9,
+      11,
+      19,
+      22
+    ],
+    "layoutDefectsObserved": 0,
+    "strictParser": "passed",
+    "internalLinksChecked": 42,
+    "unresolvedInternalLinks": 0,
+    "concatenationWarning": "pdfunite emitted recursive-dictionary warnings; final strict parser, all-page Poppler rendering and internal destination checks passed"
+  },
+  "epub": {
+    "zip_crc": "passed",
+    "manifest_items": 8,
+    "spine_items": 4,
+    "xhtml_documents": 4,
+    "local_links_checked": 64,
+    "cover_source_sha256": "0189f72c3b5edbd02cb873867c1bfccb9ce30604c0dc85cf5d0e83b64682aa3c",
+    "cover_byte_matches": [
+      "EPUB/media/file0.png",
+      "EPUB/media/firstpair-cover.png"
+    ],
+    "single_html_cover_byte_match": true
+  }
+}

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="FirstPair contributors" />
+  <meta name="dcterms.date" content="2026-10-12" />
+  <meta name="description" content="A practical cookbook of verified Lightroom repairs, preservation gates and version-sensitive performance mechanisms." />
+  <title>Get an observation that answers one question</title>
+  <style>
+    div.sitenav { display: flex; flex-direction: row; flex-wrap: wrap; }
+    span.navlink { flex: 1; }
+    span.navlink-label { display: inline-block; min-width: 4em; }
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="book.css" />
+</head>
+<body>
+<nav id="sitenav">
+<div class="sitenav">
+<span class="navlink">
+<span class="navlink-label">Up:</span> <a href="chapter-002.html" accesskey="u" rel="up">A Lightroom repair cookbook</a>
+</span>
+<span class="navlink">
+<span class="navlink-label">Top:</span> <a href="index.html" accesskey="t" rel="top">FirstPair Lightroom Repair</a>
+</span>
+</div>
+<div class="sitenav">
+<span class="navlink">
+<span class="navlink-label">Next:</span> <a href="chapter-009.html" accesskey="n" rel="next">Repair locations without reimporting</a>
+</span>
+<span class="navlink">
+<span class="navlink-label">Previous:</span> <a href="chapter-007.html" accesskey="p" rel="previous">Establish a recovery boundary</a>
+</span>
+</div>
+</nav>
+<h2 data-number="1.6"
+id="get-an-observation-that-answers-one-question"><span
+class="header-section-number">1.6</span> Get an observation that answers
+one question</h2>
+<p><strong>Prerequisites.</strong> Name the question and exact scope
+before opening a database. Decide whether persisted catalog state is
+enough, or whether you need the application’s live owner and
+callback.</p>
+<p><strong>Procedure.</strong> Prefer normal UI and documented SDK
+observations. For advanced persisted-state inspection, use a read-only
+SQLite connection, query-only mode, disabled trusted schema, and one
+consistent transaction. Bind the exact canonical database path and
+current app process where the question requires a live catalog. Capture
+before/after identities of Main, WAL, and SHM. Inspect
+<code>EXPLAIN QUERY PLAN</code> for joins and repeated lookups before
+running them at scale.</p>
+<p>A native observation must run in the correct owner. Lightroom’s
+SDK/UI Lua state and native Main server are separate states; a UI global
+lookup cannot establish that a Main-owned request or retained snapshot
+is missing. SourceSync also has its own owner. Use the owner that
+possesses the object, rather than initializing an unrelated service to
+look for it.</p>
+<p><strong>Verify.</strong> Retain typed values, including absent keys,
+nil, false, true, and storage types. Record the actual callback or error
+and close only the owned diagnostic handle at its genuine terminal. Do
+not infer an operation’s completion from a missing callback or a
+callback registration method that does not replay old completions.</p>
+<p><strong>Undo.</strong> Close the read transaction and diagnostic
+resources. There should be no catalog state to undo.</p>
+<p><strong>Limits.</strong> Persisted SQLite rows are not an
+Adobe-server acknowledgement. A read-only transaction is a logical
+snapshot, not proof that the physical database family remained
+unchanged. Never write Lightroom status, revision, queue, availability,
+or completed flags through an external database connection.</p>
+</body>
+</html>

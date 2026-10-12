@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="FirstPair contributors" />
+  <meta name="dcterms.date" content="2026-10-12" />
+  <meta name="description" content="A practical cookbook of verified Lightroom repairs, preservation gates and version-sensitive performance mechanisms." />
+  <title>Reduce large-map work without sharing mutable state</title>
+  <style>
+    div.sitenav { display: flex; flex-direction: row; flex-wrap: wrap; }
+    span.navlink { flex: 1; }
+    span.navlink-label { display: inline-block; min-width: 4em; }
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="book.css" />
+</head>
+<body>
+<nav id="sitenav">
+<div class="sitenav">
+<span class="navlink">
+<span class="navlink-label">Up:</span> <a href="chapter-002.html" accesskey="u" rel="up">A Lightroom repair cookbook</a>
+</span>
+<span class="navlink">
+<span class="navlink-label">Top:</span> <a href="index.html" accesskey="t" rel="top">FirstPair Lightroom Repair</a>
+</span>
+</div>
+<div class="sitenav">
+<span class="navlink">
+<span class="navlink-label">Next:</span> <a href="chapter-013.html" accesskey="n" rel="next">Drain and roll back a map transport normally</a>
+</span>
+<span class="navlink">
+<span class="navlink-label">Previous:</span> <a href="chapter-011.html" accesskey="p" rel="previous">Diagnose SQL affinity before adding an index</a>
+</span>
+</div>
+</nav>
+<h2 data-number="1.10"
+id="reduce-large-map-work-without-sharing-mutable-state"><span
+class="header-section-number">1.10</span> Reduce large-map work without
+sharing mutable state</h2>
+<p><strong>Prerequisites.</strong> Bind the exact map-producing query,
+function, request, and consumer. Measure querying, copying, transport,
+and callback work separately. A native stack sample is useful evidence,
+but does not by itself identify a Lua caller.</p>
+<p><strong>Procedure.</strong> The reference Sync maps had over 700,000
+entries. The exact pending-map finding was narrower and more revealing
+than “large catalog”: a lookup rebuilt the full current-catalog map when
+its cache was absent, the requested ID was absent/falsy, or its value
+was <code>pending</code>. A reload could leave that same value pending,
+so the next lookup did the same work.</p>
+<p>The ordinary successful upload-preparation route asks for tracking in
+both asset preparation and develop preparation. In the inspected
+695,483-entry snapshot, an image that remained pending could therefore
+cause two full rebuilds, about 1.39 million materialized rows. Assigned
+images, early returns and intervening pending-to-assigned transitions do
+not necessarily take that path. The source establishes the route; exact
+SQL invocation counts inside every timed request were not dynamically
+traced.</p>
+<p>Forty-nine observed second-lookup segments had a 0.939-second median,
+while 258 broader import-settings requests had a 22.17-second median
+including their internal work and waits. Library feedback also reached
+the map producer: 403 native grid-info events consumed 82.194 seconds of
+one 82.236-second span. A clean restart into an empty source, with the
+expensive source collapsed and Sync intentionally paused, allowed import
+in a finite workaround; the combination does not isolate which UI
+setting caused the improvement.</p>
+<p>Tiny changes could also cause defensive copies and complete
+transfers. The accepted methods address different costs:</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Cost</th>
+<th>Qualified method</th>
+<th>Correctness retained</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Repeated full-map query/count</td>
+<td>Connection-local TEMP revision journal and incremental refresh</td>
+<td>Native full-load fallback, group/schema/data-version checks,
+NULL-valued mapping eligibility</td>
+</tr>
+<tr>
+<td>Defensive Lua copying</td>
+<td>Native C <code>table.shallowcopy</code> after complete equality and
+mutation-isolation controls</td>
+<td>A fresh separate output table, private cached source, ordinary
+fallback</td>
+</tr>
+<tr>
+<td>A tracked-ID question building a whole map</td>
+<td>Exact indexed point lookup</td>
+<td>Current catalog and file-format semantics, regular native oracle
+comparisons</td>
+</tr>
+<tr>
+<td>Full-map transport for small changes</td>
+<td>Paired, versioned full/delta sender and receiver</td>
+<td>Initial full state, add/change/remove, generation/sequence checks,
+ACK/drain and full resync</td>
+</tr>
+</tbody>
+</table>
+<p>The deployed map/count guard is bounded to 7,200 seconds, 30,000
+calls, and a 50,000-row diagnostic journal cap, with first-five and
+regular native oracle comparisons. Its C-copy phase uses three full
+equality/isolation controls and a benefit gate; it can skip installation
+when the measured benefit is insufficient. The point lookup is
+separately bounded and retains native comparison/fallback behavior.
+These are private control bounds, not a promise about the defaults of
+every future release; check the configured public installer.</p>
+<p><strong>Verify.</strong> Modify a returned test map and prove the
+cached source is unchanged. Compare complete maps and counts against the
+native implementation, including special/NULL eligibility. Exercise
+removals, schema/generation changes, gaps, and fallback. For transport,
+require both senders restored, all envelopes accounted for, receivers
+drained/restored, and owned recovery state released before renewal.</p>
+<p><strong>Undo.</strong> Stop future owned cycles, wait for the
+captured native sender and receiver to finish normally, then restore
+exact owned methods. Never reset a pending owner to accelerate a
+legitimate wait. A zero-event cycle can use its full sender bound before
+normal cleanup; missing events do not authorize a fabricated ACK.</p>
+<p><strong>Limits.</strong> Sharing the mutable cached table would break
+caller isolation. Delta messages sent to an unchanged full-map consumer
+would break its contract. An observed copy-component improvement,
+including the roughly 2.16× benchmark in one later control, is not an
+end-to-end Sync or import claim. Remaining copies, serialization,
+rendering, and other native work still matter.</p>
+</body>
+</html>

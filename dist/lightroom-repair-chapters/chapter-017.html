@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="FirstPair contributors" />
+  <meta name="dcterms.date" content="2026-10-12" />
+  <meta name="description" content="A practical cookbook of verified Lightroom repairs, preservation gates and version-sensitive performance mechanisms." />
+  <title>Renew bounded fixes after launch</title>
+  <style>
+    div.sitenav { display: flex; flex-direction: row; flex-wrap: wrap; }
+    span.navlink { flex: 1; }
+    span.navlink-label { display: inline-block; min-width: 4em; }
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="book.css" />
+</head>
+<body>
+<nav id="sitenav">
+<div class="sitenav">
+<span class="navlink">
+<span class="navlink-label">Up:</span> <a href="chapter-002.html" accesskey="u" rel="up">A Lightroom repair cookbook</a>
+</span>
+<span class="navlink">
+<span class="navlink-label">Top:</span> <a href="index.html" accesskey="t" rel="top">FirstPair Lightroom Repair</a>
+</span>
+</div>
+<div class="sitenav">
+<span class="navlink">
+<span class="navlink-label">Next:</span> <a href="chapter-018.html" accesskey="n" rel="next">Separate Sync stages and counts</a>
+</span>
+<span class="navlink">
+<span class="navlink-label">Previous:</span> <a href="chapter-016.html" accesskey="p" rel="previous">Repair folder admission for download workers</a>
+</span>
+</div>
+</nav>
+<h2 data-number="1.15" id="renew-bounded-fixes-after-launch"><span
+class="header-section-number">1.15</span> Renew bounded fixes after
+launch</h2>
+<p><strong>Prerequisites.</strong> The operator explicitly enables
+startup automation and guarded renewal. Pin the app version, installer,
+dependencies, and helper; grant macOS Accessibility/Automation access to
+the exact helper if requested.</p>
+<p><strong>Procedure.</strong> The private installed helper watches the
+exact Classic executable’s PID and launch time. A LaunchAgent invokes
+its check every thirty seconds; it does not watch photo folders or
+import files. After the correct catalog is available, the helper invokes
+the normal performance menu once for that process lifecycle. A durable
+intent prevents another click when dispatch or completion is
+ambiguous.</p>
+<p>The public package dispatches its exact installed <strong>Apply
+FirstPair performance fixes</strong> menu. It checks the menu, catalog,
+process lifecycle, nonce and pinned dependencies rather than assuming a
+position in the Scripts menu.</p>
+<p>Inside Lightroom, a five-minute maintenance check renews separately
+bounded guards only when the current owner, prior native request, and
+transport-drain gates permit it. It stops on a wrong catalog or native
+failure. Current private phase numbering is 0–6: SHA expression index,
+incremental map/count, isolated C copy, indexed tracking lookup,
+modification affinity, capture-date equivalence, and folder/file-rename
+affinity. The paired map transport starts only after the normal
+installer terminal.</p>
+<p><strong>Verify.</strong> LaunchAgent installation is not proof of
+native installation. Require the actual UI entry, genuine native
+callback, every required phase receipt, and separate transport startup
+outcome. Test a normal fresh-process restart and an actual later
+renewal. Check serving/oracle observations separately from initial
+installation. The retained private controls include successful normal
+restarts and guarded renewals, including all seven phases.</p>
+<p><strong>Undo.</strong> Disable future launch checks and renewal
+through the published uninstall instructions, retain their receipts, and
+let current owned native requests finish. Allow normal bounded
+restoration or a normal quit once safe. Remove only files owned by this
+installation. Do not force-kill Lightroom or cancel requests as an
+uninstall method.</p>
+<p><strong>Limits.</strong> Some fixes are runtime-only; the SHA
+expression index is a schema change. Reapplication after launch is not
+an object surviving quit, an indefinite lifetime guarantee, or a
+benchmark of sustained throughput. An app update or changed dependency
+must fail the pin gate and require a fresh qualification.</p>
+</body>
+</html>

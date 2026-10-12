@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="FirstPair contributors" />
+  <meta name="dcterms.date" content="2026-10-12" />
+  <meta name="description" content="A practical cookbook of verified Lightroom repairs, preservation gates and version-sensitive performance mechanisms." />
+  <title>Recover exact settings without resetting edits</title>
+  <style>
+    div.sitenav { display: flex; flex-direction: row; flex-wrap: wrap; }
+    span.navlink { flex: 1; }
+    span.navlink-label { display: inline-block; min-width: 4em; }
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="book.css" />
+</head>
+<body>
+<nav id="sitenav">
+<div class="sitenav">
+<span class="navlink">
+<span class="navlink-label">Up:</span> <a href="chapter-002.html" accesskey="u" rel="up">A Lightroom repair cookbook</a>
+</span>
+<span class="navlink">
+<span class="navlink-label">Top:</span> <a href="index.html" accesskey="t" rel="top">FirstPair Lightroom Repair</a>
+</span>
+</div>
+<div class="sitenav">
+<span class="navlink">
+<span class="navlink-label">Next:</span> <a href="chapter-024.html" accesskey="n" rel="next">Recover a selected proxy-missing upload</a>
+</span>
+<span class="navlink">
+<span class="navlink-label">Previous:</span> <a href="chapter-022.html" accesskey="p" rel="previous">Test offline rendering and editing without overstating Undo</a>
+</span>
+</div>
+</nav>
+<h2 data-number="1.21"
+id="recover-exact-settings-without-resetting-edits"><span
+class="header-section-number">1.21</span> Recover exact settings without
+resetting edits</h2>
+<p><strong>Prerequisites.</strong> Observe the current cloud
+asset/revision, exact requested XMP whole-file SHA and size, local XMP
+annotation/path/error state, and required masks, auxiliary data, and
+profiles. Keep signed links and private identifiers out of public
+reports.</p>
+<p><strong>Procedure.</strong> A preview supplies image data, not
+necessarily the current settings. In the examined Lightroom build,
+pending or failed settings status can keep Edit waiting even when a
+simpler download flag is clear. An exact cached XMP can be published
+without overwrite under its actual content hash when the current native
+document requests those same bytes; ordinary native selection/load must
+adopt it. The independent SHA/size gate is essential even if the native
+branch happens to accept a filename.</p>
+<p>Do not manufacture settings from an embedded packet merely because it
+contains develop fields. Do not label approximate XML with the requested
+SHA, edit revisions or availability flags externally, or use
+Reset/Legacy Update as recovery of existing edits. Adobe describes
+ordinary catalog/XMP metadata storage; that does not document or approve
+this internal cache route. <a
+href="https://helpx.adobe.com/lightroom-classic/desktop/organize-photos-in-lightroom-classic/metadata-basics-actions.html">Adobe:
+metadata and XMP</a>.</p>
+<p><strong>Verify.</strong> Retain full typed public develop/body
+fields, revisions, annotations, and separately indexed labels. Require
+native adoption and a post-load persisted observation. One exact
+standalone XMP control was adopted offline without a
+develop-body/revision change, and a normal same-sandbox cold restart
+cleared Waiting for Settings. Numeric editing was not tested. The
+50,443-asset exact-cache roster is an admission roster, with
+<strong>zero completed bulk adoption</strong>. A bulk constructor
+attempt failed before admission; a prepared successor is not a runtime
+receipt.</p>
+<p><strong>Undo.</strong> Preserve the cache source and publication
+journal. Withdraw only an exact owned unused publication if needed. A
+settings rewrite, Reset, or new cloud revision is a different operation
+with different rollback consequences.</p>
+<p><strong>Limits.</strong> Keep 5,756 profile-info holds separate from
+accepted candidates. Mutable <code>cameraProfileInfo</code> metadata is
+neither proof of a missing binary nor permission to ignore the
+dictionary. Required masks/profiles and rendering fidelity remain real
+gates. Whole admitted-preview embedded-XMP scanning found zero exact
+requested-hash matches across two temporal read-only snapshots; do not
+call them one atomic snapshot or treat old packets as current
+settings.</p>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="FirstPair contributors" />
+  <meta name="dcterms.date" content="2026-10-12" />
+  <meta name="description" content="A practical cookbook of verified Lightroom repairs, preservation gates and version-sensitive performance mechanisms." />
+  <title>Verify a Smart Preview at the level you need</title>
+  <style>
+    div.sitenav { display: flex; flex-direction: row; flex-wrap: wrap; }
+    span.navlink { flex: 1; }
+    span.navlink-label { display: inline-block; min-width: 4em; }
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="book.css" />
+</head>
+<body>
+<nav id="sitenav">
+<div class="sitenav">
+<span class="navlink">
+<span class="navlink-label">Up:</span> <a href="chapter-002.html" accesskey="u" rel="up">A Lightroom repair cookbook</a>
+</span>
+<span class="navlink">
+<span class="navlink-label">Top:</span> <a href="index.html" accesskey="t" rel="top">FirstPair Lightroom Repair</a>
+</span>
+</div>
+<div class="sitenav">
+<span class="navlink">
+<span class="navlink-label">Next:</span> <a href="chapter-020.html" accesskey="n" rel="next">Reuse offline converter-built Smart Previews</a>
+</span>
+<span class="navlink">
+<span class="navlink-label">Previous:</span> <a href="chapter-018.html" accesskey="p" rel="previous">Separate Sync stages and counts</a>
+</span>
+</div>
+</nav>
+<h2 data-number="1.17"
+id="verify-a-smart-preview-at-the-level-you-need"><span
+class="header-section-number">1.17</span> Verify a Smart Preview at the
+level you need</h2>
+<p><strong>Prerequisites.</strong> Bind the exact existing image/file
+UUID and the literal native preview path. Collision suffixes can be
+legitimate; do not derive every path from a UUID formula. Preserve the
+preview and settings baseline.</p>
+<p><strong>Procedure.</strong> Use normal <strong>Build Smart
+Previews</strong> for admitted sources. Adobe describes Classic’s Smart
+Preview status below the Histogram and the ability to work with
+originals disconnected. <a
+href="https://helpx.adobe.com/lightroom-classic/desktop/viewing-photos/lightroom-smart-previews.html">Adobe:
+Smart Previews</a>.</p>
+<p>Then distinguish four checks: a nonempty file; a structurally
+decodable preview; a native application render; and editing with the
+required settings. A full tile decode is stronger than a header check,
+but does not demonstrate the application’s offline setting/profile
+behavior.</p>
+<p><strong>Verify.</strong> Bind decode results to current catalog IDs,
+native status, stable preview bytes and identities, and full decode
+scope. For offline render testing, use an explicit network and
+original-source denial boundary, observe the selected exact image at Fit
+and 100%, and compare settings afterward. Open read-access descriptors
+support a file-use observation; they are not kernel read traces.</p>
+<p>The retained reuse publication covers 473,531 asset bindings across
+471,373 physical previews. Two PENTAX K-7 legacy controls actually
+rendered offline at Fit and 100%. Both still requested Legacy Settings
+Update before editing; no Update, Reset, edit, or export was completed.
+These controls do not establish readiness of the whole preview
+cohort.</p>
+<p><strong>Undo.</strong> Retain the originals and prior preview state.
+Remove only an exact owned newly published cache entry when it is proven
+safe and no native operation still owns it; avoid deleting the whole
+preview family during recovery.</p>
+<p><strong>Limits.</strong> A preview cannot replace a missing
+full-resolution original for every purpose. Two legacy render controls
+do not establish modern external-XMP readiness or current Classic
+offline editing for the whole library.</p>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="FirstPair contributors" />
+  <meta name="dcterms.date" content="2026-10-12" />
+  <meta name="description" content="A practical cookbook of verified Lightroom repairs, preservation gates and version-sensitive performance mechanisms." />
+  <title>Classify identity before merging or deleting</title>
+  <style>
+    div.sitenav { display: flex; flex-direction: row; flex-wrap: wrap; }
+    span.navlink { flex: 1; }
+    span.navlink-label { display: inline-block; min-width: 4em; }
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="book.css" />
+</head>
+<body>
+<nav id="sitenav">
+<div class="sitenav">
+<span class="navlink">
+<span class="navlink-label">Up:</span> <a href="chapter-002.html" accesskey="u" rel="up">A Lightroom repair cookbook</a>
+</span>
+<span class="navlink">
+<span class="navlink-label">Top:</span> <a href="index.html" accesskey="t" rel="top">FirstPair Lightroom Repair</a>
+</span>
+</div>
+<div class="sitenav">
+<span class="navlink">
+<span class="navlink-label">Next:</span> <a href="chapter-027.html" accesskey="n" rel="next">Route native fingerprints by format</a>
+</span>
+<span class="navlink">
+<span class="navlink-label">Previous:</span> <a href="chapter-025.html" accesskey="p" rel="previous">Recover verification after a successful native action</a>
+</span>
+</div>
+</nav>
+<h2 data-number="1.24"
+id="classify-identity-before-merging-or-deleting"><span
+class="header-section-number">1.24</span> Classify identity before
+merging or deleting</h2>
+<p><strong>Prerequisites.</strong> Retain both versions and independent
+catalog/cloud records. Write down which identity is needed for the
+intended action.</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Evidence</th>
+<th>What it supports</th>
+<th>What remains unproved</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Filename/counter resemblance</td>
+<td>A search candidate</td>
+<td>Same camera, exposure, bytes, or safe duplicate</td>
+</tr>
+<tr>
+<td>Capture time, camera/serial, complete exposure UID</td>
+<td>Exposure provenance</td>
+<td>RAW-conversion pixel equality or whole bytes</td>
+</tr>
+<tr>
+<td>Current native-original fingerprint match</td>
+<td>Native matcher correspondence</td>
+<td>Pure pixel or whole-file equality</td>
+</tr>
+<tr>
+<td>Stable full SHA plus size</td>
+<td>Whole-file byte identity</td>
+<td>Interchangeable edits, virtual copies, or cloud records</td>
+</tr>
+<tr>
+<td>Full decode</td>
+<td>Structural/decoder success for that file</td>
+<td>Original provenance or another file’s identity</td>
+</tr>
+<tr>
+<td>Native rendered image under denied originals</td>
+<td>Functional preview use in that control</td>
+<td>Full-resolution source recovery or all-library eligibility</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Procedure.</strong> Route by indexed filename/path/native
+fingerprint candidates, then inspect current capture/camera/serial and
+retained original-name evidence. A same-second import hash can belong to
+a different camera. A DNG or JPEG alternative may represent an exposure
+without being interchangeable with its source. If a bounded header shows
+a declared RAW strip extending past the stable file length, hold it from
+Add and repeated known-failing decode; search for an intact original or
+qualify preview-only salvage separately.</p>
+<p><strong>Verify.</strong> Record the consulted scope and current
+associations. Native fingerprint candidates that intentionally lack a
+peer native oracle remain candidates. An empty candidate-match array is
+not necessarily a mismatch. A duplicate-looking cloud record can contain
+independent edits even when it shares a file with another record.</p>
+<p><strong>Undo.</strong> Keep source versions until preservation,
+current-reference, settings, association, and action-specific gates all
+pass. Archive differing versions under truthful content identities
+rather than overwriting the accepted master.</p>
+<p><strong>Limits.</strong> A finite search with no peer is not
+universal proof of absence. Filename digits are not independent
+camera-counter evidence. Byte equality does not authorize merging
+records or deleting one copy.</p>
+</body>
+</html>

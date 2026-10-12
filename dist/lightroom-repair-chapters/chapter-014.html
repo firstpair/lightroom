@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="FirstPair contributors" />
+  <meta name="dcterms.date" content="2026-10-12" />
+  <meta name="description" content="A practical cookbook of verified Lightroom repairs, preservation gates and version-sensitive performance mechanisms." />
+  <title>Prevent format-only capture-date requeue</title>
+  <style>
+    div.sitenav { display: flex; flex-direction: row; flex-wrap: wrap; }
+    span.navlink { flex: 1; }
+    span.navlink-label { display: inline-block; min-width: 4em; }
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="book.css" />
+</head>
+<body>
+<nav id="sitenav">
+<div class="sitenav">
+<span class="navlink">
+<span class="navlink-label">Up:</span> <a href="chapter-002.html" accesskey="u" rel="up">A Lightroom repair cookbook</a>
+</span>
+<span class="navlink">
+<span class="navlink-label">Top:</span> <a href="index.html" accesskey="t" rel="top">FirstPair Lightroom Repair</a>
+</span>
+</div>
+<div class="sitenav">
+<span class="navlink">
+<span class="navlink-label">Next:</span> <a href="chapter-015.html" accesskey="n" rel="next">Withdraw proved redundant metadata work through its owner</a>
+</span>
+<span class="navlink">
+<span class="navlink-label">Previous:</span> <a href="chapter-013.html" accesskey="p" rel="previous">Drain and roll back a map transport normally</a>
+</span>
+</div>
+</nav>
+<h2 data-number="1.12"
+id="prevent-format-only-capture-date-requeue"><span
+class="header-section-number">1.12</span> Prevent format-only
+capture-date requeue</h2>
+<p><strong>Prerequisites.</strong> Establish that the native setter’s
+proposed date represents the same initialized whole-second value.
+Preserve capture time, original capture time, EXIF date fields, offset
+text, metadata, settings/history and relevant queue state. A badge or
+equal last-synced counter is not sufficient.</p>
+<p><strong>Procedure.</strong> The examined date setter could reassign
+already equivalent fields while normalizing whole-second text to
+<code>.000</code>, touching metadata and generating further work. The
+bounded guard skips only when its predicate proves the initialized
+assignment redundant. It leaves the native setter in charge of genuine
+changes and every unsupported/uncertain case.</p>
+<p>The first guard admitted only a narrow no-offset class. Later new
+entries exposed unchanged <code>-08:00</code> date strings gaining
+<code>.000</code>; an offset-preserving successor was separately
+qualified. Detached native controls covered matching
+<code>-08:00</code>, <code>+05:30</code>, <code>+14:00</code> and
+<code>-00:00</code> offsets. Genuine one-second changes, nonzero
+fractions, missing initialization and mismatched offsets take the native
+path. A <code>Z</code> control showed different native normalization, so
+<code>Z</code> and offset-suffixed capture-time forms remain excluded.
+Thirty-two live skip records were observed immediately after
+installation; the capped log did not identify each offset class.</p>
+<p><strong>Verify.</strong> Compare native versus guarded outcomes for
+both redundant assignments and required changes before serving calls.
+Require an actual native installation callback, recorded live decisions,
+exact restoration ownership and a normal restart/renewal receipt. The
+installer itself rewrites no catalog date and withdraws no queue row.
+Continuing new metadata entries cannot all be attributed to that setter
+without captured call provenance.</p>
+<p><strong>Undo.</strong> Disable future renewal and let the bounded
+wrapper restore its exact native function, or quit normally after
+pending requests close. Removing the wrapper does not undo any genuine
+native date update already completed.</p>
+<p><strong>Limits.</strong> Timezones, fractional dates and initialized
+fields are part of semantics. Do not normalize them broadly. A finite
+live skip control establishes this admitted class; it is not proof all
+recurring metadata work is eliminated.</p>
+</body>
+</html>

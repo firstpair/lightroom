@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="FirstPair contributors" />
+  <meta name="dcterms.date" content="2026-10-12" />
+  <meta name="description" content="A practical cookbook of verified Lightroom repairs, preservation gates and version-sensitive performance mechanisms." />
+  <title>Establish a recovery boundary</title>
+  <style>
+    div.sitenav { display: flex; flex-direction: row; flex-wrap: wrap; }
+    span.navlink { flex: 1; }
+    span.navlink-label { display: inline-block; min-width: 4em; }
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="book.css" />
+</head>
+<body>
+<nav id="sitenav">
+<div class="sitenav">
+<span class="navlink">
+<span class="navlink-label">Up:</span> <a href="chapter-002.html" accesskey="u" rel="up">A Lightroom repair cookbook</a>
+</span>
+<span class="navlink">
+<span class="navlink-label">Top:</span> <a href="index.html" accesskey="t" rel="top">FirstPair Lightroom Repair</a>
+</span>
+</div>
+<div class="sitenav">
+<span class="navlink">
+<span class="navlink-label">Next:</span> <a href="chapter-008.html" accesskey="n" rel="next">Get an observation that answers one question</a>
+</span>
+<span class="navlink">
+<span class="navlink-label">Previous:</span> <a href="chapter-006.html" accesskey="p" rel="previous">Choose the problem before choosing the repair</a>
+</span>
+</div>
+</nav>
+<h2 data-number="1.5" id="establish-a-recovery-boundary"><span
+class="header-section-number">1.5</span> Establish a recovery
+boundary</h2>
+<p><strong>Prerequisites.</strong> Identify the active catalog in
+Lightroom’s UI, the exact application version, and the physical
+locations of originals and previews. Decide what may change and what
+must remain equal. For a repair, that usually includes existing
+image/file IDs, virtual copies, develop settings, history, collection
+membership, and cloud associations.</p>
+<p><strong>Procedure.</strong> Make a normal catalog backup and a
+separate backup of originals. Adobe’s catalog backup does not include
+the photographs. When an advanced repair affects companion stores, keep
+a quiescent recovery copy of the relevant catalog family, catalog data,
+Sync/helper stores, and preview families as well. Quit normally and
+establish process absence before treating a raw filesystem copy as a
+closed snapshot. <a
+href="https://helpx.adobe.com/lightroom-classic/desktop/manage-catalogs-and-files/back-catalog.html">Adobe:
+back up a catalog</a>.</p>
+<p>Record the selected scope before acting. A useful repair manifest
+binds an existing catalog identifier to its current literal path, source
+identity, intended destination, and the reason the source is accepted.
+Keep source and destination copies while the repair is under
+verification. Use a unique run directory and retain failure
+receipts.</p>
+<p><strong>Verify.</strong> Reopen the recovery catalog when practical,
+check the intended photos and their edits, and independently verify
+copied files. A successful copy exit code alone is not a byte
+comparison. For database work, compare logical records and
+physical-family identities separately: a consistent read can be valid
+even when WAL or SHM bookkeeping changes.</p>
+<p><strong>Undo.</strong> Restore the relevant closed family together,
+or reverse a verified location change through Lightroom. Preserve work
+made after the baseline before restoring it. A local rollback cannot
+recall cloud activity already accepted by a server.</p>
+<p><strong>Limits.</strong> An APFS clone on the same disk is useful
+rollback material, but is not an independent disk backup. A baseline
+hash cannot prove that later files are unchanged without a current
+check.</p>
+</body>
+</html>

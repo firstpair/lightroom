@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="FirstPair contributors" />
+  <meta name="dcterms.date" content="2026-10-12" />
+  <meta name="description" content="A practical cookbook of verified Lightroom repairs, preservation gates and version-sensitive performance mechanisms." />
+  <title>What has actually been repaired</title>
+  <style>
+    div.sitenav { display: flex; flex-direction: row; flex-wrap: wrap; }
+    span.navlink { flex: 1; }
+    span.navlink-label { display: inline-block; min-width: 4em; }
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="book.css" />
+</head>
+<body>
+<nav id="sitenav">
+<div class="sitenav">
+<span class="navlink">
+<span class="navlink-label">Up:</span> <a href="chapter-002.html" accesskey="u" rel="up">A Lightroom repair cookbook</a>
+</span>
+<span class="navlink">
+<span class="navlink-label">Top:</span> <a href="index.html" accesskey="t" rel="top">FirstPair Lightroom Repair</a>
+</span>
+</div>
+<div class="sitenav">
+<span class="navlink">
+<span class="navlink-label">Next:</span> <a href="chapter-004.html" accesskey="n" rel="next">Which parts are supplied as code</a>
+</span>
+<span class="navlink">
+<span class="navlink-label">Previous:</span> <a href="chapter-002.html" accesskey="p" rel="previous">A Lightroom repair cookbook</a>
+</span>
+</div>
+</nav>
+<h2 data-number="1.1" id="what-has-actually-been-repaired"><span
+class="header-section-number">1.1</span> What has actually been
+repaired</h2>
+<p>The operator reported years of slow or failed local imports, Smart
+Preview delays, missing originals and recurring Sync work. After the
+repairs below, an October card imported through Classic’s ordinary UI
+with fast preview building, folder hierarchy and collection creation;
+Sync resumed roughly half a minute after collection creation. That is an
+operator observation, not a controlled throughput benchmark or a dated
+introduction point for every defect.</p>
+<p>Use this evidence table to decide which result matches your problem.
+Counts refer to their exact retained scopes; overlapping phases must not
+be added together.</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Incident or control</th>
+<th>Actual verified result</th>
+<th>Precise limit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Missing existing originals with exact native-cloud source bytes</td>
+<td>14,063 original location repairs in the initial exact-SHA cohort,
+retaining existing records, edits and proxies</td>
+<td>Location repair; other variants and absent originals required
+separate admission</td>
+</tr>
+<tr>
+<td>Missing 2026 imports and previews</td>
+<td>4,691 previously missing originals imported; 6,760 still Smart
+Previews, including 6,105 created and 655 already existing, with native
+availability and nonempty physical files</td>
+<td>The initial whole scope was not a full pixel decode of every
+preview</td>
+</tr>
+<tr>
+<td>A native file update scanning a huge metadata table</td>
+<td>Existing index recovered after numeric-key/equality/plan gates;
+twenty native relocation bodies totaled 0.02051 seconds</td>
+<td>Source admission and verification excluded; no whole-Sync
+benchmark</td>
+</tr>
+<tr>
+<td>Downloads stranded during destination-folder resolution</td>
+<td>2,526 folders registered by the native writer; all 3,144 planned
+folders verified; twenty original controls subsequently reached binary
+completion</td>
+<td>Does not certify all downloads or server completion</td>
+</tr>
+<tr>
+<td>Offline converter-built preview reuse</td>
+<td>392 fresh preview outputs admitted and reported existing by normal
+SDK preview building, zero failures</td>
+<td>A private version-specific cache route, with narrower
+structural/decode qualification</td>
+</tr>
+<tr>
+<td>Fingerprints already computed but missing from the catalog</td>
+<td>143,046 native registrations in 43 bounded transactions,
+independently audited without decoding originals again</td>
+<td>Registration is not RAW-conversion pixel equality or permission to
+merge records</td>
+</tr>
+<tr>
+<td>Final ten proxy-missing uploads</td>
+<td>Ten normal retry revisions gained server proxy links and Main
+associations; selected edits and other documents preserved</td>
+<td>Eight became virtual copies and two base records; missing
+full-resolution originals were not all recovered</td>
+</tr>
+<tr>
+<td>Modern Cloud preview reuse</td>
+<td>Two offline renders and Auto edits reported; 170 album proxies later
+natively recognized</td>
+<td>JPEG Undo restoration was not established; all 170 were not
+independently edited offline</td>
+</tr>
+<tr>
+<td>Large preview-cache publication</td>
+<td>473,531 asset bindings across 471,373 physical previews published
+and audited</td>
+<td>Cache publication is separate from settings adoption and offline
+editing</td>
+</tr>
+<tr>
+<td>Legacy controls</td>
+<td>Two legacy PENTAX photos rendered offline at Fit/100% with
+original-source denial</td>
+<td>Both blocked editing until Legacy Settings Update; no
+update/reset/edit/export ran</td>
+</tr>
+<tr>
+<td>Exact cached settings</td>
+<td>One normally adopted exact XMP, unchanged develop body/revision,
+Waiting for Settings cleared after cold restart</td>
+<td>Zero completed bulk adoption; the 50,443-asset roster is an
+admission roster</td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

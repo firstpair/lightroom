@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="FirstPair contributors" />
+  <meta name="dcterms.date" content="2026-10-12" />
+  <meta name="description" content="A practical cookbook of verified Lightroom repairs, preservation gates and version-sensitive performance mechanisms." />
+  <title>Repair locations without reimporting</title>
+  <style>
+    div.sitenav { display: flex; flex-direction: row; flex-wrap: wrap; }
+    span.navlink { flex: 1; }
+    span.navlink-label { display: inline-block; min-width: 4em; }
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="book.css" />
+</head>
+<body>
+<nav id="sitenav">
+<div class="sitenav">
+<span class="navlink">
+<span class="navlink-label">Up:</span> <a href="chapter-002.html" accesskey="u" rel="up">A Lightroom repair cookbook</a>
+</span>
+<span class="navlink">
+<span class="navlink-label">Top:</span> <a href="index.html" accesskey="t" rel="top">FirstPair Lightroom Repair</a>
+</span>
+</div>
+<div class="sitenav">
+<span class="navlink">
+<span class="navlink-label">Next:</span> <a href="chapter-010.html" accesskey="n" rel="next">Find an actually missing lookup index</a>
+</span>
+<span class="navlink">
+<span class="navlink-label">Previous:</span> <a href="chapter-008.html" accesskey="p" rel="previous">Get an observation that answers one question</a>
+</span>
+</div>
+</nav>
+<h2 data-number="1.7" id="repair-locations-without-reimporting"><span
+class="header-section-number">1.7</span> Repair locations without
+reimporting</h2>
+<p><strong>Prerequisites.</strong> The original catalog entry exists.
+The proposed destination source is accepted under a stated assurance,
+and filename/capture/camera evidence does not conflict. Bind the exact
+current IDs, full folder membership where applicable, destination
+collisions, aliases, and existing edits before writing.</p>
+<p><strong>Procedure.</strong> For ordinary use, select
+<strong>Locate</strong> from the missing-photo badge, or <strong>Find
+Missing Folder</strong> for a missing folder. These restore the catalog
+link to an existing source. Adobe documents both routes. <a
+href="https://helpx.adobe.com/lightroom-classic/desktop/manage-catalogs-and-files/locate-missing-photos.html">Adobe:
+locate missing photos</a>.</p>
+<p>For a controlled batch, use Lightroom’s normal file/folder services
+with bounded transactions. A whole verified leaf folder can be much
+cheaper than a series of file operations, but only when full membership
+is known and native folder merging is not required. Small individual
+batches remain appropriate for mixed destinations or ambiguous names. Do
+not use Add to repair an existing location.</p>
+<p><strong>Verify.</strong> Compare every intended path and existing ID
+after normal completion. Compare develop settings, all history,
+virtual-copy membership, and relevant cloud associations. Check that
+source bytes and physical identities stayed within the accepted
+assurance. Name expected native counters or path fields explicitly
+rather than calling every field unchanged.</p>
+<p><strong>Undo.</strong> Keep the prior mapping manifest. Relink back
+through Lightroom if the old accepted source remains available, or
+restore a closed recovery copy after protecting later edits.</p>
+<p><strong>Limits.</strong> In one later completed 121-file control, the
+existing IDs/settings and 49 Main cloud associations were preserved; no
+files were imported or bytes moved. The assurance was the operator’s
+verbatim-copy assurance plus exposure correspondence. It was location
+repair, not a new whole-file SHA, full-resolution pixel, or
+cloud-original identity proof. Its retained completion closes that
+workset; a new repair requires its own scope.</p>
+</body>
+</html>

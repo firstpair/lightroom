@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="FirstPair contributors" />
+  <meta name="dcterms.date" content="2026-10-12" />
+  <meta name="description" content="A practical cookbook of verified Lightroom repairs, preservation gates and version-sensitive performance mechanisms." />
+  <title>Reconcile catalog, XMP, ratings and dates</title>
+  <style>
+    div.sitenav { display: flex; flex-direction: row; flex-wrap: wrap; }
+    span.navlink { flex: 1; }
+    span.navlink-label { display: inline-block; min-width: 4em; }
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="book.css" />
+</head>
+<body>
+<nav id="sitenav">
+<div class="sitenav">
+<span class="navlink">
+<span class="navlink-label">Up:</span> <a href="chapter-002.html" accesskey="u" rel="up">A Lightroom repair cookbook</a>
+</span>
+<span class="navlink">
+<span class="navlink-label">Top:</span> <a href="index.html" accesskey="t" rel="top">FirstPair Lightroom Repair</a>
+</span>
+</div>
+<div class="sitenav">
+<span class="navlink">
+<span class="navlink-label">Next:</span> <a href="chapter-029.html" accesskey="n" rel="next">Start with supported performance maintenance</a>
+</span>
+<span class="navlink">
+<span class="navlink-label">Previous:</span> <a href="chapter-027.html" accesskey="p" rel="previous">Route native fingerprints by format</a>
+</span>
+</div>
+</nav>
+<h2 data-number="1.26"
+id="reconcile-catalog-xmp-ratings-and-dates"><span
+class="header-section-number">1.26</span> Reconcile catalog, XMP,
+ratings and dates</h2>
+<p><strong>Prerequisites.</strong> Retain catalog develop/metadata
+fields, sidecar or embedded XMP, an untouched reference when available,
+and current capture/camera facts. Separate a metadata conflict badge
+from a rendering comparison. Read complete referenced settings, not just
+a nullable legacy adjustment flag.</p>
+<p><strong>Procedure.</strong> Compare the three representations field
+by field: current catalog, current source/sidecar, preserved reference.
+In two retained examples, the Photo DNGs lacked Camera Raw edits present
+in the catalog/reference while dozens of other scalars agreed.
+Camera-era file times versus later Lightroom-save reference times were
+consistent with an older/unflushed/restored source, but the writer was
+unproved. The badge alone did not identify that history.</p>
+<p>The local PMRate integration writes a rating/label subset in
+sidecars, not the complete embedded DNG develop state. Its recorded
+introduction was after the operator’s February incident, and a narrow
+process observation found no active writer. That excludes the newly
+introduced integration as the original February cause within the
+retained timeline; it does not identify every other writer or prove
+current absence indefinitely. Unrelated XMP rewrites can change
+modification ordering, so “newer” is not a semantic settings
+comparison.</p>
+<p>Dates need the same discipline. Preserve original capture time,
+current catalog time, EXIF time, timezone/offset and actual
+corrected-date provenance separately. Filename dates come from ingestion
+and are not independent truth. A coherent offset can be evidence for a
+clock correction; several files disagreeing with a UTC-name hypothesis
+prevent a blanket timezone conclusion.</p>
+<p><strong>Verify.</strong> Compare parsed meaningful fields as well as
+raw bytes, preserving namespace-order-only differences, nil/absent
+fields and fractional/offset distinctions. Bind any accepted correction
+to complete current exposure/camera evidence and its exact intended
+cells. A same-exposure UID proves provenance, not raw-conversion
+equality. Keep source/preserved versions and settings/history
+protected.</p>
+<p><strong>Undo.</strong> Retain the pre-correction field manifest and
+normal Lightroom metadata-write/import history. Restore only the
+authorized scope through the normal UI/native owner; protect later edits
+before any family rollback. Do not mass-read stale sidecars into the
+catalog to clear conflict badges.</p>
+<p><strong>Limits.</strong> No current catalog-versus-XMP mismatch
+proves a specific historical writer. Do not infer a date’s capture
+meaning from a settings panel’s timestamp, file mtime, filename or a
+single scalar flag.</p>
+</body>
+</html>
