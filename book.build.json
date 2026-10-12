@@ -4,6 +4,7 @@
   "bookRoot": "docs/book",
   "manuscript": "docs/firstpair-lightroom-repair.md",
   "metadata": "docs/book/metadata.yaml",
+  "cover": "docs/book/cover.md",
   "css": "docs/book/reader.css",
   "stem": "lightroom-repair",
   "version": { "source": "literal", "value": "1.0.0" },
