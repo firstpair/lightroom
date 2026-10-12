@@ -1,0 +1,42 @@
+{
+  "$schema": "https://firstpair.org/schemas/book.build.schema.json",
+  "schemaVersion": 1,
+  "bookRoot": "docs/book",
+  "manuscript": "docs/firstpair-lightroom-repair.md",
+  "metadata": "docs/book/metadata.yaml",
+  "css": "docs/book/reader.css",
+  "stem": "lightroom-repair",
+  "version": { "source": "literal", "value": "1.0.0" },
+  "edition": "full",
+  "dist": "dist",
+  "buildDir": "build/book",
+  "primaryFormat": "typst",
+  "mobi": false,
+  "headboardImage": "cover/lightroom-halfdome.png",
+  "environment": { "LIGHTROOM_REPO_ROOT": "${repoRoot}" },
+  "pandoc": {
+    "reader": "markdown+smart",
+    "toc": true,
+    "tocDepth": 2,
+    "numberSections": false,
+    "resourcePaths": ["docs", "."],
+    "commonArgs": ["--lua-filter", "${repoRoot}/docs/book/source-links.lua"]
+  },
+  "pdf": {
+    "coverImage": "cover/lightroom-halfdome.png",
+    "coverWidth": "8.5in",
+    "coverHeight": "11in",
+    "coverFit": "contain",
+    "includeInHeader": ["docs/book/pdf-layout.typ"],
+    "variables": { "papersize": "us-letter", "fontsize": "10pt", "page-numbering": "1" }
+  },
+  "epub": {
+    "coverImage": "cover/lightroom-halfdome.png",
+    "titlePage": true,
+    "imprint": { "publisher": "First Pair Press", "publisherUrl": "https://firstpair.press" }
+  },
+  "html": {
+    "splitLevel": 2,
+    "luaFilter": "docs/book/source-links.lua"
+  }
+}

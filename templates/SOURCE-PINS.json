@@ -1,0 +1,82 @@
+{
+  "runtime/menu.lua": {
+    "originalSha256": "899cbe4fbb370c06488926361460a2317bc54397ec65f9632845be946eee0aac",
+    "derived": true
+  },
+  "runtime/incremental/MapAndCount.lua": {
+    "originalSha256": "bc020a99ce9e77a19c1e9af6f567030c31ed8096cd950e4a2b24e68a65bd7ff9",
+    "derived": true
+  },
+  "runtime/incremental/journal.sql": {
+    "originalSha256": "54be14655f972b7a2ce56fbc2c07c5e5a46dfca69abffb4dd4632ac7d3024824",
+    "derived": true
+  },
+  "runtime/affinity/FolderRename.lua": {
+    "originalSha256": "8eca621eb101237aa571c7c817e6018d1e368acf1c6e4630bffd3ad868ccd433",
+    "derived": true
+  },
+  "runtime/date/Install.lua": {
+    "originalSha256": "a1509a5bbf480005f7e1a49554ccca5c51073603ef24290d11d68c52f32140e3",
+    "derived": true
+  },
+  "runtime/date/Predicate.lua": {
+    "originalSha256": "e139d881462a701d62b757b8bd60d01e1052fc47099f18559899844fe9aecf49",
+    "derived": true
+  },
+  "runtime/transport/RenewalGate.lua": {
+    "originalSha256": "badaf56b3e667cd082e3cb70380cad6e9674d79ad096b0ba6fadf8b68b878bd1",
+    "derived": true
+  },
+  "runtime/codec/DeltaMap.lua": {
+    "originalSha256": "f9c918923bbf55bffbd24ca3f23303549c2edb2f190b98d77cd16c3c52c2ce5e",
+    "derived": true
+  },
+  "runtime/codec/ReverseDeltaMap.lua": {
+    "originalSha256": "904c5db99849a6d882f748c88fcb42adb3be3e7cd4ca8cf3c2f62e3a0bc5d115",
+    "derived": true
+  },
+  "runtime/incremental/ReverseMapCache.lua": {
+    "originalSha256": "d2eef7788a318503fab9a9ccf964fac53cd4b762157ea1c4d3b2e2bcd8408a06",
+    "derived": true
+  },
+  "runtime/transport/Start.lua": {
+    "originalSha256": "8c96750da0b12d5e7a3ee97f1fcf55b906fb4a0001f9234c0490ce6f09ffde30",
+    "derived": true
+  },
+  "runtime/transport/Config.lua": {
+    "originalSha256": "ef01a5c7ff79304bcae8ff00ec6356a24c38e5582b1564d47b61d8a1d196397e",
+    "derived": true
+  },
+  "runtime/transport/Coordinator.lua": {
+    "originalSha256": "1097c3caff816af12f7d650036149bbb119e941a9b07f19d3e2ba1b7f6f2dabf",
+    "derived": true
+  },
+  "runtime/transport/NativeEnvironment.lua": {
+    "originalSha256": "aa4c7efec4085cb81b3d41d58881f2a17fad84dd795f9aaa28312f9c615b668a",
+    "derived": true
+  },
+  "runtime/transport/OwnershipBootstrap.lua": {
+    "originalSha256": "ffb2847eacbeec6f60e926c82b0449fca8aebfa2cfe52dfc74513a4418438946",
+    "derived": true
+  },
+  "runtime/transport/templates/forward/SERVER-TEMPLATE.lua": {
+    "originalSha256": "02641ca4db5df998378f859141a436717c3b5891e10556b74da9a122e6a8ece6",
+    "derived": true
+  },
+  "runtime/transport/templates/forward/UI.lua": {
+    "originalSha256": "3feee8b5ed609267c3740f87efd86ac53849bf38b7627d201b2c52de5285826b",
+    "derived": true
+  },
+  "runtime/transport/templates/reverse/ReverseDeltaMap-v4.lua": {
+    "originalSha256": "a8d496adffdf6f520b4508d8c505a18cfaa332b2f619b37fb991401b3b13accf",
+    "derived": true
+  },
+  "runtime/transport/templates/reverse/SERVER-TEMPLATE.lua": {
+    "originalSha256": "125116fc5286de96de51f2dd9f00edf7acedf07a4bd70d59ef4e2f74d7d2fe0e",
+    "derived": true
+  },
+  "runtime/transport/templates/reverse/UI.lua": {
+    "originalSha256": "4d4f4a36de6fc19969d6174499ca26c1e73f8f1082f705e11b2b91860f39398a",
+    "derived": true
+  }
+}
