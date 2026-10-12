@@ -2,6 +2,8 @@
 
 Authored starter scripts and a practical [repair cookbook](docs/firstpair-lightroom-repair.md) for a large Lightroom Classic catalog. Public source: <https://github.com/firstpair/lightroom>.
 
+The complete cookbook is published in the [First Pair library](https://firstpair.org/books/lightroom-repair/): [PDF](https://firstpair.org/lightroom-repair/pdf/), [EPUB](https://firstpair.org/lightroom-repair/epub/), [HTML](https://firstpair.org/read/lightroom-repair/) and [chapters](https://firstpair.org/read/lightroom-repair/chapters/). Start with the [HOWTO](HOWTO.md), then use the recipes for your symptom. [Publication and verification](docs/LIBRARY-PUBLICATION.md).
+
 The performance package derives from guards actually run in **Lightroom Classic 15.6 on macOS**. Those private installed controls had real native callbacks, equality checks, normal restart application, and bounded transport cleanup/renewal. This configurable public successor has passed source, syntax and temporary-installation tests; it has **not** yet been run in another user's native Lightroom session. It uses version-sensitive private imports and fails closed when owner, SQL, types, dependency bytes or callback facts differ. It is not an Adobe-supported universal fix.
 
 No catalog, photo, preview, credentials, private diagnostic tree, Adobe Lua module body or bytecode is included. The Python tools never open a catalog database. Runtime SQL goes through Lightroom's own store provider. The startup watcher watches **Classic launches**, not photo folders; it never imports `~/foto` or resumes paused Sync.

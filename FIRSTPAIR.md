@@ -41,3 +41,11 @@ npm run library:publish -- /absolute/path/to/lightroom \
 After the authorized full-edition plan and artifacts are reviewed, run the same command without the dry-run suppression flags. It uploads only this book, records its catalog/routes, delivers versioned regular PDF/EPUB files to `~/icloud/books`, and verifies the deployed site. Commit and push the FirstPair metadata produced in that same publication session; an upload without its committed manifests is unfinished.
 
 Reader-facing routes are `https://firstpair.org/lightroom-repair/pdf/`, `/lightroom-repair/epub/`, `/read/lightroom-repair/`, and `/read/lightroom-repair/chapters/`. Raw object-storage URLs belong in FirstPair manifests, not in reader-facing prose. The project story's canonical URL is `https://firstpair.press/lightroom-repair/`; its source and textpack remain in `docs/blog/lightroom-repair/`.
+
+The first full edition and its checks are recorded in
+[docs/LIBRARY-PUBLICATION.md](docs/LIBRARY-PUBLICATION.md). Its actual initial
+release used the publisher with `--no-deploy`, committed and pushed the
+generated library manifests, then deployed with `vercel deploy --prod --yes`.
+The library supports a `post` field for the canonical Story link; add that
+catalog-only field after Ghost publication is verified, preserving `source`
+and all artifact URLs. This requires no book rebuild or artifact re-upload.
