@@ -105,6 +105,47 @@ The optional persistent SHA index survives quitting. This starter does not drop 
 
 ## Reading and publication
 
+### Physical-drive catalog shuttle
+
+The separate [Unison shuttle guide](docs/SHUTTLE.md) documents
+`scripts/shuttle.py`: a closed Main catalog can move between two Mac SSDs through
+one UUID-guarded portable volume, while each Mac retains its own host/root/tier
+archives. Only one Mac owns the working catalog at a time; normally quit Main
+and finish its writes before each transport, then verify and accept ownership
+on the receiver before opening it or resuming cloud Sync.
+The `full` tier copies the selected catalog folder including Backups and both
+preview packages; `main-core` keeps the catalog, Sync, Helper and standard
+Previews on a smaller SSD, with an explicitly declared Photo-resident Smart
+Previews link. Neither tier copies the entire Lightroom parent or diagnostics.
+
+It requires a pinned Unison executable and stable Classic 15.6, preserves a
+coherent previous critical family using independent APFS clones, and holds
+ownership until a separately produced complete critical-file SHA receipt is
+accepted. The independent production verifier is not bundled: the illustrated
+receipt schema must be populated by actual full closed-file verification,
+not operator assurances. Routine conflicts remain held, with no blind retry,
+automatic owner reset or catalog merge. The guide explains normal ownership
+return and manual recovery of a coherent preserved family.
+
+This source has synthetic tests and small native Unison 2.54 transport tests;
+the large production handoff is still awaiting completion. Those controls do
+not certify another catalog's startup, original media or cloud convergence.
+The public revision also rejects standard Previews symlink declarations;
+that guard correction has regression coverage, with production qualification pending.
+It does not install a launch gate, start Lightroom or execute catalog SQL.
+The first baseline may spend hours fingerprinting existing previews; later
+`fastcheck` reuse depends on each host retaining its own archives and valid
+native file stamps. A device-number change alone is not a content-change check
+in the reviewed Unison source; actual Mac-to-Mac reuse remains to be measured.
+
+```sh
+uv run --no-project python scripts/shuttle.py --help
+```
+
+All configuration, UUIDs, host paths, binary pins, archives, journals and receipts
+belong in private locations outside the synchronized roots and public repo. Read
+the guide before preparing a configuration or executing a handoff.
+
 - [Start here: HOWTO](HOWTO.md)
 - [Reusable repair cookbook](docs/firstpair-lightroom-repair.md)
 - [Lightroom Queen announcement draft](docs/announcing-firstpair-lightroom-repair.md)
