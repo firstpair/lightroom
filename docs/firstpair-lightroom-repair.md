@@ -302,6 +302,18 @@ The retained reuse publication covers 473,531 asset bindings across 471,373 phys
 
 **Limits.** A preview cannot replace a missing full-resolution original for every purpose. Two legacy render controls do not establish modern external-XMP readiness or current Classic offline editing for the whole library.
 
+## Isolate a stalled Smart Preview batch
+
+**Prerequisites.** Preserve the exact requested photo IDs, batch intent, returned callbacks and existing previews. Keep ownership of the native task until it has actually stopped. A responsive window or low CPU use alone does not establish completion.
+
+**Procedure.** Cancel the progress task normally. If its callback remains pending, quit Classic normally, handle its task confirmation explicitly, and reopen only after native closure and resource reconciliation. Do not delete preview caches or replay the pending batch. Reconcile valid registrations and existing preview files before choosing controls.
+
+Select one exact JPEG and use **Library → Previews → Build Smart Previews** independently of the SDK batch loop. When Classic asks whether to build all photos or only one, choose **Build One**. Test the first pending input separately, then a small mixed batch. Verify the selected IDs before every menu action; never accept a default **Build All** confirmation accidentally.
+
+**Verify.** Distinguish recognizing an existing cache file from generating a new preview. In one Classic 15.6 recovery, single JPEG/HEIC controls recognized cached files; a subsequent five-photo control had no preview files beforehand and produced five nonempty, validly registered previews through the Library menu. The bulk SDK callback had stalled. This demonstrates the tested UI route, without establishing the cause of the stalled callback or completion of the remaining queue.
+
+**Undo and limits.** Preserve generated previews and originals. Restore temporary diagnostic menu scripts and retain the original failed/pending receipts. Record recovery closure separately from successful SDK completion. A small successful batch does not qualify an unattended full-catalog controller or justify another large retry.
+
 ## Reuse offline converter-built Smart Previews
 
 **Prerequisites.** Originals remain retained and stable. Pin the installed converter version and explicit output options. Use a fresh scratch destination and an exact source/output manifest; never accept the converter's default destination if it could overwrite originals. The private cache layout and native preview-identity rules need separate current qualification.
