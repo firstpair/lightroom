@@ -50,6 +50,12 @@ from an independently verified eight-key publication. It requires actual parent
 tool closure, preserves the whole-publication provenance and creates independent
 pair views. It does not publish files, touch a catalog or call Lightroom.
 
+`workspace_paths.py` resolves one explicitly recorded old-root symlink into
+the relocated workspace. Both roots' identities are checked; unrecorded aliases,
+nested symlinks, traversal and root replacement are refused. It changes no
+receipt strings, performs no payload reads, and supplies no lock or lifetime
+proof. Callers still authenticate metadata and fence their reads.
+
 The remaining renderer, publisher, lifecycle coordinator and native cache
 recognition implementation is preserved locally, pending component-by-component
 portability and distribution review. Its existence is not a public installation
@@ -64,11 +70,11 @@ point focused on architecture and completion limits.
 
 The last local continuation has a normally reopened catalog and eight freshly
 audited preview publications awaiting native recognition. The original
-publication parent tool terminal is unavailable; the contained worker closure
-and independent publication audit are preserved, but must not be represented as
-that missing terminal. Recognition preparation refused this gap before native
-dispatch. Resolve it from authentic saved tool evidence or a separately reviewed
-recovery protocol, never fabricated terminal data.
+publication parent tool terminal was recovered from its authentic saved session
+event; the earlier evidence-gap audit remains preserved. A separately versioned
+metadata contract uses the relocation resolver and passed the existing
+preservation controls. Fresh recognition runtimes were prepared without native
+dispatch. Their actual callbacks and settlement remain required for completion.
 
 Whole-catalog preview generation and final takeover/coherence verification
 remain incomplete. The catalog, original media and installed services remain
