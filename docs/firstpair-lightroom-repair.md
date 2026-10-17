@@ -336,6 +336,18 @@ The larger publication independently audited 473,531 bindings. Publication, nati
 
 **Limits.** A missing expected proxy SHA needs a separately qualified identity route. The known-SHA recipe cannot silently admit that population. The two legacy tests below used such a narrower route and qualify only their tested class.
 
+## Register placed clones with Cloud's own proxy loader
+
+**Prerequisites.** Clones already placed and verified against each document's `importSource.proxySHA256`. A fresh Cloud launch under network and original-source denial with zero sockets observed. A closed read-only ledger of every unregistered document with a clone at its literal native path, the full current body, annotation, revision and stored labels. Accessibility permission for one menu selection. `scripts/proxy_register.py` and [docs/CLOUD-PROXY-REGISTRATION.md](CLOUD-PROXY-REGISTRATION.md) supply the tooling.
+
+**Procedure.** Placement alone registers nothing: 465,411 exact clones stayed `needsProxyDownload` for five days with local Smart Preview retention enabled. Issue the ordinary `getProxyPaths` request from one user Script, 256 documents per batch and at most four batches in flight, reading each document before and after through the ordinary asset stream. Approve only the first batch until its after-documents show exactly `{volumeGuid, relativePath, lastSaveTimestamp}` added under `_localOnly.files.proxy["2560"]` and nothing else changed. Skip, never fabricate: an already annotated document, a document whose live body or annotation differs from the ledger, and a native refusal (a status such as `SendNoDownloadableOriginal` instead of a path) are per-row holds. Halt only on request-level protocol or owner failures.
+
+**Verify.** The reference run recognized about 45 documents per second with full before/after protection and no body, revision or label change. Native refreshes `_localOnly.cameraProfileInfo` after a relaunch, so roughly one percent of rows drift from a closed ledger; rebuild the ledger and run a second pass instead of weakening the before-guard. After a normal quit, the closed audit classifies every row by registration, body, annotation minus the added entry, labels and index flags.
+
+**Undo.** The annotation is native-owned cache bookkeeping bound to a file that already existed; removing the clone through Cloud's own cache controls is the supported reversal. Keep the run journals, the ledger and the guard observations.
+
+**Limits.** A recognized local proxy is not settings readiness, a rendered test, numeric-edit readiness or server convergence. An inherited design that halted the whole controller on one row hold registered nothing on its first attempt; a 5-second guard freshness with a once-per-second refresher stalled an earlier settings batch. Documents without an expected proxy hash belong to the separately qualified route above.
+
 ## Test offline rendering and editing without overstating Undo
 
 **Prerequisites.** Keep a complete current develop/history baseline and exact preview identities. Define actual network and original-source denial. For deliberate edit tests, record numeric settings before, during, after Undo and after normal reconnect; user permission for the edit is required.

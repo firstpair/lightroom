@@ -138,6 +138,18 @@ The first baseline may spend hours fingerprinting existing previews; later
 native file stamps. A device-number change alone is not a content-change check
 in the reviewed Unison source; actual Mac-to-Mac reuse remains to be measured.
 
+### Registering placed Smart Preview clones with Lightroom Cloud
+
+The [proxy registration guide](docs/CLOUD-PROXY-REGISTRATION.md) documents
+`scripts/proxy_register.py`: once Classic Smart Previews have been cloned into
+Cloud's cache with verified hashes, Cloud still reports them as needing a
+download until its own proxy loader is asked for each document. The tool builds
+a closed read-only ledger, binds one ordinary user Script that issues the normal
+`getProxyPaths` request in bounded batches under a live process and destination
+guard, and audits the closed store afterwards. It never writes a Lightroom
+store, forges a flag or opens the network. Registration is distinct from
+settings readiness, offline rendering and server convergence.
+
 ```sh
 uv run --no-project python scripts/shuttle.py --help
 ```
