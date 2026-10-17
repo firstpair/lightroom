@@ -48,7 +48,7 @@ distributable catalog or a completion receipt.
 Machine-wide toolchain rules live in `~/src/firstpair/AGENTS.md`, section
 "Native Toolchains And Shared Engines On This Machine" (opam switches
 `default` for stock OCaml and `5.2.0+ox` for OxCaml, dune, Rust, the Perl
-ExifTool oracle, the exiftool-rs fork). Follow it here.
+ExifTool oracle, the exiftool-rs engine). Follow it here.
 
 - Perl ExifTool remains the engine of record. Records from the exiftool-rs
   engine carry `ExifTool:DngCompareEngine` and are a separate metadata
