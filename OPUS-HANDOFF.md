@@ -1,13 +1,15 @@
 # Lightroom continuation handoff
 
-Current operational checkpoint: a 5,000-file Smart Preview window completed
-through 200 SDK callbacks, with full independent output/registration/source-epoch
-audits and actual owner closure. All inputs affected by the two recent interrupted
-calls are reconciled; their original incomplete-call records remain preserved.
-The latest catalog snapshot has 16,597 accepted files registered valid with
-nonempty previews and 89,570 still pending. A fresh bounded 5,000-file window is now active on the remaining queue. A correlated exported-JPEG family stays explicitly queued for
-separate qualification; its stall cause remains unproven. Exact live owners and
-receipts are in the ignored local handoff. The full objective is incomplete.
+Current operational checkpoint: two consecutive 5,000-file Smart Preview windows
+completed, each through 200 independently audited SDK callbacks and actual owner
+closure. The latest closed catalog snapshot has 21,597 valid/nonempty previews
+and 84,570 pending accepted files. At the user's request, a continuous runner is
+now active with 10,000-file windows and 250-file SDK calls. Each next window waits
+for actual direct-owner/group closure and an independent sealed output audit;
+errors or unknown ownership stop progression without replay. Nine isolated exports
+remain explicitly queued. The first larger window is in progress, not qualified
+complete or measured faster yet. Exact handles, safe boundary-stop instructions
+and live counters are in the ignored local handoff. The full objective is incomplete.
 
 Work from this checkout. Repository layout and source-promotion rules are in
 [docs/development-layout.md](docs/development-layout.md).
