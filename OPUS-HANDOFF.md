@@ -21,10 +21,11 @@ entry point when the repository architecture or continuation location changes.
 
 The operator-authorized Smart Preview generation handoff now takes priority over
 further monitor-preview publication. The candidate manifest was authenticated and
-resolved read-only against the current catalog. Classic's SDK has created the
-ordinary collection and is populating it in bounded transactions; the one-shot
-controller verifies committed membership before serial native build batches.
-Generation completion is not yet claimed. Continue monitoring the existing native
+resolved read-only against the current catalog. Classic's SDK created and fully
+populated the ordinary collection; SDK and independent read-only checks verified
+its exact committed membership. Serial native Smart Preview generation has now
+started, with newly valid proxy registrations observed in the live catalog.
+Whole-run completion is not yet claimed. Continue monitoring the existing native
 task and retained resource owner described in the private handoff; do not dispatch
 another collection or build request. Preserve the saved monitor renders and stages.
 
