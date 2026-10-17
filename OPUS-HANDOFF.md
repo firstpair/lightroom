@@ -3,8 +3,8 @@
 Current operational checkpoint: interrupted Smart Preview SDK windows have been
 recovered through normal Classic exits, scoped idle-owner closure and verified
 normal reopening. Existing cache files were recognized natively without
-rebuilding. A fresh bounded 5,000-file window is active, with independent
-per-callback audits and acknowledgements. A correlated exported-JPEG family is
+rebuilding. A fresh bounded 5,000-file window is active; at least 1,075 previews have
+completed independent per-callback audits and acknowledgements at this checkpoint. A correlated exported-JPEG family is
 kept in a separate explicit queue, not dropped; the callback-stall cause remains
 unproven. Exact live owners and counts are in the ignored local handoff. Unison's
 saved RPC functional evidence remains separate from its original auditor failure.
