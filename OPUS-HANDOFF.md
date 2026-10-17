@@ -1,11 +1,12 @@
 # Lightroom continuation handoff
 
-Current operational checkpoint: normal recovery cleared a stalled bulk Smart
-Preview SDK task. Fresh SDK controls of one, six and 25 files passed with exact
-callback accounting and persisted preview checks. A smaller-batch continuation
-is source-prepared; it is not dispatched. The next finite IO allocation belongs
-to the already source-accepted Unison component RPC test. Exact runtime counts,
-resource state and one-use admission pins are in the ignored local handoff.
+Current operational checkpoint: a bounded 1,000-file Smart Preview SDK window
+completed with 40 callbacks and independent per-batch persisted-output audits.
+The next bounded 5,000-file window is active, still using 25-file calls and
+requiring a parent audit acknowledgement before each next call. The accepted
+Unison RPC run is resource-closed but failed its final functional audit; it is
+not marked passed or replayed. Exact live ownership, receipts and remaining
+counts are in the ignored local handoff. The overall goal remains incomplete.
 
 Work from this checkout. Repository layout and source-promotion rules are in
 [docs/development-layout.md](docs/development-layout.md).
