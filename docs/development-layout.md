@@ -56,6 +56,16 @@ nested symlinks, traversal and root replacement are refused. It changes no
 receipt strings, performs no payload reads, and supplies no lock or lifetime
 proof. Callers still authenticate metadata and fence their reads.
 
+`inherited_lock.py` verifies an explicitly passed regular-file description and
+confirms its exclusive nonblocking flock. It never opens, closes or unlocks the
+description. A parent can therefore retain a watcher lock across serial helper
+processes, avoiding competing reopen attempts between quit and modal handling.
+Disposable independent contenders verify that child exit does not release the
+parent's copy, and that closing the parent permits fresh acquisition. The local
+optional helper entry passed one read-only inspection with actual settlement;
+normal-quit sequence integration remains pending. No installed startup flag was
+changed, and the in-process native renewal timer is not excluded by this lock.
+
 The remaining renderer, publisher, lifecycle coordinator and native cache
 recognition implementation is preserved locally, pending component-by-component
 portability and distribution review. Its existence is not a public installation
