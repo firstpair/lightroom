@@ -69,12 +69,15 @@ actual terminals, recovery and changes in next action. Keep this public entry
 point focused on architecture and completion limits.
 
 The last local continuation has a normally reopened catalog and eight freshly
-audited preview publications awaiting native recognition. The original
+audited preview publications with completed native recognition. The original
 publication parent tool terminal was recovered from its authentic saved session
 event; the earlier evidence-gap audit remains preserved. A separately versioned
 metadata contract uses the relocation resolver and passed the existing
-preservation controls. Fresh recognition runtimes were prepared without native
-dispatch. Their actual callbacks and settlement remain required for completion.
+preservation controls. Four serial recognition runtimes then completed their
+actual callbacks, loads, decodes and settlement, followed by an independent
+audit. The exact private receipts remain in the operational handoff. This
+qualifies that local recognition continuation, not relocation of every remaining
+renderer or an installation on another machine.
 
 Whole-catalog preview generation and final takeover/coherence verification
 remain incomplete. The catalog, original media and installed services remain
