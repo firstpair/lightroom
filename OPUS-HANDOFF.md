@@ -1,14 +1,17 @@
 # Lightroom continuation handoff
 
 Current operational checkpoint: a bounded 1,000-file Smart Preview SDK window
-completed with independent per-batch audits. A later window stalled after 675
-more completed files; normal recovery preserved its partial files. All affected
-inputs were reconciled through smaller SDK calls and native cache recognition,
-without rebuilding existing cached files. A fresh 1,000-file window is active,
-still using 25-file calls and parent audit acknowledgements. The repeat stall's
-cause remains unknown. Unison's saved RPC functional receipts were separately
-adopted while retaining its original auditor exit-one result. Exact live owners,
-receipts and counts are in the ignored local handoff. The overall goal is active.
+completed with independent per-batch audits. Later windows stalled after 675 and
+150 more completed files. Normal recovery preserves partial cache files and
+registers them through native selection without rebuilding. An isolated single
+exported JPEG also wrote a preview but did not return its SDK callback; a
+selection-only nudge did not unblock it. Classic exited normally, the exact idle
+Python owner was independently closed, and normal reopening is being verified.
+The filename-family correlation is not an established cause. Keep those inputs
+in a separate explicit queue while continuing other inputs; never omit them from
+the full objective. Unison saved RPC functional evidence remains separate from
+its original auditor exit-one result. Exact live owners and receipts are in the
+ignored local handoff. The overall goal remains active and incomplete.
 
 Work from this checkout. Repository layout and source-promotion rules are in
 [docs/development-layout.md](docs/development-layout.md).
