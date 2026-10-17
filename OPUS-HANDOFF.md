@@ -61,7 +61,13 @@ and an independently checked local read-only capture. It is not yet integrated
 into production publication. A pure reported-capture verifier now also checks
 full raw hashes, counts, projection and serialized settlement fields. Its synthetic
 controls and saved-capture readback passed; it cannot authenticate a real wait or
-release resources. Parent capture-prefix and retained-failure integration
+release resources. A descriptor-relative file adapter now checks pinned receipts
+and raw captures with nofollow opens, held/visible identity fences and combined
+close-uncertainty preservation. Eight disposable-file controls pass; no live
+process census, media, catalog or production publication was invoked by them.
+The caller still needs an authenticated complete execution journal: a valid
+supplied subset does not prove all attempts are accounted for. Parent
+capture-prefix and retained-failure integration
 must be qualified before a new attempt. Exact process and receipt details
 remain in the private handoff. Full-catalog generation and final
 receiver/coherence audits remain incomplete.

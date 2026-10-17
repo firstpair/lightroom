@@ -57,6 +57,21 @@ file epochs and stderr policy, proves the real owning-tool terminal and applies
 the exclusion rules. The pure verifier neither opens files nor observes or
 signals processes. Source tests do not qualify its production integration.
 
+`scripts/preview_pipeline/census_files.py` adds a file-reading adapter beneath
+a caller-held directory descriptor. It accepts only pinned direct capture
+children, opens files without following symlinks, checks private modes and link
+counts, reads bounded receipt/raw bytes, and fences held and visible file
+identities before closing its own descriptors. Multiple close uncertainties
+preserve their identities and the original failure; descriptors are never
+retried. The borrowed root descriptor stays with its caller. Disposable tests
+cover substitution, replacement during reading and close failures.
+
+This adapter still cannot prove that the supplied inventory includes every
+attempted capture. The production parent must authenticate a complete execution
+journal and audit the capture prefix before reaping its worker or releasing
+grants. Missing records, failed prefixes and uncertain closes require retained
+ownership until independently resolved. No current publisher uses this adapter.
+
 Synthetic tests cover a protected record beyond the old capture size, fragmented
 UTF-8 input, malformed/truncated fields, literal path boundaries and resource
 limits. A local read-only process-listing control also compared projected
