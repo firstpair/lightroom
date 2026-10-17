@@ -39,6 +39,10 @@ closed the read-only diagnostic processes and idle worker, collected the actual
 outer terminal, verified resource closure and reopened the catalog normally.
 No preview key was written by that failed attempt. A qualified census-handling
 successor is required before a fresh publication attempt; the saved renders and
-staged outputs must not be regenerated. Exact process and receipt details
+staged outputs must not be regenerated. A bounded complete-stream descriptor
+projection is now implemented and tested, including a large synthetic listing
+and an independently checked local read-only capture. It is not yet integrated
+into production publication; capture ownership and retained-failure integration
+must be qualified before a new attempt. Exact process and receipt details
 remain in the private handoff. Full-catalog generation and final
 receiver/coherence audits remain incomplete.

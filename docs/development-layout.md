@@ -30,6 +30,30 @@ operation, inspect its current source, ownership rules, canonical-path checks
 and exact pins. Never rewrite old receipts, refresh a consumed admission, or
 claim a missing parent terminal from a worker receipt.
 
+## Complete descriptor census projection
+
+`scripts/preview_pipeline/descriptor_census.py` consumes a complete, bounded
+`lsof -Fpcftn` stream. It validates every field, hashes all input bytes and
+retains exact protected PID/descriptor/type/name records. Unrelated names do
+not need to occupy the publisher's in-memory capture buffer. The legacy field
+projection keeps every observed PID and, if no protected descriptor exists,
+one actual unrelated name as the nonempty-listing witness. Its smaller listing
+must not be presented as the original raw capture or its total descriptor count.
+
+Protected roots are literal path boundaries, without filesystem resolution.
+Callers must explicitly include catalog sidecar names and admitted aliases;
+protecting a catalog filename does not implicitly include its `-wal` or `-shm`
+siblings. The caller still authenticates the raw capture and its file epoch,
+requires actual command success and stderr policy, proves child/group/FD
+settlement, checks process membership and applies the existing descriptor
+exclusion rules. Parser success is not an ownership or publication grant.
+
+Synthetic tests cover a protected record beyond the old capture size, fragmented
+UTF-8 input, malformed/truncated fields, literal path boundaries and resource
+limits. A local read-only process-listing control also compared projected
+records against a separate full-capture scan. Production publication integration
+and its retained-failure lifecycle remain separate qualification work.
+
 ## Moving source into the public tree
 
 The private workspace contains reusable implementation alongside one-off
