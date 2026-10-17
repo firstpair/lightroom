@@ -71,3 +71,11 @@ capture-prefix and retained-failure integration
 must be qualified before a new attempt. Exact process and receipt details
 remain in the private handoff. Full-catalog generation and final
 receiver/coherence audits remain incomplete.
+
+A source-level capture-attempt journal now persists intent before an injected
+capture callback, receipt/projection bindings before returning, and a sealed
+inventory afterward. Eight inert controls passed, including failure ordering,
+no replay after uncertainty and independent projection binding. Its injected
+writer is not yet qualified as durable storage; no real capture or publisher
+uses this journal. Integrating the durable writer, capture wrapper and parent
+audit remains necessary. It grants no process, publication or release authority.

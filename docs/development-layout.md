@@ -72,6 +72,18 @@ journal and audit the capture prefix before reaping its worker or releasing
 grants. Missing records, failed prefixes and uncertain closes require retained
 ownership until independently resolved. No current publisher uses this adapter.
 
+`scripts/preview_pipeline/census_journal.py` supplies the source-level attempt
+state machine: a caller-qualified writer must persist intent before invocation,
+then receipt/projection bindings before returning success, and finally a sealed
+inventory. Invocation or post-invocation persistence failures stop the instance
+and require retained ownership; they never trigger a retry. The reader checks
+the reported sequence against expected receipt pins and independently checked
+capture projections. Eight inert tests cover ordering, missing/substituted
+records, reentry and persistence faults. The writer is injected: these tests do
+not establish durable storage, real child settlement or complete production
+instrumentation. The actual writer, capture wrapper and parent lifecycle still
+need integration and qualification before this can support publication.
+
 Synthetic tests cover a protected record beyond the old capture size, fragmented
 UTF-8 input, malformed/truncated fields, literal path boundaries and resource
 limits. A local read-only process-listing control also compared projected
