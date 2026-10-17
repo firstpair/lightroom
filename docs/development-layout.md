@@ -93,3 +93,11 @@ Whole-catalog preview generation and final takeover/coherence verification
 remain incomplete. The catalog, original media and installed services remain
 at their existing external locations. This repository migration does not move
 them or change their ownership.
+
+`candidate_page.py` provides bounded, cursor-based selection from authenticated
+planning rows. It retains every consumed exclusion and duplicate-key alias as
+an observation, and does not consume a row beyond a selected batch boundary.
+The caller must authenticate the sealed queue and completed-key evidence,
+perform indexed queries, and freshly bind catalog/source metadata. Its cursor
+records observation progress; it grants no rendering or completion authority.
+The operational rolling controller has not yet adopted this component.
