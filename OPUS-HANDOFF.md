@@ -27,7 +27,11 @@ its exact committed membership. Serial native Smart Preview generation has now
 started, with newly valid proxy registrations observed in the live catalog.
 Whole-run completion is not yet claimed. Continue monitoring the existing native
 task and retained resource owner described in the private handoff; do not dispatch
-another collection or build request. Preserve the saved monitor renders and stages.
+another collection or build request. A separate read-only progress observer now
+verifies completed native callback prefixes against current catalog registrations
+and refreshes the private handoff status periodically. It cannot submit builds or
+authorize resource release; actual owning-tool completion remains separate.
+Preserve the saved monitor renders and stages.
 
 ## Repository and continuation status
 
