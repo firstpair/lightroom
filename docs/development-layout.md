@@ -48,6 +48,15 @@ requires actual command success and stderr policy, proves child/group/FD
 settlement, checks process membership and applies the existing descriptor
 exclusion rules. Parser success is not an ownership or publication grant.
 
+`scripts/preview_pipeline/census_receipts.py` also checks a reported capture
+against the complete raw byte stream: command, reported wait/group/FD fields,
+raw identity shape, full hash, counters and reconstructed projection must agree.
+Its result always carries no resource-release authority. The caller still
+binds the receipt and raw file to the actual invocation, checks held/visible
+file epochs and stderr policy, proves the real owning-tool terminal and applies
+the exclusion rules. The pure verifier neither opens files nor observes or
+signals processes. Source tests do not qualify its production integration.
+
 Synthetic tests cover a protected record beyond the old capture size, fragmented
 UTF-8 input, malformed/truncated fields, literal path boundaries and resource
 limits. A local read-only process-listing control also compared projected

@@ -58,7 +58,10 @@ successor is required before a fresh publication attempt; the saved renders and
 staged outputs must not be regenerated. A bounded complete-stream descriptor
 projection is now implemented and tested, including a large synthetic listing
 and an independently checked local read-only capture. It is not yet integrated
-into production publication; capture ownership and retained-failure integration
+into production publication. A pure reported-capture verifier now also checks
+full raw hashes, counts, projection and serialized settlement fields. Its synthetic
+controls and saved-capture readback passed; it cannot authenticate a real wait or
+release resources. Parent capture-prefix and retained-failure integration
 must be qualified before a new attempt. Exact process and receipt details
 remain in the private handoff. Full-catalog generation and final
 receiver/coherence audits remain incomplete.
