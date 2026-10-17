@@ -111,3 +111,14 @@ documentation; it does not publish ignored operational evidence or qualify a
 native run. Preserve used local source versions and receipts when creating
 successors, and promote reusable implementations with synthetic tests before
 adding them to the tracked tree.
+
+`preentry_refusal.py` is a pure classifier for a reviewed helper refusal before
+UI entry. A supervisor supplies the source digest and exact diagnostic byte
+variants, including separately qualified recorded paths. It also supplies
+independently authenticated actual wait/group observations. Source drift,
+partial diagnostics, callback activity, live helpers and incomplete settlement
+are refused. Original diagnostics are preserved and identified separately;
+the classifier never acquires a lease, signals a process or authorizes a retry.
+Synthetic controls cover both exact path variants and failures of each required
+condition. The local binding additionally accepted the retained real refusal
+without another UI operation. This does not qualify arbitrary helper errors.
