@@ -8,6 +8,13 @@ The performance package derives from guards actually run in **Lightroom Classic 
 
 No catalog, photo, preview, credentials, private diagnostic tree, Adobe Lua module body or bytecode is included. The Python tools never open a catalog database. Runtime SQL goes through Lightroom's own store provider. The startup watcher watches **Classic launches**, not photo folders; it never imports `~/foto` or resumes paused Sync.
 
+Development now also includes reviewed preview-pipeline components under
+`scripts/preview_pipeline/`. See [development layout](docs/development-layout.md)
+and [OPUS-HANDOFF.md](OPUS-HANDOFF.md). Local operational investigations belong
+in the ignored `.private/` workspace, never in public commits. These components
+do not yet constitute a portable native preview generator or a completed
+catalog takeover.
+
 ## What the performance code addresses
 
 | Mechanism | Guarded change | Limits |

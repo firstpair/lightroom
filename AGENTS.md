@@ -4,6 +4,13 @@ This repository contains authored repair wrappers and reusable documentation.
 The reference investigation's private `Adobe.md` is an evidence log, not a
 distributable catalog or a completion receipt.
 
+- Continue Photo/preview development from this checkout. Follow
+  `docs/development-layout.md`; the detailed local handoff and unpromoted
+  investigation are under ignored `.private/photo/`. Historical compatibility
+  paths are not a second source repository. Keep private receipts and
+  machine-bound source out of Git; promote reviewed portable components into
+  `scripts/preview_pipeline/` with original synthetic tests.
+
 - Keep `docs/firstpair-lightroom-repair.md` organized by symptoms and recipes.
   Update its prerequisites, mechanism, verification, undo and limits when a
   finding changes what another operator should do. Put dated publication prose
