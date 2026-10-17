@@ -32,7 +32,13 @@ rewritten as a normal batch success.
 
 A further eight-image render window completed and reopened the catalog through
 the normal verified startup path. Its encoded outputs passed independent full
-hash, image decode and embedded color-profile checks. Those outputs are not yet
-staged, published or counted as recognized previews. Exact process and receipt
-details remain in the private handoff. Full-catalog generation and final
+hash, image decode and embedded color-profile checks. Both engines staged those outputs and independent checks verified the staged
+copies. Publication then retained ownership before the first capture because
+a global descriptor census exceeded its output bound. A source-bound recovery
+closed the read-only diagnostic processes and idle worker, collected the actual
+outer terminal, verified resource closure and reopened the catalog normally.
+No preview key was written by that failed attempt. A qualified census-handling
+successor is required before a fresh publication attempt; the saved renders and
+staged outputs must not be regenerated. Exact process and receipt details
+remain in the private handoff. Full-catalog generation and final
 receiver/coherence audits remain incomplete.
