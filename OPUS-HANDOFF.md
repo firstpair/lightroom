@@ -1,14 +1,13 @@
 # Lightroom continuation handoff
 
-Current operational checkpoint: interrupted Smart Preview SDK windows have been
-recovered through normal Classic exits, scoped idle-owner closure and verified
-normal reopening. Existing cache files were recognized natively without
-rebuilding. A fresh bounded 5,000-file window is active; at least 1,075 previews have
-completed independent per-callback audits and acknowledgements at this checkpoint. A correlated exported-JPEG family is
-kept in a separate explicit queue, not dropped; the callback-stall cause remains
-unproven. Exact live owners and counts are in the ignored local handoff. Unison's
-saved RPC functional evidence remains separate from its original auditor failure.
-The overall takeover and complete preview objective remain active and incomplete.
+Current operational checkpoint: a 5,000-file Smart Preview window completed
+through 200 SDK callbacks, with full independent output/registration/source-epoch
+audits and actual owner closure. All inputs affected by the two recent interrupted
+calls are reconciled; their original incomplete-call records remain preserved.
+The latest catalog snapshot has 16,597 accepted files registered valid with
+nonempty previews and 89,570 still pending. A fresh bounded 5,000-file window is now active on the remaining queue. A correlated exported-JPEG family stays explicitly queued for
+separate qualification; its stall cause remains unproven. Exact live owners and
+receipts are in the ignored local handoff. The full objective is incomplete.
 
 Work from this checkout. Repository layout and source-promotion rules are in
 [docs/development-layout.md](docs/development-layout.md).
