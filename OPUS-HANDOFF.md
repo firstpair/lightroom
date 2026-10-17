@@ -24,12 +24,12 @@ The working branch is `work/photo-preview-integration` in the
 they become ready; keep the full operational handoff current locally. The
 ignored investigation is not a substitute for tracked, reusable implementation.
 
-The local renderer has completed a fresh eight-image cohort, and both engine
-variants have staged and independently verified its outputs. Insert-only
-publication and independent file/database checks completed. Native cache
-recognition is still in progress: a helper refused entry when the watcher lock
-was busy. Preserve the completed and refused attempts separately; a missing
-callback or process is not a closure proof or permission to repeat a request.
-The current process/receipt details and recovery status belong in the private
-handoff. Full-catalog generation and final receiver/coherence audits remain
-incomplete.
+The local renderer completed a fresh eight-image cohort. Both engine variants
+staged its outputs, and insert-only publication passed independent file and
+database checks. Native recognition then completed from a preserved successful
+pair plus three fresh remaining pairs after an exact pre-entry helper refusal.
+The original failed batch stays recorded as failed; the composite audit binds
+each successful pair to its own actual settlement evidence. The reusable
+source-pinned refusal classifier and original synthetic tests are now tracked.
+Exact process/receipt details remain in the private handoff. Full-catalog
+generation and final receiver/coherence audits remain incomplete.
