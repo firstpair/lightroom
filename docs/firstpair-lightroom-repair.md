@@ -314,6 +314,8 @@ Select one exact JPEG and use **Library → Previews → Build Smart Previews** 
 
 Subsequent fresh SDK controls also returned normally: one JPEG, a six-file JPEG/HEIC batch, and a 25-file HEIC/JPEG/DNG batch. Each returned the exact requested created-ID set with zero failures; nonempty preview files, valid registrations and unchanged original-file metadata were independently checked. This supports restarting with bounded small batches, while preserving the earlier stalls as unresolved evidence. It does not establish that cached-but-unregistered files caused those stalls.
 
+A later continuation stalled again within a 25-file call after 675 completed files. After normal recovery, its first missing input worked individually and the remaining nine missing previews built together. Ten partial cache outputs and seven older cached files were recognized through individual native selection without rebuilding; their file metadata stayed unchanged. This reconciled the affected inputs without establishing a damaged photo or the stall's cause. Preserve partial outputs, distinguish native recognition from generation, and retain the exact unresolved batch rather than retrying the whole queue.
+
 **Undo and limits.** Preserve generated previews and originals. Restore temporary diagnostic menu scripts and retain the original failed/pending receipts. Record recovery closure separately from successful SDK completion. A small successful batch does not qualify an unattended full-catalog controller or justify another large retry.
 
 ## Reuse offline converter-built Smart Previews
