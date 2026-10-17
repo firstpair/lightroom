@@ -312,6 +312,8 @@ Select one exact JPEG and use **Library → Previews → Build Smart Previews** 
 
 **Verify.** Distinguish recognizing an existing cache file from generating a new preview. In one Classic 15.6 recovery, single JPEG/HEIC controls recognized cached files; a subsequent five-photo control had no preview files beforehand and produced five nonempty, validly registered previews through the Library menu. The bulk SDK callback had stalled. This demonstrates the tested UI route, without establishing the cause of the stalled callback or completion of the remaining queue.
 
+Subsequent fresh SDK controls also returned normally: one JPEG, a six-file JPEG/HEIC batch, and a 25-file HEIC/JPEG/DNG batch. Each returned the exact requested created-ID set with zero failures; nonempty preview files, valid registrations and unchanged original-file metadata were independently checked. This supports restarting with bounded small batches, while preserving the earlier stalls as unresolved evidence. It does not establish that cached-but-unregistered files caused those stalls.
+
 **Undo and limits.** Preserve generated previews and originals. Restore temporary diagnostic menu scripts and retain the original failed/pending receipts. Record recovery closure separately from successful SDK completion. A small successful batch does not qualify an unattended full-catalog controller or justify another large retry.
 
 ## Reuse offline converter-built Smart Previews

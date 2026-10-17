@@ -1,10 +1,11 @@
 # Lightroom continuation handoff
 
-Current operational checkpoint: stalled bulk Smart Preview SDK work was recovered
-through normal Classic shutdown. Single-photo UI controls and five fresh
-JPEG/HEIC preview generations passed; an unattended UI continuation is still
-unimplemented. Diagnostic resource owners are closed. See the ignored local
-handoff for exact current counts, native receipts and pending coordination.
+Current operational checkpoint: normal recovery cleared a stalled bulk Smart
+Preview SDK task. Fresh SDK controls of one, six and 25 files passed with exact
+callback accounting and persisted preview checks. A smaller-batch continuation
+is source-prepared; it is not dispatched. The next finite IO allocation belongs
+to the already source-accepted Unison component RPC test. Exact runtime counts,
+resource state and one-use admission pins are in the ignored local handoff.
 
 Work from this checkout. Repository layout and source-promotion rules are in
 [docs/development-layout.md](docs/development-layout.md).
