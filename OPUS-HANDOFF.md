@@ -16,3 +16,20 @@ old media and previews, and never replay an expired or consumed admission.
 
 Keep the detailed private handoff updated after meaningful work. Update this
 entry point when the repository architecture or continuation location changes.
+
+## Repository and continuation status
+
+The working branch is `work/photo-preview-integration` in the
+`firstpair/lightroom` repository. Commit and push reviewed portable changes as
+they become ready; keep the full operational handoff current locally. The
+ignored investigation is not a substitute for tracked, reusable implementation.
+
+The local renderer has completed a fresh eight-image cohort, and both engine
+variants have staged and independently verified its outputs. Insert-only
+publication and independent file/database checks completed. Native cache
+recognition is still in progress: a helper refused entry when the watcher lock
+was busy. Preserve the completed and refused attempts separately; a missing
+callback or process is not a closure proof or permission to repeat a request.
+The current process/receipt details and recovery status belong in the private
+handoff. Full-catalog generation and final receiver/coherence audits remain
+incomplete.

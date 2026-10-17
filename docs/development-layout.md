@@ -63,7 +63,8 @@ processes, avoiding competing reopen attempts between quit and modal handling.
 Disposable independent contenders verify that child exit does not release the
 parent's copy, and that closing the parent permits fresh acquisition. The local
 optional helper entry passed one read-only inspection with actual settlement;
-normal-quit sequence integration remains pending. No installed startup flag was
+normal-quit sequence integration has since completed bounded local close and
+modal-handling windows with actual helper settlement. No installed startup flag was
 changed, and the in-process native renewal timer is not excluded by this lock.
 
 The remaining renderer, publisher, lifecycle coordinator and native cache
@@ -101,3 +102,12 @@ The caller must authenticate the sealed queue and completed-key evidence,
 perform indexed queries, and freshly bind catalog/source metadata. Its cursor
 records observation progress; it grants no rendering or completion authority.
 The operational rolling controller has not yet adopted this component.
+
+## Branch publication
+
+Publish reviewed portable work on `work/photo-preview-integration` and keep its
+upstream tracking on `origin`. A push publishes repository source and operator
+documentation; it does not publish ignored operational evidence or qualify a
+native run. Preserve used local source versions and receipts when creating
+successors, and promote reusable implementations with synthetic tests before
+adding them to the tracked tree.
