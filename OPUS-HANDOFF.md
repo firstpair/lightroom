@@ -129,3 +129,11 @@ passes read-only preflight for all eight saved keys and 40 sources. Live entry i
 explicitly disabled: separate `ps` helper closure receipts, the complete parent
 ordering and failed-prefix recovery still need qualification. Existing publisher
 versions, admissions and saved renders remain untouched.
+
+The missing process-list helper now has an owned component: durable intent before
+the fixed read-only command, group census before actual wait4, complete bounded
+output and close carriers. Eight component controls pass, including an actual
+process listing and natural-exit fixture recovery. A separate saved-byte checker
+passes six synthetic controls; all 146 repository tests pass. No SDK/media or
+publisher operation occurred. Complete process-attempt inventory and the new
+parent/worker failure path remain to be composed before live publication.

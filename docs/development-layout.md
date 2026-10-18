@@ -145,6 +145,18 @@ explicitly disabled until the separate process-list helper, composed parent and
 failed-prefix ownership paths are qualified. Historical publisher versions and
 admissions remain unchanged.
 
+`scripts/preview_pipeline/process_census.py` separately checks the fixed process-list
+command, intent/outcome scope, reported group/wait facts and complete captured
+bytes. It rejects truncated or duplicate PID rows, changed commands, output
+substitution and claimed release. Six synthetic controls pass; this pure checker
+does not observe processes or authenticate file identities. The private owned
+process-list producer has also passed eight component controls, including an
+actual read-only process listing with intent persisted before spawn, group census
+before actual `wait4`, bounded complete output readback and one-shot FD close.
+No signals or caller-grant release occur. Original fixture deadlines recover by
+natural exit. Both components still need the complete parent attempt inventory
+and failed-prefix composition before installation in a live publisher.
+
 Synthetic tests cover a protected record beyond the old capture size, fragmented
 UTF-8 input, malformed/truncated fields, literal path boundaries and resource
 limits. A local read-only process-listing control also compared projected
