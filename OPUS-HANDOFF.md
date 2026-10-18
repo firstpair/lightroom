@@ -1,15 +1,20 @@
 # Lightroom continuation handoff
 
-Latest operational state: the ordinary native preview window actually completed
-all 8,311 selected files without failures. There are 106,155 verified previews
-and twelve eligible exceptions left: nine unbuilt exported-image files and three
-known HEIC SDK errors. Actual coordinator/helper groups and resources are closed;
-Classic normal scheduling is restored. The separately reviewed finite Unison
-timed matrix now has a fresh one-use admission; Photo SDK/native/bulk successors
-wait for its actual terminal and resource closure. No report-sealing gate.
-Component and mocked capture-driver qualification passed 197 tests; production
-publication remains disabled pending actual composed lifecycle qualification.
-The full takeover objective, including the large-preview backlog, is incomplete.
+Latest operational state: 106,155 Smart Previews are verified, with twelve
+eligible exceptions still open. The first isolated exported-image SDK call did
+not return after normal cancellation. Lightroom exited through its normal quit
+and backup-skip dialogs; only source-proven idle Python controllers were then
+stopped. The actual owning tool returned exit137, preserved as independent
+recovery rather than SDK completion. A fresh whole resource bundle was acquired
+and closed before one normal catalog reopen. Startup verification is pending;
+no preview retry has been submitted.
+
+The finite Unison timed run is independently recovered and closed, and both
+sealed-return hashes were checked. Its original exit137 remains distinct from
+its saved functional results. There is no remaining Unison IO hold.
+Capture qualification passed 202 source/mock tests; production publication
+remains disabled pending actual composed lifecycle qualification. The complete
+takeover goal, including the large-preview backlog, remains incomplete.
 
 
 Current operational checkpoint: four continuous 10,000-file Smart Preview windows
