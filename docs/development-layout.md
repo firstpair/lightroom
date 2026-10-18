@@ -118,8 +118,19 @@ descriptors and never authorize reap or release. Thirteen original temporary-fil
 controls cover the composed success path, missing/extra/substituted captures,
 unsealed prefixes, uncertain closes and producer failures. The capture callback
 and process-wait reports are explicit doubles in these controls; no actual lsof,
-catalog or publisher was invoked. The versioned live capture adapter and actual
-parent lifecycle still require integration and qualification before publication.
+catalog or publisher was invoked.
+
+`scripts/preview_pipeline/census_adapter.py` now preserves an existing owned
+capture backend’s exception contract while routing its fixed calls through the
+durable session. Scope changes refuse before invocation; failed/unsealed attempts
+retain the original backend/session error carrier without retry. Five controls
+use actual temporary journals and explicit fake capture/process reports. A private
+source-only installation boundary additionally verifies the complete dependency
+set before changing a host, refuses late or repeated installation, and retains
+existing host source/receipt checks. Four inert-host controls pass. Neither adapter
+is installed in a live publisher. A new source-bound worker, parent audit before
+worker reap, and actual failure/settlement qualification remain necessary before
+publication; old admission schemas do not authorize these successors.
 
 Synthetic tests cover a protected record beyond the old capture size, fragmented
 UTF-8 input, malformed/truncated fields, literal path boundaries and resource

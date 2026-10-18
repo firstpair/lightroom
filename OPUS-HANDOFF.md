@@ -111,3 +111,11 @@ original controls pass with explicit fake capture/process reports. The versioned
 live capture adapter and actual parent lifecycle still require integration and
 qualification. These components grant no process, publication or release
 authority, and do not establish storage-device failure immunity.
+
+The owned-capture adapter now preserves fixed scope and the original uncertainty
+carrier while routing calls into that durable session. Five portable controls and
+four private installation-boundary controls pass; the full 135-test repository
+suite passes on both interpreters. Installation is source-only, with no live
+publisher change, process census, media read or publication. Next: a new worker
+and parent must bind this dependency graph and audit the sealed capture prefix
+before worker reap and resource closure, then qualify actual failure recovery.
