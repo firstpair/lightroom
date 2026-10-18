@@ -21,8 +21,15 @@ packet. Their settings, native locators and original-file guards are now bound.
 The first eight completed native rendering, both staging engines, publication,
 independent storage verification and all native cache loads/decodes, advancing
 the verified monitor-fit checkpoint to 266. Twenty-four metadata-bound jobs remain
-in this packet. The next eight-job window passed metadata preflight but is
-unstarted, with no admission created. All owners and reservations are closed.
+in this packet. The next eight rendered successfully, but their outer owner
+retained reservations after a normal-reopen startup helper error. Independent
+recovery stopped only the proven-idle Python owner; its actual exit137 remains
+preserved. One guarded manual startup attempt verified all seven phases in the
+same open Classic process. All reservations are closed. Those eight render
+outputs are preserved and unpublished: the existing staging proof requires an
+original outer exit0, so a distinct recovery-aware proof path needs qualification.
+No rendering replay or receipt substitution is authorized by that recovery.
+Sixteen jobs in this packet remain unrendered; the verified count stays 266.
 Highest native tiers are on Quasar, without
 upscaling; lower tiers and old Ten files are preserved. Alexy is open in Classic
 15.6 with all seven startup checks verified. Every owning helper and reservation
