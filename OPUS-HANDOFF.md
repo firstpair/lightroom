@@ -42,6 +42,19 @@ without relying on live state from the preceding phase. No additional native
 cohort was dispatched during this work.
 See [continuous processing](docs/preview-continuous-processing.md).
 
+The saved-stage-to-publication receipt composer is implemented. It authenticates
+the direct stage outcome first, then binds every native job, engine audit,
+cohort, output and pending startup into the new publication-gate inputs. Eight
+controls passed under actual worker12982/exit0 with group and Photo8 closure.
+The composition test uses historical metadata and an explicit gate double;
+it does not qualify a new V4 native/stage/publication run. An initial fixture
+AttributeError is preserved in root-controls-e2c676111e614c1aaa5f553d9c8903c7;
+the corrected run is root-controls-d9e35379ed63494283a4ed84bbd6c03d.
+No payload or catalog read/write occurred. Next: dynamic insert metadata/row
+projections and the already-closed publication owner, then the whole continuous
+runtime. Coverage remains274; no new runtime has been dispatched.
+
+
 The publication source now has a separate single-Ox stage contract, requiring
 four ordered pairs, zero native renders/copies, settled engine groups and a
 pending final startup. Three controls reject incomplete pairs, mixed engines,
