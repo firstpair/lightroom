@@ -42,6 +42,16 @@ without relying on live state from the preceding phase. No additional native
 cohort was dispatched during this work.
 See [continuous processing](docs/preview-continuous-processing.md).
 
+The publication source now has a separate single-Ox stage contract, requiring
+four ordered pairs, zero native renders/copies, settled engine groups and a
+pending final startup. Three controls reject incomplete pairs, mixed engines,
+false release flags and unsettled waits; actual control worker12321 closed0
+with group and Photo8 closure. Versioned builder/publisher bindings point to
+this gate. These are prepared source bindings only: the generic publication
+worker/owner and cross-phase runtime still need composition. Historical
+receipts and the verified274count are unchanged.
+
+
 Single-engine staging now has a composed parent/worker adapter: the parent retains
 EXglobal until worker settlement and saved engine/output audit; the worker uses
 only Ox for four two-job stages and verifies 32 copies. Six controls passed,
