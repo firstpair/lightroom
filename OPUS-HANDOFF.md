@@ -12,13 +12,17 @@ keys excluded. Lightroom settings and native locators were captured and audited
 for all 32, with original-file guards and current catalog bindings checked. The
 entire packet has now completed rendering, Rust/Ox staging, publication,
 independent storage verification and Lightroom cache loads/decodes. The monitor-fit
-checkpoint is 258. A watcher-lock refusal stopped one recognition pair before its
+checkpoint for that packet is 258. A watcher-lock refusal stopped one recognition pair before its
 callback; a fresh guarded continuation completed the four remaining keys without
 replaying successful callbacks, rendering or publication. The original refusal
 and partial exit remain preserved separately from the completed combined audit.
-All owners and reservations are closed. The next 32 untouched candidates were
-selected using the authenticated completed packet and fresh catalog/path metadata;
-their native settings and locators still need capture before rendering.
+The next 32 untouched candidates were selected using the authenticated completed
+packet. Their settings, native locators and original-file guards are now bound.
+The first eight completed native rendering, both staging engines, publication,
+independent storage verification and all native cache loads/decodes, advancing
+the verified monitor-fit checkpoint to 266. Twenty-four metadata-bound jobs remain
+in this packet. The next eight-job window passed metadata preflight but is
+unstarted, with no admission created. All owners and reservations are closed.
 Highest native tiers are on Quasar, without
 upscaling; lower tiers and old Ten files are preserved. Alexy is open in Classic
 15.6 with all seven startup checks verified. Every owning helper and reservation
