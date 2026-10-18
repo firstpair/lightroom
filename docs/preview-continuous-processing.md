@@ -5,7 +5,7 @@ catalog therefore needs a persistent coordinator that advances those windows
 without reconstructing their state manually. Increasing the size of the work
 queue does not increase native concurrency or relax input and publication guards.
 
-Two portable components now support that coordinator:
+Three portable components now support that coordinator:
 
 - `scripts/preview_pipeline/work_queue.py` accepts up to 10,000 metadata records
   per enqueue transaction. Each phase claim contains at most eight records. The
@@ -16,6 +16,14 @@ Two portable components now support that coordinator:
   later startup failure remain separate outcomes. Recovery preserves the
   original nonzero exit and cannot substitute a successful startup terminal for
   a successful original render coordinator.
+- `scripts/preview_pipeline/phase_controller.py` runs the four phases through
+  explicit execution/authentication adapters. It finishes downstream work before
+  claiming another render window, commits each claim before calling its adapter,
+  and advances only after both actual child settlement and the adapter's full
+  contained-process/resource/receipt audit. It retains the adapter, claim and queue
+  together on exceptions or uncertain queue commits. Known closed failures become
+  held claims and stop the run. Execution cannot mutate the original claim later
+  supplied to authentication.
 
 The queue phases are `PENDING → NATIVE_READY → STAGED → PUBLISHED → COMPLETE`.
 An unfinished or held claim blocks further claims, including after reopening the
@@ -53,3 +61,11 @@ into one unattended catalog-wide controller**. The queue's 10,000-record ingesti
 capacity does not establish 10,000-photo runtime qualification, larger native
 windows, throughput, or an authority to replay held work. Historical validators
 and receipts remain unchanged.
+
+The reusable controller passed a complete synthetic 10,000-record run through
+5,000 phase actions, plus restart, failure, uncertain settlement, authentication,
+commit and bounded-completion controls. These adapters are test doubles. The
+controller has not launched a native cohort; connecting the real adapters remains
+required before claiming unattended generation. The next native window's source
+can now be authored from the verified checkpoint and packet without manually
+editing global packet ordinals or the local eight-reader counter.

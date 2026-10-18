@@ -26,8 +26,9 @@ The durable queue accepts 10,000 metadata records per ingestion transaction.
 Its first real eight-job cohort advanced from `NATIVE_READY` through `STAGED`,
 `PUBLISHED` and `COMPLETE`, with claims persisted before each phase and actual
 child/group closure before receipt-based advancement. Each phase ran its
-contained pairs automatically. Rendering and the transitions between all phases
-are not yet connected into one unattended catalog-wide controller. Larger
+contained pairs automatically. A reusable cross-phase controller now passes synthetic 10,000-record execution
+through all four phases, restart and uncertainty controls. Its real native
+adapters are not yet connected into one unattended catalog-wide controller. Larger
 native windows and full-catalog throughput are not qualified by this cohort.
 See [continuous processing](docs/preview-continuous-processing.md).
 
