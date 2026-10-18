@@ -1,16 +1,17 @@
 # Lightroom continuation handoff
 
 Latest operational state: 106,155 Smart Previews are verified, with twelve
-eligible exceptions still open. The first isolated exported-image SDK call did
-not return after normal cancellation. Lightroom exited through its normal quit
-and backup-skip dialogs; only source-proven idle Python controllers were then
-stopped. The actual owning tool returned exit137, preserved as independent
-recovery rather than SDK completion. A fresh whole resource bundle was acquired
-and closed before one normal catalog reopen. All seven startup phases are verified and the reopen owner closed normally;
-the recovery reservations were released. A fresh eight-file window is now live,
-one file per callback, excluding the recovered unreturned file and three known
-HEIC errors. All eight resolved; the first new callback is still pending.
-The new owner retains its resource bundle until actual settlement.
+eligible exceptions still open: two isolated export calls that never returned,
+three returned HEIC errors and seven exports not yet attempted. Both stalled
+runs were recovered through normal Lightroom quit followed by source-proven idle
+Python stops; their exit137 records are retained separately from SDK completion.
+No originals, catalog identities or completed previews were replaced.
+
+The actual disposable capture composition now passes unused, deliberate process
+failure and combined process/descriptor capture cases. All workers/helpers and
+CPU/disposable reservations closed. Production preview publication remains
+separately disabled. One normal Alexy reopen is currently awaiting startup
+verification after these controls; no further SDK preview call is active.
 
 The finite Unison timed run is independently recovered and closed, and both
 sealed-return hashes were checked. Its original exit137 remains distinct from
