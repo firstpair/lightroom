@@ -1,10 +1,10 @@
 # Lightroom continuation handoff
 
-Latest operational state: genuine upstream test completed and released all
-resources. Photo immediately resumed under live tool86828; baseline76,595
-verified and29,572eligible pending. Observe that owner rather than starting
-another. Classic background scheduling is applied during bulk work; restore
-normal scheduling when stopped. Full goal remains incomplete.
+Latest operational state: Photo yielded cleanly for mixed validation V2 using
+ExifTool13.59. Actual86828/abd561 returned exit0 after2,499new verified previews;
+one unsuccessful file was isolated without retry.79,094verified/27,073pending.
+SDK/helper/groups/IOCPUclosed; Classic normal scheduling restored. Hold Photo
+successors through the admitted test's actual parent/helper/group/FDclosure.
 
 
 Current operational checkpoint: four continuous 10,000-file Smart Preview windows
