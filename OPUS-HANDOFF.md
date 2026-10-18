@@ -6,8 +6,8 @@ not return after normal cancellation. Lightroom exited through its normal quit
 and backup-skip dialogs; only source-proven idle Python controllers were then
 stopped. The actual owning tool returned exit137, preserved as independent
 recovery rather than SDK completion. A fresh whole resource bundle was acquired
-and closed before one normal catalog reopen. Startup verification is pending;
-no preview retry has been submitted.
+and closed before one normal catalog reopen. All seven startup phases are verified and the reopen owner closed normally;
+all reservations are released. No preview retry has been submitted.
 
 The finite Unison timed run is independently recovered and closed, and both
 sealed-return hashes were checked. Its original exit137 remains distinct from
