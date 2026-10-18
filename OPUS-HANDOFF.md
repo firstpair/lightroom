@@ -42,6 +42,19 @@ without relying on live state from the preceding phase. No additional native
 cohort was dispatched during this work.
 See [continuous processing](docs/preview-continuous-processing.md).
 
+Single-engine staging now has a composed parent/worker adapter: the parent retains
+EXglobal until worker settlement and saved engine/output audit; the worker uses
+only Ox for four two-job stages and verifies 32 copies. Six controls passed,
+including actual historical receipt readback, original tiny-byte hashes,
+truncated-artifact refusal and close-uncertainty retention. Actual control worker
+9957 exited0, was reaped with its group absent, and Photo8 closed. This is
+source/component evidence, not a new stage or preview run. The already-closed
+publication adapter and final continuous entrypoint remain unfinished; verified
+monitor coverage stays274. Private source and the exact control receipt are in
+`.private/photo-helpers/continuous_stage_adapter_v1.py` and the private
+`root-controls-8f149e8a636d47fca0f597a9164991b9` directory.
+
+
 Alexy is open in Classic 15.6 with all seven startup phases verified. Every
 owning job, helper and reservation is closed. The full preview backlog and twelve
 Smart Preview exceptions remain open. The complete takeover goal remains active.
