@@ -17,9 +17,15 @@ only after the parent acknowledgement. Missing accounting, foreign IDs and unkno
 ownership still retain the job. All 31 local control tests passed; the native successor then completed another
 2,500 previews through ten audited callbacks, bringing the current reconciled
 total to 65,595 verified and 40,572 accepted files pending. At the operator’s request it has now
-yielded IO for a separately admitted Unison camera observation. No Photo preview
-controller is currently live. A clean operator-boundary stop successor has also
-passed 33 local controls and 89 repository tests; its next native use is pending.
+yielded IO for a separately admitted Unison camera observation. That admission
+expired unstarted; the source-bound workspace/deadline and full-lock audit released
+its scheduling-only hold. Photo’s first restart refused a changed installed UV
+launcher pin before UI entry. It was independently closed, the original manifest
+was preserved, and only that pin was updated after testing the exact configured
+offline Python launcher. A fresh controller has now actually resumed the next
+10,000-file window: its first250previews are created and parent-audited without
+errors, bringing known verified progress to65,845with40,322pending. The next250
+are in flight. No current-window or full-goal completion is claimed.
 Exact handles, source pins and progress remain in the ignored local handoff.
 The full objective remains incomplete.
 
@@ -47,11 +53,10 @@ further monitor-preview publication. The candidate manifest was authenticated an
 resolved read-only against the current catalog. Classic's SDK created and fully
 populated the ordinary collection; SDK and independent read-only checks verified
 its exact committed membership. Generation reached 65,595 independently verified
-previews before the operator requested an IO handoff to Unison. Photo currently
-has no live preview controller; the private handoff records the separate admitted
-camera job and its actual-start/closure state. Do not submit a competing build or
-recreate the collection. Resume through a fresh bounded controller only after
-that coordination window is released. Whole-run completion is not claimed.
+previews before the operator requested an IO handoff to Unison. Photo’s fresh preview controller is now live after the camera admission expired
+unstarted and a pre-UI launcher-pin refusal was repaired. The private handoff has
+the actual live handle and callback audits. Do not submit a competing build or
+recreate the collection; observe the existing bounded controller. Whole-run completion is not claimed.
 Read-only observers cannot submit builds or authorize resource release; actual
 owning-tool completion remains separate. Preserve the saved monitor renders and
 stages: all eight pending staged keys passed a fresh metadata-only preflight,
@@ -146,3 +151,12 @@ passed saved-inventory readback and closed normally. Full repository tests:148 o
 both interpreters. The new source-only worker preflight still validates all eight
 saved keys, now44sources. No publication or recopy occurred. Next is actual owner
 ordering and ordinary/zero-call failure finalization; live entry remains disabled.
+
+Retained-owner finish ordering is now component-qualified: helper audit before
+actual worker group settlement, then CPU before IO close; unknowns retain their
+original carriers without retry. Three actual original Python/disposable-lock
+cases passed for exit0, exit7 and a parent reporting-callback fault. Explicit
+unused-capture proofs supply no process observation or exclusion authority.
+All168repositorytests pass on both interpreters. Actual monitor-preview publisher
+failure finalization and installation remain pending; none of these source tests
+changed preview data or authorized publication.

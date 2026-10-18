@@ -8,7 +8,7 @@ import os
 from pathlib import Path
 
 from .census_files import identity
-from .census_session import check_capture_session
+from .census_session import check_capture_session, check_unused_capture_session
 
 
 def audit_before_reap(child, runtime, report, close_backend):
@@ -18,7 +18,7 @@ def audit_before_reap(child, runtime, report, close_backend):
     required={'schema','journal_root','capture_root','snapshot_pins','receipt_pins',
               'reported_captures','resource_release_authorized'}
     if (type(report) is not dict or set(report)!=required
-        or report['schema']!='CAPTURE_SESSION_REPORTED_V1'
+        or report['schema'] not in ('CAPTURE_SESSION_REPORTED_V1','UNUSED_CAPTURE_SESSION_REPORTED_V1')
         or report['resource_release_authorized'] is not False
         or type(report['reported_captures']) is not int):
         raise ValueError('PARENT_EXACT_CAPTURE_REPORT_REQUIRED')
@@ -35,9 +35,12 @@ def audit_before_reap(child, runtime, report, close_backend):
             if identity(os.fstat(fd))!=tuple(value['identity8']) or identity(p.lstat())!=identity(os.fstat(fd)):
                 raise ValueError('PARENT_CAPTURE_DIRECTORY_EPOCH')
             pairs.append((fd,str(p)))
-        checked=check_capture_session(*pairs[0],report['snapshot_pins'],*pairs[1],
-                                      close_backend.protected_roots,
-                                      ancestor_pids=(os.getpid(),child.pid))
+        if report['schema']=='UNUSED_CAPTURE_SESSION_REPORTED_V1':
+            checked=check_unused_capture_session(*pairs[0],*pairs[1],report)
+        else:
+            checked=check_capture_session(*pairs[0],report['snapshot_pins'],*pairs[1],
+                                          close_backend.protected_roots,
+                                          ancestor_pids=(os.getpid(),child.pid))
         expected=tuple((p['path'],p['bytes'],p['sha256']) for p in report['receipt_pins'])
         if checked.receipt_pins!=expected or len(checked.captures)!=report['reported_captures']:
             raise ValueError('PARENT_COMPLETE_CAPTURE_REPORT_BINDING')

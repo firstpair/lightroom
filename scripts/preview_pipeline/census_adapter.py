@@ -57,6 +57,15 @@ class JournaledCaptureBackend:
         except CaptureSessionStopped as error:
             self._unknown(error)
 
+    def seal_unused(self):
+        """Report a never-invoked branch, not a protected-path observation."""
+        if self._stopped is not None:
+            raise self._stopped
+        try:
+            return self._session.seal_unused()
+        except CaptureSessionStopped as error:
+            self._unknown(error)
+
     def seal(self):
         """Return reported inventory, never parent audit or release permission."""
         if self._stopped is not None:

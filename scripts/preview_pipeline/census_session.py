@@ -58,6 +58,8 @@ class CaptureSessionProducer:
         self._owner = (os.getpid(), threading.get_ident())
         self._capture_label = capture_label
         self._capture_binding = (root[0], root[1], root[5], root[6])
+        journal_root = identity(os.fstat(journal_fd))
+        self._journal_binding = (journal_root[0], journal_root[1], journal_root[5], journal_root[6])
         self._journal_fd = journal_fd
         self._journal_label = journal_label
         self._writer = DurableCaptureWriter(journal_fd, journal_label)
@@ -95,6 +97,30 @@ class CaptureSessionProducer:
             self._names.add(label.parent.name)
             self._fence()
             return response
+        except BaseException as error:
+            self._stopped = CaptureSessionStopped(self, error)
+            raise self._stopped from error
+
+    def seal_unused(self):
+        """Report no attempted callback, never a global descriptor exclusion."""
+        self._open()
+        try:
+            self._fence()
+            journal_root = identity(os.fstat(self._journal_fd))
+            _require((journal_root[0], journal_root[1], journal_root[5], journal_root[6])
+                     == self._journal_binding and os.listdir(self._journal_fd) == []
+                     and self._writer.records() == ()
+                     and self._journal.snapshot() == dict(
+                         schema='CAPTURE_ATTEMPTS_V1', state='OPEN', attempts=[],
+                         resource_release_authorized=False),
+                     'UNUSED_CAPTURE_REQUIRES_NO_INTENT_OR_INVOCATION')
+            self._sealed = True
+            return dict(schema='UNUSED_CAPTURE_SESSION_REPORTED_V1',
+                        journal_root=dict(path=self._journal_label, identity8=list(journal_root)),
+                        capture_root=dict(path=self._capture_label,
+                                          identity8=list(identity(os.fstat(self._capture_fd)))),
+                        snapshot_pins=[], receipt_pins=[], reported_captures=0,
+                        resource_release_authorized=False)
         except BaseException as error:
             self._stopped = CaptureSessionStopped(self, error)
             raise self._stopped from error
@@ -151,3 +177,38 @@ def check_capture_session(journal_fd, journal_label, snapshot_pins,
     # A tuple of scalar pins cannot expose mutable journal dictionaries or FDs.
     immutable_pins = tuple((pin['path'], pin['bytes'], pin['sha256']) for pin in bound)
     return CheckedCaptureSession(journal, checked.captures, immutable_pins)
+
+
+@dataclass(frozen=True)
+class CheckedUnusedCaptureSession:
+    captures: tuple = field(default=(), init=False)
+    receipt_pins: tuple = field(default=(), init=False)
+    resource_release_authorized: bool = field(default=False, init=False)
+
+
+def check_unused_capture_session(journal_fd, journal_label, capture_fd, capture_label, report):
+    """Check an authenticated producer's never-invoked branch, not file absence.
+
+    Empty directories alone cannot prove history. The caller must authenticate
+    the one-use producer and its source-bound persist-before-invoke contract.
+    The result supplies no process observation or protected-path exclusion.
+    """
+    _require(type(report) is dict and set(report) == {
+        'schema', 'journal_root', 'capture_root', 'snapshot_pins', 'receipt_pins',
+        'reported_captures', 'resource_release_authorized'}, 'UNUSED_CAPTURE_REPORT_FIELDS')
+    _require(report['schema'] == 'UNUSED_CAPTURE_SESSION_REPORTED_V1'
+             and report['snapshot_pins'] == [] and report['receipt_pins'] == []
+             and type(report['reported_captures']) is int and report['reported_captures'] == 0
+             and report['resource_release_authorized'] is False, 'UNUSED_CAPTURE_REPORT_SCOPE')
+    seen = set()
+    for key, fd, label in (('journal_root', journal_fd, journal_label),
+                           ('capture_root', capture_fd, capture_label)):
+        before = identity(os.fstat(fd))
+        _require(stat.S_ISDIR(before[5]) and stat.S_IMODE(before[5]) == 0o700
+                 and before[6] == os.getuid() and before[:2] not in seen
+                 and report[key] == dict(path=label, identity8=list(before)),
+                 'UNUSED_CAPTURE_DISTINCT_PRIVATE_ROOT_BINDING')
+        seen.add(before[:2])
+        _require(os.listdir(fd) == [] and identity(os.fstat(fd)) == before,
+                 'UNUSED_CAPTURE_NONEMPTY_OR_CHANGED_ROOT')
+    return CheckedUnusedCaptureSession()

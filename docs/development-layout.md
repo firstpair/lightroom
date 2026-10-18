@@ -167,6 +167,25 @@ The new worker passes an eight-key, 44-source read-only preflight but remains
 explicitly disabled pending actual owner orchestration and ordinary/zero-call
 failure finalization. These are source/component results, not publication.
 
+`scripts/preview_pipeline/retained_owner.py` composes the parent finish order:
+terminal observation, authenticated complete helper audit, non-signalling worker
+group settlement, then CPU and IO close. Unknown results retain their original
+child/lease/error carriers and cannot be retried. Parent report failures after
+known closure are distinguished from unknown resource ownership. Twelve source
+controls and three actual original Python/disposable-lock worker cases cover exit
+zero, known failure and injected parent reporting failure. Each actual child
+inherited nine disposable lock descriptors; group/wait and whole-bundle reacquire
+passed. This does not qualify the publication worker or canonical IO acquisition.
+
+An explicit unused-capture branch now reports zero attempted callbacks only when
+the original one-use producer and both empty namespaces agree. Any intent,
+callback, changed namespace or uncertainty prevents relabelling a failed attempt
+as unused. Independent readback grants no process observation, protected-path
+exclusion or release authority. Seven unused-session and one adapter controls
+cover this branch. The full repository suite currently has168tests on both
+interpreters. Actual worker failure finalization and owner installation remain
+separate from these components.
+
 Synthetic tests cover a protected record beyond the old capture size, fragmented
 UTF-8 input, malformed/truncated fields, literal path boundaries and resource
 limits. A local read-only process-listing control also compared projected

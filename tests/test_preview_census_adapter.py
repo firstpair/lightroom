@@ -89,6 +89,16 @@ class CaptureAdapterTests(unittest.TestCase):
             adapter.capture(self.root, self.roots, 1, 10)
         self.assertEqual(os.listdir(self.journal_fd), ['000000.json'])
 
+    def test_unused_adapter_never_calls_backend_or_reports_exclusion(self):
+        adapter = self.adapter()
+        report = adapter.seal_unused()
+        self.assertEqual(self.calls, [])
+        self.assertEqual(report['reported_captures'], 0)
+        self.assertEqual(report['schema'], 'UNUSED_CAPTURE_SESSION_REPORTED_V1')
+        self.assertFalse(report['resource_release_authorized'])
+        with self.assertRaises(ValueError):
+            adapter.capture(self.root, self.roots, 1, 10)
+
     def test_double_seal_is_not_replayed_or_resource_release(self):
         adapter = self.adapter()
         adapter.capture(self.root, self.roots, 1, 10)
