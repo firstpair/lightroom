@@ -106,8 +106,20 @@ controls cover real writer/readback composition and corrupt or omitted records,
 substitution, unsafe paths, replacement and close uncertainty. The caller still
 authenticates producer provenance, the directory label and actual terminal.
 Readback cannot prove historical completeness from an untrusted subset or grant
-release authority. Capture-wrapper and parent lifecycle integration remain
-necessary before production publication.
+release authority.
+
+`scripts/preview_pipeline/census_session.py` composes those components. Its
+producer accepts a separately authenticated capture callback, durably records
+intent/outcome, freezes a complete reported inventory, and stops on any failure
+without replay. The parent-side checker requires the exact journal and capture
+directory inventories, independently reads every raw capture and binds each
+projection to the matching journal outcome. Both sides borrow their directory
+descriptors and never authorize reap or release. Thirteen original temporary-file
+controls cover the composed success path, missing/extra/substituted captures,
+unsealed prefixes, uncertain closes and producer failures. The capture callback
+and process-wait reports are explicit doubles in these controls; no actual lsof,
+catalog or publisher was invoked. The versioned live capture adapter and actual
+parent lifecycle still require integration and qualification before publication.
 
 Synthetic tests cover a protected record beyond the old capture size, fragmented
 UTF-8 input, malformed/truncated fields, literal path boundaries and resource

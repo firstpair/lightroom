@@ -104,6 +104,9 @@ temporary-file/fault controls: exclusive bounded snapshots, file/directory fsync
 one-shot close and uncertainty preservation. No real process census or publisher
 uses this journal yet. Independent descriptor-relative saved-journal readback is
 now component-qualified with fourteen corruption, ordering and close controls.
-Capture-wrapper and parent-audit integration remain necessary. These components
-grant no process, publication or release authority, and do not establish
-storage-device failure immunity.
+Portable producer/parent composition now joins both directory inventories,
+durable attempts and independently read raw capture/projection bindings; thirteen
+original controls pass with explicit fake capture/process reports. The versioned
+live capture adapter and actual parent lifecycle still require integration and
+qualification. These components grant no process, publication or release
+authority, and do not establish storage-device failure immunity.
