@@ -5,7 +5,7 @@ catalog therefore needs a persistent coordinator that advances those windows
 without reconstructing their state manually. Increasing the size of the work
 queue does not increase native concurrency or relax input and publication guards.
 
-Three portable components now support that coordinator:
+Portable components now support that coordinator:
 
 - `scripts/preview_pipeline/work_queue.py` accepts up to 10,000 metadata records
   per enqueue transaction. Each phase claim contains at most eight records. The
@@ -24,6 +24,12 @@ Three portable components now support that coordinator:
   together on exceptions or uncertain queue commits. Known closed failures become
   held claims and stop the run. Execution cannot mutate the original claim later
   supplied to authentication.
+- `scripts/preview_pipeline/stage_context.py` binds one prepared eight-record
+  stage context to its exact dependencies, compiled executable and prior native
+  receipt. The continuous preparation selects one qualified engine, rather than
+  repeating the Rust/Ox comparison used for qualification. It plans 32 encoded
+  copies, retains native-hash verification, and explicitly authorizes no execution
+  or resource acquisition.
 
 The queue phases are `PENDING → NATIVE_READY → STAGED → PUBLISHED → COMPLETE`.
 An unfinished or held claim blocks further claims, including after reopening the
@@ -86,3 +92,19 @@ failed native facts, uncertain settlement and false resource-closure claims.
 Disposable Python peers exercise process wait/capture closure using explicit
 source/proof doubles. This does not qualify an actual native execution through
 the controller. Downstream adapter integration remains required.
+
+The current render wrapper also reopens Classic before publication closes it
+again. The continuous path must remove that redundant cycle: native completion,
+staging and publication belong before the final reopen and recognition. The
+versioned `cohort_completion_v2.py` adds a closed-Classic native-completion view
+with settled root/native/helper waits and authenticated normal-close/reader-gate
+references. It requires final startup later and grants neither publication nor
+release authority. Legacy views still use their unchanged validator.
+
+A private deferred-startup render-window author now removes the intermediate
+reopen, retains the original native/reader/launch helper functions, and adds a
+post-native closed-catalog census. Source controls and metadata-only preflight
+pass. The new completion view is **not yet wired into the staging proof/runtime
+or the full controller**, and no native invocation of that source has occurred.
+The next integration must support the closed window explicitly, rather than
+fabricating startup success for a legacy proof.

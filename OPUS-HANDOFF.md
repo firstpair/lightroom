@@ -31,7 +31,10 @@ through all four phases, restart and uncertainty controls. Its real native
 adapters are not yet connected into one unattended catalog-wide controller. Larger
 native windows and full-catalog throughput are not qualified by this cohort.
 The render adapter now passes source and disposable-process controls; downstream
-adapters still need integration. The queue can retrieve exact prior receipts
+adapters still need integration. Staging preparation now selects one qualified
+engine instead of both qualification engines. The render wrapper’s redundant
+reopen-before-publication-close cycle is also being removed through a versioned
+closed-window completion contract; that source has not been dispatched. The queue can retrieve exact prior receipts
 without relying on live state from the preceding phase. No additional native
 cohort was dispatched during this work.
 See [continuous processing](docs/preview-continuous-processing.md).
