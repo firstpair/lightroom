@@ -1,11 +1,10 @@
 # Lightroom continuation handoff
 
-Latest operational state: Unison camera V4 actually closed, preserving its safe
-unsupported component result. Photo immediately resumed a fresh continuous
-10,000-file window under tool90626; baseline71,095verified and35,072eligible
-pending. Observe that owner rather than launching another. Classic background
-scheduling is applied during bulk work; restore normal scheduling when stopped.
-The full objective remains incomplete.
+Latest operational state: Photo yielded cleanly for the new camera V5 observation.
+Actual coordinator90626 returned exit0 after1,750new verified previews:72,845total
+and33,322eligible pending. All SDK/helper/groups/IOCPU closed; Classic normal
+scheduling restored. V5 has a fresh one-use admission; Photo successors remain
+held until its actual parent/helper/group/FD closure. Full goal incomplete.
 
 
 Current operational checkpoint: four continuous 10,000-file Smart Preview windows
