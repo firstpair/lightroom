@@ -31,7 +31,8 @@ class CheckedProcesses:
     resource_release_authorized: bool = field(default=False, init=False)
 
 
-def check_process_capture(result, intent, stdout, stderr, *, ancestor_pids=()):
+def check_closed_process_capture(result, intent, stdout, stderr, *, ancestor_pids=()):
+    """Check reported closure even for a failed command; no absence authority."""
     _require(type(result) is dict and set(result) == {
         'schema', 'command', 'intent', 'actual', 'stdout', 'stderr',
         'owned_fds_closed', 'caller_grants_released', 'signals_sent'}, 'PROCESS_CAPTURE_FIELDS')
@@ -56,7 +57,7 @@ def check_process_capture(result, intent, stdout, stderr, *, ancestor_pids=()):
         'members_before_reap', 'timed_out', 'signals_sent'}, 'PROCESS_CAPTURE_WAIT_FIELDS')
     pid = actual['pid']
     _require(type(pid) is int and pid > 0 and pid not in ancestor_pids
-             and type(actual['returncode']) is int and actual['returncode'] == 0
+             and type(actual['returncode']) is int and -255 <= actual['returncode'] <= 255
              and actual['reaped'] is True and actual['other_group_members_absent_before_reap'] is True
              and actual['timed_out'] is False and type(actual['signals_sent']) is int
              and actual['signals_sent'] == 0, 'PROCESS_CAPTURE_WAIT_REPORT')
@@ -66,13 +67,21 @@ def check_process_capture(result, intent, stdout, stderr, *, ancestor_pids=()):
              and members[0]['pid'] == pid and type(members[0]['state']) is str
              and 0 < len(members[0]['state']) <= 16 and members[0]['state'].startswith('Z')
              and all(33 <= ord(c) <= 126 for c in members[0]['state']), 'PROCESS_CAPTURE_GROUP_REPORT')
-    _require(type(stdout) is bytes and 0 < len(stdout) <= intent['maximum_bytes']
-             and type(stderr) is bytes and not stderr, 'PROCESS_CAPTURE_OUTPUT')
+    _require(type(stdout) is bytes and len(stdout) <= intent['maximum_bytes']
+             and type(stderr) is bytes and len(stderr) <= 1048576, 'PROCESS_CAPTURE_OUTPUT')
     for key, raw in (('stdout', stdout), ('stderr', stderr)):
         record = result[key]
         _require(type(record) is dict and set(record) == {'path', 'bytes', 'sha256', 'identity8'}
                  and type(record['bytes']) is int and record['bytes'] == len(raw)
                  and record['sha256'] == hashlib.sha256(raw).hexdigest(), 'PROCESS_CAPTURE_RAW_BINDING')
+    return CheckedProcesses((), pid)
+
+
+def check_process_capture(result, intent, stdout, stderr, *, ancestor_pids=()):
+    closed = check_closed_process_capture(result, intent, stdout, stderr,
+                                          ancestor_pids=ancestor_pids)
+    _require(result['actual']['returncode'] == 0 and not stderr and stdout,
+             'PROCESS_CAPTURE_SUCCESS_REQUIRED')
     _require(stdout.endswith(b'\n') and b'\x00' not in stdout, 'PROCESS_CAPTURE_COMPLETE_LINES')
     rows = []
     seen = set()
@@ -82,4 +91,4 @@ def check_process_capture(result, intent, stdout, stderr, *, ancestor_pids=()):
                  and int(parts[0]) > 0 and int(parts[0]) not in seen
                  and parts[1] and all(ord(c) >= 32 for c in parts[1]), 'PROCESS_CAPTURE_ROW')
         seen.add(int(parts[0])); rows.append((int(parts[0]), parts[1]))
-    return CheckedProcesses(tuple(rows), pid)
+    return CheckedProcesses(tuple(rows), closed.reported_child_pid)

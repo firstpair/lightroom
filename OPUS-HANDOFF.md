@@ -137,3 +137,12 @@ process listing and natural-exit fixture recovery. A separate saved-byte checker
 passes six synthetic controls; all 146 repository tests pass. No SDK/media or
 publisher operation occurred. Complete process-attempt inventory and the new
 parent/worker failure path remain to be composed before live publication.
+
+Complete process-attempt inventory is now composed: exact intent/result/raw/seal
+namespace checks, fixed-command host routing, and both helper inventories audited
+while the worker remains unreaped. Nine namespace, seven host and four combined
+parent controls pass. One actual fixed process-list call through the adapter also
+passed saved-inventory readback and closed normally. Full repository tests:148 on
+both interpreters. The new source-only worker preflight still validates all eight
+saved keys, now44sources. No publication or recopy occurred. Next is actual owner
+ordering and ordinary/zero-call failure finalization; live entry remains disabled.

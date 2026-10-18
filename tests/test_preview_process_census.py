@@ -1,6 +1,6 @@
 import hashlib
 import unittest
-from scripts.preview_pipeline.process_census import check_process_capture, COMMAND
+from scripts.preview_pipeline.process_census import check_process_capture, check_closed_process_capture, COMMAND
 
 class ProcessCensusTests(unittest.TestCase):
     """Original synthetic bytes/reported wait facts; no process observations."""
@@ -41,6 +41,16 @@ class ProcessCensusTests(unittest.TestCase):
         with self.assertRaises(ValueError):check_process_capture(*self.fixture(),ancestor_pids=(12345,))
         values=list(self.fixture());values[3]=b'error'
         with self.assertRaises(ValueError):check_process_capture(*values)
+    def test_known_nonzero_is_closed_evidence_but_not_process_absence(self):
+        values=list(self.fixture());values[0]['actual']['returncode']=7
+        closed=check_closed_process_capture(*values)
+        self.assertEqual(closed.processes,());self.assertFalse(closed.resource_release_authorized)
+        with self.assertRaises(ValueError):check_process_capture(*values)
+    def test_closed_only_still_requires_exact_raw_hash_and_group_fence(self):
+        values=list(self.fixture(b'not a valid process row'))
+        self.assertEqual(check_closed_process_capture(*values).processes,())
+        values[0]['actual']['other_group_members_absent_before_reap']=False
+        with self.assertRaises(ValueError):check_closed_process_capture(*values)
     def test_unknown_fields_and_claimed_release_refused(self):
         for key,value in (('caller_grants_released',True),('owned_fds_closed',False),('extra',True)):
             values=list(self.fixture());values[0][key]=value

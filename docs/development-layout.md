@@ -154,8 +154,18 @@ process-list producer has also passed eight component controls, including an
 actual read-only process listing with intent persisted before spawn, group census
 before actual `wait4`, bounded complete output readback and one-shot FD close.
 No signals or caller-grant release occur. Original fixture deadlines recover by
-natural exit. Both components still need the complete parent attempt inventory
-and failed-prefix composition before installation in a live publisher.
+natural exit. A separate closed-only checker accepts reported nonzero completion for prefix
+accounting but returns no process rows; the strict success/absence checker still
+requires exit zero, empty stderr and valid complete rows. Eight pure controls
+cover that distinction. The private complete process namespace now binds durable
+intent/result files, raw hashes/epochs and a seal to its exact directory inventory.
+Nine namespace, seven fixed-command installation and four combined parent controls
+pass. A real fixed process-list call through that adapter also passed independent
+saved-inventory readback. The combined parent checks both helper inventories while
+the publication worker remains unreaped; it does not reap or release grants.
+The new worker passes an eight-key, 44-source read-only preflight but remains
+explicitly disabled pending actual owner orchestration and ordinary/zero-call
+failure finalization. These are source/component results, not publication.
 
 Synthetic tests cover a protected record beyond the old capture size, fragmented
 UTF-8 input, malformed/truncated fields, literal path boundaries and resource
