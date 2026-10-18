@@ -3,8 +3,8 @@
 Current operational checkpoint: four continuous 10,000-file Smart Preview windows
 completed with independent callback/output audits and actual direct-owner closure.
 A fifth stopped after a returned callback reported 248 successes and two errors.
-The successes were independently verified, bringing the last reconciled total to
-65,595 valid/nonempty previews, with 40,572 accepted files still pending. The two
+The successes were independently verified, bringing that partial run's total to
+63,095 valid/nonempty previews. The two
 HEIC errors are isolated alongside nine previously queued exports; originals are
 unchanged. Only proven-idle Python controllers were stopped during recovery,
 and the owning-tool terminal and fresh lock-bundle release were recorded.
@@ -15,7 +15,8 @@ Photo resumed. The preview successor now records explicit per-photo failures in
 a no-retry queue, audits successful outputs and all original epochs, then advances
 only after the parent acknowledgement. Missing accounting, foreign IDs and unknown
 ownership still retain the job. All 31 local control tests passed; the native successor then completed another
-2,500 previews through ten audited callbacks. At the operator’s request it has now
+2,500 previews through ten audited callbacks, bringing the current reconciled
+total to 65,595 verified and 40,572 accepted files pending. At the operator’s request it has now
 yielded IO for a separately admitted Unison camera observation. No Photo preview
 controller is currently live. A clean operator-boundary stop successor has also
 passed 33 local controls and 89 repository tests; its next native use is pending.
@@ -101,6 +102,8 @@ no replay after uncertainty and independent projection binding. Its injected
 writer now has a descriptor-relative filesystem adapter with fourteen
 temporary-file/fault controls: exclusive bounded snapshots, file/directory fsync,
 one-shot close and uncertainty preservation. No real process census or publisher
-uses this journal yet. Independent saved-journal readback, capture-wrapper and
-parent-audit integration remain necessary. It grants no process, publication or
-release authority, and does not establish storage-device failure immunity.
+uses this journal yet. Independent descriptor-relative saved-journal readback is
+now component-qualified with fourteen corruption, ordering and close controls.
+Capture-wrapper and parent-audit integration remain necessary. These components
+grant no process, publication or release authority, and do not establish
+storage-device failure immunity.

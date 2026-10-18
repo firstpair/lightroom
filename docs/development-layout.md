@@ -94,9 +94,20 @@ retains the directory and authenticates its label. Fourteen temporary-file and
 fault controls cover actual intent-before-call persistence, outcome-flush failure,
 short/interrupted writes, close uncertainty, replacement/symlink refusal and
 owner-thread confinement. These establish the tested component behavior, not
-storage-device failure immunity. Independent journal readback, the capture
-wrapper and parent lifecycle still need integration and qualification before
-this can support production publication.
+storage-device failure immunity.
+
+`scripts/preview_pipeline/census_readback.py` independently reads every pinned
+snapshot beneath the retained private directory FD. It checks exact directory
+membership, bounded nofollow reads, private single-link files, held/visible
+epochs, byte hashes, canonical JSON and the complete intent/outcome prefix through
+the final seal. Its immutable result retains no file capability; callers obtain
+a fresh decoded snapshot for the separate raw-capture/projection audit. Fourteen
+controls cover real writer/readback composition and corrupt or omitted records,
+substitution, unsafe paths, replacement and close uncertainty. The caller still
+authenticates producer provenance, the directory label and actual terminal.
+Readback cannot prove historical completeness from an untrusted subset or grant
+release authority. Capture-wrapper and parent lifecycle integration remain
+necessary before production publication.
 
 Synthetic tests cover a protected record beyond the old capture size, fragmented
 UTF-8 input, malformed/truncated fields, literal path boundaries and resource
