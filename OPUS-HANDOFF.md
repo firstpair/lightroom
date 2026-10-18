@@ -10,8 +10,9 @@ No originals, catalog identities or completed previews were replaced.
 The actual disposable capture composition now passes unused, deliberate process
 failure and combined process/descriptor capture cases. All workers/helpers and
 CPU/disposable reservations closed. Production preview publication remains
-separately disabled. One normal Alexy reopen is currently awaiting startup
-verification after these controls; no further SDK preview call is active.
+separately disabled. Alexy’s latest normal reopen passed all seven startup checks and its owner
+closed normally. No further SDK preview call is active. The corrected writer
+and exact finite publication admission passed 219 source/fixture controls.
 
 The finite Unison timed run is independently recovered and closed, and both
 sealed-return hashes were checked. Its original exit137 remains distinct from
