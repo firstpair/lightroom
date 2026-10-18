@@ -1,15 +1,23 @@
 # Lightroom continuation handoff
 
-Current operational checkpoint: two consecutive 5,000-file Smart Preview windows
-completed, each through 200 independently audited SDK callbacks and actual owner
-closure. The latest closed catalog snapshot has 21,597 valid/nonempty previews
-and 84,570 pending accepted files. At the user's request, a continuous runner is
-now active with 10,000-file windows and 250-file SDK calls. Each next window waits
-for actual direct-owner/group closure and an independent sealed output audit;
-errors or unknown ownership stop progression without replay. Nine isolated exports
-remain explicitly queued. The first larger window is in progress, not qualified
-complete or measured faster yet. Exact handles, safe boundary-stop instructions
-and live counters are in the ignored local handoff. The full objective is incomplete.
+Current operational checkpoint: four continuous 10,000-file Smart Preview windows
+completed with independent callback/output audits and actual direct-owner closure.
+A fifth stopped after a returned callback reported 248 successes and two errors.
+The successes were independently verified, bringing the last reconciled total to
+63,095 valid/nonempty previews, with 43,072 accepted files still pending. The two
+HEIC errors are isolated alongside nine previously queued exports; originals are
+unchanged. Only proven-idle Python controllers were stopped during recovery,
+and the owning-tool terminal and fresh lock-bundle release were recorded.
+
+The operator then prioritized an exact older-fork Unison interoperability test.
+Its fixed fourth attempt passed all four cases/twelve calls and closed before
+Photo resumed. The preview successor now records explicit per-photo failures in
+a no-retry queue, audits successful outputs and all original epochs, then advances
+only after the parent acknowledgement. Missing accounting, foreign IDs and unknown
+ownership still retain the job. All 31 local control tests passed. A fresh serial
+10,000-file runner has started; native callback qualification is still in progress.
+Exact handles, source pins and progress remain in the ignored local handoff.
+The full objective remains incomplete.
 
 Work from this checkout. Repository layout and source-promotion rules are in
 [docs/development-layout.md](docs/development-layout.md).
