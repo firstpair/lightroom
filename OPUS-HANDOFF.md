@@ -10,9 +10,9 @@ No originals, catalog identities or completed previews were replaced.
 A new 32-job packet was selected from the authenticated queue with completed
 keys excluded. Lightroom settings and native locators were captured and audited
 for all 32, with original-file guards and current catalog bindings checked. The
-first eight have now completed rendering, Rust/Ox staging, publication, independent
+first sixteen have now completed rendering, Rust/Ox staging, publication, independent
 storage verification and Lightroom cache loads/decodes. The monitor-fit checkpoint
-is 234; 24 jobs remain in this packet. Highest native tiers are on Quasar, without
+is 242; 16 jobs remain in this packet. Highest native tiers are on Quasar, without
 upscaling; lower tiers and old Ten files are preserved. Alexy is open in Classic
 15.6 with all seven startup checks verified. Every owning helper and reservation
 is closed. The full backlog and twelve Smart Preview exceptions remain open.
@@ -23,6 +23,14 @@ inspection of the installed bytecode. A terminal-record field projection was
 saved separately for the recognition selector. Historical receipts, failed
 preparations and original tool outputs remain unchanged; none required a native
 render or publication replay.
+
+A prelaunch coordinator check confused global packet positions with local reader
+positions. All readers had closed and no renderer launched. Independent recovery
+closed the idle owner; its exit137 remains separate from the corrected render’s
+actual success. A checkpoint-driven private source author now validates those
+index domains independently. Six controls reproduce the old failure and check
+all four cohort positions. The next eight-job source passed metadata preflight;
+it has not run and has no admission.
 
 The finite Unison timed run is independently recovered and closed, and both
 sealed-return hashes were checked. Its original exit137 remains distinct from
@@ -82,9 +90,9 @@ entry point when the repository architecture or continuation location changes.
 
 ## Immediate operational priority
 
-Continue with jobs 9–16 in the current guarded 32-job packet, then 17–32.
-The preceding packet and this packet’s first eight keys are complete; do not repeat
-them. Twelve Smart Preview exceptions remain:
+Continue with jobs 17–24 in the current guarded 32-job packet, then 25–32.
+The preceding packet and this packet’s first sixteen keys are complete; do not
+repeat them. Twelve Smart Preview exceptions remain:
 two calls that never returned, three known HEIC errors and seven exports not yet
 attempted. Preserve these records; diagnose eligibility and the unreturned calls
 before any further attempt. Receiver reuse, retained previews, original media,
