@@ -12,14 +12,19 @@ their highest native tiers on Quasar. Independent storage checks and Lightroom
 cache-load/decode checks passed for all eight. The monitor-fit checkpoint is now
 218; all owning helpers and reservations are closed. Alexy is open with all seven
 startup checks verified. These eight required no new rendering or original-photo
-reads. The next eight source jobs remain unrendered, and the full backlog is open.
+reads. The next eight source jobs have now been rendered and staged through both Rust
+and Ox. All 64 staged language-copy JPEGs passed byte checks and the publication
+adapter. They are not yet published or counted in the 218 checkpoint. The full
+backlog remains open. A changed build-only pkg-config pin was isolated in a
+separate source-backed runtime-reuse contract; the historical build receipt and
+retained engine binaries remain unchanged.
 The exact admission and writer controls passed 225 tests.
 
 The finite Unison timed run is independently recovered and closed, and both
 sealed-return hashes were checked. Its original exit137 remains distinct from
 its saved functional results. There is no remaining Unison IO hold.
-Capture qualification passed 202 source/mock tests; production publication
-remains disabled pending actual composed lifecycle qualification. The complete
+Capture qualification and the subsequent actual eight-preview publication and
+native recognition are complete for that finite cohort. The complete
 takeover goal, including the large-preview backlog, remains incomplete.
 
 
