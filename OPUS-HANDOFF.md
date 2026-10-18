@@ -1,14 +1,15 @@
 # Lightroom continuation handoff
 
-Latest operational state: Photo stopped at a clean SDK callback boundary after
-3,250 new successes without failures. There are 97,844 verified previews and
-8,323 eligible files pending. Its actual coordinator, SDK owner/helper groups and
-resources are closed; Classic normal scheduling is restored. A fresh finite
-Unison IO admission is published; no dispatch is inferred from that publication.
-Photo SDK/bulk successors wait for that allocation's actual closure or verified
-unstarted expiry. Meanwhile CPU-only qualification passed 190 tests and closed
-all resources. Production publication remains disabled pending actual composed
-lifecycle qualification. The full takeover objective is active and incomplete.
+Latest operational state: Photo resumed immediately after Unison's actual finite
+IO run closed. The native SDK job is live and has independently verified 500 new
+previews without failures: 98,344 total verified, 7,823 eligible pending. Its
+ordinary queue contains 8,311 files at launch; the other twelve pending entries
+are nine unbuilt exported-image files and three known HEIC SDK errors. Historical
+completed isolation batches must not be replayed. Classic background scheduling
+is applied during bulk work and must be restored afterward. CPU-only component
+and mocked driver qualification passed 197 tests with all resources closed;
+actual composed publisher lifecycle qualification remains open, publication
+stays disabled. The full takeover objective remains active and incomplete.
 
 
 Current operational checkpoint: four continuous 10,000-file Smart Preview windows
