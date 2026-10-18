@@ -1,8 +1,8 @@
 # Lightroom continuation handoff
 
 Latest operational state: Photo resumed immediately after Unison's actual finite
-IO run closed. The native SDK job is live and has independently verified 500 new
-previews without failures: 98,344 total verified, 7,823 eligible pending. Its
+IO run closed. The native SDK job is live and has independently verified 2,250 new
+previews without failures: 100,094 total verified, 6,073 eligible pending. Its
 ordinary queue contains 8,311 files at launch; the other twelve pending entries
 are nine unbuilt exported-image files and three known HEIC SDK errors. Historical
 completed isolation batches must not be replayed. Classic background scheduling
