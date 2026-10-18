@@ -29,15 +29,20 @@ same open Classic process. All reservations are closed. Those eight render
 outputs are preserved and unpublished: the existing staging proof requires an
 original outer exit0. A distinct versioned recovery-aware validator now passes
 its controls and accepted all eight saved native results without payload reads,
-while preserving exit137. The staging runtime and publisher still need to be
-wired to that versioned proof before those outputs can be published.
+while preserving exit137. Both versioned staging executors are now built. A durable queue claim drove all
+four pairs automatically through Rust and Ox staging, with no rendering replay.
+Independent readback verified all 64 staged JPEG copies against native hashes.
+All stage/helper groups and CPU/IO reservations closed. Publication and native
+recognition still need to consume the new versioned proof; these eight are not
+yet included in the verified catalog count.
 No rendering replay or receipt substitution is authorized by that recovery.
 Sixteen jobs in this packet remain unrendered; the verified count stays 266.
 
 Continuous-processing work now includes a durable metadata queue with 10,000-item
 ingestion and eight-item phase claims, restart/hold handling, duplicate prevention
 and explicit saved-render adoption. The eight unpublished real renders were
-adopted at `NATIVE_READY`; a render claim correctly returns no work for them.
+adopted at `NATIVE_READY`, then advanced by one actual queued run to `STAGED`;
+a render claim correctly returns no work for them.
 The executor is not yet continuous. Integration and qualification remain next;
 see [continuous processing](docs/preview-continuous-processing.md). No IO hold or
 new native run was created by this source work.

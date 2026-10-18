@@ -44,3 +44,9 @@ and publisher integration must consume the new completion proof explicitly;
 historical validators and receipts remain unchanged. These components are not a
 claim of catalog-wide generation, production throughput, larger native batches,
 or a new runtime admission.
+
+The first private queued staging execution has completed: eight previously
+rendered jobs advanced from `NATIVE_READY` to `STAGED` through four contained
+pairs in both executors. Independent file readback verified 64 staged JPEG
+copies; no render was repeated. This does not yet qualify automatic publication
+or recognition, and does not advance the verified catalog preview count.
