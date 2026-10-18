@@ -32,6 +32,14 @@ is required to finish a held claim. Duplicate keys and duplicate completion
 attempts are refused. Previously completed native renders may be adopted at
 `NATIVE_READY` with their authenticated receipt, so they are not rendered again.
 
+`scripts/preview_pipeline/phase_inputs.py` retrieves prior receipt pins for an
+exact active claim through primary-key lookups on the private queue. It checks
+the batch, order, source bindings and phase state, and leaves the borrowed
+connection open. This allows downstream adapters to find prior work without
+depending on a live Python object from the preceding phase. It neither
+authenticates those receipt files nor resolves an unfinished owner; restart and
+hold restrictions still apply.
+
 The queue owns only its private bookkeeping database. It never opens the catalog,
 originals or preview payloads; launches no workers; and grants no IO, CPU, UI,
 rendering or publication authority. The executor must authenticate the referenced
@@ -69,3 +77,12 @@ controller has not launched a native cohort; connecting the real adapters remain
 required before claiming unattended generation. The next native window's source
 can now be authored from the verified checkpoint and packet without manually
 editing global packet ordinals or the local eight-reader counter.
+
+The private render adapter now binds those exact queue records, retains its
+render-window process and capture carriers, and constructs the versioned proof
+from the actual direct-child wait and verified Classic startup. Its source
+controls cover both catalog companion modes, wrong claims and admission order,
+failed native facts, uncertain settlement and false resource-closure claims.
+Disposable Python peers exercise process wait/capture closure using explicit
+source/proof doubles. This does not qualify an actual native execution through
+the controller. Downstream adapter integration remains required.

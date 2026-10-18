@@ -30,6 +30,10 @@ contained pairs automatically. A reusable cross-phase controller now passes synt
 through all four phases, restart and uncertainty controls. Its real native
 adapters are not yet connected into one unattended catalog-wide controller. Larger
 native windows and full-catalog throughput are not qualified by this cohort.
+The render adapter now passes source and disposable-process controls; downstream
+adapters still need integration. The queue can retrieve exact prior receipts
+without relying on live state from the preceding phase. No additional native
+cohort was dispatched during this work.
 See [continuous processing](docs/preview-continuous-processing.md).
 
 Alexy is open in Classic 15.6 with all seven startup phases verified. Every
