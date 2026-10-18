@@ -12,7 +12,13 @@ keys excluded. Lightroom settings and native locators were captured and audited
 for all 32, with original-file guards and current catalog bindings checked. The
 first twenty-four have now completed rendering, Rust/Ox staging, publication, independent
 storage verification and Lightroom cache loads/decodes. The monitor-fit checkpoint
-is 250; eight jobs remain in this packet. Highest native tiers are on Quasar, without
+is 250. The final eight are now rendered, staged, published and independently
+storage-verified. Four passed native cache loads/decodes; the next pair stopped
+before its callback on a watcher-lock refusal, and the last pair remains
+unattempted. All owners and reservations closed normally. Preserve those
+successful callbacks and the refusal; continue only the remaining recognition
+with a separately guarded preparation, without rendering or publishing again.
+Highest native tiers are on Quasar, without
 upscaling; lower tiers and old Ten files are preserved. Alexy is open in Classic
 15.6 with all seven startup checks verified. Every owning helper and reservation
 is closed. The full backlog and twelve Smart Preview exceptions remain open.
@@ -29,8 +35,8 @@ positions. All readers had closed and no renderer launched. Independent recovery
 closed the idle owner; its exit137 remains separate from the corrected render’s
 actual success. A checkpoint-driven private source author now validates those
 index domains independently. Six controls reproduce the old failure and check
-all four cohort positions. The next eight-job source passed metadata preflight;
-it has not run and has no admission.
+all four cohort positions. The final eight-job source subsequently completed
+successfully; its publication is complete and partial recognition is recorded above.
 
 The finite Unison timed run is independently recovered and closed, and both
 sealed-return hashes were checked. Its original exit137 remains distinct from
