@@ -34,7 +34,10 @@ The render adapter now passes source and disposable-process controls; downstream
 adapters still need integration. Staging preparation now selects one qualified
 engine instead of both qualification engines. The render wrapper’s redundant
 reopen-before-publication-close cycle is also being removed through a versioned
-closed-window completion contract; that source has not been dispatched. The queue can retrieve exact prior receipts
+closed-window completion contract. Its successor proof, compiled staging
+runtime and versioned publication bindings now pass source/build controls. No
+native cohort has run through that path; the generic single-engine driver and
+already-closed publication owner remain next. The queue can retrieve exact prior receipts
 without relying on live state from the preceding phase. No additional native
 cohort was dispatched during this work.
 See [continuous processing](docs/preview-continuous-processing.md).

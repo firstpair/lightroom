@@ -104,7 +104,15 @@ release authority. Legacy views still use their unchanged validator.
 A private deferred-startup render-window author now removes the intermediate
 reopen, retains the original native/reader/launch helper functions, and adds a
 post-native closed-catalog census. Source controls and metadata-only preflight
-pass. The new completion view is **not yet wired into the staging proof/runtime
-or the full controller**, and no native invocation of that source has occurred.
-The next integration must support the closed window explicitly, rather than
-fabricating startup success for a legacy proof.
+pass. A successor private proof and compiled staging runtime now consume that
+view. Runtime authentication rechecks the root result, normal-close and reader
+gate snapshots, helper restoration/settlement records, and captured post-native
+process/handle observations. The existing native input/epoch/companion checks
+remain intact. The versioned stage gate, insert builder and publisher use the
+same explicit proof; historical validators and receipts stay unchanged.
+
+These are source/build controls, including disposable Python process controls;
+**no native cohort has run through the deferred-startup path**. The generic
+single-engine driver and the publication owner that accepts an already-closed
+catalog still need integration before that path can run end to end. Final reopen,
+startup verification and native recognition remain required.
