@@ -7,12 +7,13 @@ runs were recovered through normal Lightroom quit followed by source-proven idle
 Python stops; their exit137 records are retained separately from SDK completion.
 No originals, catalog identities or completed previews were replaced.
 
-The actual disposable capture composition now passes unused, deliberate process
-failure and combined process/descriptor capture cases. All workers/helpers and
-CPU/disposable reservations closed. Production preview publication remains
-separately disabled. Alexy’s latest normal reopen passed all seven startup checks and its owner
-closed normally. No further SDK preview call is active. The corrected writer
-and exact finite publication admission passed 219 source/fixture controls.
+The corrected finite publisher actually published eight saved previews, placing
+their highest native tiers on Quasar. Independent storage checks and Lightroom
+cache-load/decode checks passed for all eight. The monitor-fit checkpoint is now
+218; all owning helpers and reservations are closed. Alexy is open with all seven
+startup checks verified. These eight required no new rendering or original-photo
+reads. The next eight source jobs remain unrendered, and the full backlog is open.
+The exact admission and writer controls passed 225 tests.
 
 The finite Unison timed run is independently recovered and closed, and both
 sealed-return hashes were checked. Its original exit137 remains distinct from
