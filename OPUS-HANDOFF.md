@@ -1,14 +1,11 @@
 # Lightroom continuation handoff
 
-Latest operator direction: let Unison finish its tests. Photo stopped cleanly at
-the next SDK callback boundary:4,250 new previews,69,845 verified total,36,322
-eligible pending. The actual owning tool returned exit0; SDK task, helper and
-owner groups settled and IO/CPU reservations closed. Classic normal scheduling
-was restored. Hold Photo SDK/native/bulkIO successors until Unison finishes.
-No expired Unison admission is renewed by this release. A distinct one-use camera
-observation admission has now been published after rechecking all40 execution
-pins and7 prerequisites; dispatch is not yet claimed. Its exact path, SHA and
-environment are in the private coordination reschedule record.
+Latest operational state: both prioritized Unison tests completed with actual
+parent/helper/group/IO/CPU closure. Photo resumed its existing continuous
+10,000-file windows/250-file SDK callbacks under a fresh controller; native UI
+entry is confirmed and the first callback is in flight. Baseline69,845verified
+and36,322eligible pending. Classic uses background scheduling during bulk work;
+restore normal scheduling when it stops. No full-goal completion is claimed.
 
 
 Current operational checkpoint: four continuous 10,000-file Smart Preview windows
@@ -38,8 +35,8 @@ offline Python launcher. The fresh window then created and independently verifie
 window. It stopped at the next SDK callback boundary; the actual coordinator
 returned exit0, direct SDK owner/helper groups settled, and its IO/CPU reservations
 closed. The reconciled total is69,845verified and36,322eligible files pending.
-Photo SDK/native/bulkIO successors are held for Unison. Classic normal scheduling
-was restored. Exact terminal and scheduling records are in the private handoff.
+Photo yielded for both Unison tests; their actual closure is now confirmed and
+a fresh Photo controller is live. Exact terminal and scheduling records are in the private handoff.
 The full objective remains incomplete.
 
 Work from this checkout. Repository layout and source-promotion rules are in
@@ -67,11 +64,9 @@ resolved read-only against the current catalog. Classic's SDK created and fully
 populated the ordinary collection; SDK and independent read-only checks verified
 its exact committed membership. Generation has reached69,845independently verified previews. The latest native
 window is actually closed, not live; do not poll or restart its completed handle.
-Photo is held for the operator-prioritized Unison camera test, with a distinct
-fresh admission published after the predecessor expired unstarted. Admission
-publication is not dispatch or completion. Resume Photo only after the test's
-actual parent/helper/group/FD closure, preserving the existing collection and
-remaining queue. Whole-goal completion is not claimed.
+Both Unison camera and property tests have actually closed. The fresh Photo
+controller is live; observe that handle rather than dispatching another build,
+preserving the existing collection and remaining queue. Whole-goal completion is not claimed.
 Read-only observers cannot submit builds or authorize resource release; actual
 owning-tool completion remains separate. Preserve the saved monitor renders and
 stages: all eight pending staged keys passed a fresh metadata-only preflight,
