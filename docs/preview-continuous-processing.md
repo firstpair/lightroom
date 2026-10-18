@@ -112,7 +112,18 @@ remain intact. The versioned stage gate, insert builder and publisher use the
 same explicit proof; historical validators and receipts stay unchanged.
 
 These are source/build controls, including disposable Python process controls;
-**no native cohort has run through the deferred-startup path**. The generic
-single-engine driver and the publication owner that accepts an already-closed
-catalog still need integration before that path can run end to end. Final reopen,
-startup verification and native recognition remain required.
+**no native cohort has run through the deferred-startup path**. Private
+single-engine staging and already-closed publication adapters are now implemented
+with component controls. Dynamic publication preparation binds each batch's
+actual stage receipts, witnesses and row projections, and verifies inherited
+reservations before effects. Composed lifecycle qualification and the continuous
+entrypoint are still required. Final reopen, startup verification and native
+recognition remain required.
+
+`recognition_selection_v2.py` is a separate pure contract for the continuous
+path. It requires the publisher child's actual settled wait, helper settlement,
+IO/CPU closure and the pinned phase receipt. It supplies no external tool-session
+event. Every key in the whole eight-key audit must pass before selecting a pair;
+a pending or failed nonselected key still refuses the selection. The legacy
+selector retains its original tool-session requirement. Neither selector reads
+files, opens Lightroom, authorizes publication or releases resources.

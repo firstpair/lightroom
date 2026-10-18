@@ -37,46 +37,42 @@ reopen-before-publication-close cycle is also being removed through a versioned
 closed-window completion contract. Its successor proof, compiled staging
 runtime and versioned publication bindings now pass source/build controls. No
 native cohort has run through that path; the generic single-engine driver and
-already-closed publication owner remain next. The queue can retrieve exact prior receipts
+already-closed publication owner are now source-integrated; final startup and recognition remain next. The queue can retrieve exact prior receipts
 without relying on live state from the preceding phase. No additional native
 cohort was dispatched during this work.
 See [continuous processing](docs/preview-continuous-processing.md).
 
-The saved-stage-to-publication receipt composer is implemented. It authenticates
-the direct stage outcome first, then binds every native job, engine audit,
-cohort, output and pending startup into the new publication-gate inputs. Eight
-controls passed under actual worker12982/exit0 with group and Photo8 closure.
-The composition test uses historical metadata and an explicit gate double;
-it does not qualify a new V4 native/stage/publication run. An initial fixture
-AttributeError is preserved in root-controls-e2c676111e614c1aaa5f553d9c8903c7;
-the corrected run is root-controls-d9e35379ed63494283a4ed84bbd6c03d.
-No payload or catalog read/write occurred. Next: dynamic insert metadata/row
-projections and the already-closed publication owner, then the whole continuous
-runtime. Coverage remains274; no new runtime has been dispatched.
-
-
-The publication source now has a separate single-Ox stage contract, requiring
-four ordered pairs, zero native renders/copies, settled engine groups and a
-pending final startup. Three controls reject incomplete pairs, mixed engines,
-false release flags and unsettled waits; actual control worker12321 closed0
-with group and Photo8 closure. Versioned builder/publisher bindings point to
-this gate. These are prepared source bindings only: the generic publication
-worker/owner and cross-phase runtime still need composition. Historical
-receipts and the verified274count are unchanged.
-
-
-Single-engine staging now has a composed parent/worker adapter: the parent retains
-EXglobal until worker settlement and saved engine/output audit; the worker uses
-only Ox for four two-job stages and verifies 32 copies. Six controls passed,
-including actual historical receipt readback, original tiny-byte hashes,
-truncated-artifact refusal and close-uncertainty retention. Actual control worker
-9957 exited0, was reaped with its group absent, and Photo8 closed. This is
-source/component evidence, not a new stage or preview run. The already-closed
-publication adapter and final continuous entrypoint remain unfinished; verified
-monitor coverage stays274. Private source and the exact control receipt are in
-`.private/photo-helpers/continuous_stage_adapter_v1.py` and the private
-`root-controls-8f149e8a636d47fca0f597a9164991b9` directory.
-
+Current continuous-path integration: single-Ox staging parent/worker and the
+saved-stage publication composer are implemented with component controls. The
+publication source author now binds dynamic stage receipts, input directories,
+row projections, witnesses and the single-engine gate. Generated preparation
+scripts refuse before effects without an inherited reservation; existing
+qualified preparation functions are preserved. Five source controls passed
+(actual17765/0; group/Photo8closed), following a preserved fixture-path error.
+The already-closed publication adapter source acquires EX/Photo8/UI and authenticates
+the prior native/stage proof, samples current process and descriptor exclusion,
+prepares dynamic inputs and invokes the existing retained publication owner.
+It sends no second quit. Four first controls passed (actual19231/0;
+group/Photo8closed), including an actual process-list child, early refusal and
+faithful wait-schema projection. The full production publication path has NOT
+run through this adapter; these are source/component results only. Final
+reopen/startup/cache-recognition adapter, continuous launcher and composed
+runtime qualification remain open. No new preview batch has run; coverage274.
+The portable recognition-selection V2 contract now accepts an exact direct
+publisher-child wait plus settled helper/IO/CPU evidence, rather than requiring
+an invented external tool session for each batch. Legacy selection remains
+unchanged. Its private consumer/coordinator successors are source-prepared only.
+All222repositorytests pass (actual23228/0, group/Photo8closed); the initial
+wrong-working-directory test invocation is preserved. Current source/component
+pins are sealed at private
+`continuous-publication-source-controls-20261018-001/RESULT.json`, SHA
+`e1d3c80dd4f450ebbc04cb83a98b352f7704c940cd52cd295370c2f81671ce91`.
+Metadata seal owner24679/0 closed; an earlier parent-directory-mode refusal
+left its partial record preserved separately and made no runtime call.
+Private sources: `.private/photo-helpers/continuous_publication_{sources,
+resource,preparation,adapter}_v1.py`; exact control receipts are under private
+`root-controls-ef36f90ddad94a1bb68904646286f9c1` and
+`root-controls-b7f2dcacced04225b9acaa6e583faa7c`.
 
 Alexy is open in Classic 15.6 with all seven startup phases verified. Every
 owning job, helper and reservation is closed. The full preview backlog and twelve
