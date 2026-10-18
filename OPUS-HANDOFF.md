@@ -1,11 +1,11 @@
 # Lightroom continuation handoff
 
-Latest operational state: both prioritized Unison tests completed with actual
-parent/helper/group/IO/CPU closure. Photo resumed its existing continuous
-10,000-file windows/250-file SDK callbacks under a fresh controller; native UI
-entry is confirmed and the first callback is in flight. Baseline69,845verified
-and36,322eligible pending. Classic uses background scheduling during bulk work;
-restore normal scheduling when it stops. No full-goal completion is claimed.
+Latest operational state: Photo stopped cleanly at the next callback boundary
+for the new Unison camera V4 observation. Actual coordinator61499 returned exit0;
+1,250new outputs were verified, giving71,095verified and35,072eligible pending.
+SDK/helper/owner groups and IO/CPU reservations closed; Classic normal scheduling
+was restored. Camera V4 has a fresh one-use admission; Photo SDK/native/bulkIO
+is held until its actual parent/helper/group/FD closure. No full completion claim.
 
 
 Current operational checkpoint: four continuous 10,000-file Smart Preview windows
