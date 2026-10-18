@@ -5,7 +5,10 @@ the next SDK callback boundary:4,250 new previews,69,845 verified total,36,322
 eligible pending. The actual owning tool returned exit0; SDK task, helper and
 owner groups settled and IO/CPU reservations closed. Classic normal scheduling
 was restored. Hold Photo SDK/native/bulkIO successors until Unison finishes.
-No expired Unison admission is renewed by this release.
+No expired Unison admission is renewed by this release. A distinct one-use camera
+observation admission has now been published after rechecking all40 execution
+pins and7 prerequisites; dispatch is not yet claimed. Its exact path, SHA and
+environment are in the private coordination reschedule record.
 
 
 Current operational checkpoint: four continuous 10,000-file Smart Preview windows
