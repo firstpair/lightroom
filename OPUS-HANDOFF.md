@@ -23,9 +23,9 @@ its scheduling-only hold. Photo’s first restart refused a changed installed UV
 launcher pin before UI entry. It was independently closed, the original manifest
 was preserved, and only that pin was updated after testing the exact configured
 offline Python launcher. A fresh controller has now actually resumed the next
-10,000-file window:1,750previews are created and parent-audited without
-errors, bringing known verified progress to67,345with38,822pending. The next250
-are in flight. No current-window or full-goal completion is claimed.
+10,000-file window:3,500previews are created and parent-audited without
+errors, bringing known verified progress to69,095with37,072eligible files pending.
+The next250are in flight. No current-window or full-goal completion is claimed.
 Exact handles, source pins and progress remain in the ignored local handoff.
 The full objective remains incomplete.
 
@@ -169,3 +169,12 @@ when bulk generation stops or completes; that cleanup remains pending and is
 recorded in the private handoff. No automatic restorer is installed. Current
 ownership/adoption, Lux/Ten cache aliases and the stable Classic15.6 launch were
 also rechecked without payload hashing or catalog writes.
+
+Capitola’s local status and handoff now identify the current controller and
+preview location. The older live-looking status was preserved as history. Counts
+separate callback attempts, verified successes, known failures and whole-job
+closure; a running prefix cannot authorize copying under the held IO lease.
+All118,299inputrows resolved by asset identity;12,040current paths outside the
+authorized source root remain recorded/skipped. Eligible distinct files total
+106,167;92aliases bring the ordinary unsynced collection to106,259members.
+The current read-only capacity observation remains above both volume reserves.
