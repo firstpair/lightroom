@@ -1,13 +1,13 @@
 # Lightroom continuation handoff
 
-Latest operational state: a full10,000-file preview window actually completed,
-bringing verified progress to94,594with11,573eligible pending. The planned
-CPU-only qualification passed182tests and actually closed its worker/groups and
-Photo8 reservation. The capture finalizer is component-qualified; production
-publication remains disabled pending composed lifecycle qualification. Photo
-immediately resumed under live tool64390; native UI entry is confirmed. Classic
-background scheduling remains applied; restore normal scheduling on bulkstop.
-Full takeover objective remains incomplete.
+Latest operational state: the prior full 10,000-file preview window completed;
+the next native window is running and has independently verified another 2,000
+previews without failures. Current verified total is 96,594, with 9,573 eligible
+files pending. These are live progress counts, not a completed-window receipt.
+The prior CPU-only qualification passed 182 tests and closed its resources.
+Production publication remains disabled pending composed lifecycle qualification.
+Classic background scheduling remains applied; restore normal scheduling when
+bulk work stops. The full takeover objective remains active and incomplete.
 
 
 Current operational checkpoint: four continuous 10,000-file Smart Preview windows
