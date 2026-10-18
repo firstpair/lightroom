@@ -27,9 +27,20 @@ recovery stopped only the proven-idle Python owner; its actual exit137 remains
 preserved. One guarded manual startup attempt verified all seven phases in the
 same open Classic process. All reservations are closed. Those eight render
 outputs are preserved and unpublished: the existing staging proof requires an
-original outer exit0, so a distinct recovery-aware proof path needs qualification.
+original outer exit0. A distinct versioned recovery-aware validator now passes
+its controls and accepted all eight saved native results without payload reads,
+while preserving exit137. The staging runtime and publisher still need to be
+wired to that versioned proof before those outputs can be published.
 No rendering replay or receipt substitution is authorized by that recovery.
 Sixteen jobs in this packet remain unrendered; the verified count stays 266.
+
+Continuous-processing work now includes a durable metadata queue with 10,000-item
+ingestion and eight-item phase claims, restart/hold handling, duplicate prevention
+and explicit saved-render adoption. The eight unpublished real renders were
+adopted at `NATIVE_READY`; a render claim correctly returns no work for them.
+The executor is not yet continuous. Integration and qualification remain next;
+see [continuous processing](docs/preview-continuous-processing.md). No IO hold or
+new native run was created by this source work.
 Highest native tiers are on Quasar, without
 upscaling; lower tiers and old Ten files are preserved. Alexy is open in Classic
 15.6 with all seven startup checks verified. Every owning helper and reservation
