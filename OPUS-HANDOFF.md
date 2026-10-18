@@ -1,5 +1,13 @@
 # Lightroom continuation handoff
 
+Latest operator direction: let Unison finish its tests. Photo stopped cleanly at
+the next SDK callback boundary:4,250 new previews,69,845 verified total,36,322
+eligible pending. The actual owning tool returned exit0; SDK task, helper and
+owner groups settled and IO/CPU reservations closed. Classic normal scheduling
+was restored. Hold Photo SDK/native/bulkIO successors until Unison finishes.
+No expired Unison admission is renewed by this release.
+
+
 Current operational checkpoint: four continuous 10,000-file Smart Preview windows
 completed with independent callback/output audits and actual direct-owner closure.
 A fifth stopped after a returned callback reported 248 successes and two errors.
