@@ -46,15 +46,16 @@ The operator-authorized Smart Preview generation handoff now takes priority over
 further monitor-preview publication. The candidate manifest was authenticated and
 resolved read-only against the current catalog. Classic's SDK created and fully
 populated the ordinary collection; SDK and independent read-only checks verified
-its exact committed membership. Serial native Smart Preview generation has now
-started, with newly valid proxy registrations observed in the live catalog.
-Whole-run completion is not yet claimed. Continue monitoring the existing native
-task and retained resource owner described in the private handoff; do not dispatch
-another collection or build request. A separate read-only progress observer now
-verifies completed native callback prefixes against current catalog registrations
-and refreshes the private handoff status periodically. It cannot submit builds or
-authorize resource release; actual owning-tool completion remains separate.
-Preserve the saved monitor renders and stages.
+its exact committed membership. Generation reached 65,595 independently verified
+previews before the operator requested an IO handoff to Unison. Photo currently
+has no live preview controller; the private handoff records the separate admitted
+camera job and its actual-start/closure state. Do not submit a competing build or
+recreate the collection. Resume through a fresh bounded controller only after
+that coordination window is released. Whole-run completion is not claimed.
+Read-only observers cannot submit builds or authorize resource release; actual
+owning-tool completion remains separate. Preserve the saved monitor renders and
+stages: all eight pending staged keys passed a fresh metadata-only preflight,
+without rerendering, publication or photo-payload hashing.
 
 ## Repository and continuation status
 
