@@ -91,17 +91,36 @@ full-catalog packet refill remains open; the driver stops at its packet boundary
 First real dispatch/closure must be recorded separately below; no source control
 or readiness receipt proves that it ran.
 
-ACTIVE REAL CONTINUOUS WINDOW: actual owning tool session23590, initial chunk
-a14204, driverPID34430, root render child34448. Workspace private
-root-continuous-preview-f685e6cbeef44ba28835f3af32851968; exact readiness
-fb8df0abc022073607c1c15d16e8c9602a49eb816e115ceaa998d803fecf5591
-was freshly rechecked and execv dispatched once, bounded16new completions.
-The first native root is root-native-eight-b75b1f6a68f74a128746d02f7e27c926;
-normal quit/helper actions are progressing under the owned window. Source is
-frozen while live. DO NOT launch a second driver, edit its sources, infer
-closure from process absence, or replay any prepared/current batch. Collect the
-same23590handle and recorded phase/helper/group/FD proofs. Actual coverage stays
-274until the new recognition audits commit; simulation290is not actual.
+ACTUAL FIRST CONTINUOUS WINDOW RECOVERY-CLOSED: tool23590/a14204 ->
+e282f9/exit137/no session. Driver34430 was stopped ONLY after an independent
+source-bound proof of idle Python/no children/no production descriptors and
+zero publication calls. Native root34448 and native owner34846 both waited0;
+stage worker35347 and all four engines waited0. Original private queue/claim,
+receipts and24source files are preserved. Fresh EXglobal then Photo8 then UI
+whole-bundle acquisition/close passed; recovery d10f390e21f386f12998821db6c9db920c537451ca2a15212a615739921ecf31.
+This is recovery closure, not a normal controller exit or publication success.
+
+Actual new work: packet17..24 rendered and32files staged successfully within
+about two minutes. Publication then refused a missing `preservedArtifacts`
+audit field before preparation/worker/SQL entry. Source correction now records
+that field for future stages; a separate saved-only audit supplement binds the
+existing original audit to the already-validated native artifact headers.
+Gate9 checks both immutable originals and the exact root-validated header list.
+All8jobs/32outputs pass saved-only validation, zero payload rereads/copies or
+native replay (68b5ebb2faecd0ec740e0c2cfbfc555f2f16dfff5d4f1aed22437a3050a769b8).
+Two supplement controls/five negative variants and the V2 saved-stage driver
+simulation passed; synthetic290remains NOT actual coverage.
+
+Fresh explicit successor is prepared at private saved-stage-successor-
+b3c10b538e644c40810e0b26c67236bc/READY.json, SHA
+e4921d8155fcf41c24d4352aa026373b91dc4382a36c6c3be1b3bc2a73c244b5.
+It adopts the actual saved first8asSTAGED in a fresh private queue, starts at
+publication, then may process the remaining8normally. Original queue and failed
+publication claim are untouched. Planned workspace
+root-continuous-saved-stage-2614f5efd2ce45c8bff1f9e6bc09c6ae. Record its actual
+new handle before treating it as dispatched. Actual monitor coverage stays274;
+Classic is currently normally closed from the first render window and must be
+reopened/verified after publication. No resource hold remains from23590.
 
 Before this new run, Alexy was open in Classic 15.6 with all seven startup phases verified. Every
 owning job, helper and reservation is closed. The full preview backlog and twelve
