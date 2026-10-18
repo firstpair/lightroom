@@ -119,3 +119,13 @@ suite passes on both interpreters. Installation is source-only, with no live
 publisher change, process census, media read or publication. Next: a new worker
 and parent must bind this dependency graph and audit the sealed capture prefix
 before worker reap and resource closure, then qualify actual failure recovery.
+
+The parent capture audit now requires a terminal, unreaped direct worker, verifies
+all journal/raw/projection bindings and reported counts, and rechecks the worker
+reservation before returning. It never reaps or releases grants. Five controls
+pass, plus five private controls using the existing close carrier; the full
+140-test suite passes on both interpreters. A new private worker/publisher schema
+passes read-only preflight for all eight saved keys and 40 sources. Live entry is
+explicitly disabled: separate `ps` helper closure receipts, the complete parent
+ordering and failed-prefix recovery still need qualification. Existing publisher
+versions, admissions and saved renders remain untouched.

@@ -132,6 +132,19 @@ is installed in a live publisher. A new source-bound worker, parent audit before
 worker reap, and actual failure/settlement qualification remain necessary before
 publication; old admission schemas do not authorize these successors.
 
+`scripts/preview_pipeline/census_parent.py` adds the parent-side ordering boundary:
+a caller-authenticated direct worker must be terminal and unreaped before the
+capture directories are opened, and remain so after all raw/journal bindings are
+checked. Report counts, namespaces and epochs must agree. Five temporary-file
+controls cover reservation loss and report substitution; process facts and close
+callbacks are explicit doubles. Private controls separately exercise the existing
+close carrier. This helper neither reaps the worker nor releases resource grants.
+The new private worker passes a read-only preflight for the eight saved keys and
+uses a distinct journal-required publisher admission schema. Actual entry is
+explicitly disabled until the separate process-list helper, composed parent and
+failed-prefix ownership paths are qualified. Historical publisher versions and
+admissions remain unchanged.
+
 Synthetic tests cover a protected record beyond the old capture size, fragmented
 UTF-8 input, malformed/truncated fields, literal path boundaries and resource
 limits. A local read-only process-listing control also compared projected
