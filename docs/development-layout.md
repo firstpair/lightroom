@@ -81,8 +81,22 @@ the reported sequence against expected receipt pins and independently checked
 capture projections. Eight inert tests cover ordering, missing/substituted
 records, reentry and persistence faults. The writer is injected: these tests do
 not establish durable storage, real child settlement or complete production
-instrumentation. The actual writer, capture wrapper and parent lifecycle still
-need integration and qualification before this can support publication.
+instrumentation.
+
+`scripts/preview_pipeline/census_store.py` supplies the filesystem writer for
+that journal. The original serial owner borrows an authenticated, fresh, empty
+private directory descriptor. Each snapshot consumes an exclusive filename,
+writes bounded JSON, fsyncs the file, closes its descriptor once, and fsyncs the
+directory before returning. It preserves original write errors together with
+cleanup uncertainty and pre-close identities; failed persistence latches without
+replaying the snapshot or retrying an uncertain numeric descriptor. The caller
+retains the directory and authenticates its label. Fourteen temporary-file and
+fault controls cover actual intent-before-call persistence, outcome-flush failure,
+short/interrupted writes, close uncertainty, replacement/symlink refusal and
+owner-thread confinement. These establish the tested component behavior, not
+storage-device failure immunity. Independent journal readback, the capture
+wrapper and parent lifecycle still need integration and qualification before
+this can support production publication.
 
 Synthetic tests cover a protected record beyond the old capture size, fragmented
 UTF-8 input, malformed/truncated fields, literal path boundaries and resource

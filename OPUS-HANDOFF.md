@@ -98,6 +98,9 @@ A source-level capture-attempt journal now persists intent before an injected
 capture callback, receipt/projection bindings before returning, and a sealed
 inventory afterward. Eight inert controls passed, including failure ordering,
 no replay after uncertainty and independent projection binding. Its injected
-writer is not yet qualified as durable storage; no real capture or publisher
-uses this journal. Integrating the durable writer, capture wrapper and parent
-audit remains necessary. It grants no process, publication or release authority.
+writer now has a descriptor-relative filesystem adapter with fourteen
+temporary-file/fault controls: exclusive bounded snapshots, file/directory fsync,
+one-shot close and uncertainty preservation. No real process census or publisher
+uses this journal yet. Independent saved-journal readback, capture-wrapper and
+parent-audit integration remain necessary. It grants no process, publication or
+release authority, and does not establish storage-device failure immunity.
