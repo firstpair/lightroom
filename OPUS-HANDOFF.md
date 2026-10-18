@@ -7,18 +7,21 @@ runs were recovered through normal Lightroom quit followed by source-proven idle
 Python stops; their exit137 records are retained separately from SDK completion.
 No originals, catalog identities or completed previews were replaced.
 
-The corrected finite publisher actually published eight saved previews, placing
-their highest native tiers on Quasar. Independent storage checks and Lightroom
-cache-load/decode checks passed for all eight. The monitor-fit checkpoint is now
-218; all owning helpers and reservations are closed. Alexy is open with all seven
-startup checks verified. These eight required no new rendering or original-photo
-reads. The next eight source jobs have now been rendered and staged through both Rust
-and Ox. All 64 staged language-copy JPEGs passed byte checks and the publication
-adapter. They are not yet published or counted in the 218 checkpoint. The full
-backlog remains open. A changed build-only pkg-config pin was isolated in a
-separate source-backed runtime-reuse contract; the historical build receipt and
-retained engine binaries remain unchanged.
-The exact admission and writer controls passed 225 tests.
+The next eight previews have now been published and independently verified,
+with their highest native tiers on Quasar. Lightroom loaded and decoded all eight;
+the monitor-fit checkpoint is now 226. The current 32-job packet is complete.
+Alexy is open in Classic 15.6 with all seven startup checks verified, and every
+publication/recognition helper and reservation is closed. The highest levels are
+source-limited native sizes, without upscaling. No originals or old Ten files
+were deleted. The full backlog and the twelve Smart Preview exceptions remain
+open; the complete goal is not achieved.
+
+A changed build-only tool was isolated through a source-backed runtime-reuse
+contract. Missing temporary timestamp-analysis evidence was replaced by a fresh
+inspection of the installed bytecode. A terminal-record field projection was
+saved separately for the recognition selector. Historical receipts, failed
+preparations and original tool outputs remain unchanged; none required a native
+render or publication replay.
 
 The finite Unison timed run is independently recovered and closed, and both
 sealed-return hashes were checked. Its original exit137 remains distinct from
@@ -78,19 +81,16 @@ entry point when the repository architecture or continuation location changes.
 
 ## Immediate operational priority
 
-The operator-authorized Smart Preview generation handoff now takes priority over
-further monitor-preview publication. The candidate manifest was authenticated and
-resolved read-only against the current catalog. Classic's SDK created and fully
-populated the ordinary collection; SDK and independent read-only checks verified
-its exact committed membership. Generation has reached69,845independently verified previews. The latest native
-window is actually closed, not live; do not poll or restart its completed handle.
-Both Unison camera and property tests have actually closed. The fresh Photo
-controller is live; observe that handle rather than dispatching another build,
-preserving the existing collection and remaining queue. Whole-goal completion is not claimed.
-Read-only observers cannot submit builds or authorize resource release; actual
-owning-tool completion remains separate. Preserve the saved monitor renders and
-stages: all eight pending staged keys passed a fresh metadata-only preflight,
-without rerendering, publication or photo-payload hashing.
+Continue the full preview backlog from the authenticated queue after the completed
+32-job packet. Do not repeat those keys. Twelve Smart Preview exceptions remain:
+two calls that never returned, three known HEIC errors and seven exports not yet
+attempted. Preserve these records; diagnose eligibility and the unreturned calls
+before any further attempt. Receiver reuse, retained previews, original media,
+Cloud identity and edits remain protected.
+
+The detailed private handoff binds the latest actual terminals, publication and
+native recognition receipts. It also preserves the full cleanup/date/migration
+scope. Use those current records rather than older live-handle notes below.
 
 ## Repository and continuation status
 
