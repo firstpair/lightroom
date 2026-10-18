@@ -74,6 +74,23 @@ resource,preparation,adapter}_v1.py`; exact control receipts are under private
 `root-controls-ef36f90ddad94a1bb68904646286f9c1` and
 `root-controls-b7f2dcacced04225b9acaa6e583faa7c`.
 
+The final reopen/auxiliary/recognition adapter and continuous launcher are now
+source-integrated. Six exact-template controls and four adapter/storage controls
+passed (actual31268/0 and31472/0), including real original Python0/7 children.
+The driver advances checkpoints only after committed queue completion; its
+16-job/two-cohort test uses explicit executor doubles. Its emitted290count is
+synthetic and must NEVER be adopted as actual coverage. Actual coverage stays274.
+Full current repository tests:223PASS (actual33243/0); metadata-only root
+preflight33524/0 rechecked269pins/25installed identities, no media/UI/native.
+Launch readiness is private continuous-launch-readiness-
+7d8a681ef7e3449cb364c157d3b74072/RESULT.json, SHA
+fb8df0abc022073607c1c15d16e8c9602a49eb816e115ceaa998d803fecf5591,
+prepared owner34196/0 closed. It binds a fresh16-job integrated window for the
+remaining current packet, not a10,000-photo native qualification. Automatic
+full-catalog packet refill remains open; the driver stops at its packet boundary.
+First real dispatch/closure must be recorded separately below; no source control
+or readiness receipt proves that it ran.
+
 Alexy is open in Classic 15.6 with all seven startup phases verified. Every
 owning job, helper and reservation is closed. The full preview backlog and twelve
 Smart Preview exceptions remain open. The complete takeover goal remains active.

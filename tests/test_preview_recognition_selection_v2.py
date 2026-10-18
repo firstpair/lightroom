@@ -18,6 +18,11 @@ class DirectSelectionTests(unittest.TestCase):
   p=direct();before=copy.deepcopy(p)
   for pair in selection.PAIRS:
    v=selection.project_pair(p,self.pin,list(pair));self.assertEqual(len(v['records']),2);self.assertNotIn('priorRootToolTerminal',v);self.assertEqual(v['publicationWorkerTerminal'],p['publicationWorkerTerminal']);v['publicationWorkerTerminal']['actualWait']['pid']=1;self.assertEqual(p,before)
+ def test_private_file_loader_can_use_the_contract(self):
+  import importlib.util
+  path=Path(__file__).resolve().parents[1]/'scripts/preview_pipeline/recognition_selection_v2.py'
+  spec=importlib.util.spec_from_file_location('original_private_loader_control',path);module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
+  self.assertEqual(len(module.project_pair(direct(),self.pin,[1,2])['records']),2)
  def test_legacy_or_invented_tool_receipt_does_not_pass(self):
   with self.assertRaises(ValueError):selection.project_pair(publication(),self.pin,[1,2])
   p=direct();p['priorRootToolTerminal']=dict(session=12,exitCode=0,noRunningSession=True)

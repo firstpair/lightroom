@@ -127,3 +127,11 @@ event. Every key in the whole eight-key audit must pass before selecting a pair;
 a pending or failed nonselected key still refuses the selection. The legacy
 selector retains its original tool-session requirement. Neither selector reads
 files, opens Lightroom, authorizes publication or releases resources.
+
+
+The private final-phase adapter and launcher are source-integrated. A disposable
+two-cohort driver test covers queue commits followed by checkpoint advancement;
+it uses explicit executor doubles and creates no real preview coverage. The
+first production integration window is bounded by the prepared packet. Automatic
+catalog-wide packet refill remains separate work, so a10,000-record queue
+capacity is still not a claim of10,000 completed native previews.

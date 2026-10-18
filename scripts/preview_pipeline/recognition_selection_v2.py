@@ -19,7 +19,7 @@ def validate_terminal(terminal,actual):
     need(terminal['helpersSettled']is True and terminal['ioCPUClosed']is True,'DIRECT_PUBLICATION_HELPERS_AND_RESOURCES')
     projected={k:v for k,v in raw.items()if k!='signals_sent'};projected['scope']='owned group only; separate sessions require independently audited proofs'
     need(projected==actual,'DIRECT_PUBLICATION_ACTUAL_WAIT_BINDING')
-    from .phase_controller import Outcome,settled
+    from scripts.preview_pipeline.phase_controller import Outcome,settled
     settled(Outcome(terminal['phaseReceipt'],projected,True))
     return True
 
