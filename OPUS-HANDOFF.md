@@ -1,10 +1,11 @@
 # Lightroom continuation handoff
 
-Latest operational state: Photo yielded cleanly for the new camera V5 observation.
-Actual coordinator90626 returned exit0 after1,750new verified previews:72,845total
-and33,322eligible pending. All SDK/helper/groups/IOCPU closed; Classic normal
-scheduling restored. V5 has a fresh one-use admission; Photo successors remain
-held until its actual parent/helper/group/FD closure. Full goal incomplete.
+Latest operational state: camera V5 actually closed, preserving its safe
+unsupported result. Photo immediately resumed under live tool6350, using the
+existing collection and remaining queue. Baseline72,845verified and33,322eligible
+pending. Observe that owner rather than starting another. Classic background
+scheduling is applied during bulk work; restore normal scheduling when stopped.
+No further camera grant is implied; the full goal remains incomplete.
 
 
 Current operational checkpoint: four continuous 10,000-file Smart Preview windows
