@@ -1,10 +1,10 @@
 # Lightroom continuation handoff
 
-Latest operational state: Photo yielded cleanly for the shared-eight cached-worker
-benchmark. Actual32061/f02fc6 returned exit0 after5,500new verified previews:
-84,594total and21,573eligible pending. AllSDK/helper/groups/IOCPUclosed; Classic
-normal scheduling restored. Hold Photo successors through the admitted test's
-actual compiler/native/helper/group/FD/parent closure. Full goal incomplete.
+Latest operational state: cached-worker benchmark completed and released all
+resources. Photo immediately resumed under live tool27931; baseline84,594
+verified and21,573eligible pending. Observe that owner rather than starting
+another. Classic background scheduling is applied during bulk work; restore
+normal scheduling when stopped. Full goal remains incomplete.
 
 
 Current operational checkpoint: four continuous 10,000-file Smart Preview windows
