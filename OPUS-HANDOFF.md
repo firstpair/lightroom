@@ -33,11 +33,13 @@ expired unstarted; the source-bound workspace/deadline and full-lock audit relea
 its scheduling-only hold. Photo’s first restart refused a changed installed UV
 launcher pin before UI entry. It was independently closed, the original manifest
 was preserved, and only that pin was updated after testing the exact configured
-offline Python launcher. A fresh controller has now actually resumed the next
-10,000-file window:3,500previews are created and parent-audited without
-errors, bringing known verified progress to69,095with37,072eligible files pending.
-The next250are in flight. No current-window or full-goal completion is claimed.
-Exact handles, source pins and progress remain in the ignored local handoff.
+offline Python launcher. The fresh window then created and independently verified
+4,250 previews without errors before the operator requested another Unison test
+window. It stopped at the next SDK callback boundary; the actual coordinator
+returned exit0, direct SDK owner/helper groups settled, and its IO/CPU reservations
+closed. The reconciled total is69,845verified and36,322eligible files pending.
+Photo SDK/native/bulkIO successors are held for Unison. Classic normal scheduling
+was restored. Exact terminal and scheduling records are in the private handoff.
 The full objective remains incomplete.
 
 Work from this checkout. Repository layout and source-promotion rules are in
@@ -63,11 +65,13 @@ The operator-authorized Smart Preview generation handoff now takes priority over
 further monitor-preview publication. The candidate manifest was authenticated and
 resolved read-only against the current catalog. Classic's SDK created and fully
 populated the ordinary collection; SDK and independent read-only checks verified
-its exact committed membership. Generation reached 65,595 independently verified
-previews before the operator requested an IO handoff to Unison. Photo’s fresh preview controller is now live after the camera admission expired
-unstarted and a pre-UI launcher-pin refusal was repaired. The private handoff has
-the actual live handle and callback audits. Do not submit a competing build or
-recreate the collection; observe the existing bounded controller. Whole-run completion is not claimed.
+its exact committed membership. Generation has reached69,845independently verified previews. The latest native
+window is actually closed, not live; do not poll or restart its completed handle.
+Photo is held for the operator-prioritized Unison camera test, with a distinct
+fresh admission published after the predecessor expired unstarted. Admission
+publication is not dispatch or completion. Resume Photo only after the test's
+actual parent/helper/group/FD closure, preserving the existing collection and
+remaining queue. Whole-goal completion is not claimed.
 Read-only observers cannot submit builds or authorize resource release; actual
 owning-tool completion remains separate. Preserve the saved monitor renders and
 stages: all eight pending staged keys passed a fresh metadata-only preflight,
