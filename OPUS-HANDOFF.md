@@ -91,7 +91,19 @@ full-catalog packet refill remains open; the driver stops at its packet boundary
 First real dispatch/closure must be recorded separately below; no source control
 or readiness receipt proves that it ran.
 
-Alexy is open in Classic 15.6 with all seven startup phases verified. Every
+ACTIVE REAL CONTINUOUS WINDOW: actual owning tool session23590, initial chunk
+a14204, driverPID34430, root render child34448. Workspace private
+root-continuous-preview-f685e6cbeef44ba28835f3af32851968; exact readiness
+fb8df0abc022073607c1c15d16e8c9602a49eb816e115ceaa998d803fecf5591
+was freshly rechecked and execv dispatched once, bounded16new completions.
+The first native root is root-native-eight-b75b1f6a68f74a128746d02f7e27c926;
+normal quit/helper actions are progressing under the owned window. Source is
+frozen while live. DO NOT launch a second driver, edit its sources, infer
+closure from process absence, or replay any prepared/current batch. Collect the
+same23590handle and recorded phase/helper/group/FD proofs. Actual coverage stays
+274until the new recognition audits commit; simulation290is not actual.
+
+Before this new run, Alexy was open in Classic 15.6 with all seven startup phases verified. Every
 owning job, helper and reservation is closed. The full preview backlog and twelve
 Smart Preview exceptions remain open. The complete takeover goal remains active.
 
