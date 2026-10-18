@@ -7,14 +7,15 @@ runs were recovered through normal Lightroom quit followed by source-proven idle
 Python stops; their exit137 records are retained separately from SDK completion.
 No originals, catalog identities or completed previews were replaced.
 
-The next eight previews have now been published and independently verified,
-with their highest native tiers on Quasar. Lightroom loaded and decoded all eight;
-the monitor-fit checkpoint is now 226. The current 32-job packet is complete.
-Alexy is open in Classic 15.6 with all seven startup checks verified, and every
-publication/recognition helper and reservation is closed. The highest levels are
-source-limited native sizes, without upscaling. No originals or old Ten files
-were deleted. The full backlog and the twelve Smart Preview exceptions remain
-open; the complete goal is not achieved.
+A new 32-job packet was selected from the authenticated queue with completed
+keys excluded. Lightroom settings and native locators were captured and audited
+for all 32, with original-file guards and current catalog bindings checked. The
+first eight have now completed rendering, Rust/Ox staging, publication, independent
+storage verification and Lightroom cache loads/decodes. The monitor-fit checkpoint
+is 234; 24 jobs remain in this packet. Highest native tiers are on Quasar, without
+upscaling; lower tiers and old Ten files are preserved. Alexy is open in Classic
+15.6 with all seven startup checks verified. Every owning helper and reservation
+is closed. The full backlog and twelve Smart Preview exceptions remain open.
 
 A changed build-only tool was isolated through a source-backed runtime-reuse
 contract. Missing temporary timestamp-analysis evidence was replaced by a fresh
@@ -81,8 +82,9 @@ entry point when the repository architecture or continuation location changes.
 
 ## Immediate operational priority
 
-Continue the full preview backlog from the authenticated queue after the completed
-32-job packet. Do not repeat those keys. Twelve Smart Preview exceptions remain:
+Continue with jobs 9–16 in the current guarded 32-job packet, then 17–32.
+The preceding packet and this packet’s first eight keys are complete; do not repeat
+them. Twelve Smart Preview exceptions remain:
 two calls that never returned, three known HEIC errors and seven exports not yet
 attempted. Preserve these records; diagnose eligibility and the unreturned calls
 before any further attempt. Receiver reuse, retained previews, original media,
