@@ -1,10 +1,10 @@
 # Lightroom continuation handoff
 
-Latest operational state: camera V6 actually closed with a bounded component
-forest observed. Photo immediately resumed under live tool36359; baseline75,345
-verified and30,822eligible pending. Observe that owner rather than starting
-another. Classic background scheduling is applied during bulk work; restore
-normal scheduling when stopped. The full takeover objective remains incomplete.
+Latest operational state: Photo yielded cleanly for the genuine upstream test.
+Actual36359/b43444 returned exit0 after1,250new verified previews:76,595total
+and29,572eligible pending. SDK/helper/groups/IOCPU closed; Classic normal
+scheduling restored. One fresh upstream-test admission is published; hold Photo
+successors through actual parent/helper/group/FD closure. Full goal incomplete.
 
 
 Current operational checkpoint: four continuous 10,000-file Smart Preview windows
