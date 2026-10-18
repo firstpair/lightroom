@@ -1,10 +1,10 @@
 # Lightroom continuation handoff
 
-Latest operational state: Photo yielded cleanly for the genuine upstream test.
-Actual36359/b43444 returned exit0 after1,250new verified previews:76,595total
-and29,572eligible pending. SDK/helper/groups/IOCPU closed; Classic normal
-scheduling restored. One fresh upstream-test admission is published; hold Photo
-successors through actual parent/helper/group/FD closure. Full goal incomplete.
+Latest operational state: genuine upstream test completed and released all
+resources. Photo immediately resumed under live tool86828; baseline76,595
+verified and29,572eligible pending. Observe that owner rather than starting
+another. Classic background scheduling is applied during bulk work; restore
+normal scheduling when stopped. Full goal remains incomplete.
 
 
 Current operational checkpoint: four continuous 10,000-file Smart Preview windows
