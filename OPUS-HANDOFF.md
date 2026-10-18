@@ -1,12 +1,13 @@
 # Lightroom continuation handoff
 
-Latest operational state: Photo controller27931 is actually live after all
-Unison test releases. Its current window has6,750independently verified outputs,
-91,344total verified and14,823eligible pending; no errors in this window.
-Finish the current10,000-file window, collect actual owner/helper/group/IOCPU
-closure, qualify the prepared capture-finalizer controls, then promptly resume.
-Classic background scheduling remains applied; restore normal scheduling when
-bulk work stops. No Unison IO hold exists. Full takeover objective incomplete.
+Latest operational state: a full10,000-file preview window actually completed,
+bringing verified progress to94,594with11,573eligible pending. The planned
+CPU-only qualification passed182tests and actually closed its worker/groups and
+Photo8 reservation. The capture finalizer is component-qualified; production
+publication remains disabled pending composed lifecycle qualification. Photo
+immediately resumed under live tool64390; native UI entry is confirmed. Classic
+background scheduling remains applied; restore normal scheduling on bulkstop.
+Full takeover objective remains incomplete.
 
 
 Current operational checkpoint: four continuous 10,000-file Smart Preview windows

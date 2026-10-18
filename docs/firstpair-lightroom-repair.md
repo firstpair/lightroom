@@ -520,6 +520,20 @@ The advanced recipes above answer observed mechanisms that routine maintenance d
 
 A useful result says: what was requested, which actual sources/owners were bound, what was submitted once, the genuine terminal, expected native changes, preserved records/bytes, independently observed outcome, closed resources, and remaining holds. A failed result belongs in the same chain.
 
+Worker capture cleanup must preserve that chain on ordinary failures too. The
+`CaptureFinalizer` component seals used sessions, or asks their producers to
+prove a never-used branch, and saves both inventories before closing the
+caller-owned directory descriptors once. An incomplete attempt retains its
+session and original failure; it cannot be relabeled unused. Reporting failure
+after acknowledged closure is recorded separately from ownership uncertainty.
+The parent must still audit every helper before worker reap and reservation
+release. This component does not start or settle processes, publish previews,
+or authorize release. Its fault controls and disposable journal checks qualify
+cleanup ordering, not a production publisher. Keep the old worker disabled until
+its composed lifecycle and inherited-resource checks pass; undo a source-only
+integration by retaining the previous worker and its receipts, never replaying
+a failed publication.
+
 Keep private run receipts locally. Public reports should replace user paths and catalog/cloud identifiers with role names and scoped counts. Publish your own source and synthetic controls; link primary documentation for supported product behavior. Do not redistribute decompiled proprietary bodies or signed credentials.
 
 Status examples in this guide are qualified observations through **2026-10-12**, not a claim that the entire catalog/cloud recovery is complete. Read the README for the current public implementation and release limits.
