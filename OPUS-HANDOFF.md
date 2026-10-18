@@ -1,13 +1,14 @@
 # Lightroom continuation handoff
 
-Latest operational state: the prior full 10,000-file preview window completed;
-the next native window is running and has independently verified another 2,000
-previews without failures. Current verified total is 96,594, with 9,573 eligible
-files pending. These are live progress counts, not a completed-window receipt.
-The prior CPU-only qualification passed 182 tests and closed its resources.
-Production publication remains disabled pending composed lifecycle qualification.
-Classic background scheduling remains applied; restore normal scheduling when
-bulk work stops. The full takeover objective remains active and incomplete.
+Latest operational state: Photo stopped at a clean SDK callback boundary after
+3,250 new successes without failures. There are 97,844 verified previews and
+8,323 eligible files pending. Its actual coordinator, SDK owner/helper groups and
+resources are closed; Classic normal scheduling is restored. A fresh finite
+Unison IO admission is published; no dispatch is inferred from that publication.
+Photo SDK/bulk successors wait for that allocation's actual closure or verified
+unstarted expiry. Meanwhile CPU-only qualification passed 190 tests and closed
+all resources. Production publication remains disabled pending actual composed
+lifecycle qualification. The full takeover objective is active and incomplete.
 
 
 Current operational checkpoint: four continuous 10,000-file Smart Preview windows
