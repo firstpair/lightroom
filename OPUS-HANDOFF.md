@@ -1,10 +1,12 @@
 # Lightroom continuation handoff
 
-Latest operational state: cached-worker benchmark completed and released all
-resources. Photo immediately resumed under live tool27931; baseline84,594
-verified and21,573eligible pending. Observe that owner rather than starting
-another. Classic background scheduling is applied during bulk work; restore
-normal scheduling when stopped. Full goal remains incomplete.
+Latest operational state: Photo controller27931 is actually live after all
+Unison test releases. Its current window has6,750independently verified outputs,
+91,344total verified and14,823eligible pending; no errors in this window.
+Finish the current10,000-file window, collect actual owner/helper/group/IOCPU
+closure, qualify the prepared capture-finalizer controls, then promptly resume.
+Classic background scheduling remains applied; restore normal scheduling when
+bulk work stops. No Unison IO hold exists. Full takeover objective incomplete.
 
 
 Current operational checkpoint: four continuous 10,000-file Smart Preview windows
