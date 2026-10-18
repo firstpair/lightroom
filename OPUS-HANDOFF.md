@@ -10,9 +10,9 @@ No originals, catalog identities or completed previews were replaced.
 A new 32-job packet was selected from the authenticated queue with completed
 keys excluded. Lightroom settings and native locators were captured and audited
 for all 32, with original-file guards and current catalog bindings checked. The
-first sixteen have now completed rendering, Rust/Ox staging, publication, independent
+first twenty-four have now completed rendering, Rust/Ox staging, publication, independent
 storage verification and Lightroom cache loads/decodes. The monitor-fit checkpoint
-is 242; 16 jobs remain in this packet. Highest native tiers are on Quasar, without
+is 250; eight jobs remain in this packet. Highest native tiers are on Quasar, without
 upscaling; lower tiers and old Ten files are preserved. Alexy is open in Classic
 15.6 with all seven startup checks verified. Every owning helper and reservation
 is closed. The full backlog and twelve Smart Preview exceptions remain open.
@@ -90,9 +90,8 @@ entry point when the repository architecture or continuation location changes.
 
 ## Immediate operational priority
 
-Continue with jobs 17–24 in the current guarded 32-job packet, then 25–32.
-The preceding packet and this packet’s first sixteen keys are complete; do not
-repeat them. Twelve Smart Preview exceptions remain:
+Continue with jobs 25–32 in the current guarded 32-job packet. The preceding
+packet and this packet’s first twenty-four keys are complete; do not repeat them. Twelve Smart Preview exceptions remain:
 two calls that never returned, three known HEIC errors and seven exports not yet
 attempted. Preserve these records; diagnose eligibility and the unreturned calls
 before any further attempt. Receiver reuse, retained previews, original media,
