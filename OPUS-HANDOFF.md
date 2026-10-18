@@ -7,49 +7,33 @@ runs were recovered through normal Lightroom quit followed by source-proven idle
 Python stops; their exit137 records are retained separately from SDK completion.
 No originals, catalog identities or completed previews were replaced.
 
-A new 32-job packet was selected from the authenticated queue with completed
-keys excluded. Lightroom settings and native locators were captured and audited
-for all 32, with original-file guards and current catalog bindings checked. The
-entire packet has now completed rendering, Rust/Ox staging, publication,
-independent storage verification and Lightroom cache loads/decodes. The monitor-fit
-checkpoint for that packet is 258. A watcher-lock refusal stopped one recognition pair before its
-callback; a fresh guarded continuation completed the four remaining keys without
-replaying successful callbacks, rendering or publication. The original refusal
-and partial exit remain preserved separately from the completed combined audit.
-The next 32 untouched candidates were selected using the authenticated completed
-packet. Their settings, native locators and original-file guards are now bound.
-The first eight completed native rendering, both staging engines, publication,
-independent storage verification and all native cache loads/decodes, advancing
-the verified monitor-fit checkpoint to 266. Twenty-four metadata-bound jobs remain
-in this packet. The next eight rendered successfully, but their outer owner
-retained reservations after a normal-reopen startup helper error. Independent
-recovery stopped only the proven-idle Python owner; its actual exit137 remains
-preserved. One guarded manual startup attempt verified all seven phases in the
-same open Classic process. All reservations are closed. Those eight render
-outputs are preserved and unpublished: the existing staging proof requires an
-original outer exit0. A distinct versioned recovery-aware validator now passes
-its controls and accepted all eight saved native results without payload reads,
-while preserving exit137. Both versioned staging executors are now built. A durable queue claim drove all
-four pairs automatically through Rust and Ox staging, with no rendering replay.
-Independent readback verified all 64 staged JPEG copies against native hashes.
-All stage/helper groups and CPU/IO reservations closed. Publication and native
-recognition still need to consume the new versioned proof; these eight are not
-yet included in the verified catalog count.
-No rendering replay or receipt substitution is authorized by that recovery.
-Sixteen jobs in this packet remain unrendered; the verified count stays 266.
+The current 32-job packet has sixteen fully completed jobs. The first eight
+advanced verified monitor-fit coverage to 266. The next eight rendered
+successfully before their outer owner encountered a startup-helper error.
+Independent recovery preserved that owner's actual exit137, stopped only its
+proven-idle Python controller, and verified all seven startup phases through one
+guarded manual attempt. A versioned proof accepted the saved native successes
+without replacing the failed outer receipt or rendering again.
 
-Continuous-processing work now includes a durable metadata queue with 10,000-item
-ingestion and eight-item phase claims, restart/hold handling, duplicate prevention
-and explicit saved-render adoption. The eight unpublished real renders were
-adopted at `NATIVE_READY`, then advanced by one actual queued run to `STAGED`;
-a render claim correctly returns no work for them.
-The executor is not yet continuous. Integration and qualification remain next;
-see [continuous processing](docs/preview-continuous-processing.md). No IO hold or
-new native run was created by this source work.
-Highest native tiers are on Quasar, without
-upscaling; lower tiers and old Ten files are preserved. Alexy is open in Classic
-15.6 with all seven startup checks verified. Every owning helper and reservation
-is closed. The full backlog and twelve Smart Preview exceptions remain open.
+Those eight have now completed both Rust/Ox staging, independent output
+readback, insert-only publication, storage verification, normal Alexy reopen,
+and all native cache loads/decodes. Verified monitor-fit coverage is **274**.
+The highest eight native tiers are on Quasar; lower tiers and old Ten files are
+preserved. Sixteen metadata-bound jobs remain unrendered in the current packet.
+Do not advance its catalog-selection cursor until the whole packet completes.
+
+The durable queue accepts 10,000 metadata records per ingestion transaction.
+Its first real eight-job cohort advanced from `NATIVE_READY` through `STAGED`,
+`PUBLISHED` and `COMPLETE`, with claims persisted before each phase and actual
+child/group closure before receipt-based advancement. Each phase ran its
+contained pairs automatically. Rendering and the transitions between all phases
+are not yet connected into one unattended catalog-wide controller. Larger
+native windows and full-catalog throughput are not qualified by this cohort.
+See [continuous processing](docs/preview-continuous-processing.md).
+
+Alexy is open in Classic 15.6 with all seven startup phases verified. Every
+owning job, helper and reservation is closed. The full preview backlog and twelve
+Smart Preview exceptions remain open. The complete takeover goal remains active.
 
 A changed build-only tool was isolated through a source-backed runtime-reuse
 contract. Missing temporary timestamp-analysis evidence was replaced by a fresh

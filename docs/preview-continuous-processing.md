@@ -39,14 +39,17 @@ staging validator also accepted the saved receipts from eight real completed
 renders, preserving their original outer exit137. No media was reread for that
 metadata validation.
 
-The continuous native executor is **not yet wired or qualified**. Staging runtime
-and publisher integration must consume the new completion proof explicitly;
-historical validators and receipts remain unchanged. These components are not a
-claim of catalog-wide generation, production throughput, larger native batches,
-or a new runtime admission.
+The first real eight-job queue cohort has completed all three downstream
+phases: staging, publication and native cache recognition. Each phase persisted
+its claim, drove its contained child processes automatically, authenticated its
+result, and advanced the queue only after actual group/resource settlement.
+Independent readback verified 64 staged JPEG copies. Publication placed 32 files
+and eight highest native tiers, followed by eight successful cache loads and
+decodes. The original failed outer render-owner receipt remains preserved; none
+of the eight renders was repeated.
 
-The first private queued staging execution has completed: eight previously
-rendered jobs advanced from `NATIVE_READY` to `STAGED` through four contained
-pairs in both executors. Independent file readback verified 64 staged JPEG
-copies; no render was repeated. This does not yet qualify automatic publication
-or recognition, and does not advance the verified catalog preview count.
+Rendering and the transitions between these phase owners are **not yet wired
+into one unattended catalog-wide controller**. The queue's 10,000-record ingestion
+capacity does not establish 10,000-photo runtime qualification, larger native
+windows, throughput, or an authority to replay held work. Historical validators
+and receipts remain unchanged.
