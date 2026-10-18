@@ -322,6 +322,41 @@ For a planned IO handoff, finish the in-flight callback and its independent audi
 
 **Undo and limits.** Preserve generated previews and originals. Restore temporary diagnostic menu scripts and retain the original failed/pending receipts. Record recovery closure separately from successful SDK completion. A small successful batch does not qualify an unattended full-catalog controller or justify another large retry.
 
+## Keep a bulk preview build cooperative
+
+**Prerequisites.** Verify the existing Classic executable, PID and launch time;
+record that identity and its observed scheduler state. Keep the SDK owner and
+normal resource/closure protocol. A token reservation does not limit Adobe’s
+internal worker threads.
+
+**Procedure.** On macOS, an operator can put that verified process into Darwin
+background scheduling during an unattended bulk build:
+
+```sh
+/usr/sbin/taskpolicy -b -p "$CLASSIC_PID"
+```
+
+The installed manual and Apple’s source document this process-policy operation
+and its inverse. Check the command’s return status and keep observing actual SDK
+callbacks. [Apple taskpolicy manual](https://github.com/apple-oss-distributions/system_cmds/blob/main/taskpolicy/taskpolicy.8), [Apple implementation](https://github.com/apple-oss-distributions/system_cmds/blob/main/taskpolicy/taskpolicy.c).
+
+**Verify.** A disposable Python control lowered scheduler priority and restored
+it; applying the policy to the bound Classic process also lowered its observed
+priority while preview callbacks continued. These observations do not measure
+contention fairness or an eight-core ceiling.
+
+**Undo.** After bulk work stops/completes, reverify the same process launch before
+returning it to normal scheduling:
+
+```sh
+/usr/sbin/taskpolicy -B -p "$CLASSIC_PID"
+```
+
+Record restoration when performed. A saved undo command is pending cleanup.
+
+**Limits.** This changes scheduling, not core affinity, a CPU quota or an RSS cap.
+It does not settle native calls, release leases or authorize another build.
+
 ## Reuse offline converter-built Smart Previews
 
 **Prerequisites.** Originals remain retained and stable. Pin the installed converter version and explicit output options. Use a fresh scratch destination and an exact source/output manifest; never accept the converter's default destination if it could overwrite originals. The private cache layout and native preview-identity rules need separate current qualification.

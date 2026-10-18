@@ -23,8 +23,8 @@ its scheduling-only hold. Photo’s first restart refused a changed installed UV
 launcher pin before UI entry. It was independently closed, the original manifest
 was preserved, and only that pin was updated after testing the exact configured
 offline Python launcher. A fresh controller has now actually resumed the next
-10,000-file window: its first250previews are created and parent-audited without
-errors, bringing known verified progress to65,845with40,322pending. The next250
+10,000-file window:1,750previews are created and parent-audited without
+errors, bringing known verified progress to67,345with38,822pending. The next250
 are in flight. No current-window or full-goal completion is claimed.
 Exact handles, source pins and progress remain in the ignored local handoff.
 The full objective remains incomplete.
@@ -160,3 +160,12 @@ unused-capture proofs supply no process observation or exclusion authority.
 All168repositorytests pass on both interpreters. Actual monitor-preview publisher
 failure finalization and installation remain pending; none of these source tests
 changed preview data or authorized publication.
+
+The bulk Classic build now runs with the documented macOS background scheduling
+policy so it can yield under contention. The command succeeded and observed
+scheduler priority fell while callbacks continued. This is not a hard eight-core
+cap. Restore normal foreground scheduling for the same verified Classic launch
+when bulk generation stops or completes; that cleanup remains pending and is
+recorded in the private handoff. No automatic restorer is installed. Current
+ownership/adoption, Lux/Ten cache aliases and the stable Classic15.6 launch were
+also rechecked without payload hashing or catalog writes.
