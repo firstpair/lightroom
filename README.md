@@ -6,7 +6,11 @@ The complete cookbook is published in the [First Pair library](https://firstpair
 
 The performance package derives from guards actually run in **Lightroom Classic 15.6 on macOS**. Those private installed controls had real native callbacks, equality checks, normal restart application, and bounded transport cleanup/renewal. This configurable public successor has passed source, syntax and temporary-installation tests; it has **not** yet been run in another user's native Lightroom session. It uses version-sensitive private imports and fails closed when owner, SQL, types, dependency bytes or callback facts differ. It is not an Adobe-supported universal fix.
 
-No catalog, photo, preview, credentials, private diagnostic tree, Adobe Lua module body or bytecode is included. The Python tools never open a catalog database. Runtime SQL goes through Lightroom's own store provider. The startup watcher watches **Classic launches**, not photo folders; it never imports `~/foto` or resumes paused Sync.
+No catalog, photo, preview, credentials, private diagnostic tree, Adobe Lua module body or bytecode is included. The performance installer never opens a catalog database; runtime repair SQL goes through Lightroom's own store provider. Optional preview diagnostics use read-only evidence. The startup watcher watches **Classic launches**, not photo folders; it never imports `~/foto` or resumes paused Sync.
+
+The optional [C2PA auxiliary extractor](docs/BIGTABLE-AUXILIARIES.md) reads an
+isolated APFS copy of closed Classic BigTable storage and exports only exact
+requested payloads. It does not publish cache files, register them or change Sync.
 
 ## What the performance code addresses
 

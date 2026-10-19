@@ -479,4 +479,21 @@ A useful result says: what was requested, which actual sources/owners were bound
 
 Keep private run receipts locally. Public reports should replace user paths and catalog/cloud identifiers with role names and scoped counts. Publish your own source and synthetic controls; link primary documentation for supported product behavior. Do not redistribute decompiled proprietary bodies or signed credentials.
 
-Status examples in this guide are qualified observations through **2026-10-12**, not a claim that the entire catalog/cloud recovery is complete. Read the README for the current public implementation and release limits.
+## Recover exact C2PA auxiliary payloads
+
+**Symptom.** A locally registered preview and cached settings can coexist with
+pending auxiliary downloads. Inspect the actual auxiliary type; content-authenticity
+payloads are distinct from editing masks.
+
+**Method.** The optional [BigTable extraction recipe](BIGTABLE-AUXILIARIES.md)
+uses an isolated APFS copy of closed Classic storage, raw-byte read-only access,
+and exact requested digest/SHA/size checks. It exports payloads without changing
+Cloud's catalog or cache. The recipe includes prerequisites, verification and undo.
+
+**Evidence and limits.** One qualified recovery exported 86 exact C2PA payloads
+and separately verified no-overwrite cache placement with settings bodies and
+revisions preserved. Native auxiliary adoption remained pending. This does not
+prove signature validity, offline editing or Sync completion. The public tool has
+synthetic extraction/APFS guard tests; native publication remains a separate step.
+
+Status examples include qualified observations through **2026-10-19**, not a claim that the entire catalog/cloud recovery is complete. Read the README for the current public implementation and release limits.
