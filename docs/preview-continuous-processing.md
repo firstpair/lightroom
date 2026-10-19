@@ -52,6 +52,41 @@ windows remain explicit and finite; Capitola does not open or repair Main during
 Photo's owned lifecycle. Individual settings investigations are off the critical
 path. This successor is designed, not installed or runtime-qualified yet.
 
+## Resume after a retained failure
+
+A successful publication prefix and a failed outer controller are separate
+facts. A fresh queue may adopt an independently authenticated prefix as
+`PUBLISHED`, while the remaining jobs enter as `PENDING`. The saved keys must
+not return to rendering or publication, and they do not become `COMPLETE`
+until native recognition succeeds. Preserve the original queue, failed result,
+actual outer terminal and recovery evidence; do not normalize them into a
+successful packet.
+
+The private successor now passes source controls and disposable queue
+composition for that ordering. Its real constructors also load with catalog
+connections, subprocess launches and lock acquisition forbidden. These checks
+do not qualify a native operation. A partial queue seed retains the queue and
+original error without replaying the insertion.
+
+Resuming at a later packet ordinal does not require reusing an old closed-Main
+gate. The new source path instead requires a pinned, verified normal startup
+and its resource-closure receipt, bound to the exact Classic PID and launch.
+The normal native root must then perform its own normal quit and establish a
+fresh reader gate. Missing or mismatched startup evidence refuses before new
+queue creation. This path remains source-qualified and is not admitted for
+production execution.
+
+A drain is checked only between authenticated settled phases. It preserves
+pending and published jobs, dispatches no next cohort and supplies no proof of
+Classic's current state. Without a verified shared startup, final startup stays
+required even if the drained controller launched no new native phase. A source
+regression caught and corrected the earlier contrary reporting condition.
+
+Runtime activation still needs the operator's scheduling handback, current
+input/lifecycle bindings and separately bounded native qualification. The
+historical development checkpoints below describe their own earlier source
+states; consult the current handoff for actual completion and remaining scope.
+
 # Continuous preview processing
 
 The current native window is qualified for eight photos. Processing a large

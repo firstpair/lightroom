@@ -29,6 +29,11 @@ failure retains the queue and original error without retry. Actual retained
 publication, recovery and job-metadata receipts now bind a private resume plan.
 No old queue, catalog or preview payload was reopened for that binding.
 
+The corrected candidate also binds an explicit fresh normal-close boundary for
+a resumed suffix and retains final startup as required until a verified reopen
+exists. The first frozen candidate is preserved as an unstarted predecessor.
+Real constructor controls prohibit catalog connections, subprocesses and locks.
+
 These are component and saved-metadata results. The new controller has not been
 selected for production; complete dependency wiring, current lifecycle/input
 binding and native qualification remain open. The saved eight still require
