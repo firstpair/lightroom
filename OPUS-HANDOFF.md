@@ -74,6 +74,13 @@ Parent/preparation dependency integration, explicit published-prefix resume and
 a supported safe drain boundary remain open before native qualification. No
 generated preparation script or native controller was dispatched.
 
+The remaining parent/preparation wiring is now drafted separately, with exact
+gate propagation and dependency-inventory additions. These drafts have not been
+imported, compiled or tested: source/test jobs are held for Unison. The private
+resume checklist requires composed parent controls, production parser coverage,
+a safe drain boundary and preservation of the eight published keys before a
+fresh Photo lifecycle can be scheduled. Existing run sources remain unchanged.
+
 Unison's three requested V6 windows completed serially and closed: genuine-
 upstream compatibility (12 CLI calls), retained-fork compatibility (12), and
 transfer/property regression (54). Actual exit-zero tool terminals and group/FD
