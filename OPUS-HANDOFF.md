@@ -1,3 +1,13 @@
+## Source preparation during the handover
+
+A separate metadata-window selector now supports up to10,000 candidates while
+preserving every consumed row and distinguishing completed, published awaiting
+recognition and authenticated reusable keys. Eleven targeted synthetic controls
+pass, including the original paging tests and an exact10,000-row boundary.
+The live controller has not adopted it. Native batching, reuse authentication,
+fresh input binding and throughput qualification remain separate. No Photo
+IO/native/SDK work was started for this change.
+
 ## Latest scheduling handover
 
 The operator selected Unison first after the current Photo cohort. Photo used

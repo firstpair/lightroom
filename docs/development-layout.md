@@ -265,6 +265,17 @@ perform indexed queries, and freshly bind catalog/source metadata. Its cursor
 records observation progress; it grants no rendering or completion authority.
 The operational rolling controller has not yet adopted this component.
 
+`candidate_window.py` adds a separate metadata window of up to10,000 candidates
+and65,536 observed rows, retaining the original page contract. Authenticated
+completed, published-but-unrecognized and reusable key sets must be disjoint.
+All three exclude a key from render selection, but only the first is labelled
+completed. Every consumed alias or exclusion remains an observation; reaching
+a bound does not prove input exhaustion. The caller must persist its cursor
+and prior selection, authenticate coverage and freshly bind inputs. Five new
+synthetic controls and the six original paging controls pass. This selector
+is not integrated into the live controller and supplies no native admission,
+preview integrity evidence, throughput or catalog-wide completion claim.
+
 ## Branch publication
 
 Publish reviewed portable work on `work/photo-preview-integration` and keep its
