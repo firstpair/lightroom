@@ -26,8 +26,12 @@ exit-zero terminals, worker/group settlement and IO/CPU closure are retained.
 Their admissions are consumed; do not redispatch crossed pending notices. Saved
 metadata audits passed against the frozen candidate. These finite generated
 checks make no camera, performance or whole-project qualification claim.
-Photo's scheduling-only hold is released. Continue from fresh current-state
-checks and the completed-packet continuation below.
+Photo's scheduling-only hold is released. Fresh selection, native settings and
+two locator callbacks have now bound the next 32-job packet. Its actual
+continuous driver has started with four serial eight-job cohorts and a packet
+boundary stop. Coverage remains 290 until new recognition checkpoints commit.
+Poll the existing owning handle recorded privately; do not launch a duplicate or
+change its pinned sources. No new completion is inferred from preparation or START.
 
 The reusable queue accepts up to 10,000 metadata records per ingestion
 transaction. The real controller now connects native render, single-Ox staging,
