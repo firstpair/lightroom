@@ -1,7 +1,7 @@
 # Lightroom continuation handoff
 
 Latest reconciled operational state: **106,155 Smart Previews verified**, twelve
-eligible exceptions still open, and **298 monitor-fit preview keys verified**.
+eligible exceptions still open, and **306 monitor-fit preview keys verified**.
 The previous 32-job packet is complete. Its last continuous window completed
 six phases across sixteen jobs: publication and recognition of eight previously
 rendered/staged jobs, followed by render, staging, publication and recognition of
@@ -29,8 +29,8 @@ checks make no camera, performance or whole-project qualification claim.
 Photo's scheduling-only hold is released. Fresh selection, native settings and
 two locator callbacks have now bound the next 32-job packet. Its actual
 continuous driver has started with four serial eight-job cohorts and a packet
-boundary stop. The first eight jobs have now completed publication and native recognition,
-advancing coverage to 298. The remaining 24 continue under the same owning run.
+boundary stop. The first sixteen jobs have now completed publication and native recognition,
+advancing coverage to 306. The remaining sixteen continue under the same owning run.
 Poll the existing owning handle recorded privately; do not launch a duplicate or
 change its pinned sources. No new completion is inferred from preparation or START.
 
