@@ -499,13 +499,19 @@ synthetic extraction/APFS guard tests; native publication remains a separate ste
 Status examples include qualified observations through **2026-10-19**, not a claim that the entire catalog/cloud recovery is complete. Read the README for the current public implementation and release limits.
 
 
-## Diagnose Cloud throughput without mistaking experiments for fixes
+## Diagnose Cloud throughput and verify native query repairs
 
 Use [Cloud performance diagnosis](CLOUD-PERFORMANCE-DIAGNOSIS.md) to separate
-preview scheduler capacity, actual HTTP cost limits and database query work.
-The reference native report showed twenty scheduled items but five active HTTP
-transfers at cost two against an allowance of ten. Private status-index
-experiments improved query timings, but no production Cloud query/index or HTTP
-limit change has yet been installed. Preserve pending requests, disk safeguards
-and rollback; require effective-value and end-to-end measurements before
-promoting a tuning experiment to a repair recipe.
+preview scheduler capacity, actual HTTP cost limits and database work. Four
+covering indexes and genuine status-table statistics have now been installed
+through the native writer in the reference Cloud 9.6 session. Exact typed query
+results, schema scope and closed resources were verified; actual application
+plans confirm the photo-ID route. Representative native SQL checks improved
+from seconds to milliseconds, with write-cost and cache-state limits documented.
+
+Automatic Cloud startup renewal and end-to-end download acceleration remain
+unproven. The combined renewal installer has isolated fixture controls, not a
+native cold-start acceptance or shipped automation. No HTTP-limit override has
+been installed. Preserve pending requests, stop new admissions before a
+maintenance pause, retain rollback copies and do not confuse a faster query or
+returned proxy with complete Classic/cloud Sync.
