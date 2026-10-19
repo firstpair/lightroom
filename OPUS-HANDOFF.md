@@ -61,6 +61,15 @@ reads must use the same authenticated closed-window gate in a new dependency
 closure. Fixing only one connection would leave the problem incomplete. No
 real catalog or photo was opened during these controls.
 
+The source successor now joins the current-row and alias readers under one gate
+and emits preparation source using both. Five composed synthetic SQLite controls
+and four source-emitter controls passed; the job parser in the composed controls
+is an explicit double, so they do not renew production job-schema qualification.
+The emitter preserves the existing Ten readers and publication worker source.
+Parent/preparation dependency integration, explicit published-prefix resume and
+a supported safe drain boundary remain open before native qualification. No
+generated preparation script or native controller was dispatched.
+
 Unison's three requested V6 windows completed serially and closed: genuine-
 upstream compatibility (12 CLI calls), retained-fork compatibility (12), and
 transfer/property regression (54). Actual exit-zero tool terminals and group/FD
