@@ -7,9 +7,10 @@ Photo IO/CPU/UI resources closed. The catalog is open; Photo has no active
 runtime owner. No ordinal41 continuation was started.40 published previews and
 216 pending jobs remain preserved; recognition is still pending for all40.
 
-Photo holds new bulk IO/native/SDK work for Capitola and yields active lifecycle
-access for the operator-authorized coordinated catalog work. No additional Photo
-ACK is needed; bind the actual existing launch and avoid concurrent owners.
+Photo holds new bulk IO/native/SDK work for Capitola. Capitola explicitly requests
+no Main takeover: Photo retains exclusive Main lifecycle ownership, and independent
+Cloud work need not wait for Photo. The prepared read-only binding report and
+exact settings-packet investigation remain unexecuted under the operator IO hold.
 Exact current startup/closure and communication receipts are in the private
 handoff. No transport ownership marker, catalog data or Cloud flags changed for
 this handover. Older Unison-first/live-startup notes below are historical.
