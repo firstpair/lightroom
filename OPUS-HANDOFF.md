@@ -6,19 +6,33 @@ large-window streaming successor, bounded in-flight work and exception policy.
 Photo production is currently stopped and its reservations are released. At the
 operator's direction, hold new Photo bulk IO, native, Adobe and SDK dispatch
 while Unison completes separately coordinated qualification. Photo source,
-build and test jobs are also held for the finite CPU handoff; only inert editing
-and metadata coordination continue. Isolated image/settings repairs stay off
-the critical path. The six named larger cohorts have explicit serial CPU
-coordination, with a separate fresh admission still required for each. The
-standing shared policy returns after actual closure of that series.
+build and synthetic test work may now continue within its standing CPU share.
+New Photo bulk IO, native, Adobe and SDK work remains postponed under the
+operator's ordering while Unison prepares its remaining qualifications. Main
+catalog lifecycle ownership remains exclusively with Photo.
 
-The four preliminary Unison shared-budget cohorts are now closed (stock and
-OxCaml at one and two workers; reported 72 rows and 216 CLI calls). Photo
-adopted the saved owning-tool terminals and aggregate group/helper/FD closure
-receipts, without redoing payload or full raw-call verification. This satisfies
-the prerequisite for the six explicitly coordinated larger cohorts; it does
-not start them or replace their required individual admissions. Photo's hold
-continues through that series and the separate qualification handback.
+All ten coordinated Unison generated cohorts are closed, including the six
+larger temporary-budget cohorts (reported 180 rows and 540 CLI calls). Saved
+owning-tool terminals, aggregate closure receipts, all ten receipt hashes and
+the final no-child whole-bundle release proof were authenticated. Temporary CPU
+borrowing has ended and the standing shared policy is restored. Subsequent
+mixed Adobe and SDK receiving runs also returned actual exit-zero terminals and
+resource closure. These closures release those individual reservations; they
+do not override the operator's continuing Photo IO postponement.
+
+CPU-only continuation work now covers the pinned production job parser with
+disposable SQLite readers, gate-bound preparation ordering, emitted parent and
+drain source compilation, and saved-prefix selection with the real durable
+queue. The queue keeps eight saved keys published, leaves the other 248 pending
+and excludes the saved prefix from render/publication claims. Partial seeding
+failure retains the queue and original error without retry. Actual retained
+publication, recovery and job-metadata receipts now bind a private resume plan.
+No old queue, catalog or preview payload was reopened for that binding.
+
+These are component and saved-metadata results. The new controller has not been
+selected for production; complete dependency wiring, current lifecycle/input
+binding and native qualification remain open. The saved eight still require
+native recognition and are not counted as newly completed previews.
 
 # Lightroom continuation handoff
 
