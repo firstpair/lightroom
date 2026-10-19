@@ -89,7 +89,10 @@ uv run --no-project --with msgpack python scripts/proxy_register.py postaudit --
 ```
 
 It classifies every ledger row by registration, body equality, revision, the
-annotation minus the added proxy entry, label names and index flags.
+annotation minus the added proxy entry, label names and index flags. When
+subtracting that entry, the observer removes an empty parent map only if that
+parent was absent in the exact baseline. Existing empty maps, other proxy
+classes, profile information and every unrelated annotation remain protected.
 
 ## Limits
 

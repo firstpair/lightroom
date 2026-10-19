@@ -40,6 +40,31 @@ def annotation(proxy_entry=None, invalid=False):
             '_serverProvidedMetadata': {'links': {'/rels/proxy_type/2560': link, '/rels/proxy_create': {'href': '/v2/x', 'templated': True}}}}
 
 
+class AnnotationProjectionTests(unittest.TestCase):
+    def test_new_empty_parents_only_are_removed(self):
+        for before in ({}, {'_localOnly': {}}, {'_localOnly': {'files': {}}},
+                       {'_localOnly': {'files': {'proxy': {}}}}):
+            after = json.loads(json.dumps(before))
+            after.setdefault('_localOnly', {}).setdefault('files', {}).setdefault('proxy', {})['2560'] = {'path': 'preview'}
+            retained = json.loads(json.dumps(after))
+            self.assertEqual(pr.subtract_added_proxy(after, before), before)
+            self.assertEqual(after, retained)
+
+    def test_other_proxy_and_profile_changes_remain_detectable(self):
+        before = {'_localOnly': {'cameraProfileInfo': {'isMissing': True}}}
+        after = {'_localOnly': {'cameraProfileInfo': {'isMissing': False},
+                               'files': {'proxy': {'2560': {}, '1024': {'path': 'other'}}}}}
+        projected = pr.subtract_added_proxy(after, before)
+        self.assertNotEqual(projected, before)
+        self.assertEqual(projected['_localOnly']['files']['proxy']['1024'], {'path': 'other'})
+        self.assertFalse(projected['_localOnly']['cameraProfileInfo']['isMissing'])
+
+    def test_null_parent_is_not_treated_as_absent(self):
+        before = {'_localOnly': None}
+        after = {'_localOnly': {'files': {'proxy': {'2560': {}}}}}
+        self.assertNotEqual(pr.subtract_added_proxy(after, before), before)
+
+
 class LuaLiteralTests(unittest.TestCase):
     def test_roundtrip_shapes(self):
         value = {'a': 1, 'b': 2.5, 'c': 'x"y\\z\n', 'd': [1, 'two', True], 'e': {'nested': False}, 'drop': None}

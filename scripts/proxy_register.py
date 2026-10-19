@@ -551,6 +551,23 @@ def cmd_guard(args):
         raise
 
 
+def subtract_added_proxy(annotation, before):
+    """Project only the added proxy and newly created empty parents out of a copy."""
+    projected = json.loads(json.dumps(annotation))
+    del projected['_localOnly']['files']['proxy']['2560']
+    # Match the native protectedProjection contract. Existing empty maps are
+    # significant; nonempty parents and unrelated fields must remain visible.
+    for path in (('_localOnly', 'files', 'proxy'), ('_localOnly', 'files'), ('_localOnly',)):
+        current_parent, prior_parent = projected, before
+        for key in path[:-1]:
+            current_parent = current_parent[key]
+            prior_parent = prior_parent.get(key, {}) if isinstance(prior_parent, dict) else None
+        key = path[-1]
+        if isinstance(prior_parent, dict) and key not in prior_parent and current_parent.get(key) == {}:
+            del current_parent[key]
+    return projected
+
+
 def cmd_postaudit(args):
     """Closed audit after a normal Cloud quit: body, annotation (minus the added proxy entry), labels and index flags per ledger row."""
     import msgpack
@@ -583,9 +600,7 @@ def cmd_postaudit(args):
                               and proxy.get('relativePath') == row['expectedRelativePath'] and set(proxy) == {'volumeGuid', 'relativePath', 'lastSaveTimestamp'})
                 stripped = json.loads(json.dumps(annot))
                 if registered:
-                    del stripped['_localOnly']['files']['proxy']['2560']
-                    if not stripped['_localOnly']['files']['proxy']:
-                        del stripped['_localOnly']['files']['proxy']
+                    stripped = subtract_added_proxy(annot, row['expectedAnnotation'])
                 labels = sorted(r[0] for r in mc.execute('SELECT name FROM labels INDEXED BY sqlite_autoindex_labels_1 WHERE localDocId=?', (localDocId,)))
                 flags = wf.execute('SELECT hasLocalProxy,needsProxyDownload FROM localStatusAndOzStatus WHERE docId=?', (localDocId,)).fetchone()
                 key = ('registered' if registered else 'unregistered', 'body=%s' % (body == row['expectedBody']), 'rev=%s' % (revId == row['revisionID']),
