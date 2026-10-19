@@ -3,13 +3,17 @@
 Stop extending the eight-image lifecycle into a catalog-wide schedule. See
 [production scaling priority](docs/preview-continuous-processing.md) for the
 large-window streaming successor, bounded in-flight work and exception policy.
-The current pinned controller remains running; larger native execution is not
-yet qualified. Isolated image/settings repairs must not consume production time.
+Photo production is currently stopped and its reservations are released. At the
+operator's direction, hold new Photo bulk IO, native, Adobe and SDK dispatch
+while Unison completes separately coordinated qualification. Source-only Photo
+work may continue. Isolated image/settings repairs stay off the critical path.
 
 # Lightroom continuation handoff
 
 Latest reconciled operational state: **106,155 Smart Previews verified**, twelve
-eligible exceptions still open, and **330 monitor-fit preview keys verified**.
+eligible exceptions still open, and **354 monitor-fit preview keys individually
+recognized**. Eight additional keys were published and storage/registration
+verified in the subsequent bulk attempt; their native recognition is pending.
 The latest completed continuous packet processed 32 fresh jobs through sixteen
 closed phases: render, single-Ox staging, insert-only publication and native cache
 recognition for each of four serial eight-job cohorts. Its actual owning tool
@@ -24,20 +28,29 @@ saved completed-packet evidence and excludes already completed keys. It does not
 turn held rows into completed work. Catalog-wide automatic refill and final
 full-catalog coherence remain incomplete.
 
-**The current packet has eight jobs complete and 24 continuing.** A startup
-helper refused when Classic's window was not yet available after the first eight
-publications. One guarded startup action on the same Classic instance verified
-all seven phases. The original controller's exit137 and two metadata-reporting
-failures remain preserved separately. Only proven-idle Python owners were stopped;
-Classic and published previews were untouched, and full reservation release was
-verified.
+The completed recovered packet adopted eight already-published keys without
+rendering, staging or publishing them again, then finished its remaining jobs.
+Its original startup failure and recovery receipts remain separate.
 
-A versioned continuation adopted exactly those eight published keys, completed
-native recognition without rendering, staging or publishing them again, and
-advanced coverage to 330. It is now processing the remaining 24 jobs through
-the ordinary guarded phases. Poll the new owning handle recorded privately;
-do not restart the failed queue or mutate the continuation's pinned sources.
-Coverage changes only after actual recognition checkpoints.
+A subsequent finite 256-job production window published its first eight keys,
+then refused the second cohort before native preparation or dispatch. Main's
+recorded file identity was unchanged, but its companions had changed from absent
+to an empty WAL and SHM. The unchanged continuation guard rejected that change.
+All metadata readers and census children had settled; source-bound recovery
+stopped only proven-idle Python owners. The actual outer terminal is a recovery
+exit, not normal packet completion. No Classic, renderer or process group was
+signalled. Fresh full-bundle acquisition and closure proved resource release.
+The eight publications and original queue/failures are preserved; the remaining
+248 jobs are not complete. Do not replay the failed packet or republish its keys.
+
+Three disposable SQLite witnesses reproduce read-only companion creation,
+show that immutable reads avoid that side effect, and demonstrate that immutable
+reads can miss committed nonempty WAL content. Thus changing a URI blindly is
+not a fix. A successor must preserve closed-catalog and WAL/SHM fencing and
+qualify its exact reader/continuation composition before another production run.
+No successor has been installed or dispatched. Classic is currently closed;
+final normal launch remains part of the full takeover objective after the
+explicit scheduling handoff returns.
 
 Unison's three requested V6 windows completed serially and closed: genuine-
 upstream compatibility (12 CLI calls), retained-fork compatibility (12), and
@@ -45,7 +58,9 @@ transfer/property regression (54). Actual exit-zero tool terminals and group/FD
 closure are retained. Their grants are consumed; do not redispatch crossed
 pending notices. These generated checks are distinct from the Photo runtime and
 make no camera, performance or whole-project qualification claim. Photo's
-scheduling-only hold for those tests is released.
+scheduling-only hold for those historical tests is released. The new operator
+handoff for Unison's next work is separate; no old grant is reusable and no
+temporary larger CPU allocation is implied.
 
 The reusable queue accepts up to 10,000 metadata records per ingestion
 transaction. The real controller now connects native render, single-Ox staging,
