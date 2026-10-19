@@ -81,6 +81,12 @@ resume checklist requires composed parent controls, production parser coverage,
 a safe drain boundary and preservation of the eight published keys before a
 fresh Photo lifecycle can be scheduled. Existing run sources remain unchanged.
 
+A separate inert controller-author draft now describes that drain boundary:
+honor a bounded stop marker only between authenticated closed cohorts, preserve
+pending/published work in a distinct partial-result state, close the queue, and
+skip a new reopen/recognition phase. It has not been imported, compiled, tested,
+emitted or dispatched. It is not a stop mechanism for an existing controller.
+
 Unison's three requested V6 windows completed serially and closed: genuine-
 upstream compatibility (12 CLI calls), retained-fork compatibility (12), and
 transfer/property regression (54). Actual exit-zero tool terminals and group/FD
