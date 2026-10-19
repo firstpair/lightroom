@@ -1,7 +1,7 @@
 # Lightroom continuation handoff
 
 Latest reconciled operational state: **106,155 Smart Previews verified**, twelve
-eligible exceptions still open, and **322 monitor-fit preview keys verified**.
+eligible exceptions still open, and **330 monitor-fit preview keys verified**.
 The latest completed continuous packet processed 32 fresh jobs through sixteen
 closed phases: render, single-Ox staging, insert-only publication and native cache
 recognition for each of four serial eight-job cohorts. Its actual owning tool
@@ -16,12 +16,20 @@ saved completed-packet evidence and excludes already completed keys. It does not
 turn held rows into completed work. Catalog-wide automatic refill and final
 full-catalog coherence remain incomplete.
 
-**A new 32-job continuous packet is actually running.** Its selection, native
-settings, two locator callbacks and current catalog/source identity bindings were
-validated before launch. It runs four serial eight-job cohorts and stops at the
-packet boundary, with no automatic retry. Coverage stays 322 until new native
-recognition checkpoints commit. Poll the existing owning handle recorded in the
-private handoff; do not launch a duplicate or change its pinned sources.
+**The current packet has eight jobs complete and 24 continuing.** A startup
+helper refused when Classic's window was not yet available after the first eight
+publications. One guarded startup action on the same Classic instance verified
+all seven phases. The original controller's exit137 and two metadata-reporting
+failures remain preserved separately. Only proven-idle Python owners were stopped;
+Classic and published previews were untouched, and full reservation release was
+verified.
+
+A versioned continuation adopted exactly those eight published keys, completed
+native recognition without rendering, staging or publishing them again, and
+advanced coverage to 330. It is now processing the remaining 24 jobs through
+the ordinary guarded phases. Poll the new owning handle recorded privately;
+do not restart the failed queue or mutate the continuation's pinned sources.
+Coverage changes only after actual recognition checkpoints.
 
 Unison's three requested V6 windows completed serially and closed: genuine-
 upstream compatibility (12 CLI calls), retained-fork compatibility (12), and
