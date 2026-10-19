@@ -1,8 +1,8 @@
 # Lightroom continuation handoff
 
 Latest reconciled operational state: **106,155 Smart Previews verified**, twelve
-eligible exceptions still open, and **290 monitor-fit preview keys verified**.
-The current 32-job packet is complete. Its latest continuous window completed
+eligible exceptions still open, and **298 monitor-fit preview keys verified**.
+The previous 32-job packet is complete. Its last continuous window completed
 six phases across sixteen jobs: publication and recognition of eight previously
 rendered/staged jobs, followed by render, staging, publication and recognition of
 eight new jobs. Saved native successes were reused rather than rendered again.
@@ -15,7 +15,7 @@ outer exit-zero receipt from the contained successes. Current process liveness
 must be checked afresh before a new operation.
 
 Highest native monitor tiers remain on Quasar; lower tiers and old Ten files
-are preserved. No old Ten preview was deleted. All 32 packet jobs are complete,
+are preserved. No old Ten preview was deleted. All 32 previous-packet jobs are complete,
 but its catalog-selection cursor has **not** advanced. Catalog-wide automatic
 refill and final full-catalog coherence remain incomplete.
 
@@ -29,7 +29,8 @@ checks make no camera, performance or whole-project qualification claim.
 Photo's scheduling-only hold is released. Fresh selection, native settings and
 two locator callbacks have now bound the next 32-job packet. Its actual
 continuous driver has started with four serial eight-job cohorts and a packet
-boundary stop. Coverage remains 290 until new recognition checkpoints commit.
+boundary stop. The first eight jobs have now completed publication and native recognition,
+advancing coverage to 298. The remaining 24 continue under the same owning run.
 Poll the existing owning handle recorded privately; do not launch a duplicate or
 change its pinned sources. No new completion is inferred from preparation or START.
 
@@ -61,7 +62,7 @@ entry point when the repository architecture or continuation location changes.
 ## Immediate operational priority
 
 Following the recorded Unison coordination release, prepare the next bounded packet
-from the authenticated completed-packet evidence. All current packet jobs 1–32
+from the authenticated completed-packet evidence. All previous-packet jobs 1–32
 are complete; do not repeat them or advance the cursor without its source-bound
 selection checks. A saved metadata-only continuation now binds all 32 keys to
 their four completed recognition cohorts and proposes the next cursor without
