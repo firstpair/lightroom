@@ -152,6 +152,31 @@ needed and issue a distinct request. Do not repeat a pending native operation.
 It does not authorize ignoring committed WAL frames, externally writing Main,
 or treating a known read-only sidecar change as proof of broader integrity.
 
+## Verify a completed receiver without replaying its initial transfer
+
+**Prerequisites.** Retain the accepted native transfer result, its source and
+destination scope, original direction policy, adopted owner record and declared
+preview aliases. Distinguish that historical acceptance from current state.
+
+**Mechanism.** An initial receiver may force one source toward its destination.
+After takeover, the destination can contain newer catalog edits and newly built
+previews. Repeating the forced profile is a write operation, not a coherence
+check. Native discovery-cache reuse does not make that direction safe.
+
+**Verify.** Authenticate the saved acceptance and owner-adoption controls. At an
+authorized owned boundary, compare the current owner, exact alias targets and
+expected volume/directory identities, then verify the current catalog launch,
+application version and required startup phases. Keep later generated previews
+and any subsequent synchronization direction in a separate reviewed scope.
+Reusing the saved native assurance does not prove current whole-tree equality.
+
+**Undo and limits.** This verification does not change data or transfer authority.
+On a mismatch, retain evidence and stop before synchronization. Do not rerun an
+old forced profile, overwrite a newer catalog, or rehash/recopy the whole cache
+merely to repeat an already accepted receiver. A changed source or conflicting
+scope needs a new direction and preservation review. Server convergence remains
+a separate native observation.
+
 ## Repair locations without reimporting
 
 **Prerequisites.** The original catalog entry exists. The proposed destination source is accepted under a stated assurance, and filename/capture/camera evidence does not conflict. Bind the exact current IDs, full folder membership where applicable, destination collisions, aliases, and existing edits before writing.
