@@ -497,3 +497,15 @@ prove signature validity, offline editing or Sync completion. The public tool ha
 synthetic extraction/APFS guard tests; native publication remains a separate step.
 
 Status examples include qualified observations through **2026-10-19**, not a claim that the entire catalog/cloud recovery is complete. Read the README for the current public implementation and release limits.
+
+
+## Diagnose Cloud throughput without mistaking experiments for fixes
+
+Use [Cloud performance diagnosis](CLOUD-PERFORMANCE-DIAGNOSIS.md) to separate
+preview scheduler capacity, actual HTTP cost limits and database query work.
+The reference native report showed twenty scheduled items but five active HTTP
+transfers at cost two against an allowance of ten. Private status-index
+experiments improved query timings, but no production Cloud query/index or HTTP
+limit change has yet been installed. Preserve pending requests, disk safeguards
+and rollback; require effective-value and end-to-end measurements before
+promoting a tuning experiment to a repair recipe.
