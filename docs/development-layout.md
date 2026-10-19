@@ -276,6 +276,17 @@ synthetic controls and the six original paging controls pass. This selector
 is not integrated into the live controller and supplies no native admission,
 preview integrity evidence, throughput or catalog-wide completion claim.
 
+`monitor_geometry.py` contains the authored integer sizing intent for a
+non-upscaled5120 by2880 display fit. It requires qualified encoded crop
+dimensions and a known orientation, accounts for floor-aspect rounding and
+chooses a minimal preferred long edge. It rejects catalog sentinels such as
+`uncropped`; it does not derive missing dimensions. New synthetic tests use
+rational targets and an independent brute-force edge search across orientations,
+including small/thin inputs and refusal cases. Actual renderer output, cache
+identity, display viewport and native recognition remain separately required.
+The private runtime keeps its original pinned module; this promotion does not
+replace that module or change an existing native admission.
+
 ## Branch publication
 
 Publish reviewed portable work on `work/photo-preview-integration` and keep its

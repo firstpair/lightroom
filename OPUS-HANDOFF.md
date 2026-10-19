@@ -1,5 +1,10 @@
 ## Source preparation during the handover
 
+The authored5K integer sizing module is now also in the tracked pipeline, with
+new rational-target/brute-force tests across all orientations. This is sizing
+intent only: actual output and reuse still require their existing checks.
+Private runtime pins and source remain unchanged.
+
 A separate metadata-window selector now supports up to10,000 candidates while
 preserving every consumed row and distinguishing completed, published awaiting
 recognition and authenticated reusable keys. Eleven targeted synthetic controls
