@@ -1,5 +1,22 @@
 ## Production scaling priority
 
+Classify reuse before sizing a render campaign. Retained high-resolution native
+preview metadata is a candidate inventory, not proof that those bytes still
+belong to a current catalog key. Authenticate saved scope/identity metadata,
+match the current file/edit/crop/orientation, and qualify adequate native levels
+before rendering a replacement. Section counts can overlap and must not become
+unique-photo counts or completed-preview totals. Header geometry alone does not
+prove entropy, color, crop or native cache validity.
+
+After the explicit scheduling handback, prioritize byte-preserving placement
+and registration of accepted existing levels. Select the needed level rather
+than copying every large 1:1 preview. Preserve old files and lower levels. A
+registered-key upgrade requires its own qualified preservation path; an
+absent-key insert route cannot silently replace that contract. Render the
+demonstrated remainder, and keep reused, copied, rendered, registered and
+individually recognized counts separate. Do not infer the render backlog from
+the total number of catalog rows or historical planning holds.
+
 The existing eight-image pipeline is a correctness baseline, not a viable
 catalog-wide production schedule. Do not multiply it into thousands of
 quit/reopen/recognition cycles. Separate image count from the shared CPU budget:
