@@ -496,7 +496,7 @@ revisions preserved. Native auxiliary adoption remained pending. This does not
 prove signature validity, offline editing or Sync completion. The public tool has
 synthetic extraction/APFS guard tests; native publication remains a separate step.
 
-Status examples include qualified observations through **2026-10-19**, not a claim that the entire catalog/cloud recovery is complete. Read the README for the current public implementation and release limits.
+Status examples include qualified observations through **2026-10-20**, not a claim that the entire catalog/cloud recovery is complete. Read the README for the current public implementation and release limits.
 
 
 ## Diagnose Cloud throughput and verify native query repairs
@@ -509,9 +509,12 @@ results, schema scope and closed resources were verified; actual application
 plans confirm the photo-ID route. Representative native SQL checks improved
 from seconds to milliseconds, with write-cost and cache-state limits documented.
 
-Automatic Cloud startup renewal and end-to-end download acceleration remain
-unproven. The combined renewal installer has isolated fixture controls, not a
-native cold-start acceptance or shipped automation. No HTTP-limit override has
-been installed. Preserve pending requests, stop new admissions before a
+One private startup renewal has now completed after a normal restart, with
+native commit/close and restoration of its own temporary pause. Its first held
+attempt remains preserved; future-launch reliability and public Cloud automation
+remain separate. A budget-twenty HTTP trial produced ten simultaneous cost-two
+tasks, but its longer observed download rate stayed near the earlier baseline
+(about 45 versus 44 previews/minute). More concurrency did not establish a
+material sustained speedup. Preserve pending requests, stop new admissions before a
 maintenance pause, retain rollback copies and do not confuse a faster query or
 returned proxy with complete Classic/cloud Sync.

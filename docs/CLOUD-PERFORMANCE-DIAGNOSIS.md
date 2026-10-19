@@ -2,7 +2,8 @@
 
 The reference Lightroom Cloud 9.6 session now has four natively installed covering
 indexes and genuine status-table statistics. Query improvements are verified;
-automatic restart renewal and end-to-end throughput remain under investigation.
+one guarded post-restart renewal has completed; end-to-end throughput remains
+under investigation.
 These Cloud changes are separate from the Classic startup installer.
 
 ## Prerequisites
@@ -26,8 +27,17 @@ concurrency would improve throughput. The observed installed HTTP client reads
 `Nimbus.maxNumSimultaneousHttpRequests`, default ten, when constructing its limiter.
 The limiter captures the numeric constructor target; no public target setter was
 found in the inspected module. A configuration-file change alone does not prove
-that an existing limiter has changed. No HTTP tuning from this investigation has
-been installed or measured end to end.
+that an existing limiter has changed. A guarded startup trial set this budget
+to twenty. After a normal restart,
+the native runtime reported numeric twenty, ten outstanding cost-two tasks,
+and a simultaneous cost of twenty. Ten concurrent tasks are therefore observed,
+not inferred from configuration alone.
+
+The longer sequential observation gained 478 local previews in 10.6 minutes
+(about 45/minute), versus about 44/minute in the earlier five-task window.
+Different assets, caches and network conditions prevent a controlled causal
+comparison. This trial did not establish a material sustained throughput gain;
+it is not a general recommendation to increase concurrency.
 
 ## Inspect database work
 
@@ -77,9 +87,20 @@ equivalence. Index existence alone is insufficient.
 Native schema initialization can drop unknown indexes. A combined renewal
 installer passed isolated full-script controls for missing fixes, exact no-op,
 conflicting definitions and rollback after an injected failure. Those controls
-used authored Lua and SQLite/model doubles, not a native cold-start test. It is
-not yet a shipped or automatically enabled Cloud startup fix. Do not bypass
-read-only routing with fabricated table names or install into the signed bundle.
+used authored Lua and SQLite/model doubles, not a native cold-start test.
+A private, operator-enabled startup controller has since completed one actual
+post-restart renewal: native commit, database close, and automatic restoration
+of its own maintenance pause. The first attempt held before installation because
+the source changed during private snapshot readback. Its failure remains retained.
+
+The corrected successor requires an unchanged source DB/WAL across snapshot
+acquisition, then records later source activity separately from validation of
+the already-captured private copy. It retains fresh native transaction admission
+and never restores an old whole database over newer edits. Eighteen authored
+controls cover acquisition refusals, post-acquisition changes, pause ownership
+and request lifecycle. This is one recovered real restart qualification, not
+proof of every future launch or a shipped public Cloud automation feature.
+Do not bypass read-only routing with fabricated table names or install into the signed bundle.
 
 ## Verify a proposed change
 
@@ -101,8 +122,9 @@ scoped rollback. For a future HTTP configuration trial,
 retain the exact prior file or its verified absence and restore it at a safe
 boundary; verify the effective baseline after restart. Never replace a shared
 limiter or mutate its private closure while requests are pending. The actual configuration path and default-limit behavior have been observed,
-but applying an override, cold-launch verification and throughput comparison
-remain unperformed.
+and a budget-twenty restart trial has now been observed. Its native concurrency
+increased, but its longer sequential throughput measurement remained close to
+the earlier baseline. Keep measured concurrency separate from useful speedup.
 
 ## Keep maintenance pauses out of the download admission loop
 
