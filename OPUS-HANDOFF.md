@@ -52,6 +52,15 @@ No successor has been installed or dispatched. Classic is currently closed;
 final normal launch remains part of the full takeover objective after the
 explicit scheduling handoff returns.
 
+A private alias-reader candidate passed nine original disposable database
+controls: indexed bounded selection, sidecar preservation, exact gate/expiry
+checks, nonempty-WAL rejection, post-read drift and retained query/close causes.
+It is not integrated or native-qualified. The source audit also identified an
+older current-row reader in publication preparation; both current-row and alias
+reads must use the same authenticated closed-window gate in a new dependency
+closure. Fixing only one connection would leave the problem incomplete. No
+real catalog or photo was opened during these controls.
+
 Unison's three requested V6 windows completed serially and closed: genuine-
 upstream compatibility (12 CLI calls), retained-fork compatibility (12), and
 transfer/property regression (54). Actual exit-zero tool terminals and group/FD
