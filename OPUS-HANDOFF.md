@@ -1,3 +1,70 @@
+# Lightroom continuation handoff
+
+Updated 2026-10-19. This current summary supersedes the historical checkpoints
+below. Detailed machine-bound source and receipts remain ignored under
+`.private/photo/OPUS-HANDOFF.md`; never stage that private directory.
+
+## Current scheduling and goal
+
+The full takeover goal is incomplete and blocked on the operator-selected
+Unison-first handback. Photo has no live runtime owner or resource reservation.
+New Photo IO, native, Adobe and SDK dispatches are held; source work may continue
+within its standing CPU share. Main lifecycle authority remains exclusively
+Photo. A released Unison slot does not automatically resume Photo.
+
+The Photo continuation drained normally with an actual exit-zero terminal after
+six closed render/stage/publication phases. Forty additional previews are published
+and storage/registration verified; all 40 await native recognition. 216 jobs remain
+pending in the current 256-image packet. 354 earlier keys were individually
+recognized. Historical Smart Preview coverage remains 106,155 with 12 exceptions;
+no new inventory is claimed. Final verified normal startup and catalog launch
+remain required. 5K refers to resolution across the catalog, not 5,000 images.
+
+## Resume without replay
+
+After explicit handback, bind a fresh normal startup, current launch/input epoch
+and one-use checkpoint to the source-qualified 40-prefix continuation. Resume at
+ordinal 41; preserve all 40 publications and old queues. The new startup and entry
+paths passed four controls each; they have not run natively. The existing 256-job
+packet already has bulk metadata capture. A lightweight reporter is an optional
+optimization, not a new prerequisite for that resume.
+
+Reuse adequate existing previews before rendering the demonstrated remainder.
+Metadata geometry holds are not a missing-preview count. Increasing a logical
+window does not remove the publication-orchestration bottleneck or establish
+catalog-wide throughput. No whole-catalog ETA is established.
+
+## Source and independent qualification
+
+The tracked pipeline now has a bounded 10,000-candidate metadata selector with
+separate completed, published-pending-recognition and authenticated-reusable
+exclusions. 11 targeted tests passed. Authored integer 5K geometry also has new
+rational-target and brute-force tests across all orientations; 4 tests passed.
+Both remain source components, not new native completion or runtime activation.
+Private runtime pins stayed unchanged. Reviewed source is committed locally;
+publication remains pending the scheduling window.
+
+Unison reports closed independent parser, rsync, generated workload, repeated
+worker1/3, private-volume, native-stage and default-upstream loopback scopes.
+Failures and recovery exits remain separate from normal passes. Generated SDK
+fixture preservation is complete in its stated clone-only scope; remaining SDK
+merge, archive/baseline and benchmark acceptance are still incomplete. These
+results neither open Main nor qualify Photo rendering, pixels or server Sync.
+
+The retained import/preview scope is partitioned for later read-only
+reporting, with overlap accounted for. It does not prove current live Main or
+Cloud acceptance and authorizes no repeat import or build.
+
+The initial native receiver acceptance is preserved. Its forced source-to-Lux
+profile must not be replayed as a verification command after local changes.
+Final ownership, alias/volume coherence, current 15.6 lifecycle, persistence and
+actual Sync/error observations remain to be verified at an authorized boundary.
+Preserve original files, edits, history, virtual copies and cloud identities;
+never externally write an open catalog or invent Sync acknowledgements.
+
+---
+## Historical checkpoints (not current dispatch or liveness authority)
+
 ## Source preparation during the handover
 
 The authored5K integer sizing module is now also in the tracked pipeline, with
