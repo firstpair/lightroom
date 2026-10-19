@@ -57,7 +57,10 @@ entry point when the repository architecture or continuation location changes.
 After explicit Unison coordination release, prepare the next bounded packet
 from the authenticated completed-packet evidence. All current packet jobs 1–32
 are complete; do not repeat them or advance the cursor without its source-bound
-selection checks. Twelve Smart Preview exceptions remain:
+selection checks. A saved metadata-only continuation now binds all 32 keys to
+their four completed recognition cohorts and proposes the next cursor without
+applying it. It preserves earlier held rows and completion exclusions and grants
+no runtime authority. Twelve Smart Preview exceptions remain:
 two calls that never returned, three known HEIC errors and seven exports not yet
 attempted. Preserve these records; diagnose eligibility and the unreturned calls
 before any further attempt. Receiver reuse, retained previews, original media,
