@@ -1,3 +1,19 @@
+## Current priority change: Capitola first
+
+The operator now gives Capitola priority. Unison explicitly released its blanket
+hold. A Photo normal startup already launched before this steering has now
+returned an actual exit-zero terminal: all seven startup phases verified and
+Photo IO/CPU/UI resources closed. The catalog is open; Photo has no active
+runtime owner. No ordinal41 continuation was started.40 published previews and
+216 pending jobs remain preserved; recognition is still pending for all40.
+
+Photo holds new bulk IO/native/SDK work for Capitola and yields active lifecycle
+access for the operator-authorized coordinated catalog work. No additional Photo
+ACK is needed; bind the actual existing launch and avoid concurrent owners.
+Exact current startup/closure and communication receipts are in the private
+handoff. No transport ownership marker, catalog data or Cloud flags changed for
+this handover. Older Unison-first/live-startup notes below are historical.
+
 # Lightroom continuation handoff
 
 Updated 2026-10-19. This current summary supersedes the historical checkpoints
