@@ -5,8 +5,12 @@ Stop extending the eight-image lifecycle into a catalog-wide schedule. See
 large-window streaming successor, bounded in-flight work and exception policy.
 Photo production is currently stopped and its reservations are released. At the
 operator's direction, hold new Photo bulk IO, native, Adobe and SDK dispatch
-while Unison completes separately coordinated qualification. Source-only Photo
-work may continue. Isolated image/settings repairs stay off the critical path.
+while Unison completes separately coordinated qualification. Photo source,
+build and test jobs are also held for the finite CPU handoff; only inert editing
+and metadata coordination continue. Isolated image/settings repairs stay off
+the critical path. The six named larger cohorts have explicit serial CPU
+coordination, with a separate fresh admission still required for each. The
+standing shared policy returns after actual closure of that series.
 
 # Lightroom continuation handoff
 
@@ -96,6 +100,12 @@ The complete local operational handoff is
 ignored: it contains machine paths, catalog identities and private receipt
 references. The complete investigation and retained helper sources live under
 `.private/`; they must not be committed or pushed.
+
+The private `CURRENT-OPERATIONS.json` is the concise current operational entry
+point. The goal, takeover and preview-status JSON files now point to that
+receipt-linked state; their previous exact bytes were preserved separately.
+Older embedded live PIDs, open-catalog labels and Sync observations are
+historical and must not be used as present lifecycle or convergence evidence.
 
 The overall takeover, receiver coherence and full-catalog preview objective is
 **active and incomplete**. Public component tests are not native completion
