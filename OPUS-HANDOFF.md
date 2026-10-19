@@ -21,8 +21,8 @@ closures, authorizes the present Photo-first ordering.
 CPU-only continuation work now covers the pinned production job parser with
 disposable SQLite readers, gate-bound preparation ordering, emitted parent and
 drain source compilation, and saved-prefix selection with the real durable
-queue. The resumed queue preserves two separately authenticated eight-key
-publications, leaves the other 240 pending and excludes the saved prefix from
+queue. The resumed queue preserves three separately authenticated eight-key
+publications, leaves the other 232 pending and excludes the saved prefix from
 render/publication claims. Partial seeding
 failure retains the queue and original error without retry. Actual retained
 publication, recovery and job-metadata receipts now bind a private resume plan.
@@ -40,8 +40,14 @@ legacy readers inside the publication worker now use the same immutable reader
 gate as preparation. Targeted disposable SQLite and queue controls passed; the
 corrected batch has started from the next unpublished group after a fresh,
 verified normal startup. Consecutive runtime qualification remains in progress.
-All sixteen published keys still require native recognition and are not counted
-as newly completed previews.
+The next group exposed existing legacy preview containers at the publication
+boundary. Their preservation route now retains them on the same volume with
+identity and byte checks before a fresh guarded preparation; it does not delete
+them or relax the publication guards. Disposable retention and composed queue
+controls passed. A fresh continuation is running after a successful guarded
+startup recovery. All twenty-four published keys still require native recognition
+and are not counted as newly completed previews. The interrupted owners and
+original failed startup verifier remain distinct from the later recovery success.
 
 The goal is 5K-resolution previews across the catalog, not a 5,000-image count.
 No whole-catalog ETA is established. Saved timing evidence identifies repeated
@@ -53,8 +59,8 @@ Reuse existing adequate previews before rendering the demonstrated remainder.
 
 Latest reconciled operational state: **106,155 Smart Previews verified**, twelve
 eligible exceptions still open, and **354 monitor-fit preview keys individually
-recognized**. Eight additional keys were published and storage/registration
-verified in the subsequent bulk attempt; their native recognition is pending.
+recognized**. Twenty-four additional keys were published and storage/registration
+verified across subsequent attempts; their native recognition is pending.
 The latest completed continuous packet processed 32 fresh jobs through sixteen
 closed phases: render, single-Ox staging, insert-only publication and native cache
 recognition for each of four serial eight-job cohorts. Its actual owning tool

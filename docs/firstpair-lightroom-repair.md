@@ -116,6 +116,42 @@ A native observation must run in the correct owner. Lightroom's SDK/UI Lua state
 
 **Limits.** Persisted SQLite rows are not an Adobe-server acknowledgement. A read-only transaction is a logical snapshot, not proof that the physical database family remained unchanged. Never write Lightroom status, revision, queue, availability, or completed flags through an external database connection.
 
+## A read-only check changes the closed catalog's sidecars
+
+**Symptom.** A later closed-catalog check refuses a new WAL/SHM family even
+though the Main file identity is unchanged. A read-only SQLite connection can
+still participate in WAL bookkeeping. Checking only the preparation reader can
+miss readers inside worker preflight, current-row validation or alias queries.
+
+**Prerequisites.** Establish actual normal Classic closure, settle its helpers,
+and retain the operation's process/descriptor observations and resource owner.
+Bind the Main identity, companion state, permitted jobs and a finite reader
+lifetime. An absent process or an empty WAL alone does not establish this
+boundary.
+
+**Procedure.** In a qualified closed-catalog workflow, route every Main query
+through the same bounded immutable reader contract. Keep indexed query-plan,
+row-cardinality, argument/job, before/after identity and close-ownership checks.
+Use `mode=ro&immutable=1` only when that contract establishes a stable database
+and accounts for its WAL state. SQLite documents that immutable mode omits
+locking and change detection; a changing file can yield incorrect results.
+[SQLite URI parameters](https://www.sqlite.org/uri.html).
+
+**Verify.** Exercise the actual emitted worker reader expressions against a
+disposable database with the production job parser. Verify that no sidecars
+appear and that stale gates and substituted jobs refuse before querying. Then
+verify a real publication followed by its next closed-epoch continuation.
+Source tests alone do not qualify that native sequence.
+
+**Undo.** Preserve the original refusal and successful earlier publications.
+Do not remove WAL/SHM files or rewrite the expected state to make a check pass.
+Resolve uncertain owners first; obtain a fresh normal lifecycle boundary when
+needed and issue a distinct request. Do not repeat a pending native operation.
+
+**Limits.** This is not an immutable-read recipe for an open or changing catalog.
+It does not authorize ignoring committed WAL frames, externally writing Main,
+or treating a known read-only sidecar change as proof of broader integrity.
+
 ## Repair locations without reimporting
 
 **Prerequisites.** The original catalog entry exists. The proposed destination source is accepted under a stated assurance, and filename/capture/camera evidence does not conflict. Bind the exact current IDs, full folder membership where applicable, destination collisions, aliases, and existing edits before writing.
