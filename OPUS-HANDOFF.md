@@ -1,38 +1,35 @@
 # Lightroom continuation handoff
 
 Latest reconciled operational state: **106,155 Smart Previews verified**, twelve
-eligible exceptions still open, and **306 monitor-fit preview keys verified**.
-The previous 32-job packet is complete. Its last continuous window completed
-six phases across sixteen jobs: publication and recognition of eight previously
-rendered/staged jobs, followed by render, staging, publication and recognition of
-eight new jobs. Saved native successes were reused rather than rendered again.
-
-The phase receipts bind actual successful child waits and group/resource
-settlement. Both final recognition audits and the normal reopen receipt are
-retained locally. All seven startup phases were verified at that reopen. The
-outer driver's tool handle was unavailable after interruption; do not invent an
-outer exit-zero receipt from the contained successes. Current process liveness
-must be checked afresh before a new operation.
+eligible exceptions still open, and **322 monitor-fit preview keys verified**.
+The latest completed continuous packet processed 32 fresh jobs through sixteen
+closed phases: render, single-Ox staging, insert-only publication and native cache
+recognition for each of four serial eight-job cohorts. Its actual owning tool
+returned exit zero; all phase/helper/group/resource receipts and the final
+checkpoint were verified. All seven startup phases were verified at final
+normal reopen. Earlier recoveries and missing historical outer terminals remain
+separate; none was rewritten as a successful exit.
 
 Highest native monitor tiers remain on Quasar; lower tiers and old Ten files
-are preserved. No old Ten preview was deleted. All 32 previous-packet jobs are complete,
-but its catalog-selection cursor has **not** advanced. Catalog-wide automatic
-refill and final full-catalog coherence remain incomplete.
+are preserved. No old Ten preview was deleted. Fresh candidate selection uses
+saved completed-packet evidence and excludes already completed keys. It does not
+turn held rows into completed work. Catalog-wide automatic refill and final
+full-catalog coherence remain incomplete.
 
-**Unison's three requested V6 windows are now complete and closed:** genuine-
+**A new 32-job continuous packet is actually running.** Its selection, native
+settings, two locator callbacks and current catalog/source identity bindings were
+validated before launch. It runs four serial eight-job cohorts and stops at the
+packet boundary, with no automatic retry. Coverage stays 322 until new native
+recognition checkpoints commit. Poll the existing owning handle recorded in the
+private handoff; do not launch a duplicate or change its pinned sources.
+
+Unison's three requested V6 windows completed serially and closed: genuine-
 upstream compatibility (12 CLI calls), retained-fork compatibility (12), and
-transfer/property regression (54), serially run once each. Actual owning-tool
-exit-zero terminals, worker/group settlement and IO/CPU closure are retained.
-Their admissions are consumed; do not redispatch crossed pending notices. Saved
-metadata audits passed against the frozen candidate. These finite generated
-checks make no camera, performance or whole-project qualification claim.
-Photo's scheduling-only hold is released. Fresh selection, native settings and
-two locator callbacks have now bound the next 32-job packet. Its actual
-continuous driver has started with four serial eight-job cohorts and a packet
-boundary stop. The first sixteen jobs have now completed publication and native recognition,
-advancing coverage to 306. The remaining sixteen continue under the same owning run.
-Poll the existing owning handle recorded privately; do not launch a duplicate or
-change its pinned sources. No new completion is inferred from preparation or START.
+transfer/property regression (54). Actual exit-zero tool terminals and group/FD
+closure are retained. Their grants are consumed; do not redispatch crossed
+pending notices. These generated checks are distinct from the Photo runtime and
+make no camera, performance or whole-project qualification claim. Photo's
+scheduling-only hold for those tests is released.
 
 The reusable queue accepts up to 10,000 metadata records per ingestion
 transaction. The real controller now connects native render, single-Ox staging,
@@ -61,13 +58,11 @@ entry point when the repository architecture or continuation location changes.
 
 ## Immediate operational priority
 
-Following the recorded Unison coordination release, prepare the next bounded packet
-from the authenticated completed-packet evidence. All previous-packet jobs 1–32
-are complete; do not repeat them or advance the cursor without its source-bound
-selection checks. A saved metadata-only continuation now binds all 32 keys to
-their four completed recognition cohorts and proposes the next cursor without
-applying it. It preserves earlier held rows and completion exclusions and grants
-no runtime authority. Twelve Smart Preview exceptions remain:
+Monitor the already-running 32-job packet through actual phase/checkpoint/tool
+closure. Do not prepare an overlapping render window or rerender completed
+packets. At its boundary, source-bind the next selection to the saved four-cohort
+completion evidence and retain all prior exclusions and held rows. Metadata
+selection and START records grant no completion authority. Twelve Smart Preview exceptions remain:
 two calls that never returned, three known HEIC errors and seven exports not yet
 attempted. Preserve these records; diagnose eligibility and the unreturned calls
 before any further attempt. Receiver reuse, retained previews, original media,
