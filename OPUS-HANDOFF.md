@@ -19,13 +19,15 @@ are preserved. No old Ten preview was deleted. All 32 packet jobs are complete,
 but its catalog-selection cursor has **not** advanced. Catalog-wide automatic
 refill and final full-catalog coherence remain incomplete.
 
-**Current priority: let Unison finish its admitted test.** Hold competing Photo
-render, compiler/build, SDK and bulk-IO successors through actual Unison parent
-terminal plus group/FD settlement and explicit coordination release. The current
-V6 upstream admission is distinct from withdrawn predecessor grants. Retained-
-fork and property runs require their own exact admissions; no automatic successor
-or elapsed-time release is authorized. Machine-bound admission paths and hashes
-are in the ignored operational handoff.
+**Unison's three requested V6 windows are now complete and closed:** genuine-
+upstream compatibility (12 CLI calls), retained-fork compatibility (12), and
+transfer/property regression (54), serially run once each. Actual owning-tool
+exit-zero terminals, worker/group settlement and IO/CPU closure are retained.
+Their admissions are consumed; do not redispatch crossed pending notices. Saved
+metadata audits passed against the frozen candidate. These finite generated
+checks make no camera, performance or whole-project qualification claim.
+Photo's scheduling-only hold is released. Continue from fresh current-state
+checks and the completed-packet continuation below.
 
 The reusable queue accepts up to 10,000 metadata records per ingestion
 transaction. The real controller now connects native render, single-Ox staging,
@@ -54,7 +56,7 @@ entry point when the repository architecture or continuation location changes.
 
 ## Immediate operational priority
 
-After explicit Unison coordination release, prepare the next bounded packet
+Following the recorded Unison coordination release, prepare the next bounded packet
 from the authenticated completed-packet evidence. All current packet jobs 1–32
 are complete; do not repeat them or advance the cursor without its source-bound
 selection checks. A saved metadata-only continuation now binds all 32 keys to
