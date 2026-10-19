@@ -1,3 +1,14 @@
+## Latest scheduling handover
+
+The operator selected Unison first after the current Photo cohort. Photo used
+the existing supported drain boundary and returned an actual exit-zero terminal;
+all six current render, stage and publication phases closed. Forty additional
+previews are published and storage verified, with native recognition pending;
+216 jobs remain explicitly pending. No cancellation or pending-job replay occurred.
+New Photo IO, native and SDK dispatches are held while Unison proceeds. Photo
+source work may continue within its standing CPU share. Main lifecycle authority
+remains exclusively Photo; final verified startup is still required.
+
 ## Operator priority: production scale
 
 Stop extending the eight-image lifecycle into a catalog-wide schedule. See
