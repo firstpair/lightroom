@@ -1,3 +1,11 @@
+## Operator priority: production scale
+
+Stop extending the eight-image lifecycle into a catalog-wide schedule. See
+[production scaling priority](docs/preview-continuous-processing.md) for the
+large-window streaming successor, bounded in-flight work and exception policy.
+The current pinned controller remains running; larger native execution is not
+yet qualified. Isolated image/settings repairs must not consume production time.
+
 # Lightroom continuation handoff
 
 Latest reconciled operational state: **106,155 Smart Previews verified**, twelve

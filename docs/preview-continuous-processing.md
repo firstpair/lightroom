@@ -1,3 +1,40 @@
+## Production scaling priority
+
+The existing eight-image pipeline is a correctness baseline, not a viable
+catalog-wide production schedule. Do not multiply it into thousands of
+quit/reopen/recognition cycles. Separate image count from the shared CPU budget:
+six native render threads plus two owner credits can process a long sequence.
+
+The production successor must use one owned closed-catalog epoch for a large
+prepared packet, stream render/encode outputs through bounded in-flight storage,
+publish each completed image with its journal, and reopen Classic once per large
+publication window. Start with a 256-image production pilot, then use measured
+throughput and memory/storage observations to select the sustained window size.
+10,000 remains the metadata ingestion target, not a claim of native qualification.
+A completed image must be durable before admitting the next one; neither memory
+nor uncommitted outputs may grow with the full catalog size.
+
+The current eight limit is enforced independently by queue scheduling, native
+admission and host-result schemas, native source-object counts, stage selection,
+publisher membership and recognition checks. It cannot safely be changed by
+raising one controller setting. Introduce a versioned streaming-session contract
+across those boundaries; leave running pinned sources and historical receipts
+unchanged. Per-image results bind the exact source/settings/output identities;
+CPU grants remain independent of the number of sequential jobs.
+
+Known, fully settled image failures go to an ordinary unsynced exception
+collection and an exception file, with no automatic retry. Continue independent
+images. Process/FD ownership uncertainty is a session-level hold, not an image
+failure that can be skipped. Preserve originals, edits, history and cloud IDs.
+
+Production acceptance measures recognized 5K outputs on the intended storage,
+wall time per image, startup time per publication window, bounded in-flight
+resources and resumable durable progress. More synthetic counts or eight-image
+successes alone do not establish the required catalog-wide throughput. Unison IO
+windows remain explicit and finite; Capitola does not open or repair Main during
+Photo's owned lifecycle. Individual settings investigations are off the critical
+path. This successor is designed, not installed or runtime-qualified yet.
+
 # Continuous preview processing
 
 The current native window is qualified for eight photos. Processing a large
