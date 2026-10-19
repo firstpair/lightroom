@@ -12,6 +12,14 @@ the critical path. The six named larger cohorts have explicit serial CPU
 coordination, with a separate fresh admission still required for each. The
 standing shared policy returns after actual closure of that series.
 
+The four preliminary Unison shared-budget cohorts are now closed (stock and
+OxCaml at one and two workers; reported 72 rows and 216 CLI calls). Photo
+adopted the saved owning-tool terminals and aggregate group/helper/FD closure
+receipts, without redoing payload or full raw-call verification. This satisfies
+the prerequisite for the six explicitly coordinated larger cohorts; it does
+not start them or replace their required individual admissions. Photo's hold
+continues through that series and the separate qualification handback.
+
 # Lightroom continuation handoff
 
 Latest reconciled operational state: **106,155 Smart Previews verified**, twelve
