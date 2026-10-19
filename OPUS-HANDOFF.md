@@ -3,13 +3,11 @@
 Stop extending the eight-image lifecycle into a catalog-wide schedule. See
 [production scaling priority](docs/preview-continuous-processing.md) for the
 large-window streaming successor, bounded in-flight work and exception policy.
-Photo production is currently stopped and its reservations are released. At the
-operator's direction, hold new Photo bulk IO, native, Adobe and SDK dispatch
-while Unison completes separately coordinated qualification. Photo source,
-build and synthetic test work may now continue within its standing CPU share.
-New Photo bulk IO, native, Adobe and SDK work remains postponed under the
-operator's ordering while Unison prepares its remaining qualifications. Main
-catalog lifecycle ownership remains exclusively with Photo.
+The operator has now selected Photo first. Unison confirmed no live IO owner
+and holds new IO, SDK and benchmark dispatch while Photo resumes. The private
+Photo batch is live under its standing CPU share and the existing IO pool.
+Main catalog lifecycle ownership remains exclusively with Photo. Do not start
+a second owner or infer release from a progress marker.
 
 All ten coordinated Unison generated cohorts are closed, including the six
 larger temporary-budget cohorts (reported 180 rows and 540 CLI calls). Saved
@@ -17,14 +15,15 @@ owning-tool terminals, aggregate closure receipts, all ten receipt hashes and
 the final no-child whole-bundle release proof were authenticated. Temporary CPU
 borrowing has ended and the standing shared policy is restored. Subsequent
 mixed Adobe and SDK receiving runs also returned actual exit-zero terminals and
-resource closure. These closures release those individual reservations; they
-do not override the operator's continuing Photo IO postponement.
+resource closure. The later operator instruction, rather than those historical
+closures, authorizes the present Photo-first ordering.
 
 CPU-only continuation work now covers the pinned production job parser with
 disposable SQLite readers, gate-bound preparation ordering, emitted parent and
 drain source compilation, and saved-prefix selection with the real durable
-queue. The queue keeps eight saved keys published, leaves the other 248 pending
-and excludes the saved prefix from render/publication claims. Partial seeding
+queue. The resumed queue preserves two separately authenticated eight-key
+publications, leaves the other 240 pending and excludes the saved prefix from
+render/publication claims. Partial seeding
 failure retains the queue and original error without retry. Actual retained
 publication, recovery and job-metadata receipts now bind a private resume plan.
 No old queue, catalog or preview payload was reopened for that binding.
@@ -34,10 +33,21 @@ a resumed suffix and retains final startup as required until a verified reopen
 exists. The first frozen candidate is preserved as an unstarted predecessor.
 Real constructor controls prohibit catalog connections, subprocesses and locks.
 
-These are component and saved-metadata results. The new controller has not been
-selected for production; complete dependency wiring, current lifecycle/input
-binding and native qualification remain open. The saved eight still require
-native recognition and are not counted as newly completed previews.
+The first resumed group rendered and published successfully. Its following
+group refused a catalog-sidecar mismatch before native rendering. Independent
+recovery closed that owner, preserving the successful publications. The missed
+legacy readers inside the publication worker now use the same immutable reader
+gate as preparation. Targeted disposable SQLite and queue controls passed; the
+corrected batch has started from the next unpublished group after a fresh,
+verified normal startup. Consecutive runtime qualification remains in progress.
+All sixteen published keys still require native recognition and are not counted
+as newly completed previews.
+
+The goal is 5K-resolution previews across the catalog, not a 5,000-image count.
+No whole-catalog ETA is established. Saved timing evidence identifies repeated
+publication and ownership orchestration as the major cost for the observed
+group; its fast native render calls do not establish representative RAW speed.
+Reuse existing adequate previews before rendering the demonstrated remainder.
 
 # Lightroom continuation handoff
 
