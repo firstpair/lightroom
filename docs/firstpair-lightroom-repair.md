@@ -36,8 +36,24 @@ The [README](../README.md) describes the current executable package. It contains
 | Location repair, import, normal preview creation, collections and ordinary retries | Supported UI/native workflows plus the recipes below; no universal bulk mutator included |
 | Converter cache publication, format-specific fingerprints, Cloud APFS preview placement and exact-XMP adoption | Documented verified research and manual/native procedures; the starter does not install a general cache publisher or bulk settings bridge |
 | Typed preservation and completed-action verification recovery | Reusable methodology and a held-stream example; retain local incident-specific receipts |
+| Backup proof before deletion, damaged-original replacement and offline browsing | Owned by the sibling phindex, DNG Compare and diskproxy books; the recipes below link them and add only the Lightroom side |
 
 Source/syntax/temporary-installation tests qualify the public packaging boundary. The accepted private native controls qualify the reference catalog and builds. Neither substitutes for the actual callback, equality and restoration receipts from a new installation.
+
+## Where it fits
+
+This book is one of nine on the FirstPair photo tools. Each owns one part, and
+[The FirstPair Photo Stack](https://firstpair.org/books/photostack/) shows how they fit together.
+
+- **[tiffgraph](https://firstpair.org/books/tiffgraph/)** walks a TIFF or DNG file's structure under a fixed grammar and finds its editable XMP packet.
+- **[phidentify](https://firstpair.org/books/phidentify/)** computes a photo's identities: SHA-256, DNG raw blocks, image data, Lightroom fingerprint, metadata record and preserved digest.
+- **[phindex](https://firstpair.org/books/phindex/)** keeps those identities for every file of a volume, and aligns two volumes by content.
+- **[DNG Compare](https://firstpair.org/books/dng-compare/)** compares pairs and preserves one side byte for byte as deltas against the other, with a searchable metadata section, through `dngc`.
+- **[Semantic Unison](https://firstpair.org/books/semantic-unison/)** synchronizes photo trees, sending metadata edits without resending image bytes, and preserves what a shuttle disk brings into the same archives.
+- **[packdir](https://firstpair.org/books/packdir/)** keeps directories of small files as SQLite archives that still work like plain files.
+- **[Tursolite](https://firstpair.org/books/tursolite/)** is the SQLite and Turso layer under packdir, DNG Compare and Mechanic.
+- **[diskproxy](https://firstpair.org/books/diskproxy/)** serves a folder as a virtual disk, such as previews with camera metadata spliced in, and captures ratings into sidecars.
+- **[Lightroom Repair](https://firstpair.org/books/lightroom-repair/)** repairs Lightroom Classic catalogs, previews and Sync without forging their state.
 
 ## Stage and qualify the public installer
 
@@ -87,6 +103,9 @@ Stop future checks with `scripts/manage.py disable --root /absolute/private-inst
 | Several files look like duplicates | Which identity has actually been proved? | [Classify identity](#classify-identity-before-merging-or-deleting) |
 | A converter preview or shared cache seems reusable | Do current native identities and actual adoption agree? | [Converter reuse](#reuse-offline-converter-built-smart-previews), [Cloud clones](#map-and-clone-classic-previews-into-cloud-precisely) |
 | A metadata badge conflicts with expected edits | Which catalog, sidecar or embedded fields differ? | [Metadata divergence](#reconcile-catalog-xmp-ratings-and-dates) |
+| You want to delete originals that a backup should already hold | Is every source file accounted for by content, and can it be restored byte for byte? | [Prove a backup](#prove-a-backup-holds-every-photo-before-deleting-it) |
+| A photo will not render or edit, though its thumbnail looks fine | Is its raw data truncated, and does an intact conversion of the same exposure exist? | [Replace a damaged original](#replace-a-damaged-original-with-its-intact-conversion) |
+| The originals are offline and you want to cull in another application | Can previews carry camera metadata, and where do the ratings go? | [Browse offline](#browse-and-rate-with-the-originals-offline) |
 
 ## Establish a recovery boundary
 
@@ -554,6 +573,196 @@ For identity routing, use the actual indexed filename leading key while retainin
 **Undo.** Preserve historical native receipts and existing digest rows. Never overwrite an equal native digest merely to normalize file size, invent a missing oracle, or delete a separate Cloud record with independent edits. Registration reversal, if actually needed, belongs to a separately reviewed native scope or its preserved recovery family.
 
 **Limits.** Native original matching is not pure pixel equality. Pixel equality is not interchangeable develop settings. Byte equality is not automatic duplicate-deletion authority. Keep conversion variants and virtual copies until an action-specific preservation decision is made.
+
+## Prove a backup holds every photo before deleting it
+
+**Symptom.** A source tree, such as `/Volumes/Archive/Photos`, should already be
+held by a backup, such as `/Volumes/Backup/Photos`, and you want to free the
+source. The backup was made over years: folders moved, files were renamed,
+re-dated or rewritten with new metadata, so a path-by-path comparison reports
+thousands of differences that may or may not matter.
+
+**Prerequisites.** Both trees are mounted and stable for the duration of the
+run; nothing imports, converts or edits into either. Install the indexer from
+[phindex](https://firstpair.org/books/phindex/) and `dngc` from
+[DNG Compare](https://firstpair.org/books/dng-compare/); those books own their
+installation, options and archive layout. Choose an archive directory that is not
+on the source you mean to delete. Know which Lightroom catalog references the
+source, because deleting it makes those photos missing in that catalog.
+
+**Mechanism.** Index both trees, so that every file has its identities: SHA-256,
+DNG raw blocks, image data, Lightroom's fingerprint and a metadata record.
+
+```sh
+phindex --db source.sqlite --root /Volumes/Archive/Photos --workers 8
+phindex --db backup.sqlite --root /Volumes/Backup/Photos --workers 8
+```
+
+Then account for the source in the backup by content rather than by name.
+`phindex align` groups files into units (a raw with its JPEG and sidecar),
+matches each unit by its strongest shared identity, and flags moved, renamed
+and split units. Units with no counterpart are reported as `left-only`; files
+not yet read as `not-indexed`.
+
+```sh
+phindex align --left source.sqlite --left-root /Volumes/Archive/Photos \
+  --right backup.sqlite --right-root /Volumes/Backup/Photos --out align-report/
+```
+
+`dngc run` turns that accounting into a preserved, restorable record. With the
+indexes it pairs files through `phindex align`, settles unchanged pairs without
+reading them, and keeps every source file in one of three forms: identical to its
+backup counterpart, a verified delta against that counterpart, or a full copy
+when the backup has none. `--metadata phindex` takes metadata from the indexes
+and writes a searchable metadata section.
+
+```sh
+dngc run /Volumes/Archive/Photos /Volumes/Backup/Photos /Volumes/Backup/source-proof \
+  --index source.sqlite backup.sqlite --metadata phindex
+dngc verify /Volumes/Backup/source-proof --restore-sample 50
+```
+
+Equal raw pixels are not permission to delete. Two files with the same raw
+image can differ in the DNG wrapper, embedded previews, XMP, ratings, keywords
+and develop history; the source copy may carry the only record of edits made
+after the backup. That is why the archive keeps a delta for every pair whose
+bytes differ, instead of declaring the pair equivalent and dropping the
+difference.
+
+**Verify.** Read `align-report/summary.json` and account for every `left-only`
+and `not-indexed` unit: each must either be preserved as a full copy by the run
+or be deliberately excluded with a reason. Require `dngc verify` to exit 0; it
+checks the byte records, deltas and originals, the metadata index and that the
+comparison finished, and `--restore-sample N` restores N records at random and
+checks their SHA-256. While the source still exists, restore a few files of your
+own choosing, including a renamed one and one with a metadata difference, with
+`dngc restore ARCHIVE RELATIVE_PATH OUTPUT`, and compare each with the source
+file byte for byte. Only then delete, and settle the source in Lightroom's terms:
+relink the catalog's photos to the backup through Lightroom
+([Repair locations](#repair-locations-without-reimporting)) or accept that the
+catalog will show them as missing.
+
+**Undo.** Nothing above writes to the source or the backup tree; the indexes and
+the archive are new files. After deletion, `dngc restore ARCHIVE RELATIVE_PATH
+OUTPUT` rebuilds any source file byte for byte, and `dngc versions` lists the
+contents a path has had.
+
+**Limits.** A delta is rebuilt against its backup file, so the archive and the
+backup tree are one unit: keep both, keep the backup's files unedited, and keep a
+second copy of the archive on another device if the source was the only other
+copy. `--metadata phindex` records come from the exiftool-rs engine, a separate
+metadata identity from Perl ExifTool; never compare an archive made one way with
+one made the other. A random restore sample is evidence, not proof for every
+record. This cookbook links the owning books for their tests and qualification;
+it has no retained deletion control of its own, and the procedure says nothing
+about cloud copies, which Lightroom manages separately.
+
+## Replace a damaged original with its intact conversion
+
+**Symptom.** An original DNG is truncated on disk: Lightroom cannot build a
+preview or reports the file as damaged, and editing fails, yet Finder,
+Quick Look or `sips` thumbnails look fine. Elsewhere, an earlier converter's
+output of the same exposure, such as an Adobe DNG Converter run kept on
+`/Volumes/Backup`, is intact.
+
+**Prerequisites.** Detect damage at the pixel level, not from preview renders.
+Thumbnailing tools such as `sips` render the embedded preview, which can be
+complete while the raw data behind it is truncated. A full raw decode, a pixel
+comparison in [DNG Compare](https://firstpair.org/books/dng-compare/), or a
+header showing a declared raw strip or tile running past the file's stable
+length establishes the damage; see
+[Classify identity](#classify-identity-before-merging-or-deleting). Then prove
+the conversion is the same exposure (capture time, camera and serial, exposure
+UID) and that its own raw data decodes in full. Record the damaged file's path,
+exact name, SHA-256 and size, and the photo's develop settings and history as
+Lightroom shows them.
+
+**Mechanism.** Lightroom finds an original by its path and name. Putting an
+intact file of the same exposure at that exact path and name lets the existing
+catalog record, with its edits, history, virtual copies, collections and cloud
+association, point at readable raw data again, without re-registration.
+
+Quit Classic normally. Move the damaged files aside to a folder outside every
+catalog folder, mirroring their relative paths, and keep them. Copy the
+conversion to the original's path under the original's exact name and
+extension, and check the copy's SHA-256 against the conversion. Reopen Classic,
+select that folder, and rebuild its previews through **Library → Previews**
+(standard or 1:1, and Smart Previews where the photos had them).
+
+Do not write the catalog, re-import the file, or use **Read Metadata from
+Files** to clear a metadata badge: the conversion's embedded XMP is not the
+catalog's current state. Resolve any badge with
+[Reconcile catalog, XMP, ratings and dates](#reconcile-catalog-xmp-ratings-and-dates).
+
+**Verify.** In Lightroom, the folder shows no missing or damaged-file badges, and
+each replaced photo renders at Fit and 100% from the new original. Develop
+settings, history, virtual copies and collection membership match what you
+recorded. On disk, the placed file's SHA-256 equals the conversion's, and the
+damaged files remain intact in the side folder.
+
+**Undo.** Quit Classic, move the conversion out, return the damaged file to its
+path and name, and rebuild the folder's previews. The catalog was not changed by
+the swap, so nothing else needs reversing.
+
+**Limits.** Lightroom's registered fingerprint and any cloud original were
+computed from the old bytes and are not updated by the swap; duplicate detection
+and Sync may treat the new file differently. Develop history was made against
+the old file's raw data: a conversion with a different crop, opcodes, linear or
+mosaic data, or converter version can render the same settings differently, so
+inspect every replaced photo in Lightroom rather than assuming equality. This is
+a procedure, not a retained native control in this cookbook's evidence table.
+
+## Browse and rate with the originals offline
+
+**Symptom.** The originals are on a disk that is not attached, but you want to
+cull them in another application, such as Photo Mechanic, which needs camera
+metadata and a good-sized preview to be useful.
+
+**Prerequisites.** Previews already exist: Lightroom Smart Previews, or a folder
+of regular preview JPEGs. Install [diskproxy](https://firstpair.org/books/diskproxy/)
+and its previews plugin; that book owns the configuration, the map-file format
+and the writable modes. Choose a ratings folder outside the source. Serve
+previews that Lightroom is not rebuilding at the same time: a served file that
+changes after the disk is built fails to read.
+
+**Mechanism.** diskproxy presents a folder as a virtual disk without writing to
+the source. The previews plugin composes files in one of two ways:
+
+- **Smart Previews as DNG stand-ins.** Each Smart Preview is served as a DNG with
+  the large preview JPEG added as an extra embedded preview; every original byte
+  stays where it was. Browsers that show embedded previews see the large JPEG,
+  and the stand-in carries the Smart Preview's camera metadata.
+- **Preview JPEGs with EXIF stubs.** Each JPEG is served with camera, lens,
+  exposure and capture metadata spliced in from a stub: an EXIF-only TIFF per
+  photo, written from the phindex metadata records and stored in one SQLite
+  file (`metadata_store`) rather than as hundreds of thousands of small files.
+
+With a writable view, diskproxy accepts the application's writes into a shadow
+file and the plugin keeps only ratings, labels, color classes and tagged flags,
+as one small XMP sidecar per photo in the ratings folder, with every change
+appended to `JOURNAL.jsonl` together with its previous value. Nothing reaches the
+source.
+
+**Verify.** Check one file through the mounted volume before culling, for
+example `exiftool -b -PreviewImage` piped to `wc -c`, which should give the size
+of its preview JPEG, and confirm that the application shows the camera and
+capture time. After rating a few photos, confirm that their sidecars and journal
+lines exist after `diskproxy stop`, and that the source tree's files are
+unchanged.
+
+**Undo.** `diskproxy stop` unmounts the view and deletes the session's written
+bytes after the final capture. Delete the ratings folder to discard the
+captured ratings. The source and Lightroom's previews were never written.
+
+**Limits.** A Smart Preview stand-in carries reduced raw data, not the original;
+exports from it are previews, not masters. Bringing captured ratings back into a
+Lightroom catalog must go through Lightroom's own writer, and this cookbook has
+no qualified procedure for that yet. Do not write the catalog externally, and do
+not copy the captured sidecars beside the originals and read them with **Read
+Metadata from Files**: that replaces the catalog's metadata from the sidecar, and
+a four-property sidecar is not the photo's full state. Label names and color
+classes also differ between applications. Until a procedure is qualified, keep
+the sidecars and journal as the record of the culling.
 
 ## Reconcile catalog, XMP, ratings and dates
 
