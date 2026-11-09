@@ -5,9 +5,9 @@
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <meta name="author" content="FirstPair contributors" />
-  <meta name="dcterms.date" content="2026-10-12" />
+  <meta name="dcterms.date" content="2026-11-09" />
   <meta name="description" content="A practical cookbook of verified Lightroom repairs, preservation gates and version-sensitive performance mechanisms." />
-  <title>Establish a recovery boundary</title>
+  <title>Choose the problem before choosing the repair</title>
   <style>
     div.sitenav { display: flex; flex-direction: row; flex-wrap: wrap; }
     span.navlink { flex: 1; }
@@ -32,7 +32,6 @@
       margin: 0 0.8em 0.2em -1.6em;
       vertical-align: middle;
     }
-    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
   </style>
   <link rel="stylesheet" href="book.css" />
 </head>
@@ -48,50 +47,147 @@
 </div>
 <div class="sitenav">
 <span class="navlink">
-<span class="navlink-label">Next:</span> <a href="chapter-008.html" accesskey="n" rel="next">Get an observation that answers one question</a>
+<span class="navlink-label">Next:</span> <a href="chapter-008.html" accesskey="n" rel="next">Establish a recovery boundary</a>
 </span>
 <span class="navlink">
-<span class="navlink-label">Previous:</span> <a href="chapter-006.html" accesskey="p" rel="previous">Choose the problem before choosing the repair</a>
+<span class="navlink-label">Previous:</span> <a href="chapter-006.html" accesskey="p" rel="previous">Stage and qualify the public installer</a>
 </span>
 </div>
 </nav>
-<h2 data-number="1.5" id="establish-a-recovery-boundary"><span
-class="header-section-number">1.5</span> Establish a recovery
-boundary</h2>
-<p><strong>Prerequisites.</strong> Identify the active catalog in
-Lightroom’s UI, the exact application version, and the physical
-locations of originals and previews. Decide what may change and what
-must remain equal. For a repair, that usually includes existing
-image/file IDs, virtual copies, develop settings, history, collection
-membership, and cloud associations.</p>
-<p><strong>Procedure.</strong> Make a normal catalog backup and a
-separate backup of originals. Adobe’s catalog backup does not include
-the photographs. When an advanced repair affects companion stores, keep
-a quiescent recovery copy of the relevant catalog family, catalog data,
-Sync/helper stores, and preview families as well. Quit normally and
-establish process absence before treating a raw filesystem copy as a
-closed snapshot. <a
-href="https://helpx.adobe.com/lightroom-classic/desktop/manage-catalogs-and-files/back-catalog.html">Adobe:
-back up a catalog</a>.</p>
-<p>Record the selected scope before acting. A useful repair manifest
-binds an existing catalog identifier to its current literal path, source
-identity, intended destination, and the reason the source is accepted.
-Keep source and destination copies while the repair is under
-verification. Use a unique run directory and retain failure
-receipts.</p>
-<p><strong>Verify.</strong> Reopen the recovery catalog when practical,
-check the intended photos and their edits, and independently verify
-copied files. A successful copy exit code alone is not a byte
-comparison. For database work, compare logical records and
-physical-family identities separately: a consistent read can be valid
-even when WAL or SHM bookkeeping changes.</p>
-<p><strong>Undo.</strong> Restore the relevant closed family together,
-or reverse a verified location change through Lightroom. Preserve work
-made after the baseline before restoring it. A local rollback cannot
-recall cloud activity already accepted by a server.</p>
-<p><strong>Limits.</strong> An APFS clone on the same disk is useful
-rollback material, but is not an independent disk backup. A baseline
-hash cannot prove that later files are unchanged without a current
-check.</p>
+<h2 data-number="1.5"
+id="choose-the-problem-before-choosing-the-repair"><span
+class="header-section-number">1.5</span> Choose the problem before
+choosing the repair</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>What you observe</th>
+<th>First useful question</th>
+<th>Recipe</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A missing-photo badge after moving a drive</td>
+<td>Does the original still exist, and is it the same source?</td>
+<td><a
+href="chapter-012.html#repair-locations-without-reimporting">Repair
+locations</a></td>
+</tr>
+<tr>
+<td>Sync progress appears stuck</td>
+<td>Which exact stage is making, receiving, or completing work?</td>
+<td><a href="chapter-021.html#separate-sync-stages-and-counts">Separate
+Sync stages</a></td>
+</tr>
+<tr>
+<td>A selected upload has a proxy-missing error</td>
+<td>Are the expected historical proxy and current source the same
+admitted identity?</td>
+<td><a
+href="chapter-029.html#recover-a-selected-proxy-missing-upload">Recover
+a proxy upload</a></td>
+</tr>
+<tr>
+<td>Dates gain <code>.000</code> and metadata work returns</td>
+<td>Is the native assignment provably redundant, and is queue removal
+durable?</td>
+<td><a
+href="chapter-017.html#prevent-format-only-capture-date-requeue">Date
+requeue</a></td>
+</tr>
+<tr>
+<td>Each metadata save or relocation takes seconds</td>
+<td>Is native SQL scanning a large table despite an existing index?</td>
+<td><a
+href="chapter-014.html#diagnose-sql-affinity-before-adding-an-index">Diagnose
+SQL affinity</a></td>
+</tr>
+<tr>
+<td>CPU remains high with tiny Sync changes</td>
+<td>Is a full mapping table repeatedly queried, copied, or
+transported?</td>
+<td><a
+href="chapter-015.html#reduce-large-map-work-without-sharing-mutable-state">Reduce
+map work</a></td>
+</tr>
+<tr>
+<td>Downloads repeat but do not become catalog items</td>
+<td>Does the destination resolver need a catalog folder on a
+reader?</td>
+<td><a
+href="chapter-019.html#repair-folder-admission-for-download-workers">Repair
+folder admission</a></td>
+</tr>
+<tr>
+<td>A preview exists but editing is blocked</td>
+<td>Are image data and the exact requested settings both available?</td>
+<td><a
+href="chapter-028.html#recover-exact-settings-without-resetting-edits">Recover
+settings</a></td>
+</tr>
+<tr>
+<td>An import succeeded but its verifier failed</td>
+<td>Did the native action finish before the diagnostic error?</td>
+<td><a
+href="chapter-030.html#recover-verification-after-a-successful-native-action">Recover
+verification</a></td>
+</tr>
+<tr>
+<td>Several files look like duplicates</td>
+<td>Which identity has actually been proved?</td>
+<td><a
+href="chapter-031.html#classify-identity-before-merging-or-deleting">Classify
+identity</a></td>
+</tr>
+<tr>
+<td>A converter preview or shared cache seems reusable</td>
+<td>Do current native identities and actual adoption agree?</td>
+<td><a
+href="chapter-025.html#reuse-offline-converter-built-smart-previews">Converter
+reuse</a>, <a
+href="chapter-026.html#map-and-clone-classic-previews-into-cloud-precisely">Cloud
+clones</a></td>
+</tr>
+<tr>
+<td>A metadata badge conflicts with expected edits</td>
+<td>Which catalog, sidecar or embedded fields differ?</td>
+<td><a
+href="chapter-036.html#reconcile-catalog-xmp-ratings-and-dates">Metadata
+divergence</a></td>
+</tr>
+<tr>
+<td>You want to delete originals that a backup should already hold</td>
+<td>Is every source file accounted for by content, and can it be
+restored byte for byte?</td>
+<td><a
+href="chapter-033.html#prove-a-backup-holds-every-photo-before-deleting-it">Prove
+a backup</a></td>
+</tr>
+<tr>
+<td>A photo will not render or edit, though its thumbnail looks
+fine</td>
+<td>Is its raw data truncated, and does an intact conversion of the same
+exposure exist?</td>
+<td><a
+href="chapter-034.html#replace-a-damaged-original-with-its-intact-conversion">Replace
+a damaged original</a></td>
+</tr>
+<tr>
+<td>The originals are offline and you want to cull in another
+application</td>
+<td>Can previews carry camera metadata, and where do the ratings
+go?</td>
+<td><a
+href="chapter-035.html#browse-and-rate-with-the-originals-offline">Browse
+offline</a></td>
+</tr>
+</tbody>
+</table>
 </body>
 </html>

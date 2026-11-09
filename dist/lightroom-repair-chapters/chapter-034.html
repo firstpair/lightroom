@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="FirstPair contributors" />
+  <meta name="dcterms.date" content="2026-11-09" />
+  <meta name="description" content="A practical cookbook of verified Lightroom repairs, preservation gates and version-sensitive performance mechanisms." />
+  <title>Replace a damaged original with its intact conversion</title>
+  <style>
+    div.sitenav { display: flex; flex-direction: row; flex-wrap: wrap; }
+    span.navlink { flex: 1; }
+    span.navlink-label { display: inline-block; min-width: 4em; }
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="book.css" />
+</head>
+<body>
+<nav id="sitenav">
+<div class="sitenav">
+<span class="navlink">
+<span class="navlink-label">Up:</span> <a href="chapter-002.html" accesskey="u" rel="up">A Lightroom repair cookbook</a>
+</span>
+<span class="navlink">
+<span class="navlink-label">Top:</span> <a href="index.html" accesskey="t" rel="top">FirstPair Lightroom Repair</a>
+</span>
+</div>
+<div class="sitenav">
+<span class="navlink">
+<span class="navlink-label">Next:</span> <a href="chapter-035.html" accesskey="n" rel="next">Browse and rate with the originals offline</a>
+</span>
+<span class="navlink">
+<span class="navlink-label">Previous:</span> <a href="chapter-033.html" accesskey="p" rel="previous">Prove a backup holds every photo before deleting it</a>
+</span>
+</div>
+</nav>
+<h2 data-number="1.32"
+id="replace-a-damaged-original-with-its-intact-conversion"><span
+class="header-section-number">1.32</span> Replace a damaged original
+with its intact conversion</h2>
+<p><strong>Symptom.</strong> An original DNG is truncated on disk:
+Lightroom cannot build a preview or reports the file as damaged, and
+editing fails, yet Finder, Quick Look or <code>sips</code> thumbnails
+look fine. Elsewhere, an earlier converter’s output of the same
+exposure, such as an Adobe DNG Converter run kept on
+<code>/Volumes/Backup</code>, is intact.</p>
+<p><strong>Prerequisites.</strong> Detect damage at the pixel level, not
+from preview renders. Thumbnailing tools such as <code>sips</code>
+render the embedded preview, which can be complete while the raw data
+behind it is truncated. A full raw decode, a pixel comparison in <a
+href="https://firstpair.org/books/dng-compare/">DNG Compare</a>, or a
+header showing a declared raw strip or tile running past the file’s
+stable length establishes the damage; see <a
+href="chapter-031.html#classify-identity-before-merging-or-deleting">Classify
+identity</a>. Then prove the conversion is the same exposure (capture
+time, camera and serial, exposure UID) and that its own raw data decodes
+in full. Record the damaged file’s path, exact name, SHA-256 and size,
+and the photo’s develop settings and history as Lightroom shows
+them.</p>
+<p><strong>Mechanism.</strong> Lightroom finds an original by its path
+and name. Putting an intact file of the same exposure at that exact path
+and name lets the existing catalog record, with its edits, history,
+virtual copies, collections and cloud association, point at readable raw
+data again, without re-registration.</p>
+<p>Quit Classic normally. Move the damaged files aside to a folder
+outside every catalog folder, mirroring their relative paths, and keep
+them. Copy the conversion to the original’s path under the original’s
+exact name and extension, and check the copy’s SHA-256 against the
+conversion. Reopen Classic, select that folder, and rebuild its previews
+through <strong>Library → Previews</strong> (standard or 1:1, and Smart
+Previews where the photos had them).</p>
+<p>Do not write the catalog, re-import the file, or use <strong>Read
+Metadata from Files</strong> to clear a metadata badge: the conversion’s
+embedded XMP is not the catalog’s current state. Resolve any badge with
+<a
+href="chapter-036.html#reconcile-catalog-xmp-ratings-and-dates">Reconcile
+catalog, XMP, ratings and dates</a>.</p>
+<p><strong>Verify.</strong> In Lightroom, the folder shows no missing or
+damaged-file badges, and each replaced photo renders at Fit and 100%
+from the new original. Develop settings, history, virtual copies and
+collection membership match what you recorded. On disk, the placed
+file’s SHA-256 equals the conversion’s, and the damaged files remain
+intact in the side folder.</p>
+<p><strong>Undo.</strong> Quit Classic, move the conversion out, return
+the damaged file to its path and name, and rebuild the folder’s
+previews. The catalog was not changed by the swap, so nothing else needs
+reversing.</p>
+<p><strong>Limits.</strong> Lightroom’s registered fingerprint and any
+cloud original were computed from the old bytes and are not updated by
+the swap; duplicate detection and Sync may treat the new file
+differently. Develop history was made against the old file’s raw data: a
+conversion with a different crop, opcodes, linear or mosaic data, or
+converter version can render the same settings differently, so inspect
+every replaced photo in Lightroom rather than assuming equality. This is
+a procedure, not a retained native control in this cookbook’s evidence
+table.</p>
+</body>
+</html>

@@ -5,7 +5,7 @@
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <meta name="author" content="FirstPair contributors" />
-  <meta name="dcterms.date" content="2026-10-12" />
+  <meta name="dcterms.date" content="2026-11-09" />
   <meta name="description" content="A practical cookbook of verified Lightroom repairs, preservation gates and version-sensitive performance mechanisms." />
   <title>Which parts are supplied as code</title>
   <style>
@@ -32,7 +32,6 @@
       margin: 0 0.8em 0.2em -1.6em;
       vertical-align: middle;
     }
-    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
   </style>
   <link rel="stylesheet" href="book.css" />
 </head>
@@ -48,7 +47,7 @@
 </div>
 <div class="sitenav">
 <span class="navlink">
-<span class="navlink-label">Next:</span> <a href="chapter-005.html" accesskey="n" rel="next">Stage and qualify the public installer</a>
+<span class="navlink-label">Next:</span> <a href="chapter-005.html" accesskey="n" rel="next">Where it fits</a>
 </span>
 <span class="navlink">
 <span class="navlink-label">Previous:</span> <a href="chapter-003.html" accesskey="p" rel="previous">What has actually been repaired</a>
@@ -59,7 +58,7 @@
 class="header-section-number">1.2</span> Which parts are supplied as
 code</h2>
 <p>The <a
-href="https://github.com/firstpair/lightroom/blob/ca28ff6bcb64e9776eeeb579e6d4d0d60d4dad1f/README.md">README</a>
+href="https://github.com/firstpair/lightroom/blob/014d492d77edb96437bab64cd21178ea18f2e0fe/README.md">README</a>
 describes the current executable package. It contains our own
 installation/verification CLI, native performance adapters, synthetic
 controls, codecs and lifecycle helper under the MIT license. It imports
@@ -81,9 +80,9 @@ those Adobe modules are not redistributed.</p>
 <td>Bounded map/count reuse, isolated C copying, point tracking, paired
 map transport, date equivalence and startup renewal</td>
 <td>Configurable source in <a
-href="https://github.com/firstpair/lightroom/tree/ca28ff6bcb64e9776eeeb579e6d4d0d60d4dad1f/templates/runtime">templates/runtime</a>
+href="https://github.com/firstpair/lightroom/tree/014d492d77edb96437bab64cd21178ea18f2e0fe/templates/runtime">templates/runtime</a>
 and <a
-href="https://github.com/firstpair/lightroom/blob/ca28ff6bcb64e9776eeeb579e6d4d0d60d4dad1f/scripts/manage.py">scripts/manage.py</a>;
+href="https://github.com/firstpair/lightroom/blob/014d492d77edb96437bab64cd21178ea18f2e0fe/scripts/manage.py">scripts/manage.py</a>;
 fresh manual native qualification required</td>
 </tr>
 <tr>
@@ -95,7 +94,7 @@ default</strong></td>
 <tr>
 <td>Destination-folder admission</td>
 <td><a
-href="https://github.com/firstpair/lightroom/blob/ca28ff6bcb64e9776eeeb579e6d4d0d60d4dad1f/examples/folder_resolver.lua">An
+href="https://github.com/firstpair/lightroom/blob/014d492d77edb96437bab64cd21178ea18f2e0fe/examples/folder_resolver.lua">An
 authored example adapter</a>, requiring independent preservation
 admission; it is not automatically dispatched</td>
 </tr>
@@ -116,6 +115,12 @@ bridge</td>
 <td>Typed preservation and completed-action verification recovery</td>
 <td>Reusable methodology and a held-stream example; retain local
 incident-specific receipts</td>
+</tr>
+<tr>
+<td>Backup proof before deletion, damaged-original replacement and
+offline browsing</td>
+<td>Owned by the sibling phindex, DNG Compare and diskproxy books; the
+recipes below link them and add only the Lightroom side</td>
 </tr>
 </tbody>
 </table>
