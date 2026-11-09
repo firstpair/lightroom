@@ -200,7 +200,7 @@ Dome, photographs, a cloud and a catalog</figcaption>
 <p>This cookbook explains repairs and diagnostic methods developed while
 recovering a large Lightroom Classic catalog and its Lightroom cloud
 state. It is organized by the problem you have, with prerequisites,
-verification, and an exit path for each recipe. Start with <a href="https://github.com/firstpair/lightroom/blob/014d492d77edb96437bab64cd21178ea18f2e0fe/README.md">the
+verification, and an exit path for each recipe. Start with <a href="https://github.com/firstpair/lightroom/blob/914ed5e72d99614e7762c43950007756f0b19585/README.md">the
 repository README</a> for the available commands and supported
 configuration.</p>
 <p>The reference environment was macOS on Apple silicon, Lightroom
@@ -319,7 +319,7 @@ admission roster</td>
 </table>
 <h2 data-number="1.2" id="which-parts-are-supplied-as-code"><span class="header-section-number">1.2</span> Which parts are supplied as
 code</h2>
-<p>The <a href="https://github.com/firstpair/lightroom/blob/014d492d77edb96437bab64cd21178ea18f2e0fe/README.md">README</a>
+<p>The <a href="https://github.com/firstpair/lightroom/blob/914ed5e72d99614e7762c43950007756f0b19585/README.md">README</a>
 describes the current executable package. It contains our own
 installation/verification CLI, native performance adapters, synthetic
 controls, codecs and lifecycle helper under the MIT license. It imports
@@ -340,8 +340,8 @@ those Adobe modules are not redistributed.</p>
 <tr>
 <td>Bounded map/count reuse, isolated C copying, point tracking, paired
 map transport, date equivalence and startup renewal</td>
-<td>Configurable source in <a href="https://github.com/firstpair/lightroom/tree/014d492d77edb96437bab64cd21178ea18f2e0fe/templates/runtime">templates/runtime</a>
-and <a href="https://github.com/firstpair/lightroom/blob/014d492d77edb96437bab64cd21178ea18f2e0fe/scripts/manage.py">scripts/manage.py</a>;
+<td>Configurable source in <a href="https://github.com/firstpair/lightroom/tree/914ed5e72d99614e7762c43950007756f0b19585/templates/runtime">templates/runtime</a>
+and <a href="https://github.com/firstpair/lightroom/blob/914ed5e72d99614e7762c43950007756f0b19585/scripts/manage.py">scripts/manage.py</a>;
 fresh manual native qualification required</td>
 </tr>
 <tr>
@@ -352,7 +352,7 @@ default</strong></td>
 </tr>
 <tr>
 <td>Destination-folder admission</td>
-<td><a href="https://github.com/firstpair/lightroom/blob/014d492d77edb96437bab64cd21178ea18f2e0fe/examples/folder_resolver.lua">An
+<td><a href="https://github.com/firstpair/lightroom/blob/914ed5e72d99614e7762c43950007756f0b19585/examples/folder_resolver.lua">An
 authored example adapter</a>, requiring independent preservation
 admission; it is not automatically dispatched</td>
 </tr>
@@ -1893,8 +1893,8 @@ from a rendering comparison. Read complete referenced settings, not just
 a nullable legacy adjustment flag.</p>
 <p><strong>Procedure.</strong> Compare the three representations field
 by field: current catalog, current source/sidecar, preserved reference.
-In two retained examples, the Photo DNGs lacked Camera Raw edits present
-in the catalog/reference while dozens of other scalars agreed.
+In two retained examples, the source DNGs lacked Camera Raw edits
+present in the catalog/reference while dozens of other scalars agreed.
 Camera-era file times versus later Lightroom-save reference times were
 consistent with an older/unflushed/restored source, but the writer was
 unproved. The badge alone did not identify that history.</p>
