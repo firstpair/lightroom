@@ -5,9 +5,9 @@
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <meta name="author" content="FirstPair contributors" />
-  <meta name="dcterms.date" content="2026-10-12" />
+  <meta name="dcterms.date" content="2026-11-10" />
   <meta name="description" content="A practical cookbook of verified Lightroom repairs, preservation gates and version-sensitive performance mechanisms." />
-  <title>Classify identity before merging or deleting</title>
+  <title>Map and clone Classic previews into Cloud precisely</title>
   <style>
     div.sitenav { display: flex; flex-direction: row; flex-wrap: wrap; }
     span.navlink { flex: 1; }
@@ -32,7 +32,6 @@
       margin: 0 0.8em 0.2em -1.6em;
       vertical-align: middle;
     }
-    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
   </style>
   <link rel="stylesheet" href="book.css" />
 </head>
@@ -48,86 +47,62 @@
 </div>
 <div class="sitenav">
 <span class="navlink">
-<span class="navlink-label">Next:</span> <a href="chapter-027.html" accesskey="n" rel="next">Route native fingerprints by format</a>
+<span class="navlink-label">Next:</span> <a href="chapter-027.html" accesskey="n" rel="next">Test offline rendering and editing without overstating Undo</a>
 </span>
 <span class="navlink">
-<span class="navlink-label">Previous:</span> <a href="chapter-025.html" accesskey="p" rel="previous">Recover verification after a successful native action</a>
+<span class="navlink-label">Previous:</span> <a href="chapter-025.html" accesskey="p" rel="previous">Reuse offline converter-built Smart Previews</a>
 </span>
 </div>
 </nav>
 <h2 data-number="1.24"
-id="classify-identity-before-merging-or-deleting"><span
-class="header-section-number">1.24</span> Classify identity before
-merging or deleting</h2>
-<p><strong>Prerequisites.</strong> Retain both versions and independent
-catalog/cloud records. Write down which identity is needed for the
-intended action.</p>
-<table>
-<colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
-</colgroup>
-<thead>
-<tr>
-<th>Evidence</th>
-<th>What it supports</th>
-<th>What remains unproved</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Filename/counter resemblance</td>
-<td>A search candidate</td>
-<td>Same camera, exposure, bytes, or safe duplicate</td>
-</tr>
-<tr>
-<td>Capture time, camera/serial, complete exposure UID</td>
-<td>Exposure provenance</td>
-<td>RAW-conversion pixel equality or whole bytes</td>
-</tr>
-<tr>
-<td>Current native-original fingerprint match</td>
-<td>Native matcher correspondence</td>
-<td>Pure pixel or whole-file equality</td>
-</tr>
-<tr>
-<td>Stable full SHA plus size</td>
-<td>Whole-file byte identity</td>
-<td>Interchangeable edits, virtual copies, or cloud records</td>
-</tr>
-<tr>
-<td>Full decode</td>
-<td>Structural/decoder success for that file</td>
-<td>Original provenance or another file’s identity</td>
-</tr>
-<tr>
-<td>Native rendered image under denied originals</td>
-<td>Functional preview use in that control</td>
-<td>Full-resolution source recovery or all-library eligibility</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Procedure.</strong> Route by indexed filename/path/native
-fingerprint candidates, then inspect current capture/camera/serial and
-retained original-name evidence. A same-second import hash can belong to
-a different camera. A DNG or JPEG alternative may represent an exposure
-without being interchangeable with its source. If a bounded header shows
-a declared RAW strip extending past the stable file length, hold it from
-Add and repeated known-failing decode; search for an intact original or
-qualify preview-only salvage separately.</p>
-<p><strong>Verify.</strong> Record the consulted scope and current
-associations. Native fingerprint candidates that intentionally lack a
-peer native oracle remain candidates. An empty candidate-match array is
-not necessarily a mismatch. A duplicate-looking cloud record can contain
-independent edits even when it shares a file with another record.</p>
-<p><strong>Undo.</strong> Keep source versions until preservation,
-current-reference, settings, association, and action-specific gates all
-pass. Archive differing versions under truthful content identities
-rather than overwriting the accepted master.</p>
-<p><strong>Limits.</strong> A finite search with no peer is not
-universal proof of absence. Filename digits are not independent
-camera-counter evidence. Byte equality does not authorize merging
-records or deleting one copy.</p>
+id="map-and-clone-classic-previews-into-cloud-precisely"><span
+class="header-section-number">1.24</span> Map and clone Classic previews
+into Cloud precisely</h2>
+<p><strong>Prerequisites.</strong> Apps are normally closed for file
+publication. Bind each exact Classic image/file UUID to its current
+Cloud asset, requested native proxy SHA, literal native destination and
+settings/auxiliary facts. APFS source and destination placement must
+support cloning. Preserve the destination’s accepted prior bytes and
+metadata.</p>
+<p><strong>Procedure.</strong> Use a clone with an independent inode
+rather than a hard link: later writes can diverge while initial bytes
+remain equal. Keep a no-overwrite intent journal for new destinations.
+For existing cache entries, first prove their accepted whole-byte
+identity and preserve the old inode or a verified rollback before a
+separately authorized exchange. Retain the exact native path, including
+any collision suffix; UUID-only filename formulas can be wrong. A JPEG
+original can legitimately have a DNG proxy.</p>
+<p>The full 170-photo album control had current native proxy SHA
+equality for every Classic preview, 116 matching existing Cloud copies
+and 54 uncached entries. Settings were already local; there were no
+local originals or pending original downloads and no server master link.
+That specific gate supported preview-only work; generic Make Available
+Offline can have a different original-download scope.</p>
+<p><strong>Verify.</strong> Compare every source/destination SHA, stable
+identities and protected filesystem metadata, then check ordinary native
+adoption. The initial 170 invocation published 54 new entries but held
+before the first existing-file exchange over an OS-added provenance
+attribute. Its recovery explicitly retained that exact qualified
+attribute, preserved all other metadata, and processed only the
+untouched 116. The composite proves all 170 publications without forging
+a successful original invocation.</p>
+<p>A normal offline-album action did not immediately register the 54
+entries. A later consistent native roster proved all 170 local proxy
+paths/annotations, no proxy demand, local settings and offline marking.
+That stronger observation supersedes the earlier hold; it does not
+identify the exact adopting action or prove 170 independently traced
+offline renders.</p>
+<p>The larger publication independently audited 473,531 bindings.
+Publication, native recognition, rendered use and edit readiness remain
+separate acceptance steps.</p>
+<p><strong>Undo.</strong> Preserve prior Cloud entries and exact owned
+journals. Withdraw unused owned additions or reverse an authorized
+exchange only after native ownership and later work are accounted for. A
+cache clone is not a backup on another device, and adopting a file is
+not grounds to remove its original.</p>
+<p><strong>Limits.</strong> A missing expected proxy SHA needs a
+separately qualified identity route. The known-SHA recipe cannot
+silently admit that population. The two legacy tests below used such a
+narrower route and qualify only their tested class.</p>
 </body>
 </html>

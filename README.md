@@ -12,6 +12,13 @@ The optional [C2PA auxiliary extractor](docs/BIGTABLE-AUXILIARIES.md) reads an
 isolated APFS copy of closed Classic BigTable storage and exports only exact
 requested payloads. It does not publish cache files, register them or change Sync.
 
+Development now also includes reviewed preview-pipeline components under
+`scripts/preview_pipeline/`. See [development layout](docs/development-layout.md)
+and [OPUS-HANDOFF.md](OPUS-HANDOFF.md). Local operational investigations belong
+in the ignored `.private/` workspace, never in public commits. These components
+do not yet constitute a portable native preview generator or a completed
+catalog takeover.
+
 ## What the performance code addresses
 
 | Mechanism | Guarded change | Limits |

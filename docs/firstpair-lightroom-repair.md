@@ -36,8 +36,24 @@ The [README](../README.md) describes the current executable package. It contains
 | Location repair, import, normal preview creation, collections and ordinary retries | Supported UI/native workflows plus the recipes below; no universal bulk mutator included |
 | Converter cache publication, format-specific fingerprints, Cloud APFS preview placement and exact-XMP adoption | Documented verified research and manual/native procedures; the starter does not install a general cache publisher or bulk settings bridge |
 | Typed preservation and completed-action verification recovery | Reusable methodology and a held-stream example; retain local incident-specific receipts |
+| Backup proof before deletion, damaged-original replacement and offline browsing | Owned by the sibling phindex, DNG Compare and diskproxy books; the recipes below link them and add only the Lightroom side |
 
 Source/syntax/temporary-installation tests qualify the public packaging boundary. The accepted private native controls qualify the reference catalog and builds. Neither substitutes for the actual callback, equality and restoration receipts from a new installation.
+
+## Where it fits
+
+This book is one of nine on the FirstPair photo tools. Each owns one part, and
+[The FirstPair Photo Stack](https://firstpair.org/books/photostack/) shows how they fit together.
+
+- **[tiffgraph](https://firstpair.org/books/tiffgraph/)** walks a TIFF or DNG file's structure under a fixed grammar and finds its editable XMP packet.
+- **[phidentify](https://firstpair.org/books/phidentify/)** computes a photo's identities: SHA-256, DNG raw blocks, image data, block marks, Lightroom fingerprint, metadata record and preserved digest, and the skeleton that rebuilds a file from an edited copy.
+- **[phindex](https://firstpair.org/books/phindex/)** keeps those identities and a skeleton for every file of a volume, aligns two volumes by content, and restores a file as it was before a metadata edit.
+- **[DNG Compare](https://firstpair.org/books/dng-compare/)** compares pairs and preserves one side byte for byte as deltas against the other, restorable even after the other side is edited, with a searchable metadata section, through `dngc`.
+- **[Semantic Unison](https://firstpair.org/books/semantic-unison/)** synchronizes photo trees, sending metadata edits without resending image bytes, keeps the versions it replaces as small skeletons, and preserves what a shuttle disk brings into the same archives.
+- **[packdir](https://firstpair.org/books/packdir/)** keeps directories of small files as SQLite archives that still work like plain files.
+- **[Tursolite](https://firstpair.org/books/tursolite/)** is the SQLite and Turso layer under packdir, DNG Compare and Mechanic.
+- **[diskproxy](https://firstpair.org/books/diskproxy/)** serves a folder as a virtual disk, such as previews with camera metadata spliced in, and captures ratings into sidecars.
+- **[Lightroom Repair](https://firstpair.org/books/lightroom-repair/)** repairs Lightroom Classic catalogs, previews and Sync without forging their state.
 
 ## Stage and qualify the public installer
 
@@ -87,6 +103,9 @@ Stop future checks with `scripts/manage.py disable --root /absolute/private-inst
 | Several files look like duplicates | Which identity has actually been proved? | [Classify identity](#classify-identity-before-merging-or-deleting) |
 | A converter preview or shared cache seems reusable | Do current native identities and actual adoption agree? | [Converter reuse](#reuse-offline-converter-built-smart-previews), [Cloud clones](#map-and-clone-classic-previews-into-cloud-precisely) |
 | A metadata badge conflicts with expected edits | Which catalog, sidecar or embedded fields differ? | [Metadata divergence](#reconcile-catalog-xmp-ratings-and-dates) |
+| You want to delete originals that a backup should already hold | Is every source file accounted for by content, and can it be restored byte for byte? | [Prove a backup](#prove-a-backup-holds-every-photo-before-deleting-it) |
+| A photo will not render or edit, though its thumbnail looks fine | Is its raw data truncated, and does an intact conversion of the same exposure exist? | [Replace a damaged original](#replace-a-damaged-original-with-its-intact-conversion) |
+| The originals are offline and you want to cull in another application | Can previews carry camera metadata, and where do the ratings go? | [Browse offline](#browse-and-rate-with-the-originals-offline) |
 
 ## Establish a recovery boundary
 
@@ -115,6 +134,67 @@ A native observation must run in the correct owner. Lightroom's SDK/UI Lua state
 **Undo.** Close the read transaction and diagnostic resources. There should be no catalog state to undo.
 
 **Limits.** Persisted SQLite rows are not an Adobe-server acknowledgement. A read-only transaction is a logical snapshot, not proof that the physical database family remained unchanged. Never write Lightroom status, revision, queue, availability, or completed flags through an external database connection.
+
+## A read-only check changes the closed catalog's sidecars
+
+**Symptom.** A later closed-catalog check refuses a new WAL/SHM family even
+though the Main file identity is unchanged. A read-only SQLite connection can
+still participate in WAL bookkeeping. Checking only the preparation reader can
+miss readers inside worker preflight, current-row validation or alias queries.
+
+**Prerequisites.** Establish actual normal Classic closure, settle its helpers,
+and retain the operation's process/descriptor observations and resource owner.
+Bind the Main identity, companion state, permitted jobs and a finite reader
+lifetime. An absent process or an empty WAL alone does not establish this
+boundary.
+
+**Procedure.** In a qualified closed-catalog workflow, route every Main query
+through the same bounded immutable reader contract. Keep indexed query-plan,
+row-cardinality, argument/job, before/after identity and close-ownership checks.
+Use `mode=ro&immutable=1` only when that contract establishes a stable database
+and accounts for its WAL state. SQLite documents that immutable mode omits
+locking and change detection; a changing file can yield incorrect results.
+[SQLite URI parameters](https://www.sqlite.org/uri.html).
+
+**Verify.** Exercise the actual emitted worker reader expressions against a
+disposable database with the production job parser. Verify that no sidecars
+appear and that stale gates and substituted jobs refuse before querying. Then
+verify a real publication followed by its next closed-epoch continuation.
+Source tests alone do not qualify that native sequence.
+
+**Undo.** Preserve the original refusal and successful earlier publications.
+Do not remove WAL/SHM files or rewrite the expected state to make a check pass.
+Resolve uncertain owners first; obtain a fresh normal lifecycle boundary when
+needed and issue a distinct request. Do not repeat a pending native operation.
+
+**Limits.** This is not an immutable-read recipe for an open or changing catalog.
+It does not authorize ignoring committed WAL frames, externally writing Main,
+or treating a known read-only sidecar change as proof of broader integrity.
+
+## Verify a completed receiver without replaying its initial transfer
+
+**Prerequisites.** Retain the accepted native transfer result, its source and
+destination scope, original direction policy, adopted owner record and declared
+preview aliases. Distinguish that historical acceptance from current state.
+
+**Mechanism.** An initial receiver may force one source toward its destination.
+After takeover, the destination can contain newer catalog edits and newly built
+previews. Repeating the forced profile is a write operation, not a coherence
+check. Native discovery-cache reuse does not make that direction safe.
+
+**Verify.** Authenticate the saved acceptance and owner-adoption controls. At an
+authorized owned boundary, compare the current owner, exact alias targets and
+expected volume/directory identities, then verify the current catalog launch,
+application version and required startup phases. Keep later generated previews
+and any subsequent synchronization direction in a separate reviewed scope.
+Reusing the saved native assurance does not prove current whole-tree equality.
+
+**Undo and limits.** This verification does not change data or transfer authority.
+On a mismatch, retain evidence and stop before synchronization. Do not rerun an
+old forced profile, overwrite a newer catalog, or rehash/recopy the whole cache
+merely to repeat an already accepted receiver. A changed source or conflicting
+scope needs a new direction and preservation review. Server convergence remains
+a separate native observation.
 
 ## Repair locations without reimporting
 
@@ -302,6 +382,61 @@ The retained reuse publication covers 473,531 asset bindings across 471,373 phys
 
 **Limits.** A preview cannot replace a missing full-resolution original for every purpose. Two legacy render controls do not establish modern external-XMP readiness or current Classic offline editing for the whole library.
 
+## Isolate a stalled Smart Preview batch
+
+**Prerequisites.** Preserve the exact requested photo IDs, batch intent, returned callbacks and existing previews. Keep ownership of the native task until it has actually stopped. A responsive window or low CPU use alone does not establish completion.
+
+**Procedure.** Cancel the progress task normally. If its callback remains pending, quit Classic normally, handle its task confirmation explicitly, and reopen only after native closure and resource reconciliation. Do not delete preview caches or replay the pending batch. Reconcile valid registrations and existing preview files before choosing controls.
+
+Select one exact JPEG and use **Library → Previews → Build Smart Previews** independently of the SDK batch loop. When Classic asks whether to build all photos or only one, choose **Build One**. Test the first pending input separately, then a small mixed batch. Verify the selected IDs before every menu action; never accept a default **Build All** confirmation accidentally.
+
+**Verify.** Distinguish recognizing an existing cache file from generating a new preview. In one Classic 15.6 recovery, single JPEG/HEIC controls recognized cached files; a subsequent five-photo control had no preview files beforehand and produced five nonempty, validly registered previews through the Library menu. The bulk SDK callback had stalled. This demonstrates the tested UI route, without establishing the cause of the stalled callback or completion of the remaining queue.
+
+Subsequent fresh SDK controls also returned normally: one JPEG, a six-file JPEG/HEIC batch, and a 25-file HEIC/JPEG/DNG batch. Each returned the exact requested created-ID set with zero failures; nonempty preview files, valid registrations and unchanged original-file metadata were independently checked. This supports restarting with bounded small batches, while preserving the earlier stalls as unresolved evidence. It does not establish that cached-but-unregistered files caused those stalls.
+
+A later continuation stalled again within a 25-file call after 675 completed files. After normal recovery, its first missing input worked individually and the remaining nine missing previews built together. Ten partial cache outputs and seven older cached files were recognized through individual native selection without rebuilding; their file metadata stayed unchanged. This reconciled the affected inputs without establishing a damaged photo or the stall's cause. Preserve partial outputs, distinguish native recognition from generation, and retain the exact unresolved batch rather than retrying the whole queue. A subsequent window stalled after another 150 completed files. A single-file exported-JPEG control wrote its cache output but still did not return the SDK callback; native selection during that pending call did not resolve it. This separates file creation from callback completion. A correlated filename family may be routed to an explicit isolated queue, but must remain in the full scope; it is not evidence that the originals are corrupt. Do not strip metadata or rewrite originals to fit this hypothesis. A subsequent window excluding that filename family completed 5,000 new previews through 200 audited SDK callbacks and normal owner closure. This proves that finite continuation and its checked outputs; it does not establish the cause of the excluded-family stalls or complete the remaining queue.
+
+A returned callback with explicit per-photo errors needs a different path from a callback that never returns. One later 250-photo callback reported 248 creations and two errors. Independent checks accepted the 248 registrations/nonempty files and unchanged originals; both errored HEICs decoded with macOS, which did not establish Adobe decoder compatibility or the cause of its errors. The controller's zero-error assertion had unnecessarily stopped the entire queue. Its successor requires an exact, disjoint partition of all requested photo IDs across created/existing/failed/error results, verifies successful outputs and every original epoch, durably isolates explicit failures without automatic retry, and waits for the parent acknowledgement before continuing. Missing IDs, incomplete accounting or unknown ownership still stop the job. Synthetic controls qualify that policy; each subsequent native window still needs its own output and closure evidence.
+
+For a planned IO handoff, finish the in-flight callback and its independent audit before stopping. A stop marker should produce an ordinary partial-completion receipt with exact attempted, successful, failed and deferred counts, then release the retained owner after actual task and group closure. It must not turn a known operator pause into an unknown-ownership exception. The successor has synthetic controls for stopping after an acknowledgement and before the first call; that source qualification does not replace the next native handoff's completion evidence.
+
+**Undo and limits.** Preserve generated previews and originals. Restore temporary diagnostic menu scripts and retain the original failed/pending receipts. Record recovery closure separately from successful SDK completion. A small successful batch does not qualify an unattended full-catalog controller or justify another large retry.
+
+## Keep a bulk preview build cooperative
+
+**Prerequisites.** Verify the existing Classic executable, PID and launch time;
+record that identity and its observed scheduler state. Keep the SDK owner and
+normal resource/closure protocol. A token reservation does not limit Adobe’s
+internal worker threads.
+
+**Procedure.** On macOS, an operator can put that verified process into Darwin
+background scheduling during an unattended bulk build:
+
+```sh
+/usr/sbin/taskpolicy -b -p "$CLASSIC_PID"
+```
+
+The installed manual and Apple’s source document this process-policy operation
+and its inverse. Check the command’s return status and keep observing actual SDK
+callbacks. [Apple taskpolicy manual](https://github.com/apple-oss-distributions/system_cmds/blob/main/taskpolicy/taskpolicy.8), [Apple implementation](https://github.com/apple-oss-distributions/system_cmds/blob/main/taskpolicy/taskpolicy.c).
+
+**Verify.** A disposable Python control lowered scheduler priority and restored
+it; applying the policy to the bound Classic process also lowered its observed
+priority while preview callbacks continued. These observations do not measure
+contention fairness or an eight-core ceiling.
+
+**Undo.** After bulk work stops/completes, reverify the same process launch before
+returning it to normal scheduling:
+
+```sh
+/usr/sbin/taskpolicy -B -p "$CLASSIC_PID"
+```
+
+Record restoration when performed. A saved undo command is pending cleanup.
+
+**Limits.** This changes scheduling, not core affinity, a CPU quota or an RSS cap.
+It does not settle native calls, release leases or authorize another build.
+
 ## Reuse offline converter-built Smart Previews
 
 **Prerequisites.** Originals remain retained and stable. Pin the installed converter version and explicit output options. Use a fresh scratch destination and an exact source/output manifest; never accept the converter's default destination if it could overwrite originals. The private cache layout and native preview-identity rules need separate current qualification.
@@ -451,11 +586,201 @@ For identity routing, use the actual indexed filename leading key while retainin
 
 **Limits.** Native original matching is not pure pixel equality. Pixel equality is not interchangeable develop settings. Byte equality is not automatic duplicate-deletion authority. Keep conversion variants and virtual copies until an action-specific preservation decision is made.
 
+## Prove a backup holds every photo before deleting it
+
+**Symptom.** A source tree, such as `/Volumes/Archive/Photos`, should already be
+held by a backup, such as `/Volumes/Backup/Photos`, and you want to free the
+source. The backup was made over years: folders moved, files were renamed,
+re-dated or rewritten with new metadata, so a path-by-path comparison reports
+thousands of differences that may or may not matter.
+
+**Prerequisites.** Both trees are mounted and stable for the duration of the
+run; nothing imports, converts or edits into either. Install the indexer from
+[phindex](https://firstpair.org/books/phindex/) and `dngc` from
+[DNG Compare](https://firstpair.org/books/dng-compare/); those books own their
+installation, options and archive layout. Choose an archive directory that is not
+on the source you mean to delete. Know which Lightroom catalog references the
+source, because deleting it makes those photos missing in that catalog.
+
+**Mechanism.** Index both trees, so that every file has its identities: SHA-256,
+DNG raw blocks, image data, Lightroom's fingerprint and a metadata record.
+
+```sh
+phindex --db source.sqlite --root /Volumes/Archive/Photos --workers 8
+phindex --db backup.sqlite --root /Volumes/Backup/Photos --workers 8
+```
+
+Then account for the source in the backup by content rather than by name.
+`phindex align` groups files into units (a raw with its JPEG and sidecar),
+matches each unit by its strongest shared identity, and flags moved, renamed
+and split units. Units with no counterpart are reported as `left-only`; files
+not yet read as `not-indexed`.
+
+```sh
+phindex align --left source.sqlite --left-root /Volumes/Archive/Photos \
+  --right backup.sqlite --right-root /Volumes/Backup/Photos --out align-report/
+```
+
+`dngc run` turns that accounting into a preserved, restorable record. With the
+indexes it pairs files through `phindex align`, settles unchanged pairs without
+reading them, and keeps every source file in one of three forms: identical to its
+backup counterpart, a verified delta against that counterpart, or a full copy
+when the backup has none. `--metadata phindex` takes metadata from the indexes
+and writes a searchable metadata section.
+
+```sh
+dngc run /Volumes/Archive/Photos /Volumes/Backup/Photos /Volumes/Backup/source-proof \
+  --index source.sqlite backup.sqlite --metadata phindex
+dngc verify /Volumes/Backup/source-proof --restore-sample 50
+```
+
+Equal raw pixels are not permission to delete. Two files with the same raw
+image can differ in the DNG wrapper, embedded previews, XMP, ratings, keywords
+and develop history; the source copy may carry the only record of edits made
+after the backup. That is why the archive keeps a delta for every pair whose
+bytes differ, instead of declaring the pair equivalent and dropping the
+difference.
+
+**Verify.** Read `align-report/summary.json` and account for every `left-only`
+and `not-indexed` unit: each must either be preserved as a full copy by the run
+or be deliberately excluded with a reason. Require `dngc verify` to exit 0; it
+checks the byte records, deltas and originals, the metadata index and that the
+comparison finished, and `--restore-sample N` restores N records at random and
+checks their SHA-256. While the source still exists, restore a few files of your
+own choosing, including a renamed one and one with a metadata difference, with
+`dngc restore ARCHIVE RELATIVE_PATH OUTPUT`, and compare each with the source
+file byte for byte. Only then delete, and settle the source in Lightroom's terms:
+relink the catalog's photos to the backup through Lightroom
+([Repair locations](#repair-locations-without-reimporting)) or accept that the
+catalog will show them as missing.
+
+**Undo.** Nothing above writes to the source or the backup tree; the indexes and
+the archive are new files. After deletion, `dngc restore ARCHIVE RELATIVE_PATH
+OUTPUT` rebuilds any source file byte for byte, and `dngc versions` lists the
+contents a path has had.
+
+**Limits.** A delta is rebuilt against its backup file, so the archive and the
+backup tree are one unit: keep both, keep the backup's files unedited, and keep a
+second copy of the archive on another device if the source was the only other
+copy. `--metadata phindex` records come from the exiftool-rs engine, a separate
+metadata identity from Perl ExifTool; never compare an archive made one way with
+one made the other. A random restore sample is evidence, not proof for every
+record. This cookbook links the owning books for their tests and qualification;
+it has no retained deletion control of its own, and the procedure says nothing
+about cloud copies, which Lightroom manages separately.
+
+## Replace a damaged original with its intact conversion
+
+**Symptom.** An original DNG is truncated on disk: Lightroom cannot build a
+preview or reports the file as damaged, and editing fails, yet Finder,
+Quick Look or `sips` thumbnails look fine. Elsewhere, an earlier converter's
+output of the same exposure, such as an Adobe DNG Converter run kept on
+`/Volumes/Backup`, is intact.
+
+**Prerequisites.** Detect damage at the pixel level, not from preview renders.
+Thumbnailing tools such as `sips` render the embedded preview, which can be
+complete while the raw data behind it is truncated. A full raw decode, a pixel
+comparison in [DNG Compare](https://firstpair.org/books/dng-compare/), or a
+header showing a declared raw strip or tile running past the file's stable
+length establishes the damage; see
+[Classify identity](#classify-identity-before-merging-or-deleting). Then prove
+the conversion is the same exposure (capture time, camera and serial, exposure
+UID) and that its own raw data decodes in full. Record the damaged file's path,
+exact name, SHA-256 and size, and the photo's develop settings and history as
+Lightroom shows them.
+
+**Mechanism.** Lightroom finds an original by its path and name. Putting an
+intact file of the same exposure at that exact path and name lets the existing
+catalog record, with its edits, history, virtual copies, collections and cloud
+association, point at readable raw data again, without re-registration.
+
+Quit Classic normally. Move the damaged files aside to a folder outside every
+catalog folder, mirroring their relative paths, and keep them. Copy the
+conversion to the original's path under the original's exact name and
+extension, and check the copy's SHA-256 against the conversion. Reopen Classic,
+select that folder, and rebuild its previews through **Library → Previews**
+(standard or 1:1, and Smart Previews where the photos had them).
+
+Do not write the catalog, re-import the file, or use **Read Metadata from
+Files** to clear a metadata badge: the conversion's embedded XMP is not the
+catalog's current state. Resolve any badge with
+[Reconcile catalog, XMP, ratings and dates](#reconcile-catalog-xmp-ratings-and-dates).
+
+**Verify.** In Lightroom, the folder shows no missing or damaged-file badges, and
+each replaced photo renders at Fit and 100% from the new original. Develop
+settings, history, virtual copies and collection membership match what you
+recorded. On disk, the placed file's SHA-256 equals the conversion's, and the
+damaged files remain intact in the side folder.
+
+**Undo.** Quit Classic, move the conversion out, return the damaged file to its
+path and name, and rebuild the folder's previews. The catalog was not changed by
+the swap, so nothing else needs reversing.
+
+**Limits.** Lightroom's registered fingerprint and any cloud original were
+computed from the old bytes and are not updated by the swap; duplicate detection
+and Sync may treat the new file differently. Develop history was made against
+the old file's raw data: a conversion with a different crop, opcodes, linear or
+mosaic data, or converter version can render the same settings differently, so
+inspect every replaced photo in Lightroom rather than assuming equality. This is
+a procedure, not a retained native control in this cookbook's evidence table.
+
+## Browse and rate with the originals offline
+
+**Symptom.** The originals are on a disk that is not attached, but you want to
+cull them in another application, such as Photo Mechanic, which needs camera
+metadata and a good-sized preview to be useful.
+
+**Prerequisites.** Previews already exist: Lightroom Smart Previews, or a folder
+of regular preview JPEGs. Install [diskproxy](https://firstpair.org/books/diskproxy/)
+and its previews plugin; that book owns the configuration, the map-file format
+and the writable modes. Choose a ratings folder outside the source. Serve
+previews that Lightroom is not rebuilding at the same time: a served file that
+changes after the disk is built fails to read.
+
+**Mechanism.** diskproxy presents a folder as a virtual disk without writing to
+the source. The previews plugin composes files in one of two ways:
+
+- **Smart Previews as DNG stand-ins.** Each Smart Preview is served as a DNG with
+  the large preview JPEG added as an extra embedded preview; every original byte
+  stays where it was. Browsers that show embedded previews see the large JPEG,
+  and the stand-in carries the Smart Preview's camera metadata.
+- **Preview JPEGs with EXIF stubs.** Each JPEG is served with camera, lens,
+  exposure and capture metadata spliced in from a stub: an EXIF-only TIFF per
+  photo, written from the phindex metadata records and stored in one SQLite
+  file (`metadata_store`) rather than as hundreds of thousands of small files.
+
+With a writable view, diskproxy accepts the application's writes into a shadow
+file and the plugin keeps only ratings, labels, color classes and tagged flags,
+as one small XMP sidecar per photo in the ratings folder, with every change
+appended to `JOURNAL.jsonl` together with its previous value. Nothing reaches the
+source.
+
+**Verify.** Check one file through the mounted volume before culling, for
+example `exiftool -b -PreviewImage` piped to `wc -c`, which should give the size
+of its preview JPEG, and confirm that the application shows the camera and
+capture time. After rating a few photos, confirm that their sidecars and journal
+lines exist after `diskproxy stop`, and that the source tree's files are
+unchanged.
+
+**Undo.** `diskproxy stop` unmounts the view and deletes the session's written
+bytes after the final capture. Delete the ratings folder to discard the
+captured ratings. The source and Lightroom's previews were never written.
+
+**Limits.** A Smart Preview stand-in carries reduced raw data, not the original;
+exports from it are previews, not masters. Bringing captured ratings back into a
+Lightroom catalog must go through Lightroom's own writer, and this cookbook has
+no qualified procedure for that yet. Do not write the catalog externally, and do
+not copy the captured sidecars beside the originals and read them with **Read
+Metadata from Files**: that replaces the catalog's metadata from the sidecar, and
+a four-property sidecar is not the photo's full state. Label names and color
+classes also differ between applications. Until a procedure is qualified, keep
+the sidecars and journal as the record of the culling.
+
 ## Reconcile catalog, XMP, ratings and dates
 
 **Prerequisites.** Retain catalog develop/metadata fields, sidecar or embedded XMP, an untouched reference when available, and current capture/camera facts. Separate a metadata conflict badge from a rendering comparison. Read complete referenced settings, not just a nullable legacy adjustment flag.
 
-**Procedure.** Compare the three representations field by field: current catalog, current source/sidecar, preserved reference. In two retained examples, the Photo DNGs lacked Camera Raw edits present in the catalog/reference while dozens of other scalars agreed. Camera-era file times versus later Lightroom-save reference times were consistent with an older/unflushed/restored source, but the writer was unproved. The badge alone did not identify that history.
+**Procedure.** Compare the three representations field by field: current catalog, current source/sidecar, preserved reference. In two retained examples, the source DNGs lacked Camera Raw edits present in the catalog/reference while dozens of other scalars agreed. Camera-era file times versus later Lightroom-save reference times were consistent with an older/unflushed/restored source, but the writer was unproved. The badge alone did not identify that history.
 
 The local PMRate integration writes a rating/label subset in sidecars, not the complete embedded DNG develop state. Its recorded introduction was after the operator's February incident, and a narrow process observation found no active writer. That excludes the newly introduced integration as the original February cause within the retained timeline; it does not identify every other writer or prove current absence indefinitely. Unrelated XMP rewrites can change modification ordering, so “newer” is not a semantic settings comparison.
 
@@ -476,6 +801,20 @@ The advanced recipes above answer observed mechanisms that routine maintenance d
 ## A receipt you can reuse
 
 A useful result says: what was requested, which actual sources/owners were bound, what was submitted once, the genuine terminal, expected native changes, preserved records/bytes, independently observed outcome, closed resources, and remaining holds. A failed result belongs in the same chain.
+
+Worker capture cleanup must preserve that chain on ordinary failures too. The
+`CaptureFinalizer` component seals used sessions, or asks their producers to
+prove a never-used branch, and saves both inventories before closing the
+caller-owned directory descriptors once. An incomplete attempt retains its
+session and original failure; it cannot be relabeled unused. Reporting failure
+after acknowledged closure is recorded separately from ownership uncertainty.
+The parent must still audit every helper before worker reap and reservation
+release. This component does not start or settle processes, publish previews,
+or authorize release. Its fault controls and disposable journal checks qualify
+cleanup ordering, not a production publisher. Keep the old worker disabled until
+its composed lifecycle and inherited-resource checks pass; undo a source-only
+integration by retaining the previous worker and its receipts, never replaying
+a failed publication.
 
 Keep private run receipts locally. Public reports should replace user paths and catalog/cloud identifiers with role names and scoped counts. Publish your own source and synthetic controls; link primary documentation for supported product behavior. Do not redistribute decompiled proprietary bodies or signed credentials.
 

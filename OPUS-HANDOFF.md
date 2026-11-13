@@ -1,0 +1,415 @@
+## Current priority change: Capitola first
+
+The operator now gives Capitola priority. Unison explicitly released its blanket
+hold. A Photo normal startup already launched before this steering has now
+returned an actual exit-zero terminal: all seven startup phases verified and
+Photo IO/CPU/UI resources closed. The catalog is open; Photo has no active
+runtime owner. No ordinal41 continuation was started.40 published previews and
+216 pending jobs remain preserved; recognition is still pending for all40.
+
+Photo holds new bulk IO/native/SDK work for Capitola. Capitola explicitly requests
+no Main takeover: Photo retains exclusive Main lifecycle ownership, and independent
+Cloud work need not wait for Photo. The prepared read-only binding report and
+exact settings-packet investigation remain unexecuted under the operator IO hold.
+Exact current startup/closure and communication receipts are in the private
+handoff. No transport ownership marker, catalog data or Cloud flags changed for
+this handover. Older Unison-first/live-startup notes below are historical.
+
+# Lightroom continuation handoff
+
+Updated 2026-10-19. This current summary supersedes the historical checkpoints
+below. Detailed machine-bound source and receipts remain ignored under
+`.private/photo/OPUS-HANDOFF.md`; never stage that private directory.
+
+## Current scheduling and goal
+
+The full takeover goal is incomplete and blocked on the operator-selected
+Unison-first handback. Photo has no live runtime owner or resource reservation.
+New Photo IO, native, Adobe and SDK dispatches are held; source work may continue
+within its standing CPU share. Main lifecycle authority remains exclusively
+Photo. A released Unison slot does not automatically resume Photo.
+
+The Photo continuation drained normally with an actual exit-zero terminal after
+six closed render/stage/publication phases. Forty additional previews are published
+and storage/registration verified; all 40 await native recognition. 216 jobs remain
+pending in the current 256-image packet. 354 earlier keys were individually
+recognized. Historical Smart Preview coverage remains 106,155 with 12 exceptions;
+no new inventory is claimed. Final verified normal startup and catalog launch
+remain required. 5K refers to resolution across the catalog, not 5,000 images.
+
+## Resume without replay
+
+After explicit handback, bind a fresh normal startup, current launch/input epoch
+and one-use checkpoint to the source-qualified 40-prefix continuation. Resume at
+ordinal 41; preserve all 40 publications and old queues. The new startup and entry
+paths passed four controls each; they have not run natively. The existing 256-job
+packet already has bulk metadata capture. A lightweight reporter is an optional
+optimization, not a new prerequisite for that resume.
+
+Reuse adequate existing previews before rendering the demonstrated remainder.
+Metadata geometry holds are not a missing-preview count. Increasing a logical
+window does not remove the publication-orchestration bottleneck or establish
+catalog-wide throughput. No whole-catalog ETA is established.
+
+## Source and independent qualification
+
+The tracked pipeline now has a bounded 10,000-candidate metadata selector with
+separate completed, published-pending-recognition and authenticated-reusable
+exclusions. 11 targeted tests passed. Authored integer 5K geometry also has new
+rational-target and brute-force tests across all orientations; 4 tests passed.
+Both remain source components, not new native completion or runtime activation.
+Private runtime pins stayed unchanged. Reviewed source is committed locally;
+publication remains pending the scheduling window.
+
+Unison reports closed independent parser, rsync, generated workload, repeated
+worker1/3, private-volume, native-stage and default-upstream loopback scopes.
+Failures and recovery exits remain separate from normal passes. Generated SDK
+fixture preservation is complete in its stated clone-only scope; remaining SDK
+merge, archive/baseline and benchmark acceptance are still incomplete. These
+results neither open Main nor qualify Photo rendering, pixels or server Sync.
+
+The retained import/preview scope is partitioned for later read-only
+reporting, with overlap accounted for. It does not prove current live Main or
+Cloud acceptance and authorizes no repeat import or build.
+
+The initial native receiver acceptance is preserved. Its forced source-to-Lux
+profile must not be replayed as a verification command after local changes.
+Final ownership, alias/volume coherence, current 15.6 lifecycle, persistence and
+actual Sync/error observations remain to be verified at an authorized boundary.
+Preserve original files, edits, history, virtual copies and cloud identities;
+never externally write an open catalog or invent Sync acknowledgements.
+
+---
+## Historical checkpoints (not current dispatch or liveness authority)
+
+## Source preparation during the handover
+
+The authored5K integer sizing module is now also in the tracked pipeline, with
+new rational-target/brute-force tests across all orientations. This is sizing
+intent only: actual output and reuse still require their existing checks.
+Private runtime pins and source remain unchanged.
+
+A separate metadata-window selector now supports up to10,000 candidates while
+preserving every consumed row and distinguishing completed, published awaiting
+recognition and authenticated reusable keys. Eleven targeted synthetic controls
+pass, including the original paging tests and an exact10,000-row boundary.
+The live controller has not adopted it. Native batching, reuse authentication,
+fresh input binding and throughput qualification remain separate. No Photo
+IO/native/SDK work was started for this change.
+
+## Latest scheduling handover
+
+The operator selected Unison first after the current Photo cohort. Photo used
+the existing supported drain boundary and returned an actual exit-zero terminal;
+all six current render, stage and publication phases closed. Forty additional
+previews are published and storage verified, with native recognition pending;
+216 jobs remain explicitly pending. No cancellation or pending-job replay occurred.
+New Photo IO, native and SDK dispatches are held while Unison proceeds. Photo
+source work may continue within its standing CPU share. Main lifecycle authority
+remains exclusively Photo; final verified startup is still required.
+
+## Operator priority: production scale
+
+Stop extending the eight-image lifecycle into a catalog-wide schedule. See
+[production scaling priority](docs/preview-continuous-processing.md) for the
+large-window streaming successor, bounded in-flight work and exception policy.
+The operator has now selected Photo first. Unison confirmed no live IO owner
+and holds new IO, SDK and benchmark dispatch while Photo resumes. The private
+Photo batch is live under its standing CPU share and the existing IO pool.
+Main catalog lifecycle ownership remains exclusively with Photo. Do not start
+a second owner or infer release from a progress marker.
+
+All ten coordinated Unison generated cohorts are closed, including the six
+larger temporary-budget cohorts (reported 180 rows and 540 CLI calls). Saved
+owning-tool terminals, aggregate closure receipts, all ten receipt hashes and
+the final no-child whole-bundle release proof were authenticated. Temporary CPU
+borrowing has ended and the standing shared policy is restored. Subsequent
+mixed Adobe and SDK receiving runs also returned actual exit-zero terminals and
+resource closure. The later operator instruction, rather than those historical
+closures, authorizes the present Photo-first ordering.
+
+CPU-only continuation work now covers the pinned production job parser with
+disposable SQLite readers, gate-bound preparation ordering, emitted parent and
+drain source compilation, and saved-prefix selection with the real durable
+queue. The resumed queue preserves three separately authenticated eight-key
+publications, leaves the other 232 pending and excludes the saved prefix from
+render/publication claims. Partial seeding
+failure retains the queue and original error without retry. Actual retained
+publication, recovery and job-metadata receipts now bind a private resume plan.
+No old queue, catalog or preview payload was reopened for that binding.
+
+The corrected candidate also binds an explicit fresh normal-close boundary for
+a resumed suffix and retains final startup as required until a verified reopen
+exists. The first frozen candidate is preserved as an unstarted predecessor.
+Real constructor controls prohibit catalog connections, subprocesses and locks.
+
+The first resumed group rendered and published successfully. Its following
+group refused a catalog-sidecar mismatch before native rendering. Independent
+recovery closed that owner, preserving the successful publications. The missed
+legacy readers inside the publication worker now use the same immutable reader
+gate as preparation. Targeted disposable SQLite and queue controls passed; the
+corrected batch has started from the next unpublished group after a fresh,
+verified normal startup. Consecutive runtime qualification remains in progress.
+The next group exposed existing legacy preview containers at the publication
+boundary. Their preservation route now retains them on the same volume with
+identity and byte checks before a fresh guarded preparation; it does not delete
+them or relax the publication guards. Disposable retention and composed queue
+controls passed. A fresh continuation is running after a successful guarded
+startup recovery. All twenty-four published keys still require native recognition
+and are not counted as newly completed previews. The interrupted owners and
+original failed startup verifier remain distinct from the later recovery success.
+
+The goal is 5K-resolution previews across the catalog, not a 5,000-image count.
+No whole-catalog ETA is established. Saved timing evidence identifies repeated
+publication and ownership orchestration as the major cost for the observed
+group; its fast native render calls do not establish representative RAW speed.
+Reuse existing adequate previews before rendering the demonstrated remainder.
+
+# Lightroom continuation handoff
+
+Latest reconciled operational state: **106,155 Smart Previews verified**, twelve
+eligible exceptions still open, and **354 monitor-fit preview keys individually
+recognized**. Twenty-four additional keys were published and storage/registration
+verified across subsequent attempts; their native recognition is pending.
+The latest completed continuous packet processed 32 fresh jobs through sixteen
+closed phases: render, single-Ox staging, insert-only publication and native cache
+recognition for each of four serial eight-job cohorts. Its actual owning tool
+returned exit zero; all phase/helper/group/resource receipts and the final
+checkpoint were verified. All seven startup phases were verified at final
+normal reopen. Earlier recoveries and missing historical outer terminals remain
+separate; none was rewritten as a successful exit.
+
+Highest native monitor tiers remain on Quasar; lower tiers and old Ten files
+are preserved. No old Ten preview was deleted. Fresh candidate selection uses
+saved completed-packet evidence and excludes already completed keys. It does not
+turn held rows into completed work. Catalog-wide automatic refill and final
+full-catalog coherence remain incomplete.
+
+The completed recovered packet adopted eight already-published keys without
+rendering, staging or publishing them again, then finished its remaining jobs.
+Its original startup failure and recovery receipts remain separate.
+
+A subsequent finite 256-job production window published its first eight keys,
+then refused the second cohort before native preparation or dispatch. Main's
+recorded file identity was unchanged, but its companions had changed from absent
+to an empty WAL and SHM. The unchanged continuation guard rejected that change.
+All metadata readers and census children had settled; source-bound recovery
+stopped only proven-idle Python owners. The actual outer terminal is a recovery
+exit, not normal packet completion. No Classic, renderer or process group was
+signalled. Fresh full-bundle acquisition and closure proved resource release.
+The eight publications and original queue/failures are preserved; the remaining
+248 jobs are not complete. Do not replay the failed packet or republish its keys.
+
+Three disposable SQLite witnesses reproduce read-only companion creation,
+show that immutable reads avoid that side effect, and demonstrate that immutable
+reads can miss committed nonempty WAL content. Thus changing a URI blindly is
+not a fix. A successor must preserve closed-catalog and WAL/SHM fencing and
+qualify its exact reader/continuation composition before another production run.
+No successor has been installed or dispatched. Classic is currently closed;
+final normal launch remains part of the full takeover objective after the
+explicit scheduling handoff returns.
+
+A private alias-reader candidate passed nine original disposable database
+controls: indexed bounded selection, sidecar preservation, exact gate/expiry
+checks, nonempty-WAL rejection, post-read drift and retained query/close causes.
+It is not integrated or native-qualified. The source audit also identified an
+older current-row reader in publication preparation; both current-row and alias
+reads must use the same authenticated closed-window gate in a new dependency
+closure. Fixing only one connection would leave the problem incomplete. No
+real catalog or photo was opened during these controls.
+
+The source successor now joins the current-row and alias readers under one gate
+and emits preparation source using both. Five composed synthetic SQLite controls
+and four source-emitter controls passed; the job parser in the composed controls
+is an explicit double, so they do not renew production job-schema qualification.
+The emitter preserves the existing Ten readers and publication worker source.
+Parent/preparation dependency integration, explicit published-prefix resume and
+a supported safe drain boundary remain open before native qualification. No
+generated preparation script or native controller was dispatched.
+
+The remaining parent/preparation wiring is now drafted separately, with exact
+gate propagation and dependency-inventory additions. These drafts have not been
+imported, compiled or tested: source/test jobs are held for Unison. The private
+resume checklist requires composed parent controls, production parser coverage,
+a safe drain boundary and preservation of the eight published keys before a
+fresh Photo lifecycle can be scheduled. Existing run sources remain unchanged.
+
+A separate inert controller-author draft now describes that drain boundary:
+honor a bounded stop marker only between authenticated closed cohorts, preserve
+pending/published work in a distinct partial-result state, close the queue, and
+skip a new reopen/recognition phase. It has not been imported, compiled, tested,
+emitted or dispatched. It is not a stop mechanism for an existing controller.
+
+Unison's three requested V6 windows completed serially and closed: genuine-
+upstream compatibility (12 CLI calls), retained-fork compatibility (12), and
+transfer/property regression (54). Actual exit-zero tool terminals and group/FD
+closure are retained. Their grants are consumed; do not redispatch crossed
+pending notices. These generated checks are distinct from the Photo runtime and
+make no camera, performance or whole-project qualification claim. Photo's
+scheduling-only hold for those historical tests is released. The new operator
+handoff for Unison's next work is separate; no old grant is reusable and no
+temporary larger CPU allocation is implied.
+
+The reusable queue accepts up to 10,000 metadata records per ingestion
+transaction. The real controller now connects native render, single-Ox staging,
+insert-only publication and final native recognition for bounded eight-job
+cohorts. This completed packet does not qualify uninterrupted 10,000-render
+execution or catalog-wide throughput. Public synthetic controls and the actual
+local runtime results remain separate evidence.
+See [continuous processing](docs/preview-continuous-processing.md).
+
+Work from this checkout. Repository layout and source-promotion rules are in
+[docs/development-layout.md](docs/development-layout.md).
+
+The complete local operational handoff is
+[.private/photo/OPUS-HANDOFF.md](.private/photo/OPUS-HANDOFF.md). It is deliberately
+ignored: it contains machine paths, catalog identities and private receipt
+references. The complete investigation and retained helper sources live under
+`.private/`; they must not be committed or pushed.
+
+The private `CURRENT-OPERATIONS.json` is the concise current operational entry
+point. The goal, takeover and preview-status JSON files now point to that
+receipt-linked state; their previous exact bytes were preserved separately.
+Older embedded live PIDs, open-catalog labels and Sync observations are
+historical and must not be used as present lifecycle or convergence evidence.
+
+The overall takeover, receiver coherence and full-catalog preview objective is
+**active and incomplete**. Public component tests are not native completion
+receipts. Continue from actual recorded process and ownership evidence, preserve
+old media and previews, and never replay an expired or consumed admission.
+
+Keep the detailed private handoff updated after meaningful work. Update this
+entry point when the repository architecture or continuation location changes.
+
+## Immediate operational priority
+
+Monitor the already-running 32-job packet through actual phase/checkpoint/tool
+closure. Do not prepare an overlapping render window or rerender completed
+packets. At its boundary, source-bind the next selection to the saved four-cohort
+completion evidence and retain all prior exclusions and held rows. Metadata
+selection and START records grant no completion authority. Twelve Smart Preview exceptions remain:
+two calls that never returned, three known HEIC errors and seven exports not yet
+attempted. Preserve these records; diagnose eligibility and the unreturned calls
+before any further attempt. Receiver reuse, retained previews, original media,
+Cloud identity and edits remain protected.
+
+The detailed private handoff binds the latest actual terminals, publication and
+native recognition receipts. It also preserves the full cleanup/date/migration
+scope. Use those current records rather than older live-handle notes below.
+
+## Repository and continuation status
+
+The working branch is `work/photo-preview-integration` in the
+`firstpair/lightroom` repository. Commit and push reviewed portable changes as
+they become ready; keep the full operational handoff current locally. The
+ignored investigation is not a substitute for tracked, reusable implementation.
+
+The latest published eight-image cohort completed all four native recognition
+pairs normally. Independent checks verified the captured cache loads, decodes,
+current catalog bindings, file epochs and actual ownership closure. An earlier
+cohort's recovered composite remains separate historical evidence; it was not
+rewritten as a normal batch success.
+
+A further eight-image render window completed and reopened the catalog through
+the normal verified startup path. Its encoded outputs passed independent full
+hash, image decode and embedded color-profile checks. Both engines staged those outputs and independent checks verified the staged
+copies. Publication then retained ownership before the first capture because
+a global descriptor census exceeded its output bound. A source-bound recovery
+closed the read-only diagnostic processes and idle worker, collected the actual
+outer terminal, verified resource closure and reopened the catalog normally.
+No preview key was written by that failed attempt. A qualified census-handling
+successor is required before a fresh publication attempt; the saved renders and
+staged outputs must not be regenerated. A bounded complete-stream descriptor
+projection is now implemented and tested, including a large synthetic listing
+and an independently checked local read-only capture. It is not yet integrated
+into production publication. A pure reported-capture verifier now also checks
+full raw hashes, counts, projection and serialized settlement fields. Its synthetic
+controls and saved-capture readback passed; it cannot authenticate a real wait or
+release resources. A descriptor-relative file adapter now checks pinned receipts
+and raw captures with nofollow opens, held/visible identity fences and combined
+close-uncertainty preservation. Eight disposable-file controls pass; no live
+process census, media, catalog or production publication was invoked by them.
+The caller still needs an authenticated complete execution journal: a valid
+supplied subset does not prove all attempts are accounted for. Parent
+capture-prefix and retained-failure integration
+must be qualified before a new attempt. Exact process and receipt details
+remain in the private handoff. Full-catalog generation and final
+receiver/coherence audits remain incomplete.
+
+A source-level capture-attempt journal now persists intent before an injected
+capture callback, receipt/projection bindings before returning, and a sealed
+inventory afterward. Eight inert controls passed, including failure ordering,
+no replay after uncertainty and independent projection binding. Its injected
+writer now has a descriptor-relative filesystem adapter with fourteen
+temporary-file/fault controls: exclusive bounded snapshots, file/directory fsync,
+one-shot close and uncertainty preservation. No real process census or publisher
+uses this journal yet. Independent descriptor-relative saved-journal readback is
+now component-qualified with fourteen corruption, ordering and close controls.
+Portable producer/parent composition now joins both directory inventories,
+durable attempts and independently read raw capture/projection bindings; thirteen
+original controls pass with explicit fake capture/process reports. The versioned
+live capture adapter and actual parent lifecycle still require integration and
+qualification. These components grant no process, publication or release
+authority, and do not establish storage-device failure immunity.
+
+The owned-capture adapter now preserves fixed scope and the original uncertainty
+carrier while routing calls into that durable session. Five portable controls and
+four private installation-boundary controls pass; the full 135-test repository
+suite passes on both interpreters. Installation is source-only, with no live
+publisher change, process census, media read or publication. Next: a new worker
+and parent must bind this dependency graph and audit the sealed capture prefix
+before worker reap and resource closure, then qualify actual failure recovery.
+
+The parent capture audit now requires a terminal, unreaped direct worker, verifies
+all journal/raw/projection bindings and reported counts, and rechecks the worker
+reservation before returning. It never reaps or releases grants. Five controls
+pass, plus five private controls using the existing close carrier; the full
+140-test suite passes on both interpreters. A new private worker/publisher schema
+passes read-only preflight for all eight saved keys and 40 sources. Live entry is
+explicitly disabled: separate `ps` helper closure receipts, the complete parent
+ordering and failed-prefix recovery still need qualification. Existing publisher
+versions, admissions and saved renders remain untouched.
+
+The missing process-list helper now has an owned component: durable intent before
+the fixed read-only command, group census before actual wait4, complete bounded
+output and close carriers. Eight component controls pass, including an actual
+process listing and natural-exit fixture recovery. A separate saved-byte checker
+passes six synthetic controls; all 146 repository tests pass. No SDK/media or
+publisher operation occurred. Complete process-attempt inventory and the new
+parent/worker failure path remain to be composed before live publication.
+
+Complete process-attempt inventory is now composed: exact intent/result/raw/seal
+namespace checks, fixed-command host routing, and both helper inventories audited
+while the worker remains unreaped. Nine namespace, seven host and four combined
+parent controls pass. One actual fixed process-list call through the adapter also
+passed saved-inventory readback and closed normally. Full repository tests:148 on
+both interpreters. The new source-only worker preflight still validates all eight
+saved keys, now44sources. No publication or recopy occurred. Next is actual owner
+ordering and ordinary/zero-call failure finalization; live entry remains disabled.
+
+Retained-owner finish ordering is now component-qualified: helper audit before
+actual worker group settlement, then CPU before IO close; unknowns retain their
+original carriers without retry. Three actual original Python/disposable-lock
+cases passed for exit0, exit7 and a parent reporting-callback fault. Explicit
+unused-capture proofs supply no process observation or exclusion authority.
+All168repositorytests pass on both interpreters. Actual monitor-preview publisher
+failure finalization and installation remain pending; none of these source tests
+changed preview data or authorized publication.
+
+The bulk Classic build now runs with the documented macOS background scheduling
+policy so it can yield under contention. The command succeeded and observed
+scheduler priority fell while callbacks continued. This is not a hard eight-core
+cap. Restore normal foreground scheduling for the same verified Classic launch
+when bulk generation stops or completes; that cleanup remains pending and is
+recorded in the private handoff. No automatic restorer is installed. Current
+ownership/adoption, Lux/Ten cache aliases and the stable Classic15.6 launch were
+also rechecked without payload hashing or catalog writes.
+
+Capitola’s local status and handoff now identify the current controller and
+preview location. The older live-looking status was preserved as history. Counts
+separate callback attempts, verified successes, known failures and whole-job
+closure; a running prefix cannot authorize copying under the held IO lease.
+All118,299inputrows resolved by asset identity;12,040current paths outside the
+authorized source root remain recorded/skipped. Eligible distinct files total
+106,167;92aliases bring the ordinary unsynced collection to106,259members.
+The current read-only capacity observation remains above both volume reserves.

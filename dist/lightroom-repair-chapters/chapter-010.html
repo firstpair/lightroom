@@ -5,9 +5,9 @@
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <meta name="author" content="FirstPair contributors" />
-  <meta name="dcterms.date" content="2026-10-12" />
+  <meta name="dcterms.date" content="2026-11-10" />
   <meta name="description" content="A practical cookbook of verified Lightroom repairs, preservation gates and version-sensitive performance mechanisms." />
-  <title>Find an actually missing lookup index</title>
+  <title>A read-only check changes the closed catalog’s sidecars</title>
   <style>
     div.sitenav { display: flex; flex-direction: row; flex-wrap: wrap; }
     span.navlink { flex: 1; }
@@ -32,7 +32,6 @@
       margin: 0 0.8em 0.2em -1.6em;
       vertical-align: middle;
     }
-    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
   </style>
   <link rel="stylesheet" href="book.css" />
 </head>
@@ -48,60 +47,51 @@
 </div>
 <div class="sitenav">
 <span class="navlink">
-<span class="navlink-label">Next:</span> <a href="chapter-011.html" accesskey="n" rel="next">Diagnose SQL affinity before adding an index</a>
+<span class="navlink-label">Next:</span> <a href="chapter-011.html" accesskey="n" rel="next">Verify a completed receiver without replaying its initial transfer</a>
 </span>
 <span class="navlink">
-<span class="navlink-label">Previous:</span> <a href="chapter-009.html" accesskey="p" rel="previous">Repair locations without reimporting</a>
+<span class="navlink-label">Previous:</span> <a href="chapter-009.html" accesskey="p" rel="previous">Get an observation that answers one question</a>
 </span>
 </div>
 </nav>
-<h2 data-number="1.8" id="find-an-actually-missing-lookup-index"><span
-class="header-section-number">1.8</span> Find an actually missing lookup
-index</h2>
-<p><strong>Prerequisites.</strong> Capture the exact predicate and
-current schema from a consistent observation. Confirm that the lookup is
-repeated, that its plan scans, and that no equivalent index already
-covers it. Preserve a verified closed catalog family before a durable
-schema operation.</p>
-<p><strong>Procedure.</strong> Two distinct findings need different
-remedies. The first asset/catalog lookup scanned 701,086 association
-rows. A nonunique <code>(ozAssetId, ozCatalogId)</code> index changed
-that two-key equality lookup to <code>SEARCH</code>. The initial
-closed-catalog operation took 0.496 seconds, preserving row counts and
-probe answers with integrity <code>ok</code>. The later callback went
-from 904.658 seconds in one earlier run to 0.723 seconds after restart,
-with different concurrent activity. It is an observed practical
-improvement, not a controlled universal speed ratio. The public starter
-does not reproduce that original external closed-catalog operation.</p>
-<p>The second predicate was <code>UPPER(sha256)</code>. An ordinary
-index on the untransformed value did not cover that exact expression. A
-schema-only expression index changed its plan. A first closed-catalog
-candidate disappeared on reopen; source review identified table-scoped
-undeclared-index cleanup consistent with the observation, but did not
-trace the exact live deletion. Repeating a prelaunch change would not
-establish persistence.</p>
-<p>The accepted successor creates the exact owned
-<code>UPPER(sha256)</code> index through the native writer after schema
-initialization. Its native transaction checks catalog/owner, existing
-index ownership, row counts, <code>total_changes</code>, integrity and
-the final plan. One native control took 2.024 seconds for 316,566
-metadata rows without changing data rows. The public
-<code>--enable-schema-index</code> route implements this separate opt-in
-mechanism; it needs a verified backup and current native acceptance.</p>
-<p><strong>Verify.</strong> Retain exact index SQL/name, selected-answer
-equality, unchanged data-row hashes or a justified complete equivalent,
-target integrity, native commit/autocommit outcome, and the actual
-indexed plan. Check again after an ordinary restart. A created file or
-successful menu entry is not proof an index survived initialization.</p>
-<p><strong>Undo.</strong> A durable index survives normal quit. Use a
-reviewed native owner-bound removal of the exact owned index, or the
-verified closed-family rollback with later work protected. The starter
-never drops a foreign index to make ownership pass and does not remove
-catalog indexes externally.</p>
-<p><strong>Limits.</strong> Index existence is insufficient when the
-predicate’s expression, affinity or collation differs. Adding a covering
-full-map index in an isolated copy improved one full query only
-modestly; it cannot remove repeated full-map construction. Diagnose that
-separately.</p>
+<h2 data-number="1.8"
+id="a-read-only-check-changes-the-closed-catalogs-sidecars"><span
+class="header-section-number">1.8</span> A read-only check changes the
+closed catalog’s sidecars</h2>
+<p><strong>Symptom.</strong> A later closed-catalog check refuses a new
+WAL/SHM family even though the Main file identity is unchanged. A
+read-only SQLite connection can still participate in WAL bookkeeping.
+Checking only the preparation reader can miss readers inside worker
+preflight, current-row validation or alias queries.</p>
+<p><strong>Prerequisites.</strong> Establish actual normal Classic
+closure, settle its helpers, and retain the operation’s
+process/descriptor observations and resource owner. Bind the Main
+identity, companion state, permitted jobs and a finite reader lifetime.
+An absent process or an empty WAL alone does not establish this
+boundary.</p>
+<p><strong>Procedure.</strong> In a qualified closed-catalog workflow,
+route every Main query through the same bounded immutable reader
+contract. Keep indexed query-plan, row-cardinality, argument/job,
+before/after identity and close-ownership checks. Use
+<code>mode=ro&amp;immutable=1</code> only when that contract establishes
+a stable database and accounts for its WAL state. SQLite documents that
+immutable mode omits locking and change detection; a changing file can
+yield incorrect results. <a
+href="https://www.sqlite.org/uri.html">SQLite URI parameters</a>.</p>
+<p><strong>Verify.</strong> Exercise the actual emitted worker reader
+expressions against a disposable database with the production job
+parser. Verify that no sidecars appear and that stale gates and
+substituted jobs refuse before querying. Then verify a real publication
+followed by its next closed-epoch continuation. Source tests alone do
+not qualify that native sequence.</p>
+<p><strong>Undo.</strong> Preserve the original refusal and successful
+earlier publications. Do not remove WAL/SHM files or rewrite the
+expected state to make a check pass. Resolve uncertain owners first;
+obtain a fresh normal lifecycle boundary when needed and issue a
+distinct request. Do not repeat a pending native operation.</p>
+<p><strong>Limits.</strong> This is not an immutable-read recipe for an
+open or changing catalog. It does not authorize ignoring committed WAL
+frames, externally writing Main, or treating a known read-only sidecar
+change as proof of broader integrity.</p>
 </body>
 </html>

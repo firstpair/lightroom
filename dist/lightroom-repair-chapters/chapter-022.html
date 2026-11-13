@@ -5,10 +5,9 @@
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <meta name="author" content="FirstPair contributors" />
-  <meta name="dcterms.date" content="2026-10-12" />
+  <meta name="dcterms.date" content="2026-11-10" />
   <meta name="description" content="A practical cookbook of verified Lightroom repairs, preservation gates and version-sensitive performance mechanisms." />
-  <title>Test offline rendering and editing without overstating
-Undo</title>
+  <title>Verify a Smart Preview at the level you need</title>
   <style>
     div.sitenav { display: flex; flex-direction: row; flex-wrap: wrap; }
     span.navlink { flex: 1; }
@@ -33,7 +32,6 @@ Undo</title>
       margin: 0 0.8em 0.2em -1.6em;
       vertical-align: middle;
     }
-    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
   </style>
   <link rel="stylesheet" href="book.css" />
 </head>
@@ -49,52 +47,51 @@ Undo</title>
 </div>
 <div class="sitenav">
 <span class="navlink">
-<span class="navlink-label">Next:</span> <a href="chapter-023.html" accesskey="n" rel="next">Recover exact settings without resetting edits</a>
+<span class="navlink-label">Next:</span> <a href="chapter-023.html" accesskey="n" rel="next">Isolate a stalled Smart Preview batch</a>
 </span>
 <span class="navlink">
-<span class="navlink-label">Previous:</span> <a href="chapter-021.html" accesskey="p" rel="previous">Map and clone Classic previews into Cloud precisely</a>
+<span class="navlink-label">Previous:</span> <a href="chapter-021.html" accesskey="p" rel="previous">Separate Sync stages and counts</a>
 </span>
 </div>
 </nav>
 <h2 data-number="1.20"
-id="test-offline-rendering-and-editing-without-overstating-undo"><span
-class="header-section-number">1.20</span> Test offline rendering and
-editing without overstating Undo</h2>
-<p><strong>Prerequisites.</strong> Keep a complete current
-develop/history baseline and exact preview identities. Define actual
-network and original-source denial. For deliberate edit tests, record
-numeric settings before, during, after Undo and after normal reconnect;
-user permission for the edit is required.</p>
-<p><strong>Procedure.</strong> Cold-start Cloud within the defined
-boundary. Select the exact photo, render at Fit and 100%, and
-distinguish enabled controls from a settings-wait or legacy-update
-panel. If authorized, make one recorded edit, undo it normally, then
-observe both Cloud and Classic after Sync resumes.</p>
-<p><strong>Verify.</strong> Two modern controls, a DNG original and a
-JPEG original with DNG proxy, rendered while Wi-Fi was off; the operator
-reported Auto slider changes and Command-Z. The first persisted settings
-stayed unchanged. For the JPEG, a later native Classic observation
-received Auto settings and a new mobile-origin history step: Exposure
-0→0.04, Contrast 0→5, Blacks 0→−14, Vibrance 0→19, Saturation 0→4.
-Editing succeeded, but exact restoration after Undo is <strong>not
-established</strong>. All four Classic/Cloud preview files retained
-their exact bytes and five-field identities even after that settings
-propagation.</p>
-<p>Two later PENTAX K-7 legacy controls rendered Fit/100% under Cloud
-network and original-source denial with exact clone read-access
-descriptors. Their preview identities, Main settings/history and Cloud
-public develop fields stayed protected. Both demanded Legacy Settings
-Update before editing. No Update, Reset, edit or export was attempted.
-Read-access descriptors are observed open access, not kernel read
-traces.</p>
-<p><strong>Undo.</strong> Normal Undo is an operation to verify, not an
-automatic preservation receipt. If post-reconnect values differ,
-preserve the actual edit/history outcome and ask for a separately
-authorized correction rather than silently restoring old values. A
-render-only test should require no develop changes.</p>
-<p><strong>Limits.</strong> Two modern controls do not prove all modern
-external-XMP images ready. Two legacy renders do not qualify every
-absent-proxy-SHA asset or Classic offline editing. An early unchanged
-persisted snapshot can precede later normal settings Sync.</p>
+id="verify-a-smart-preview-at-the-level-you-need"><span
+class="header-section-number">1.20</span> Verify a Smart Preview at the
+level you need</h2>
+<p><strong>Prerequisites.</strong> Bind the exact existing image/file
+UUID and the literal native preview path. Collision suffixes can be
+legitimate; do not derive every path from a UUID formula. Preserve the
+preview and settings baseline.</p>
+<p><strong>Procedure.</strong> Use normal <strong>Build Smart
+Previews</strong> for admitted sources. Adobe describes Classic’s Smart
+Preview status below the Histogram and the ability to work with
+originals disconnected. <a
+href="https://helpx.adobe.com/lightroom-classic/desktop/viewing-photos/lightroom-smart-previews.html">Adobe:
+Smart Previews</a>.</p>
+<p>Then distinguish four checks: a nonempty file; a structurally
+decodable preview; a native application render; and editing with the
+required settings. A full tile decode is stronger than a header check,
+but does not demonstrate the application’s offline setting/profile
+behavior.</p>
+<p><strong>Verify.</strong> Bind decode results to current catalog IDs,
+native status, stable preview bytes and identities, and full decode
+scope. For offline render testing, use an explicit network and
+original-source denial boundary, observe the selected exact image at Fit
+and 100%, and compare settings afterward. Open read-access descriptors
+support a file-use observation; they are not kernel read traces.</p>
+<p>The retained reuse publication covers 473,531 asset bindings across
+471,373 physical previews. Two PENTAX K-7 legacy controls actually
+rendered offline at Fit and 100%. Both still requested Legacy Settings
+Update before editing; no Update, Reset, edit, or export was completed.
+These controls do not establish readiness of the whole preview
+cohort.</p>
+<p><strong>Undo.</strong> Retain the originals and prior preview state.
+Remove only an exact owned newly published cache entry when it is proven
+safe and no native operation still owns it; avoid deleting the whole
+preview family during recovery.</p>
+<p><strong>Limits.</strong> A preview cannot replace a missing
+full-resolution original for every purpose. Two legacy render controls
+do not establish modern external-XMP readiness or current Classic
+offline editing for the whole library.</p>
 </body>
 </html>

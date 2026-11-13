@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="FirstPair contributors" />
+  <meta name="dcterms.date" content="2026-11-10" />
+  <meta name="description" content="A practical cookbook of verified Lightroom repairs, preservation gates and version-sensitive performance mechanisms." />
+  <title>Browse and rate with the originals offline</title>
+  <style>
+    div.sitenav { display: flex; flex-direction: row; flex-wrap: wrap; }
+    span.navlink { flex: 1; }
+    span.navlink-label { display: inline-block; min-width: 4em; }
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="book.css" />
+</head>
+<body>
+<nav id="sitenav">
+<div class="sitenav">
+<span class="navlink">
+<span class="navlink-label">Up:</span> <a href="chapter-002.html" accesskey="u" rel="up">A Lightroom repair cookbook</a>
+</span>
+<span class="navlink">
+<span class="navlink-label">Top:</span> <a href="index.html" accesskey="t" rel="top">FirstPair Lightroom Repair</a>
+</span>
+</div>
+<div class="sitenav">
+<span class="navlink">
+<span class="navlink-label">Next:</span> <a href="chapter-036.html" accesskey="n" rel="next">Reconcile catalog, XMP, ratings and dates</a>
+</span>
+<span class="navlink">
+<span class="navlink-label">Previous:</span> <a href="chapter-034.html" accesskey="p" rel="previous">Replace a damaged original with its intact conversion</a>
+</span>
+</div>
+</nav>
+<h2 data-number="1.33"
+id="browse-and-rate-with-the-originals-offline"><span
+class="header-section-number">1.33</span> Browse and rate with the
+originals offline</h2>
+<p><strong>Symptom.</strong> The originals are on a disk that is not
+attached, but you want to cull them in another application, such as
+Photo Mechanic, which needs camera metadata and a good-sized preview to
+be useful.</p>
+<p><strong>Prerequisites.</strong> Previews already exist: Lightroom
+Smart Previews, or a folder of regular preview JPEGs. Install <a
+href="https://firstpair.org/books/diskproxy/">diskproxy</a> and its
+previews plugin; that book owns the configuration, the map-file format
+and the writable modes. Choose a ratings folder outside the source.
+Serve previews that Lightroom is not rebuilding at the same time: a
+served file that changes after the disk is built fails to read.</p>
+<p><strong>Mechanism.</strong> diskproxy presents a folder as a virtual
+disk without writing to the source. The previews plugin composes files
+in one of two ways:</p>
+<ul>
+<li><strong>Smart Previews as DNG stand-ins.</strong> Each Smart Preview
+is served as a DNG with the large preview JPEG added as an extra
+embedded preview; every original byte stays where it was. Browsers that
+show embedded previews see the large JPEG, and the stand-in carries the
+Smart Preview’s camera metadata.</li>
+<li><strong>Preview JPEGs with EXIF stubs.</strong> Each JPEG is served
+with camera, lens, exposure and capture metadata spliced in from a stub:
+an EXIF-only TIFF per photo, written from the phindex metadata records
+and stored in one SQLite file (<code>metadata_store</code>) rather than
+as hundreds of thousands of small files.</li>
+</ul>
+<p>With a writable view, diskproxy accepts the application’s writes into
+a shadow file and the plugin keeps only ratings, labels, color classes
+and tagged flags, as one small XMP sidecar per photo in the ratings
+folder, with every change appended to <code>JOURNAL.jsonl</code>
+together with its previous value. Nothing reaches the source.</p>
+<p><strong>Verify.</strong> Check one file through the mounted volume
+before culling, for example <code>exiftool -b -PreviewImage</code> piped
+to <code>wc -c</code>, which should give the size of its preview JPEG,
+and confirm that the application shows the camera and capture time.
+After rating a few photos, confirm that their sidecars and journal lines
+exist after <code>diskproxy stop</code>, and that the source tree’s
+files are unchanged.</p>
+<p><strong>Undo.</strong> <code>diskproxy stop</code> unmounts the view
+and deletes the session’s written bytes after the final capture. Delete
+the ratings folder to discard the captured ratings. The source and
+Lightroom’s previews were never written.</p>
+<p><strong>Limits.</strong> A Smart Preview stand-in carries reduced raw
+data, not the original; exports from it are previews, not masters.
+Bringing captured ratings back into a Lightroom catalog must go through
+Lightroom’s own writer, and this cookbook has no qualified procedure for
+that yet. Do not write the catalog externally, and do not copy the
+captured sidecars beside the originals and read them with <strong>Read
+Metadata from Files</strong>: that replaces the catalog’s metadata from
+the sidecar, and a four-property sidecar is not the photo’s full state.
+Label names and color classes also differ between applications. Until a
+procedure is qualified, keep the sidecars and journal as the record of
+the culling.</p>
+</body>
+</html>

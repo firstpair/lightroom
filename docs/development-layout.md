@@ -1,0 +1,308 @@
+# Development layout
+
+The Lightroom checkout owns the repair tooling, catalog shuttle, preview
+pipeline development and operator documentation. Continue work from this
+repository, rather than a separate investigation directory.
+
+| Location | Purpose | Git policy |
+|---|---|---|
+| `scripts/manage.py`, `templates/` | Configurable repair installer and runtime templates | Reviewed public source |
+| `scripts/shuttle.py` | Guarded catalog shuttle | Reviewed public source |
+| `scripts/preview_pipeline/` | Portable, independently reviewed preview components | Public source and synthetic tests |
+| `tests/` | Synthetic and disposable tests for public components | Public, no real catalog fixtures |
+| `docs/` | Cookbook, design and operator guidance | Public, anonymized |
+| `OPUS-HANDOFF.md` | Public continuation entry point | Public, no private receipts |
+| `.private/photo/` | Complete local investigation, machine-bound source, runtime journals and detailed handoff | Ignored, never stage |
+| `.private/photo-helpers/` | Retained temporary operation scripts | Ignored, never stage |
+| `.private/photo-migration-*.json` | Local relocation and identity checks | Ignored, never stage |
+
+## What moved
+
+The former investigation directory was relocated into `.private/photo/` with
+a same-filesystem directory rename. Its former location remains a compatibility
+symlink. Retained temporary helper scripts were also moved into the checkout,
+with compatibility symlinks at their former locations. No catalog or preview
+payload was copied, rewritten or deleted by this relocation.
+
+Compatibility links preserve old textual paths, not every possible canonical
+path check. A relocation is not native runtime requalification. Before the next
+operation, inspect its current source, ownership rules, canonical-path checks
+and exact pins. Never rewrite old receipts, refresh a consumed admission, or
+claim a missing parent terminal from a worker receipt.
+
+## Complete descriptor census projection
+
+`scripts/preview_pipeline/descriptor_census.py` consumes a complete, bounded
+`lsof -Fpcftn` stream. It validates every field, hashes all input bytes and
+retains exact protected PID/descriptor/type/name records. Unrelated names do
+not need to occupy the publisher's in-memory capture buffer. The legacy field
+projection keeps every observed PID and, if no protected descriptor exists,
+one actual unrelated name as the nonempty-listing witness. Its smaller listing
+must not be presented as the original raw capture or its total descriptor count.
+
+Protected roots are literal path boundaries, without filesystem resolution.
+Callers must explicitly include catalog sidecar names and admitted aliases;
+protecting a catalog filename does not implicitly include its `-wal` or `-shm`
+siblings. The caller still authenticates the raw capture and its file epoch,
+requires actual command success and stderr policy, proves child/group/FD
+settlement, checks process membership and applies the existing descriptor
+exclusion rules. Parser success is not an ownership or publication grant.
+
+`scripts/preview_pipeline/census_receipts.py` also checks a reported capture
+against the complete raw byte stream: command, reported wait/group/FD fields,
+raw identity shape, full hash, counters and reconstructed projection must agree.
+Its result always carries no resource-release authority. The caller still
+binds the receipt and raw file to the actual invocation, checks held/visible
+file epochs and stderr policy, proves the real owning-tool terminal and applies
+the exclusion rules. The pure verifier neither opens files nor observes or
+signals processes. Source tests do not qualify its production integration.
+
+`scripts/preview_pipeline/census_files.py` adds a file-reading adapter beneath
+a caller-held directory descriptor. It accepts only pinned direct capture
+children, opens files without following symlinks, checks private modes and link
+counts, reads bounded receipt/raw bytes, and fences held and visible file
+identities before closing its own descriptors. Multiple close uncertainties
+preserve their identities and the original failure; descriptors are never
+retried. The borrowed root descriptor stays with its caller. Disposable tests
+cover substitution, replacement during reading and close failures.
+
+This adapter still cannot prove that the supplied inventory includes every
+attempted capture. The production parent must authenticate a complete execution
+journal and audit the capture prefix before reaping its worker or releasing
+grants. Missing records, failed prefixes and uncertain closes require retained
+ownership until independently resolved. No current publisher uses this adapter.
+
+`scripts/preview_pipeline/census_journal.py` supplies the source-level attempt
+state machine: a caller-qualified writer must persist intent before invocation,
+then receipt/projection bindings before returning success, and finally a sealed
+inventory. Invocation or post-invocation persistence failures stop the instance
+and require retained ownership; they never trigger a retry. The reader checks
+the reported sequence against expected receipt pins and independently checked
+capture projections. Eight inert tests cover ordering, missing/substituted
+records, reentry and persistence faults. The writer is injected: these tests do
+not establish durable storage, real child settlement or complete production
+instrumentation.
+
+`scripts/preview_pipeline/census_store.py` supplies the filesystem writer for
+that journal. The original serial owner borrows an authenticated, fresh, empty
+private directory descriptor. Each snapshot consumes an exclusive filename,
+writes bounded JSON, fsyncs the file, closes its descriptor once, and fsyncs the
+directory before returning. It preserves original write errors together with
+cleanup uncertainty and pre-close identities; failed persistence latches without
+replaying the snapshot or retrying an uncertain numeric descriptor. The caller
+retains the directory and authenticates its label. Fourteen temporary-file and
+fault controls cover actual intent-before-call persistence, outcome-flush failure,
+short/interrupted writes, close uncertainty, replacement/symlink refusal and
+owner-thread confinement. These establish the tested component behavior, not
+storage-device failure immunity.
+
+`scripts/preview_pipeline/census_readback.py` independently reads every pinned
+snapshot beneath the retained private directory FD. It checks exact directory
+membership, bounded nofollow reads, private single-link files, held/visible
+epochs, byte hashes, canonical JSON and the complete intent/outcome prefix through
+the final seal. Its immutable result retains no file capability; callers obtain
+a fresh decoded snapshot for the separate raw-capture/projection audit. Fourteen
+controls cover real writer/readback composition and corrupt or omitted records,
+substitution, unsafe paths, replacement and close uncertainty. The caller still
+authenticates producer provenance, the directory label and actual terminal.
+Readback cannot prove historical completeness from an untrusted subset or grant
+release authority.
+
+`scripts/preview_pipeline/census_session.py` composes those components. Its
+producer accepts a separately authenticated capture callback, durably records
+intent/outcome, freezes a complete reported inventory, and stops on any failure
+without replay. The parent-side checker requires the exact journal and capture
+directory inventories, independently reads every raw capture and binds each
+projection to the matching journal outcome. Both sides borrow their directory
+descriptors and never authorize reap or release. Thirteen original temporary-file
+controls cover the composed success path, missing/extra/substituted captures,
+unsealed prefixes, uncertain closes and producer failures. The capture callback
+and process-wait reports are explicit doubles in these controls; no actual lsof,
+catalog or publisher was invoked.
+
+`scripts/preview_pipeline/census_adapter.py` now preserves an existing owned
+capture backend’s exception contract while routing its fixed calls through the
+durable session. Scope changes refuse before invocation; failed/unsealed attempts
+retain the original backend/session error carrier without retry. Five controls
+use actual temporary journals and explicit fake capture/process reports. A private
+source-only installation boundary additionally verifies the complete dependency
+set before changing a host, refuses late or repeated installation, and retains
+existing host source/receipt checks. Four inert-host controls pass. Neither adapter
+is installed in a live publisher. A new source-bound worker, parent audit before
+worker reap, and actual failure/settlement qualification remain necessary before
+publication; old admission schemas do not authorize these successors.
+
+`scripts/preview_pipeline/census_parent.py` adds the parent-side ordering boundary:
+a caller-authenticated direct worker must be terminal and unreaped before the
+capture directories are opened, and remain so after all raw/journal bindings are
+checked. Report counts, namespaces and epochs must agree. Five temporary-file
+controls cover reservation loss and report substitution; process facts and close
+callbacks are explicit doubles. Private controls separately exercise the existing
+close carrier. This helper neither reaps the worker nor releases resource grants.
+The new private worker passes a read-only preflight for the eight saved keys and
+uses a distinct journal-required publisher admission schema. Actual entry is
+explicitly disabled until the separate process-list helper, composed parent and
+failed-prefix ownership paths are qualified. Historical publisher versions and
+admissions remain unchanged.
+
+`scripts/preview_pipeline/process_census.py` separately checks the fixed process-list
+command, intent/outcome scope, reported group/wait facts and complete captured
+bytes. It rejects truncated or duplicate PID rows, changed commands, output
+substitution and claimed release. Six synthetic controls pass; this pure checker
+does not observe processes or authenticate file identities. The private owned
+process-list producer has also passed eight component controls, including an
+actual read-only process listing with intent persisted before spawn, group census
+before actual `wait4`, bounded complete output readback and one-shot FD close.
+No signals or caller-grant release occur. Original fixture deadlines recover by
+natural exit. A separate closed-only checker accepts reported nonzero completion for prefix
+accounting but returns no process rows; the strict success/absence checker still
+requires exit zero, empty stderr and valid complete rows. Eight pure controls
+cover that distinction. The private complete process namespace now binds durable
+intent/result files, raw hashes/epochs and a seal to its exact directory inventory.
+Nine namespace, seven fixed-command installation and four combined parent controls
+pass. A real fixed process-list call through that adapter also passed independent
+saved-inventory readback. The combined parent checks both helper inventories while
+the publication worker remains unreaped; it does not reap or release grants.
+The new worker passes an eight-key, 44-source read-only preflight but remains
+explicitly disabled pending actual owner orchestration and ordinary/zero-call
+failure finalization. These are source/component results, not publication.
+
+`scripts/preview_pipeline/retained_owner.py` composes the parent finish order:
+terminal observation, authenticated complete helper audit, non-signalling worker
+group settlement, then CPU and IO close. Unknown results retain their original
+child/lease/error carriers and cannot be retried. Parent report failures after
+known closure are distinguished from unknown resource ownership. Twelve source
+controls and three actual original Python/disposable-lock worker cases cover exit
+zero, known failure and injected parent reporting failure. Each actual child
+inherited nine disposable lock descriptors; group/wait and whole-bundle reacquire
+passed. This does not qualify the publication worker or canonical IO acquisition.
+
+An explicit unused-capture branch now reports zero attempted callbacks only when
+the original one-use producer and both empty namespaces agree. Any intent,
+callback, changed namespace or uncertainty prevents relabelling a failed attempt
+as unused. Independent readback grants no process observation, protected-path
+exclusion or release authority. Seven unused-session and one adapter controls
+cover this branch. The full repository suite currently has168tests on both
+interpreters. Actual worker failure finalization and owner installation remain
+separate from these components.
+
+Synthetic tests cover a protected record beyond the old capture size, fragmented
+UTF-8 input, malformed/truncated fields, literal path boundaries and resource
+limits. A local read-only process-listing control also compared projected
+records against a separate full-capture scan. Production publication integration
+and its retained-failure lifecycle remain separate qualification work.
+
+## Moving source into the public tree
+
+The private workspace contains reusable implementation alongside one-off
+scripts, private identifiers, generated receipts, binaries and Adobe-derived
+investigation material. Moving it into the checkout does **not** make that
+material suitable for Git. Promote components deliberately:
+
+1. Preserve the historical source and receipts in the private workspace.
+2. Extract authored, reusable code into the appropriate tracked component.
+3. Replace machine paths and identities with explicit inputs. Preserve refusal,
+   ownership and settlement checks; do not relax them to make a run pass.
+4. Add original synthetic tests and record exactly what they qualify.
+5. Review the complete staged diff for personal data, credentials, media,
+   private receipts and Adobe-derived bodies before committing.
+
+The first preview component is `recognition_selection.py`: a pure pair selector
+from an independently verified eight-key publication. It requires actual parent
+tool closure, preserves the whole-publication provenance and creates independent
+pair views. It does not publish files, touch a catalog or call Lightroom.
+
+`workspace_paths.py` resolves one explicitly recorded old-root symlink into
+the relocated workspace. Both roots' identities are checked; unrecorded aliases,
+nested symlinks, traversal and root replacement are refused. It changes no
+receipt strings, performs no payload reads, and supplies no lock or lifetime
+proof. Callers still authenticate metadata and fence their reads.
+
+`inherited_lock.py` verifies an explicitly passed regular-file description and
+confirms its exclusive nonblocking flock. It never opens, closes or unlocks the
+description. A parent can therefore retain a watcher lock across serial helper
+processes, avoiding competing reopen attempts between quit and modal handling.
+Disposable independent contenders verify that child exit does not release the
+parent's copy, and that closing the parent permits fresh acquisition. The local
+optional helper entry passed one read-only inspection with actual settlement;
+normal-quit sequence integration has since completed bounded local close and
+modal-handling windows with actual helper settlement. No installed startup flag was
+changed, and the in-process native renewal timer is not excluded by this lock.
+
+The remaining renderer, publisher, lifecycle coordinator and native cache
+recognition implementation is preserved locally, pending component-by-component
+portability and distribution review. Its existence is not a public installation
+or full-catalog completion claim.
+
+## Runtime continuation
+
+Use the detailed ignored handoff at `.private/photo/OPUS-HANDOFF.md`, plus its
+current state documents and pinned receipts. Keep that handoff current after
+actual terminals, recovery and changes in next action. Keep this public entry
+point focused on architecture and completion limits.
+
+The last local continuation has a normally reopened catalog and eight freshly
+audited preview publications with completed native recognition. The original
+publication parent tool terminal was recovered from its authentic saved session
+event; the earlier evidence-gap audit remains preserved. A separately versioned
+metadata contract uses the relocation resolver and passed the existing
+preservation controls. Four serial recognition runtimes then completed their
+actual callbacks, loads, decodes and settlement, followed by an independent
+audit. The exact private receipts remain in the operational handoff. This
+qualifies that local recognition continuation, not relocation of every remaining
+renderer or an installation on another machine.
+
+Whole-catalog preview generation and final takeover/coherence verification
+remain incomplete. The catalog, original media and installed services remain
+at their existing external locations. This repository migration does not move
+them or change their ownership.
+
+`candidate_page.py` provides bounded, cursor-based selection from authenticated
+planning rows. It retains every consumed exclusion and duplicate-key alias as
+an observation, and does not consume a row beyond a selected batch boundary.
+The caller must authenticate the sealed queue and completed-key evidence,
+perform indexed queries, and freshly bind catalog/source metadata. Its cursor
+records observation progress; it grants no rendering or completion authority.
+The operational rolling controller has not yet adopted this component.
+
+`candidate_window.py` adds a separate metadata window of up to10,000 candidates
+and65,536 observed rows, retaining the original page contract. Authenticated
+completed, published-but-unrecognized and reusable key sets must be disjoint.
+All three exclude a key from render selection, but only the first is labelled
+completed. Every consumed alias or exclusion remains an observation; reaching
+a bound does not prove input exhaustion. The caller must persist its cursor
+and prior selection, authenticate coverage and freshly bind inputs. Five new
+synthetic controls and the six original paging controls pass. This selector
+is not integrated into the live controller and supplies no native admission,
+preview integrity evidence, throughput or catalog-wide completion claim.
+
+`monitor_geometry.py` contains the authored integer sizing intent for a
+non-upscaled5120 by2880 display fit. It requires qualified encoded crop
+dimensions and a known orientation, accounts for floor-aspect rounding and
+chooses a minimal preferred long edge. It rejects catalog sentinels such as
+`uncropped`; it does not derive missing dimensions. New synthetic tests use
+rational targets and an independent brute-force edge search across orientations,
+including small/thin inputs and refusal cases. Actual renderer output, cache
+identity, display viewport and native recognition remain separately required.
+The private runtime keeps its original pinned module; this promotion does not
+replace that module or change an existing native admission.
+
+## Branch publication
+
+Publish reviewed portable work on `work/photo-preview-integration` and keep its
+upstream tracking on `origin`. A push publishes repository source and operator
+documentation; it does not publish ignored operational evidence or qualify a
+native run. Preserve used local source versions and receipts when creating
+successors, and promote reusable implementations with synthetic tests before
+adding them to the tracked tree.
+
+`preentry_refusal.py` is a pure classifier for a reviewed helper refusal before
+UI entry. A supervisor supplies the source digest and exact diagnostic byte
+variants, including separately qualified recorded paths. It also supplies
+independently authenticated actual wait/group observations. Source drift,
+partial diagnostics, callback activity, live helpers and incomplete settlement
+are refused. Original diagnostics are preserved and identified separately;
+the classifier never acquires a lease, signals a process or authorizes a retry.
+Synthetic controls cover both exact path variants and failures of each required
+condition. The local binding additionally accepted the retained real refusal
+without another UI operation. This does not qualify arbitrary helper errors.

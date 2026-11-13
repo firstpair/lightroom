@@ -4,6 +4,13 @@ This repository contains authored repair wrappers and reusable documentation.
 The reference investigation's private `Adobe.md` is an evidence log, not a
 distributable catalog or a completion receipt.
 
+- Continue Photo/preview development from this checkout. Follow
+  `docs/development-layout.md`; the detailed local handoff and unpromoted
+  investigation are under ignored `.private/photo/`. Historical compatibility
+  paths are not a second source repository. Keep private receipts and
+  machine-bound source out of Git; promote reviewed portable components into
+  `scripts/preview_pipeline/` with original synthetic tests.
+
 - Keep `docs/firstpair-lightroom-repair.md` organized by symptoms and recipes.
   Update its prerequisites, mechanism, verification, undo and limits when a
   finding changes what another operator should do. Put dated publication prose
@@ -35,3 +42,32 @@ distributable catalog or a completion receipt.
   `~/src/firstpair/AGENTS.md`. Build from clean, pushed source, verify PDF,
   EPUB and both HTML readers, then publish only this title's artifacts and
   retain the generated FirstPair manifests in the same committed session.
+
+## Reusing the dng-compare metadata engine
+
+Machine-wide toolchain rules live in `~/src/firstpair/AGENTS.md`, section
+"Native Toolchains And Shared Engines On This Machine" (opam switches
+`default` for stock OCaml and `5.4.0+ox` for OxCaml, dune, Rust, the Perl
+ExifTool oracle, the exiftool-rs engine). Follow it here.
+
+- Perl ExifTool remains the engine of record. Records from the exiftool-rs
+  engine carry `ExifTool:DngCompareEngine` and are a separate metadata
+  identity; check that tag and never compare archives or snapshots made by
+  different engines against each other. Known parity gaps are in
+  dng-compare's `XMP.md`.
+- From Python, reuse dng-compare's `portable_metadata.extract(paths)` instead
+  of re-implementing extraction. It honours `DNG_METADATA_BACKEND` (native
+  worker path), `DNG_METADATA_WORKERS` and
+  `DNG_METADATA_ENGINE=exiftool|exiftool-rs`, returns one ExifTool-shaped
+  record per path keyed by `SourceFile`, and reports a failed file as an
+  `ExifTool:Error` member, never as a missing record. Treat that member as a
+  failure, not as empty metadata.
+- The native workers are built in the dng-compare checkout with `make build`
+  and `make build-exiftool-rs`.
+- From OCaml, the `dng-exiftool-rs` package is installed in both opam switches.
+  Add `(libraries dng-exiftool-rs)` and call `Dng_exiftool_rs.extract_json`
+  or `extract_all ~workers`; the stock switch uses a `Domain.spawn` pool and
+  the OxCaml switch a `Domain.Safe.spawn` pool. Reinstall it after a Rust
+  engine rebuild as the firstpair section describes.
+- Tests use disposable synthetic fixtures, never a real catalog or photo
+  archive; source and reference trees stay read-only.

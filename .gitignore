@@ -22,3 +22,6 @@ build/
 tmp/
 .shuttle-private/
 *.private.json
+
+# Local operational workspace: catalogs, receipts, payloads and machine-bound sources.
+.private/
