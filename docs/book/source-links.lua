@@ -9,7 +9,7 @@ function Link(link)
  if link.target:sub(1,3)=='../' then
   local path=link.target:sub(4)
   assert(path~='' and not path:find('..',1,true),'Unexpected relative source link')
-  local kind=path=='templates/runtime' and 'tree/' or 'blob/'
+  local kind=path=='classic/templates/runtime' and 'tree/' or 'blob/'
   link.target=source..kind..commit..'/'..path
  end
  return link

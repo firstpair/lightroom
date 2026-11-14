@@ -11,7 +11,7 @@ separately. Later documentation changes do not imply a new artifact build.
 - [EPUB](https://firstpair.org/lightroom-repair/epub/)
 - [HTML reader](https://firstpair.org/read/lightroom-repair/)
 - [Chapter reader](https://firstpair.org/read/lightroom-repair/chapters/)
-- [HOWTO](../HOWTO.md)
+- [HOWTO](../classic/HOWTO.md)
 
 All 29 manuscript sections were independently checked against the EPUB and
 both HTML editions. The 22-page PDF was rendered and visually reviewed;

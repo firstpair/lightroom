@@ -111,7 +111,7 @@ remains exclusively Photo; final verified startup is still required.
 ## Operator priority: production scale
 
 Stop extending the eight-image lifecycle into a catalog-wide schedule. See
-[production scaling priority](docs/preview-continuous-processing.md) for the
+[production scaling priority](classic/docs/preview-continuous-processing.md) for the
 large-window streaming successor, bounded in-flight work and exception policy.
 The operator has now selected Photo first. Unison confirmed no live IO owner
 and holds new IO, SDK and benchmark dispatch while Photo resumes. The private
@@ -256,7 +256,7 @@ insert-only publication and final native recognition for bounded eight-job
 cohorts. This completed packet does not qualify uninterrupted 10,000-render
 execution or catalog-wide throughput. Public synthetic controls and the actual
 local runtime results remain separate evidence.
-See [continuous processing](docs/preview-continuous-processing.md).
+See [continuous processing](classic/docs/preview-continuous-processing.md).
 
 Work from this checkout. Repository layout and source-promotion rules are in
 [docs/development-layout.md](docs/development-layout.md).

@@ -6,11 +6,12 @@ repository, rather than a separate investigation directory.
 
 | Location | Purpose | Git policy |
 |---|---|---|
-| `scripts/manage.py`, `templates/` | Configurable repair installer and runtime templates | Reviewed public source |
-| `scripts/shuttle.py` | Guarded catalog shuttle | Reviewed public source |
-| `scripts/preview_pipeline/` | Portable, independently reviewed preview components | Public source and synthetic tests |
-| `tests/` | Synthetic and disposable tests for public components | Public, no real catalog fixtures |
-| `docs/` | Cookbook, design and operator guidance | Public, anonymized |
+| `classic/scripts/manage.py`, `classic/templates/` | Lightroom Classic configurable repair installer and runtime templates | Reviewed public source |
+| `classic/scripts/shuttle.py`, `classic/scripts/shuttle_receive.sh` | Guarded catalog shuttle and plain-copy receive | Reviewed public source |
+| `classic/scripts/preview_pipeline/` | Portable, independently reviewed preview components | Public source and synthetic tests |
+| `cloud/` | Lightroom (Cloud) indexes, preview fetch, sync status, proxy registration and C2PA auxiliary tools | Reviewed public source |
+| `classic/tests/`, `cloud/tests/` | Synthetic and disposable tests for public components | Public, no real catalog fixtures |
+| `docs/`, `classic/docs/`, `cloud/docs/` | Cookbook, design and operator guidance | Public, anonymized |
 | `OPUS-HANDOFF.md` | Public continuation entry point | Public, no private receipts |
 | `.private/photo/` | Complete local investigation, machine-bound source, runtime journals and detailed handoff | Ignored, never stage |
 | `.private/photo-helpers/` | Retained temporary operation scripts | Ignored, never stage |
@@ -32,7 +33,7 @@ claim a missing parent terminal from a worker receipt.
 
 ## Complete descriptor census projection
 
-`scripts/preview_pipeline/descriptor_census.py` consumes a complete, bounded
+`classic/scripts/preview_pipeline/descriptor_census.py` consumes a complete, bounded
 `lsof -Fpcftn` stream. It validates every field, hashes all input bytes and
 retains exact protected PID/descriptor/type/name records. Unrelated names do
 not need to occupy the publisher's in-memory capture buffer. The legacy field
@@ -48,7 +49,7 @@ requires actual command success and stderr policy, proves child/group/FD
 settlement, checks process membership and applies the existing descriptor
 exclusion rules. Parser success is not an ownership or publication grant.
 
-`scripts/preview_pipeline/census_receipts.py` also checks a reported capture
+`classic/scripts/preview_pipeline/census_receipts.py` also checks a reported capture
 against the complete raw byte stream: command, reported wait/group/FD fields,
 raw identity shape, full hash, counters and reconstructed projection must agree.
 Its result always carries no resource-release authority. The caller still
@@ -57,7 +58,7 @@ file epochs and stderr policy, proves the real owning-tool terminal and applies
 the exclusion rules. The pure verifier neither opens files nor observes or
 signals processes. Source tests do not qualify its production integration.
 
-`scripts/preview_pipeline/census_files.py` adds a file-reading adapter beneath
+`classic/scripts/preview_pipeline/census_files.py` adds a file-reading adapter beneath
 a caller-held directory descriptor. It accepts only pinned direct capture
 children, opens files without following symlinks, checks private modes and link
 counts, reads bounded receipt/raw bytes, and fences held and visible file
@@ -72,7 +73,7 @@ journal and audit the capture prefix before reaping its worker or releasing
 grants. Missing records, failed prefixes and uncertain closes require retained
 ownership until independently resolved. No current publisher uses this adapter.
 
-`scripts/preview_pipeline/census_journal.py` supplies the source-level attempt
+`classic/scripts/preview_pipeline/census_journal.py` supplies the source-level attempt
 state machine: a caller-qualified writer must persist intent before invocation,
 then receipt/projection bindings before returning success, and finally a sealed
 inventory. Invocation or post-invocation persistence failures stop the instance
@@ -83,7 +84,7 @@ records, reentry and persistence faults. The writer is injected: these tests do
 not establish durable storage, real child settlement or complete production
 instrumentation.
 
-`scripts/preview_pipeline/census_store.py` supplies the filesystem writer for
+`classic/scripts/preview_pipeline/census_store.py` supplies the filesystem writer for
 that journal. The original serial owner borrows an authenticated, fresh, empty
 private directory descriptor. Each snapshot consumes an exclusive filename,
 writes bounded JSON, fsyncs the file, closes its descriptor once, and fsyncs the
@@ -96,7 +97,7 @@ short/interrupted writes, close uncertainty, replacement/symlink refusal and
 owner-thread confinement. These establish the tested component behavior, not
 storage-device failure immunity.
 
-`scripts/preview_pipeline/census_readback.py` independently reads every pinned
+`classic/scripts/preview_pipeline/census_readback.py` independently reads every pinned
 snapshot beneath the retained private directory FD. It checks exact directory
 membership, bounded nofollow reads, private single-link files, held/visible
 epochs, byte hashes, canonical JSON and the complete intent/outcome prefix through
@@ -108,7 +109,7 @@ authenticates producer provenance, the directory label and actual terminal.
 Readback cannot prove historical completeness from an untrusted subset or grant
 release authority.
 
-`scripts/preview_pipeline/census_session.py` composes those components. Its
+`classic/scripts/preview_pipeline/census_session.py` composes those components. Its
 producer accepts a separately authenticated capture callback, durably records
 intent/outcome, freezes a complete reported inventory, and stops on any failure
 without replay. The parent-side checker requires the exact journal and capture
@@ -120,7 +121,7 @@ unsealed prefixes, uncertain closes and producer failures. The capture callback
 and process-wait reports are explicit doubles in these controls; no actual lsof,
 catalog or publisher was invoked.
 
-`scripts/preview_pipeline/census_adapter.py` now preserves an existing owned
+`classic/scripts/preview_pipeline/census_adapter.py` now preserves an existing owned
 capture backend’s exception contract while routing its fixed calls through the
 durable session. Scope changes refuse before invocation; failed/unsealed attempts
 retain the original backend/session error carrier without retry. Five controls
@@ -132,7 +133,7 @@ is installed in a live publisher. A new source-bound worker, parent audit before
 worker reap, and actual failure/settlement qualification remain necessary before
 publication; old admission schemas do not authorize these successors.
 
-`scripts/preview_pipeline/census_parent.py` adds the parent-side ordering boundary:
+`classic/scripts/preview_pipeline/census_parent.py` adds the parent-side ordering boundary:
 a caller-authenticated direct worker must be terminal and unreaped before the
 capture directories are opened, and remain so after all raw/journal bindings are
 checked. Report counts, namespaces and epochs must agree. Five temporary-file
@@ -145,7 +146,7 @@ explicitly disabled until the separate process-list helper, composed parent and
 failed-prefix ownership paths are qualified. Historical publisher versions and
 admissions remain unchanged.
 
-`scripts/preview_pipeline/process_census.py` separately checks the fixed process-list
+`classic/scripts/preview_pipeline/process_census.py` separately checks the fixed process-list
 command, intent/outcome scope, reported group/wait facts and complete captured
 bytes. It rejects truncated or duplicate PID rows, changed commands, output
 substitution and claimed release. Six synthetic controls pass; this pure checker
@@ -167,7 +168,7 @@ The new worker passes an eight-key, 44-source read-only preflight but remains
 explicitly disabled pending actual owner orchestration and ordinary/zero-call
 failure finalization. These are source/component results, not publication.
 
-`scripts/preview_pipeline/retained_owner.py` composes the parent finish order:
+`classic/scripts/preview_pipeline/retained_owner.py` composes the parent finish order:
 terminal observation, authenticated complete helper audit, non-signalling worker
 group settlement, then CPU and IO close. Unknown results retain their original
 child/lease/error carriers and cannot be retried. Parent report failures after

@@ -9,7 +9,7 @@ distributable catalog or a completion receipt.
   investigation are under ignored `.private/photo/`. Historical compatibility
   paths are not a second source repository. Keep private receipts and
   machine-bound source out of Git; promote reviewed portable components into
-  `scripts/preview_pipeline/` with original synthetic tests.
+  `classic/scripts/preview_pipeline/` with original synthetic tests.
 
 - Keep `docs/firstpair-lightroom-repair.md` organized by symptoms and recipes.
   Update its prerequisites, mechanism, verification, undo and limits when a
@@ -28,10 +28,18 @@ distributable catalog or a completion receipt.
 - Do not commit catalogs, media, credentials, signed URLs, personal paths,
   catalog/cloud identifiers, generated private receipts, Adobe bytecode or
   decompiled Adobe module bodies.
+- The repository has two halves: `classic/` (Lightroom Classic installer,
+  runtime templates, shuttle) and `cloud/` (Lightroom (Cloud) tools and guides).
+  The cookbook, book and blog stay in `docs/` because publication builds from
+  there.
 - Use `uv` for Python. Run `uv run --no-project python -m unittest discover -s
-  tests -v` for installer/runtime-template changes. Parser and fixture tests
-  do not replace native qualification.
-- Keep the README's CLI, permission steps, defaults and restoration instructions
+  classic/tests -v` and `uv run --no-project --with lupa python -m unittest
+  discover -s cloud/tests -v` for code changes. Parser and fixture tests do not
+  replace native qualification.
+- Never hold a long write lock on a live Cloud `Managed Catalog.wfindex`;
+  Cloud's own writers give up after about 5 seconds and views freeze until
+  restart. Use `cloud/scripts/freeze_build.py` for index builds.
+- Keep each README's CLI, permission steps, defaults and restoration instructions
   aligned with the implementation. Verify rendered dependency paths and byte
   pins when changing runtime templates.
 - Blog source lives in `docs/blog/lightroom-repair/post.md`. Build

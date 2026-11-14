@@ -1,6 +1,6 @@
 # A Lightroom repair cookbook
 
-This cookbook explains repairs and diagnostic methods developed while recovering a large Lightroom Classic catalog and its Lightroom cloud state. It is organized by the problem you have, with prerequisites, verification, and an exit path for each recipe. Start with [the repository README](../README.md) for the available commands and supported configuration.
+This cookbook explains repairs and diagnostic methods developed while recovering a large Lightroom Classic catalog and its Lightroom cloud state. It is organized by the problem you have, with prerequisites, verification, and an exit path for each recipe. Start with [the repository README](../classic/README.md) for the available commands and supported configuration.
 
 The reference environment was macOS on Apple silicon, Lightroom Classic 15.6, and Lightroom desktop 9.6. Application internals, database schemas, and native request contracts are version dependent. The public package contains our own configurable helpers; a successful private control does not qualify a different app build, catalog, or newly generated installer. In particular, the public affinity correction and durable schema index are disabled by default pending an actual current native qualification.
 
@@ -26,13 +26,13 @@ Use this evidence table to decide which result matches your problem. Counts refe
 
 ## Which parts are supplied as code
 
-The [README](../README.md) describes the current executable package. It contains our own installation/verification CLI, native performance adapters, synthetic controls, codecs and lifecycle helper under the MIT license. It imports necessary implementation modules from the user's installed Lightroom; those Adobe modules are not redistributed.
+The [README](../classic/README.md) describes the current executable package. It contains our own installation/verification CLI, native performance adapters, synthetic controls, codecs and lifecycle helper under the MIT license. It imports necessary implementation modules from the user's installed Lightroom; those Adobe modules are not redistributed.
 
 | Recipe | Public implementation or reference |
 | --- | --- |
-| Bounded map/count reuse, isolated C copying, point tracking, paired map transport, date equivalence and startup renewal | Configurable source in [templates/runtime](../templates/runtime) and [scripts/manage.py](../scripts/manage.py); fresh manual native qualification required |
+| Bounded map/count reuse, isolated C copying, point tracking, paired map transport, date equivalence and startup renewal | Configurable source in [templates/runtime](../classic/templates/runtime) and [scripts/manage.py](../classic/scripts/manage.py); fresh manual native qualification required |
 | SQL-affinity correction and `UPPER(sha256)` expression index | Optional advanced routes in the package; **both disabled by default** |
-| Destination-folder admission | [An authored example adapter](../examples/folder_resolver.lua), requiring independent preservation admission; it is not automatically dispatched |
+| Destination-folder admission | [An authored example adapter](../classic/examples/folder_resolver.lua), requiring independent preservation admission; it is not automatically dispatched |
 | Location repair, import, normal preview creation, collections and ordinary retries | Supported UI/native workflows plus the recipes below; no universal bulk mutator included |
 | Converter cache publication, format-specific fingerprints, Cloud APFS preview placement and exact-XMP adoption | Documented verified research and manual/native procedures; the starter does not install a general cache publisher or bulk settings bridge |
 | Typed preservation and completed-action verification recovery | Reusable methodology and a held-stream example; retain local incident-specific receipts |
@@ -60,7 +60,7 @@ This book is one of nine on the FirstPair photo tools. Each owns one part, and
 Run commands from the repository root and use an absolute path to your intended catalog. The README is authoritative for current CLI requirements. A reviewable first step is:
 
 ```sh
-uv run --no-project python scripts/manage.py install \
+uv run --no-project python classic/scripts/manage.py install \
   --catalog /absolute/Example.lrcat \
   --backup-confirmed --stage-only --dry-run
 ```
@@ -74,18 +74,18 @@ Default staging leaves affinity changes and the durable schema index off. `--ena
 After the genuine native terminal, inspect the receipts with:
 
 ```sh
-uv run --no-project python scripts/manage.py verify \
+uv run --no-project python classic/scripts/manage.py verify \
   --root /absolute/private-install
 ```
 
 After the required actual seven-phase callback/receipt qualification, quit Classic normally before enabling startup automation:
 
 ```sh
-uv run --no-project python scripts/manage.py enable \
+uv run --no-project python classic/scripts/manage.py enable \
   --root /absolute/private-install --accept-menu-automation
 ```
 
-Stop future checks with `scripts/manage.py disable --root /absolute/private-install`, using the same runner. Disable stops automation; follow the README's native restoration rules for any current owned runtime guard. Do not cancel pending requests, force a completion flag, or treat staging/static compilation as a live acceptance.
+Stop future checks with `classic/scripts/manage.py disable --root /absolute/private-install`, using the same runner. Disable stops automation; follow the README's native restoration rules for any current owned runtime guard. Do not cancel pending requests, force a completion flag, or treat staging/static compilation as a live acceptance.
 
 ## Choose the problem before choosing the repair
 
@@ -473,7 +473,7 @@ The larger publication independently audited 473,531 bindings. Publication, nati
 
 ## Register placed clones with Cloud's own proxy loader
 
-**Prerequisites.** Clones already placed and verified against each document's `importSource.proxySHA256`. A fresh Cloud launch under network and original-source denial with zero sockets observed. A closed read-only ledger of every unregistered document with a clone at its literal native path, the full current body, annotation, revision and stored labels. Accessibility permission for one menu selection. `scripts/proxy_register.py` and [docs/CLOUD-PROXY-REGISTRATION.md](CLOUD-PROXY-REGISTRATION.md) supply the tooling.
+**Prerequisites.** Clones already placed and verified against each document's `importSource.proxySHA256`. A fresh Cloud launch under network and original-source denial with zero sockets observed. A closed read-only ledger of every unregistered document with a clone at its literal native path, the full current body, annotation, revision and stored labels. Accessibility permission for one menu selection. `cloud/scripts/proxy_register.py` and [docs/CLOUD-PROXY-REGISTRATION.md](../cloud/docs/CLOUD-PROXY-REGISTRATION.md) supply the tooling.
 
 **Procedure.** Placement alone registers nothing: 465,411 exact clones stayed `needsProxyDownload` for five days with local Smart Preview retention enabled. Issue the ordinary `getProxyPaths` request from one user Script, 256 documents per batch and at most four batches in flight, reading each document before and after through the ordinary asset stream. Approve only the first batch until its after-documents show exactly `{volumeGuid, relativePath, lastSaveTimestamp}` added under `_localOnly.files.proxy["2560"]` and nothing else changed. Skip, never fabricate: an already annotated document, a document whose live body or annotation differs from the ledger, and a native refusal (a status such as `SendNoDownloadableOriginal` instead of a path) are per-row holds. Halt only on request-level protocol or owner failures.
 
@@ -824,7 +824,7 @@ Keep private run receipts locally. Public reports should replace user paths and 
 pending auxiliary downloads. Inspect the actual auxiliary type; content-authenticity
 payloads are distinct from editing masks.
 
-**Method.** The optional [BigTable extraction recipe](BIGTABLE-AUXILIARIES.md)
+**Method.** The optional [BigTable extraction recipe](../cloud/docs/BIGTABLE-AUXILIARIES.md)
 uses an isolated APFS copy of closed Classic storage, raw-byte read-only access,
 and exact requested digest/SHA/size checks. It exports payloads without changing
 Cloud's catalog or cache. The recipe includes prerequisites, verification and undo.
@@ -835,12 +835,12 @@ revisions preserved. Native auxiliary adoption remained pending. This does not
 prove signature validity, offline editing or Sync completion. The public tool has
 synthetic extraction/APFS guard tests; native publication remains a separate step.
 
-Status examples include qualified observations through **2026-10-20**, not a claim that the entire catalog/cloud recovery is complete. Read the README for the current public implementation and release limits.
+Status examples include qualified observations through **2026-10-21**, not a claim that the entire catalog/cloud recovery is complete. Read the README for the current public implementation and release limits.
 
 
 ## Diagnose Cloud throughput and verify native query repairs
 
-Use [Cloud performance diagnosis](CLOUD-PERFORMANCE-DIAGNOSIS.md) to separate
+Use [Cloud performance diagnosis](../cloud/docs/CLOUD-PERFORMANCE-DIAGNOSIS.md) to separate
 preview scheduler capacity, actual HTTP cost limits and database work. Four
 covering indexes and genuine status-table statistics have now been installed
 through the native writer in the reference Cloud 9.6 session. Exact typed query
@@ -857,3 +857,68 @@ tasks, but its longer observed download rate stayed near the earlier baseline
 material sustained speedup. Preserve pending requests, stop new admissions before a
 maintenance pause, retain rollback copies and do not confuse a faster query or
 returned proxy with complete Classic/cloud Sync.
+
+**Correction (2026-10-21).** That native-writer renewal held one write
+transaction for about 40 seconds. Cloud's own index writers give up after about
+5 seconds, so they logged hundreds of "database is locked" errors, and the grid,
+loupe filmstrip and trash views stopped updating until restart. No data was
+damaged, but don't use that method. The next recipe replaces it.
+
+## Re-add Cloud indexes at every launch without disturbing the app
+
+**Symptom.** Sync-status panels, cache-size checks and settings cleanup run
+queries that take seconds each on a large Cloud library. Indexes fix them, but
+Cloud deletes undeclared indexes at every launch.
+
+**Prerequisites.** A backup of `Lightroom Library.lrlibrary` taken while Cloud
+is quit. Statistics from `ANALYZE asset_sync_status_ui` (they persist). Read
+[Cloud indexes](../cloud/docs/CLOUD-INDEXES.md) first.
+
+**Method.** `freeze_build.py` waits for 30 s without database changes, freezes
+Cloud with `SIGSTOP`, takes the write lock without waiting, builds one index,
+commits and resumes Cloud, with an independent resume timer as a backstop.
+`index_renewal.py` runs this once per launch from a LaunchAgent, after a 90 s
+settle and an APFS-clone rollback.
+
+**Verification.** Each query returns identical typed results with the index and
+with `NOT INDEXED` in one snapshot. Cloud's console log shows no "database is
+locked" lines.
+
+**Evidence.** Two live runs froze Cloud for 2.3–10.5 s per index with zero lock
+errors. Cache-size queries dropped to milliseconds. A third index that sped up
+sync-status queries (1.5 s to 0.0001 s) was withdrawn: Lightroom's photo-list
+status lookup picked it and took 10.7 s, which triggered Versions timeouts when
+opening photos. Check every query on a table before adding an index to it.
+
+**Undo.** Unload the LaunchAgent and restart Cloud, which deletes the indexes.
+
+**Limits.** This is an external write to a live Adobe database and is not
+supported by Adobe. Each extra index slows Cloud's own writes slightly.
+
+## Download every Cloud Smart Preview through outages
+
+**Symptom.** "Store all Smart Previews locally" leaves hundreds of thousands
+pending for days.
+
+**Method.** The [preview download controller](../cloud/docs/CLOUD-PREVIEW-DOWNLOAD.md)
+asks Cloud's ordinary `getProxyPaths` for each photo: 12 requests of 32 photos at
+a time. It backs off when a batch comes back as all `CannotSync`, retries
+transient refusals and never retries `SendNoDownloadableOriginal`.
+
+**Evidence.** 87,257 previews downloaded in one overnight run on an 868,000-photo
+library. The 529 refused during a 45-minute outage all succeeded on retry.
+
+**Limits.** Quitting Cloud ends the run. Originals are not downloaded.
+
+## Explain a Cloud Sync indicator that never settles
+
+**Symptom.** Sync keeps showing activity, and View opens an empty list.
+
+**Method.** Decode `asset_sync_status_ui` for your keep-locally configuration
+with the [status-code table](../cloud/docs/CLOUD-SYNC-STATUS.md). In the
+reference library, 3 photos remained. They were imported on an iPad that never
+finished uploading: no server renditions, no thumbnail, and a refusal decided
+from the photo's own record.
+
+**Fix.** Open Lightroom on the importing device while it's online. Don't delete
+the records first, because the deletion syncs to that device too.

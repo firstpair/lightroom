@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!-- Copy to ~/Library/LaunchAgents/org.firstpair.lightroom-cloud-index-renewal.plist and replace every @@...@@.
+     Load with: launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/org.firstpair.lightroom-cloud-index-renewal.plist
+     Unload with: launchctl bootout gui/$(id -u)/org.firstpair.lightroom-cloud-index-renewal -->
+<plist version="1.0">
+<dict>
+	<key>Label</key>
+	<string>org.firstpair.lightroom-cloud-index-renewal</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>/usr/bin/python3</string>
+		<string>@@REPO@@/cloud/scripts/index_renewal.py</string>
+		<string>once</string>
+		<string>--library</string>
+		<string>@@HOME@@/Pictures/Lightroom Library.lrlibrary/@@CATALOG_ID@@</string>
+		<string>--state-dir</string>
+		<string>@@HOME@@/Library/Application Support/FirstPair Lightroom Cloud Indexes</string>
+	</array>
+	<key>StartInterval</key>
+	<integer>30</integer>
+	<key>StandardOutPath</key>
+	<string>@@HOME@@/Library/Application Support/FirstPair Lightroom Cloud Indexes/renewal.log</string>
+	<key>StandardErrorPath</key>
+	<string>@@HOME@@/Library/Application Support/FirstPair Lightroom Cloud Indexes/renewal.err</string>
+</dict>
+</plist>
