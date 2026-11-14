@@ -1,3 +1,34 @@
+## Note for Morrobay: repository reorganized (2026-11-14)
+
+`main` now splits the tooling into `classic/` and `cloud/`. After pulling,
+update anything outside Git that names the old top-level paths, in particular
+machine-bound sources, pins and helper scripts under `.private/photo/` and
+`.private/photo-helpers/`:
+
+| Old path | New path |
+|---|---|
+| `scripts/preview_pipeline/` (Python `scripts.preview_pipeline`) | `classic/scripts/preview_pipeline/` (`classic.scripts.preview_pipeline`) |
+| `scripts/manage.py`, `scripts/shuttle.py`, `scripts/shuttle_receive.sh` | `classic/scripts/` |
+| `templates/`, `examples/` | `classic/templates/`, `classic/examples/` |
+| `tests/test_preview_*.py`, `tests/test_publication_admission.py`, `tests/test_shuttle.py`, `tests/test_package.py` | `classic/tests/` (fixtures import `classic.tests`) |
+| `docs/SHUTTLE.md`, `docs/SHUTTLE-RECEIVE.md`, `docs/PACKAGE-VALIDATION.md`, `docs/preview-continuous-processing.md`, `HOWTO.md` | `classic/docs/`, `classic/HOWTO.md` |
+| `scripts/proxy_register.*`, `scripts/extract_bigtable_aux.py` and their tests | `cloud/scripts/`, `cloud/tests/` |
+| `docs/CLOUD-*.md`, `docs/BIGTABLE-AUXILIARIES.md` | `cloud/docs/` |
+
+File contents of the preview pipeline are unchanged apart from one absolute
+import in `recognition_selection_v2.py`, so source hashes pinned for other
+modules still hold; path-based pins and canonical-path checks do not. Run both
+suites from the repository root before the next operation:
+
+```sh
+uv run --no-project python -m unittest discover -s classic/tests
+uv run --no-project --with lupa python -m unittest discover -s cloud/tests
+```
+
+On Capitola the Alexy catalog is being received from Photo with the plain-copy
+route of `classic/docs/SHUTTLE-RECEIVE.md`; the copy finished and the SHA-256
+comparison was still running when this note was pushed.
+
 ## Current priority change: Capitola first
 
 The operator now gives Capitola priority. Unison explicitly released its blanket
