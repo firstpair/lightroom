@@ -1,6 +1,6 @@
 # Register placed Smart Preview clones with Lightroom Cloud's proxy loader
 
-`scripts/proxy_register.py` makes Lightroom Cloud (desktop) recognize Smart
+`cloud/scripts/proxy_register.py` makes Lightroom Cloud (desktop) recognize Smart
 Preview files that were already cloned into its cache. Placement alone does not
 register anything: in the reference library, 465,411 exact clones sat in
 `proxies/2560` for five days with "Store a copy of all Smart Previews locally"
@@ -52,14 +52,14 @@ per-row hold and continues.
 
 ```sh
 LIB="$HOME/Pictures/Lightroom Library.lrlibrary/<catalog id>"
-uv run --no-project --with msgpack python scripts/proxy_register.py ledger --library "$LIB" --output run/ledger
-uv run --no-project python scripts/proxy_register.py launch --library "$LIB" --output run/launch --deny "<Classic Smart Previews.lrdata>"
-uv run --no-project python scripts/proxy_register.py arm --library "$LIB" --launcher-evidence run/launch/LAUNCHER-EVIDENCE.json \
+uv run --no-project --with msgpack python cloud/scripts/proxy_register.py ledger --library "$LIB" --output run/ledger
+uv run --no-project python cloud/scripts/proxy_register.py launch --library "$LIB" --output run/launch --deny "<Classic Smart Previews.lrdata>"
+uv run --no-project python cloud/scripts/proxy_register.py arm --library "$LIB" --launcher-evidence run/launch/LAUNCHER-EVIDENCE.json \
     --output run --authorization "<who authorized this run and when>"
-uv run --no-project python scripts/proxy_register.py bind --ledger-complete run/ledger/COMPLETE.json --arm run/ARM-<nonce>.json --output run/native
-uv run --no-project python scripts/proxy_register.py stage --run run/native
-uv run --no-project python scripts/proxy_register.py guard --plan run/native/CONTROLLER-PLAN.json --plan-sha256 <sha> &
-uv run --no-project python scripts/proxy_register.py select
+uv run --no-project python cloud/scripts/proxy_register.py bind --ledger-complete run/ledger/COMPLETE.json --arm run/ARM-<nonce>.json --output run/native
+uv run --no-project python cloud/scripts/proxy_register.py stage --run run/native
+uv run --no-project python cloud/scripts/proxy_register.py guard --plan run/native/CONTROLLER-PLAN.json --plan-sha256 <sha> &
+uv run --no-project python cloud/scripts/proxy_register.py select
 ```
 
 The guard refreshes `LIVE-SOURCE-GUARD.lua` every second with the process
@@ -84,7 +84,7 @@ After the controller writes `CONTROLLER_CLOSED` and the guard writes
 `GUARD-NATIVE-CLOSED-OBSERVATION.json`, quit Cloud normally and run
 
 ```sh
-uv run --no-project --with msgpack python scripts/proxy_register.py postaudit --library "$LIB" \
+uv run --no-project --with msgpack python cloud/scripts/proxy_register.py postaudit --library "$LIB" \
     --ledger-rows run/ledger/NATIVE-INPUTS.jsonl --output run/postaudit
 ```
 

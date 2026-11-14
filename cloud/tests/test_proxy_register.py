@@ -85,7 +85,7 @@ class LedgerFixtureTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         base = Path(self.temp.name).resolve()
-        self.library = base / 'Lightroom Library.lrlibrary' / '4ba16cf9c14246758947a0ddbc109900'
+        self.library = base / 'Lightroom Library.lrlibrary' / '0123456789abcdef0123456789abcdef'
         (self.library / 'proxies/2560' / UUID[:3]).mkdir(parents=True)
         (self.library / 'proxies/2560' / UUID2[:3]).mkdir(parents=True)
         (self.library / 'proxies/2560' / UUID[:3] / UUID[3:]).write_bytes(b'clone-bytes')

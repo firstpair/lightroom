@@ -18,7 +18,7 @@ as 64 lowercase hexadecimal characters, and positive integer `fileSize`. Obtain
 these from current read-only evidence; filenames are not identity proof.
 
 ```sh
-uv run --script scripts/extract_bigtable_aux.py \
+uv run --script cloud/scripts/extract_bigtable_aux.py \
   --source "$HOME/Pictures/Lightroom/MyCatalog/MyCatalog.lrcat-data" \
   --manifest /private/path/current-aux-manifest.json \
   --output /private/path/new-aux-recovery
@@ -62,5 +62,5 @@ Run synthetic extraction and existing package checks with:
 
 ```sh
 uv run --no-project --with rocksdict==0.3.29 --with msgpack \
-  python -m unittest discover -s tests -v
+  python -m unittest discover -s cloud/tests -v
 ```

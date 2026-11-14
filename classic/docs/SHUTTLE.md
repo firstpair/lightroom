@@ -1,6 +1,6 @@
 # Move a closed Lightroom catalog between two Macs with Unison
 
-`scripts/shuttle.py` prepares a guarded physical-drive handoff. It synchronizes
+`classic/scripts/shuttle.py` prepares a guarded physical-drive handoff. It synchronizes
 one named catalog folder, retains each Mac's Unison history separately, and
 requires an independent byte-verification receipt before releasing ownership.
 It does not open SQLite, launch Lightroom, merge catalogs, or acknowledge Sync
@@ -163,9 +163,9 @@ prove Main is open. Writable or unknown-access `.DS_Store` descriptors,
 catalog aliases under that name, and all included-file descriptors still hold.
 
 ```sh
-uv run --no-project python scripts/shuttle.py --config /absolute/laptop.private.json status
-uv run --no-project python scripts/shuttle.py --config /absolute/laptop.private.json preflight --tier full --source local
-uv run --no-project python scripts/shuttle.py --config /absolute/laptop.private.json bootstrap --tier full --source local --execute
+uv run --no-project python classic/scripts/shuttle.py --config /absolute/laptop.private.json status
+uv run --no-project python classic/scripts/shuttle.py --config /absolute/laptop.private.json preflight --tier full --source local
+uv run --no-project python classic/scripts/shuttle.py --config /absolute/laptop.private.json bootstrap --tier full --source local --execute
 ```
 
 Without `--execute`, `bootstrap` and `sync` perform preflight only. `status`
@@ -239,7 +239,7 @@ full critical inventories to remain equal to the result. Native database
 validity, media completeness and cloud completion need separate evidence.
 
 ```sh
-uv run --no-project python scripts/shuttle.py --config /absolute/laptop.private.json release --to desktop --receipt /absolute/VERIFIED.json --execute
+uv run --no-project python classic/scripts/shuttle.py --config /absolute/laptop.private.json release --to desktop --receipt /absolute/VERIFIED.json --execute
 ```
 
 Only then unmount Photo normally and connect it to the receiver. The released
@@ -257,8 +257,8 @@ directories; the selected catalog folder may be absent. Its first receiver
 copy is explicitly source-authoritative from Photo:
 
 ```sh
-uv run --no-project python scripts/shuttle.py --config /absolute/desktop.private.json preflight --tier main-core --source photo
-uv run --no-project python scripts/shuttle.py --config /absolute/desktop.private.json bootstrap --tier main-core --source photo --execute
+uv run --no-project python classic/scripts/shuttle.py --config /absolute/desktop.private.json preflight --tier main-core --source photo
+uv run --no-project python classic/scripts/shuttle.py --config /absolute/desktop.private.json bootstrap --tier main-core --source photo --execute
 ```
 
 Independently verify that receiver transfer, install and check its explicitly
@@ -266,7 +266,7 @@ declared excluded Smart Previews link if needed, then accept the receiver's own
 bound verification receipt:
 
 ```sh
-uv run --no-project python scripts/shuttle.py --config /absolute/desktop.private.json accept --receipt /absolute/RECEIVER-VERIFIED.json --execute
+uv run --no-project python classic/scripts/shuttle.py --config /absolute/desktop.private.json accept --receipt /absolute/RECEIVER-VERIFIED.json --execute
 ```
 
 Now open the exact received catalog, check locations and previews, confirm
@@ -387,7 +387,7 @@ original photos that were outside the selected catalog folder.
 Run the repository tests with:
 
 ```sh
-uv run --no-project python -m unittest discover -s tests -v
+uv run --no-project python -m unittest discover -s classic/tests -v
 ```
 
 The bounded tests exercise wrong-volume and app-version rejection, Main

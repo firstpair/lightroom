@@ -1,0 +1,130 @@
+{
+ "description": "Indexes that Lightroom (Cloud) 9.6 drops at every launch and freeze_build.py re-adds. Measured on an 868K-photo library; see cloud/docs/CLOUD-INDEXES.md. Check every index against all of Lightroom's queries on the same table, not only the ones it speeds up.",
+ "indexes": [
+  {
+   "name": "firstpair_purge_volume_cover_v1",
+   "table": "purgeCandidates",
+   "sql": "CREATE INDEX firstpair_purge_volume_cover_v1 ON purgeCandidates(binaryType,hasLocalFile,isPurgeable,volumeGuidUsedByFile,fileSize,contentIdOrSha256)"
+  },
+  {
+   "name": "firstpair_purge_hash_cover_v2",
+   "table": "purgeCandidates",
+   "sql": "CREATE INDEX firstpair_purge_hash_cover_v2 ON purgeCandidates(binaryType,isPurgeable,contentIdOrSha256,hasLocalFile,fileSize)"
+  }
+ ],
+ "queries": [
+  {
+   "name": "status_volume_distinct",
+   "sql": "SELECT DISTINCT prioritizedSyncStatus, volumeGuidUsedByOriginal,\n\t\t\t\t\t\tvolumeGuidUsedByProxy, spaceId\n\t\t\t\t\tFROM asset_sync_status_ui\n\t\t\t\t\tWHERE keepLocallyConfiguration == ?\n\t\t\t\t\t\tAND prioritizedSyncStatus IN ( ?, ?, ?, ?, ? )",
+   "params": [
+    1.0,
+    4.0,
+    8.0,
+    16.0,
+    16777216.0,
+    2.0
+   ],
+   "columns": 4
+  },
+  {
+   "name": "status_distinct",
+   "sql": "SELECT DISTINCT prioritizedSyncStatus\n\t\t\t\t\tFROM asset_sync_status_ui\n\t\t\t\t\tWHERE keepLocallyConfiguration == ?\n\t\t\t\t\t\tAND prioritizedSyncStatus IN ( ?, ?, ?, ?, ?, ?, ?, ? )",
+   "params": [
+    1.0,
+    256.0,
+    512.0,
+    131072.0,
+    262144.0,
+    524288.0,
+    33554432.0,
+    128.0,
+    2147483648.0
+   ],
+   "columns": 1
+  },
+  {
+   "name": "searchable_limit1",
+   "sql": "SELECT prioritizedSyncStatus\n\t\t\t\t\tFROM asset_sync_status_ui\n\t\t\t\t\tWHERE isSearchable == 1\n\t\t\t\t\t\tAND keepLocallyConfiguration == ?\n\t\t\t\t\t\tAND prioritizedSyncStatus IN ( ?, ?, ?, ?, ?, ? )\n\t\t\t\t\tLIMIT 1",
+   "params": [
+    0.0,
+    512.0,
+    131072.0,
+    262144.0,
+    524288.0,
+    2147483648.0,
+    4294967296.0
+   ],
+   "columns": 1
+  },
+  {
+   "name": "aux_local_sum",
+   "sql": "SELECT SUM(fileSize) FROM purgeCandidates WHERE binaryType == ? AND hasLocalFile == 1",
+   "params": [
+    "aux"
+   ],
+   "columns": 1
+  },
+  {
+   "name": "original_volume_sum",
+   "sql": "SELECT SUM(fileSize) FROM purgeCandidates WHERE binaryType == ? AND hasLocalFile == 1 AND isPurgeable == 1 AND volumeGuidUsedByFile == ?",
+   "params": [
+    "original",
+    "CB2B2D86-3BAE-4319-9DB4-D25E6B462D44"
+   ],
+   "columns": 1
+  },
+  {
+   "name": "original_local_sum",
+   "sql": "SELECT SUM(fileSize) FROM purgeCandidates WHERE binaryType == ? AND hasLocalFile == 1",
+   "params": [
+    "original"
+   ],
+   "columns": 1
+  },
+  {
+   "name": "proxy_volume_sum",
+   "sql": "SELECT SUM(fileSize) FROM purgeCandidates WHERE binaryType == ? AND hasLocalFile == 1 AND isPurgeable == 1 AND volumeGuidUsedByFile == ?",
+   "params": [
+    "proxy",
+    "DC67D319-B2B8-4A96-955E-898CC2BCC586"
+   ],
+   "columns": 1
+  },
+  {
+   "name": "proxy_local_sum",
+   "sql": "SELECT SUM(fileSize) FROM purgeCandidates WHERE binaryType == ? AND hasLocalFile == 1",
+   "params": [
+    "proxy"
+   ],
+   "columns": 1
+  },
+  {
+   "name": "xmp_develop_local_sum",
+   "sql": "SELECT SUM(fileSize) FROM purgeCandidates WHERE binaryType == ? AND hasLocalFile == 1",
+   "params": [
+    "xmp_develop"
+   ],
+   "columns": 1
+  },
+  {
+   "name": "xmp_digest_except",
+   "sql": "SELECT DISTINCT contentIdOrSha256 FROM purgeCandidates WHERE binaryType == 'xmp_develop' AND hasLocalFile == 1 AND isPurgeable == 1 EXCEPT SELECT contentIdOrSha256 FROM purgeCandidates WHERE binaryType == 'xmp_develop' AND (isPurgeable == 0)",
+   "params": [],
+   "columns": 1
+  }
+ ],
+ "optional": [
+  {
+   "name": "firstpair_status_ui_keep_prioritized_v1",
+   "table": "asset_sync_status_ui",
+   "sql": "CREATE INDEX firstpair_status_ui_keep_prioritized_v1 ON asset_sync_status_ui(keepLocallyConfiguration, prioritizedSyncStatus)",
+   "note": "DO NOT USE: Lightroom's photo-list status query (CARRAY docId join + keepLocallyConfiguration + prioritizedSyncStatus IN) picks this index and takes 10.7 s (1.5 s even with ANALYZE) instead of 0.0006 s on asset_sync_status_ui_docId, causing Versions 10-second timeouts when opening photos."
+  },
+  {
+   "name": "firstpair_status_ui_configuration_mask_cover_v1",
+   "table": "asset_sync_status_ui",
+   "sql": "CREATE INDEX firstpair_status_ui_configuration_mask_cover_v1 ON asset_sync_status_ui(keepLocallyConfiguration, syncStatuses, assetId)",
+   "note": "~10x faster sync-status bitmask album/asset queries (0.35 s -> 0.036 s) but ~6.5 s private / likely 20-30 s live build; not in the default list"
+  }
+ ]
+}
