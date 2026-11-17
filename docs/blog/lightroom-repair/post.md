@@ -87,10 +87,12 @@ Metadata needed similar care. A conflict badge does not identify which writer ch
 The 16.0 update brought the stalls back. The fixes from 15.6 were pinned to that version and stayed off, so the stock code ran again. Folders moved in the panel showed as missing until restart, new collections didn't appear, and Smart Previews stopped building for about three hours while Classic sat at several hundred percent CPU.
 
 A 90-second profile of every Main database call found the same two causes as before:
+
 - The file triggers took 7 to 39 seconds per DELETE, because of a one-character affinity problem.
 - Classic rebuilt its full image-to-cloud map and count about once a second, because Sync keeps assigning cloud IDs to new imports even while paused.
 
 The three runtime fixes were ported to 16.0. They correct the trigger, answer single-image checks with one indexed row, and keep the map up to date from a change journal. With them in place:
+
 - the triggers dropped to under a millisecond;
 - Main database time fell from 59.5 to 3.4 seconds per 90 seconds;
 - preview building restarted within a minute.
@@ -98,6 +100,7 @@ The three runtime fixes were ported to 16.0. They correct the trigger, answer si
 One lesson was about the installer itself. It refused to change anything unless it could open a clean savepoint. On a busy catalog that never happened, so the fixes stayed off exactly when they were needed most. The installer now installs anyway, touching only temporary objects, and undoes any step that fails.
 
 The cloud uploads had their own long tail. Of 3,236 stuck photos:
+
 - **2,903** cleared with Lightroom's ordinary retry.
 - **319** were waiting on a settings file the server never received. A no-op develop re-save, which nudges exposure and puts it back, made Classic send the file.
 - **The last 18** were Smart Preview uploads still pointing at the drive where the catalog used to live. The files were sitting next to the catalog with exactly the right checksum. Re-registering each preview at its real path sent all 18 within a minute.

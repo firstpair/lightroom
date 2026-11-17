@@ -362,10 +362,12 @@ Inside Lightroom, a five-minute maintenance check renews separately bounded guar
 **Prerequisites.** Lightroom Classic 16.0 and a recent catalog backup. The fixes touch only TEMP objects and the running process, but take the backup anyway.
 
 **Symptom.** After updating to 16.0, folder moves leave folders marked missing or missing from the panel until restart, new collections don't appear, Smart Previews stop building, and Classic sits at several hundred percent CPU. All of these come from MainServer being saturated. The catalog rows are written; only the panels lag. A 90 s profile of every Main database call showed two kinds of work:
+
 - the stock file triggers taking seconds per DELETE;
 - full image→cloud-asset map and `COUNT(*)` rebuilds on every asset-ID change, which Sync keeps making even while paused.
 
 **Procedure.** Build the action with [classic/lrc16](../classic/lrc16/README.md) for your catalog path, restart Classic once so the Scripts menu lists it, then run it after every launch. It installs:
+
 - the `+id_local` trigger correction;
 - the indexed `isImageIdTracked` lookup;
 - the incremental map/count with C copies.
@@ -373,6 +375,7 @@ Inside Lightroom, a five-minute maintenance check renews separately bounded guar
 **Verify.** Read `native.txt` in the run directory. Each phase reports `true`, `ALREADY_ACTIVE` or why it changed nothing. On the trigger phase, `SAME_ROWS … stock=… corrected=…` shows the rows matched and the time saved. Map/count `PROGRESS` lines must show `mismatches=0`. CPU and panel refresh should recover within a minute.
 
 **Install while busy.** If the catalog is busy, a savepoint cannot open. Earlier versions then answered `WAIT_TRANSACTION`, and on a busy catalog that never cleared. The current build installs in autocommit (TEMP objects only) and undoes a partial step:
+
 - if creating the corrected trigger fails, it recreates the original;
 - if map/count stops partway, it drops its TEMP objects.
 
@@ -385,6 +388,7 @@ Inside Lightroom, a five-minute maintenance check renews separately bounded guar
 **Prerequisites.** A read-only view of the Sync store (`<Catalog> Sync.lrdata/<cloud catalog id>/Managed Catalog.mcat` and `.wfindex`, opened with `mode=ro`) and the list of stuck asset IDs. Decide each photo's route from what you find there; the Sync count alone does not tell you.
 
 **Procedure.** Try 1–5 photos per route first. [classic/sync-recovery](../classic/sync-recovery/README.md) generates each action.
+
 1. **An error is recorded** (for example 404 `BinaryMissingError`): run stock **clear errors and retry Sync** on the listed IDs.
 2. **Still 404 after retry:** the revision usually refers to a develop XMP the server never received. A no-op develop re-save makes Classic regenerate and upload the XMP, and re-send the proxy when its link is missing. The re-save nudges exposure by +0.01 and then restores the exact original value. Final settings are identical; each photo gains two history steps.
 3. **No error, but a proxy row sits in `needsBinaryUpload` with `fileMaybeOnOfflineVolume=1`:** the record points to the volume where the catalog used to live, for example after copying it to another Mac. Run the read-only preflight. Re-register only rows whose local preview matches the cloud's SHA, using the proxy-only `setOriginalAndProxyInfo` with `filePath`/`fileSize` left out. Native code hashes the existing file and records its current path.
@@ -392,6 +396,7 @@ Inside Lightroom, a five-minute maintenance check renews separately bounded guar
 Do not rebuild Smart Previews to unstick an upload. A rebuilt preview has a new SHA, and Classic re-sends a proxy only when the local SHA equals the cloud's `importSource.proxySHA256`.
 
 **Verify.** For each photo:
+
 - the error is cleared;
 - the winning revision is listed in the server's `revision_ids`;
 - the photo has no `needsBinaryUpload` row.
