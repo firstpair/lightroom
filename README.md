@@ -8,7 +8,7 @@ The repository has two halves:
 
 | Folder | For | Highlights |
 |---|---|---|
-| [`classic/`](classic/README.md) | **Lightroom Classic** | Performance installer for slow Sync work on huge catalogs, physical-drive catalog shuttle, runtime templates |
+| [`classic/`](classic/README.md) | **Lightroom Classic** | Performance installer for slow Sync work on huge catalogs, [Classic 16.0 runtime fixes](classic/lrc16/README.md), [stuck-upload recovery](classic/sync-recovery/README.md), physical-drive catalog shuttle, runtime templates |
 | [`cloud/`](cloud/README.md) | **Lightroom (Cloud)**, the app named "Adobe Lightroom" | Indexes re-added safely at every launch, full Smart Preview download with outage backoff, sync status decoding, Smart Preview reuse, C2PA auxiliary recovery |
 
 Shared material stays here:
@@ -30,6 +30,8 @@ generator or a completed catalog takeover.
 Nothing here is supported by Adobe. No catalog, photo, preview, credential, private diagnostic tree or Adobe code
 is included. Each folder's README says what its code changes, how it was tested and how to undo it. Back up first
 and read the code before running anything.
+
+For Adobe engineers, [docs/ADOBE-ENGINEERS.md](docs/ADOBE-ENGINEERS.md) lists each product defect with the fix that worked and how it was measured.
 
 ## Test
 

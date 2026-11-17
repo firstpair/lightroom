@@ -8,6 +8,8 @@ The performance package derives from guards actually run in **Lightroom Classic 
 
 No catalog, photo, preview, credentials, private diagnostic tree, Adobe Lua module body or bytecode is included. The performance installer never opens a catalog database; runtime repair SQL goes through Lightroom's own store provider. Optional preview diagnostics use read-only evidence. The startup watcher watches **Classic launches**, not photo folders; it never imports `~/foto` or resumes paused Sync.
 
+**Classic 16.0:** use [lrc16/](lrc16/README.md) for the trigger, point-lookup and incremental-map fixes. They were run natively on 16.0 and are re-applied after each launch. For uploads stuck in Classic, use [sync-recovery/](sync-recovery/README.md): stock retry, develop re-save, and re-registering a moved Smart Preview.
+
 The C2PA auxiliary extractor and other Lightroom (Cloud) tools now live in [`../cloud/`](../cloud/README.md).
 
 ## What the performance code addresses

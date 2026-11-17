@@ -2,7 +2,7 @@
 
 This cookbook explains repairs and diagnostic methods developed while recovering a large Lightroom Classic catalog and its Lightroom cloud state. It is organized by the problem you have, with prerequisites, verification, and an exit path for each recipe. Start with [the repository README](../classic/README.md) for the available commands and supported configuration.
 
-The reference environment was macOS on Apple silicon, Lightroom Classic 15.6, and Lightroom desktop 9.6. Application internals, database schemas, and native request contracts are version dependent. The public package contains our own configurable helpers; a successful private control does not qualify a different app build, catalog, or newly generated installer. In particular, the public affinity correction and durable schema index are disabled by default pending an actual current native qualification.
+The reference environment was macOS on Apple silicon, Lightroom Classic 15.6 and then 16.0, and Lightroom desktop 9.6 and 10.0. Application internals, database schemas, and native request contracts are version dependent. The public package contains our own configurable helpers; a successful private control does not qualify a different app build, catalog, or newly generated installer. In particular, the public affinity correction and durable schema index are disabled by default pending an actual current native qualification.
 
 ## What has actually been repaired
 
@@ -22,6 +22,8 @@ Use this evidence table to decide which result matches your problem. Counts refe
 | Modern Cloud preview reuse | Two offline renders and Auto edits reported; 170 album proxies later natively recognized | JPEG Undo restoration was not established; all 170 were not independently edited offline |
 | Large preview-cache publication | 473,531 asset bindings across 471,373 physical previews published and audited | Cache publication is separate from settings adoption and offline editing |
 | Legacy controls | Two legacy PENTAX photos rendered offline at Fit/100% with original-source denial | Both blocked editing until Legacy Settings Update; no update/reset/edit/export ran |
+| Classic 16.0 stalls after the update | Stock file triggers took 7–39 s per DELETE and Smart Preview building stopped for about 3 hours. After the three 16.0 runtime fixes, the triggers took under 1 ms, Main database time fell from 59.5 s to 3.4 s per 90 s, and preview building resumed at about 105 per minute | Runtime-only; must be re-applied after each launch |
+| Cloud uploads stuck in Classic 16.0 | Of 3,236 stuck photos, 2,903 cleared with stock retry, 319 more after a develop re-save, and 18 stuck Smart Preview uploads after the preview was re-registered at its real path | Each route has its own symptom; rebuilding previews did not help |
 | Exact cached settings | One normally adopted exact XMP, unchanged develop body/revision, Waiting for Settings cleared after cold restart | Zero completed bulk adoption; the 50,443-asset roster is an admission roster |
 
 ## Which parts are supplied as code
@@ -32,6 +34,9 @@ The [README](../classic/README.md) describes the current executable package. It 
 | --- | --- |
 | Bounded map/count reuse, isolated C copying, point tracking, paired map transport, date equivalence and startup renewal | Configurable source in [templates/runtime](../classic/templates/runtime) and [scripts/manage.py](../classic/scripts/manage.py); fresh manual native qualification required |
 | SQL-affinity correction and `UPPER(sha256)` expression index | Optional advanced routes in the package; **both disabled by default** |
+| Classic 16.0 trigger affinity, point lookup and incremental map/count | [classic/lrc16](../classic/lrc16/README.md): one generated Scripts-menu action, run natively on the reference catalog |
+| Stuck upload recovery (retry, develop re-save, preview re-registration) | [classic/sync-recovery](../classic/sync-recovery/README.md): read-only preflight plus generated per-list actions |
+| Durable product fixes for Adobe | [For Adobe engineers](ADOBE-ENGINEERS.md) |
 | Destination-folder admission | [An authored example adapter](../classic/examples/folder_resolver.lua), requiring independent preservation admission; it is not automatically dispatched |
 | Location repair, import, normal preview creation, collections and ordinary retries | Supported UI/native workflows plus the recipes below; no universal bulk mutator included |
 | Converter cache publication, format-specific fingerprints, Cloud APFS preview placement and exact-XMP adoption | Documented verified research and manual/native procedures; the starter does not install a general cache publisher or bulk settings bridge |
@@ -351,6 +356,51 @@ Inside Lightroom, a five-minute maintenance check renews separately bounded guar
 **Undo.** Disable future launch checks and renewal through the published uninstall instructions, retain their receipts, and let current owned native requests finish. Allow normal bounded restoration or a normal quit once safe. Remove only files owned by this installation. Do not force-kill Lightroom or cancel requests as an uninstall method.
 
 **Limits.** Some fixes are runtime-only; the SHA expression index is a schema change. Reapplication after launch is not an object surviving quit, an indefinite lifetime guarantee, or a benchmark of sustained throughput. An app update or changed dependency must fail the pin gate and require a fresh qualification.
+
+## Apply the Classic 16.0 fixes after each launch
+
+**Prerequisites.** Lightroom Classic 16.0 and a recent catalog backup. The fixes touch only TEMP objects and the running process, but take the backup anyway.
+
+**Symptom.** After updating to 16.0, folder moves leave folders marked missing or missing from the panel until restart, new collections don't appear, Smart Previews stop building, and Classic sits at several hundred percent CPU. All of these come from MainServer being saturated. The catalog rows are written; only the panels lag. A 90 s profile of every Main database call showed two kinds of work:
+- the stock file triggers taking seconds per DELETE;
+- full image→cloud-asset map and `COUNT(*)` rebuilds on every asset-ID change, which Sync keeps making even while paused.
+
+**Procedure.** Build the action with [classic/lrc16](../classic/lrc16/README.md) for your catalog path, restart Classic once so the Scripts menu lists it, then run it after every launch. It installs:
+- the `+id_local` trigger correction;
+- the indexed `isImageIdTracked` lookup;
+- the incremental map/count with C copies.
+
+**Verify.** Read `native.txt` in the run directory. Each phase reports `true`, `ALREADY_ACTIVE` or why it changed nothing. On the trigger phase, `SAME_ROWS … stock=… corrected=…` shows the rows matched and the time saved. Map/count `PROGRESS` lines must show `mismatches=0`. CPU and panel refresh should recover within a minute.
+
+**Install while busy.** If the catalog is busy, a savepoint cannot open. Earlier versions then answered `WAIT_TRANSACTION`, and on a busy catalog that never cleared. The current build installs in autocommit (TEMP objects only) and undoes a partial step:
+- if creating the corrected trigger fails, it recreates the original;
+- if map/count stops partway, it drops its TEMP objects.
+
+**Undo.** Quit Classic.
+
+**Limits.** Runtime-only: every launch needs a new run. Checked on 16.0 only; any other version fails closed on the SQL text check.
+
+## Unstick cloud uploads without rebuilding previews
+
+**Prerequisites.** A read-only view of the Sync store (`<Catalog> Sync.lrdata/<cloud catalog id>/Managed Catalog.mcat` and `.wfindex`, opened with `mode=ro`) and the list of stuck asset IDs. Decide each photo's route from what you find there; the Sync count alone does not tell you.
+
+**Procedure.** Try 1–5 photos per route first. [classic/sync-recovery](../classic/sync-recovery/README.md) generates each action.
+1. **An error is recorded** (for example 404 `BinaryMissingError`): run stock **clear errors and retry Sync** on the listed IDs.
+2. **Still 404 after retry:** the revision usually refers to a develop XMP the server never received. A no-op develop re-save makes Classic regenerate and upload the XMP, and re-send the proxy when its link is missing. The re-save nudges exposure by +0.01 and then restores the exact original value. Final settings are identical; each photo gains two history steps.
+3. **No error, but a proxy row sits in `needsBinaryUpload` with `fileMaybeOnOfflineVolume=1`:** the record points to the volume where the catalog used to live, for example after copying it to another Mac. Run the read-only preflight. Re-register only rows whose local preview matches the cloud's SHA, using the proxy-only `setOriginalAndProxyInfo` with `filePath`/`fileSize` left out. Native code hashes the existing file and records its current path.
+
+Do not rebuild Smart Previews to unstick an upload. A rebuilt preview has a new SHA, and Classic re-sends a proxy only when the local SHA equals the cloud's `importSource.proxySHA256`.
+
+**Verify.** For each photo:
+- the error is cleared;
+- the winning revision is listed in the server's `revision_ids`;
+- the photo has no `needsBinaryUpload` row.
+
+Read the generated log for each native callback.
+
+**Undo.** Server-accepted revisions cannot be withdrawn. The re-save leaves identical final settings plus two history steps, and the proxy re-registration changes only the recorded path.
+
+**Limits.** These calls use private modules, checked on Classic 16.0. Repointing already-synced records can create one metadata-only revision each, accepted by the server, with no binary sent. Previews whose local bytes differ from the cloud's copy must not be repointed, because that would upload a replacement.
 
 ## Separate Sync stages and counts
 
