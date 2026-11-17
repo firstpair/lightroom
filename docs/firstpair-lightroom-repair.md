@@ -36,7 +36,7 @@ The [README](../classic/README.md) describes the current executable package. It 
 | SQL-affinity correction and `UPPER(sha256)` expression index | Optional advanced routes in the package; **both disabled by default** |
 | Classic 16.0 trigger affinity, point lookup and incremental map/count | [classic/lrc16](../classic/lrc16/README.md): one generated Scripts-menu action, run natively on the reference catalog |
 | Stuck upload recovery (retry, develop re-save, preview re-registration) | [classic/sync-recovery](../classic/sync-recovery/README.md): read-only preflight plus generated per-list actions |
-| Durable product fixes for Adobe | [For Adobe engineers](ADOBE-ENGINEERS.md) |
+| Durable product fixes for Adobe | [For Adobe engineers](../docs/ADOBE-ENGINEERS.md) |
 | Destination-folder admission | [An authored example adapter](../classic/examples/folder_resolver.lua), requiring independent preservation admission; it is not automatically dispatched |
 | Location repair, import, normal preview creation, collections and ordinary retries | Supported UI/native workflows plus the recipes below; no universal bulk mutator included |
 | Converter cache publication, format-specific fingerprints, Cloud APFS preview placement and exact-XMP adoption | Documented verified research and manual/native procedures; the starter does not install a general cache publisher or bulk settings bridge |
