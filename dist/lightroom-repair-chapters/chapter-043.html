@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="FirstPair contributors" />
+  <meta name="dcterms.date" content="2026-11-17" />
+  <meta name="description" content="A practical cookbook of verified Lightroom repairs, preservation gates and version-sensitive performance mechanisms." />
+  <title>Diagnose Cloud throughput and verify native query
+repairs</title>
+  <style>
+    div.sitenav { display: flex; flex-direction: row; flex-wrap: wrap; }
+    span.navlink { flex: 1; }
+    span.navlink-label { display: inline-block; min-width: 4em; }
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="book.css" />
+</head>
+<body>
+<nav id="sitenav">
+<div class="sitenav">
+<span class="navlink">
+<span class="navlink-label">Up:</span> <a href="chapter-002.html" accesskey="u" rel="up">A Lightroom repair cookbook</a>
+</span>
+<span class="navlink">
+<span class="navlink-label">Top:</span> <a href="index.html" accesskey="t" rel="top">FirstPair Lightroom Repair</a>
+</span>
+</div>
+<div class="sitenav">
+<span class="navlink">
+<span class="navlink-label">Next:</span> <a href="chapter-044.html" accesskey="n" rel="next">Re-add Cloud indexes at every launch without disturbing the app</a>
+</span>
+<span class="navlink">
+<span class="navlink-label">Previous:</span> <a href="chapter-042.html" accesskey="p" rel="previous">Recover exact C2PA auxiliary payloads</a>
+</span>
+</div>
+</nav>
+<h2 data-number="1.41"
+id="diagnose-cloud-throughput-and-verify-native-query-repairs"><span
+class="header-section-number">1.41</span> Diagnose Cloud throughput and
+verify native query repairs</h2>
+<p>Use <a
+href="https://github.com/firstpair/lightroom/blob/4a59cd317e4f51f8d2badcada6baba2d0a083fcf/cloud/docs/CLOUD-PERFORMANCE-DIAGNOSIS.md">Cloud
+performance diagnosis</a> to separate preview scheduler capacity, actual
+HTTP cost limits and database work. Four covering indexes and genuine
+status-table statistics have now been installed through the native
+writer in the reference Cloud 9.6 session. Exact typed query results,
+schema scope and closed resources were verified; actual application
+plans confirm the photo-ID route. Representative native SQL checks
+improved from seconds to milliseconds, with write-cost and cache-state
+limits documented.</p>
+<p>One private startup renewal has now completed after a normal restart,
+with native commit/close and restoration of its own temporary pause. Its
+first held attempt remains preserved; future-launch reliability and
+public Cloud automation remain separate. A budget-twenty HTTP trial
+produced ten simultaneous cost-two tasks, but its longer observed
+download rate stayed near the earlier baseline (about 45 versus 44
+previews/minute). More concurrency did not establish a material
+sustained speedup. Preserve pending requests, stop new admissions before
+a maintenance pause, retain rollback copies and do not confuse a faster
+query or returned proxy with complete Classic/cloud Sync.</p>
+<p><strong>Correction (2026-10-21).</strong> That native-writer renewal
+held one write transaction for about 40 seconds. Cloud’s own index
+writers give up after about 5 seconds, so they logged hundreds of
+“database is locked” errors, and the grid, loupe filmstrip and trash
+views stopped updating until restart. No data was damaged, but don’t use
+that method. The next recipe replaces it.</p>
+</body>
+</html>

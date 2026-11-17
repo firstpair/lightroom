@@ -5,7 +5,7 @@
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <meta name="author" content="FirstPair contributors" />
-  <meta name="dcterms.date" content="2026-11-10" />
+  <meta name="dcterms.date" content="2026-11-17" />
   <meta name="description" content="A practical cookbook of verified Lightroom repairs, preservation gates and version-sensitive performance mechanisms." />
   <title>FirstPair Lightroom Repair</title>
   <style>
@@ -56,7 +56,7 @@
 <p class="subtitle">A practical cookbook for catalogs, previews and
 Sync</p>
 <p class="author">FirstPair contributors</p>
-<p class="date">2026-11-10</p>
+<p class="date">2026-11-17</p>
 </header>
 <nav id="TOC" role="doc-toc">
 <ul>
@@ -144,88 +144,127 @@ download workers</a></li>
 id="toc-renew-bounded-fixes-after-launch"><span
 class="toc-section-number">1.18</span> Renew bounded fixes after
 launch</a></li>
-<li><a href="chapter-021.html#separate-sync-stages-and-counts"
+<li><a
+href="chapter-021.html#apply-the-classic-16.0-fixes-after-each-launch"
+id="toc-apply-the-classic-16.0-fixes-after-each-launch"><span
+class="toc-section-number">1.19</span> Apply the Classic 16.0 fixes
+after each launch</a></li>
+<li><a
+href="chapter-022.html#unstick-cloud-uploads-without-rebuilding-previews"
+id="toc-unstick-cloud-uploads-without-rebuilding-previews"><span
+class="toc-section-number">1.20</span> Unstick cloud uploads without
+rebuilding previews</a></li>
+<li><a href="chapter-023.html#separate-sync-stages-and-counts"
 id="toc-separate-sync-stages-and-counts"><span
-class="toc-section-number">1.19</span> Separate Sync stages and
+class="toc-section-number">1.21</span> Separate Sync stages and
 counts</a></li>
 <li><a
-href="chapter-022.html#verify-a-smart-preview-at-the-level-you-need"
+href="chapter-024.html#verify-a-smart-preview-at-the-level-you-need"
 id="toc-verify-a-smart-preview-at-the-level-you-need"><span
-class="toc-section-number">1.20</span> Verify a Smart Preview at the
+class="toc-section-number">1.22</span> Verify a Smart Preview at the
 level you need</a></li>
-<li><a href="chapter-023.html#isolate-a-stalled-smart-preview-batch"
+<li><a href="chapter-025.html#isolate-a-stalled-smart-preview-batch"
 id="toc-isolate-a-stalled-smart-preview-batch"><span
-class="toc-section-number">1.21</span> Isolate a stalled Smart Preview
+class="toc-section-number">1.23</span> Isolate a stalled Smart Preview
 batch</a></li>
-<li><a href="chapter-024.html#keep-a-bulk-preview-build-cooperative"
+<li><a href="chapter-026.html#keep-a-bulk-preview-build-cooperative"
 id="toc-keep-a-bulk-preview-build-cooperative"><span
-class="toc-section-number">1.22</span> Keep a bulk preview build
+class="toc-section-number">1.24</span> Keep a bulk preview build
 cooperative</a></li>
 <li><a
-href="chapter-025.html#reuse-offline-converter-built-smart-previews"
+href="chapter-027.html#reuse-offline-converter-built-smart-previews"
 id="toc-reuse-offline-converter-built-smart-previews"><span
-class="toc-section-number">1.23</span> Reuse offline converter-built
+class="toc-section-number">1.25</span> Reuse offline converter-built
 Smart Previews</a></li>
 <li><a
-href="chapter-026.html#map-and-clone-classic-previews-into-cloud-precisely"
+href="chapter-028.html#map-and-clone-classic-previews-into-cloud-precisely"
 id="toc-map-and-clone-classic-previews-into-cloud-precisely"><span
-class="toc-section-number">1.24</span> Map and clone Classic previews
+class="toc-section-number">1.26</span> Map and clone Classic previews
 into Cloud precisely</a></li>
 <li><a
-href="chapter-027.html#test-offline-rendering-and-editing-without-overstating-undo"
+href="chapter-029.html#register-placed-clones-with-clouds-own-proxy-loader"
+id="toc-register-placed-clones-with-clouds-own-proxy-loader"><span
+class="toc-section-number">1.27</span> Register placed clones with
+Cloud’s own proxy loader</a></li>
+<li><a
+href="chapter-030.html#test-offline-rendering-and-editing-without-overstating-undo"
 id="toc-test-offline-rendering-and-editing-without-overstating-undo"><span
-class="toc-section-number">1.25</span> Test offline rendering and
+class="toc-section-number">1.28</span> Test offline rendering and
 editing without overstating Undo</a></li>
 <li><a
-href="chapter-028.html#recover-exact-settings-without-resetting-edits"
+href="chapter-031.html#recover-exact-settings-without-resetting-edits"
 id="toc-recover-exact-settings-without-resetting-edits"><span
-class="toc-section-number">1.26</span> Recover exact settings without
+class="toc-section-number">1.29</span> Recover exact settings without
 resetting edits</a></li>
-<li><a href="chapter-029.html#recover-a-selected-proxy-missing-upload"
+<li><a href="chapter-032.html#recover-a-selected-proxy-missing-upload"
 id="toc-recover-a-selected-proxy-missing-upload"><span
-class="toc-section-number">1.27</span> Recover a selected proxy-missing
+class="toc-section-number">1.30</span> Recover a selected proxy-missing
 upload</a></li>
 <li><a
-href="chapter-030.html#recover-verification-after-a-successful-native-action"
+href="chapter-033.html#recover-verification-after-a-successful-native-action"
 id="toc-recover-verification-after-a-successful-native-action"><span
-class="toc-section-number">1.28</span> Recover verification after a
+class="toc-section-number">1.31</span> Recover verification after a
 successful native action</a></li>
 <li><a
-href="chapter-031.html#classify-identity-before-merging-or-deleting"
+href="chapter-034.html#classify-identity-before-merging-or-deleting"
 id="toc-classify-identity-before-merging-or-deleting"><span
-class="toc-section-number">1.29</span> Classify identity before merging
+class="toc-section-number">1.32</span> Classify identity before merging
 or deleting</a></li>
-<li><a href="chapter-032.html#route-native-fingerprints-by-format"
+<li><a href="chapter-035.html#route-native-fingerprints-by-format"
 id="toc-route-native-fingerprints-by-format"><span
-class="toc-section-number">1.30</span> Route native fingerprints by
+class="toc-section-number">1.33</span> Route native fingerprints by
 format</a></li>
 <li><a
-href="chapter-033.html#prove-a-backup-holds-every-photo-before-deleting-it"
+href="chapter-036.html#prove-a-backup-holds-every-photo-before-deleting-it"
 id="toc-prove-a-backup-holds-every-photo-before-deleting-it"><span
-class="toc-section-number">1.31</span> Prove a backup holds every photo
+class="toc-section-number">1.34</span> Prove a backup holds every photo
 before deleting it</a></li>
 <li><a
-href="chapter-034.html#replace-a-damaged-original-with-its-intact-conversion"
+href="chapter-037.html#replace-a-damaged-original-with-its-intact-conversion"
 id="toc-replace-a-damaged-original-with-its-intact-conversion"><span
-class="toc-section-number">1.32</span> Replace a damaged original with
+class="toc-section-number">1.35</span> Replace a damaged original with
 its intact conversion</a></li>
 <li><a
-href="chapter-035.html#browse-and-rate-with-the-originals-offline"
+href="chapter-038.html#browse-and-rate-with-the-originals-offline"
 id="toc-browse-and-rate-with-the-originals-offline"><span
-class="toc-section-number">1.33</span> Browse and rate with the
+class="toc-section-number">1.36</span> Browse and rate with the
 originals offline</a></li>
-<li><a href="chapter-036.html#reconcile-catalog-xmp-ratings-and-dates"
+<li><a href="chapter-039.html#reconcile-catalog-xmp-ratings-and-dates"
 id="toc-reconcile-catalog-xmp-ratings-and-dates"><span
-class="toc-section-number">1.34</span> Reconcile catalog, XMP, ratings
+class="toc-section-number">1.37</span> Reconcile catalog, XMP, ratings
 and dates</a></li>
 <li><a
-href="chapter-037.html#start-with-supported-performance-maintenance"
+href="chapter-040.html#start-with-supported-performance-maintenance"
 id="toc-start-with-supported-performance-maintenance"><span
-class="toc-section-number">1.35</span> Start with supported performance
+class="toc-section-number">1.38</span> Start with supported performance
 maintenance</a></li>
-<li><a href="chapter-038.html#a-receipt-you-can-reuse"
+<li><a href="chapter-041.html#a-receipt-you-can-reuse"
 id="toc-a-receipt-you-can-reuse"><span
-class="toc-section-number">1.36</span> A receipt you can reuse</a></li>
+class="toc-section-number">1.39</span> A receipt you can reuse</a></li>
+<li><a href="chapter-042.html#recover-exact-c2pa-auxiliary-payloads"
+id="toc-recover-exact-c2pa-auxiliary-payloads"><span
+class="toc-section-number">1.40</span> Recover exact C2PA auxiliary
+payloads</a></li>
+<li><a
+href="chapter-043.html#diagnose-cloud-throughput-and-verify-native-query-repairs"
+id="toc-diagnose-cloud-throughput-and-verify-native-query-repairs"><span
+class="toc-section-number">1.41</span> Diagnose Cloud throughput and
+verify native query repairs</a></li>
+<li><a
+href="chapter-044.html#re-add-cloud-indexes-at-every-launch-without-disturbing-the-app"
+id="toc-re-add-cloud-indexes-at-every-launch-without-disturbing-the-app"><span
+class="toc-section-number">1.42</span> Re-add Cloud indexes at every
+launch without disturbing the app</a></li>
+<li><a
+href="chapter-045.html#download-every-cloud-smart-preview-through-outages"
+id="toc-download-every-cloud-smart-preview-through-outages"><span
+class="toc-section-number">1.43</span> Download every Cloud Smart
+Preview through outages</a></li>
+<li><a
+href="chapter-046.html#explain-a-cloud-sync-indicator-that-never-settles"
+id="toc-explain-a-cloud-sync-indicator-that-never-settles"><span
+class="toc-section-number">1.44</span> Explain a Cloud Sync indicator
+that never settles</a></li>
 </ul></li>
 </ul>
 </nav>

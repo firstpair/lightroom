@@ -5,9 +5,9 @@
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <meta name="author" content="FirstPair contributors" />
-  <meta name="dcterms.date" content="2026-11-10" />
+  <meta name="dcterms.date" content="2026-11-17" />
   <meta name="description" content="A practical cookbook of verified Lightroom repairs, preservation gates and version-sensitive performance mechanisms." />
-  <title>Reuse offline converter-built Smart Previews</title>
+  <title>Isolate a stalled Smart Preview batch</title>
   <style>
     div.sitenav { display: flex; flex-direction: row; flex-wrap: wrap; }
     span.navlink { flex: 1; }
@@ -47,59 +47,99 @@
 </div>
 <div class="sitenav">
 <span class="navlink">
-<span class="navlink-label">Next:</span> <a href="chapter-026.html" accesskey="n" rel="next">Map and clone Classic previews into Cloud precisely</a>
+<span class="navlink-label">Next:</span> <a href="chapter-026.html" accesskey="n" rel="next">Keep a bulk preview build cooperative</a>
 </span>
 <span class="navlink">
-<span class="navlink-label">Previous:</span> <a href="chapter-024.html" accesskey="p" rel="previous">Keep a bulk preview build cooperative</a>
+<span class="navlink-label">Previous:</span> <a href="chapter-024.html" accesskey="p" rel="previous">Verify a Smart Preview at the level you need</a>
 </span>
 </div>
 </nav>
-<h2 data-number="1.23"
-id="reuse-offline-converter-built-smart-previews"><span
-class="header-section-number">1.23</span> Reuse offline converter-built
-Smart Previews</h2>
-<p><strong>Prerequisites.</strong> Originals remain retained and stable.
-Pin the installed converter version and explicit output options. Use a
-fresh scratch destination and an exact source/output manifest; never
-accept the converter’s default destination if it could overwrite
-originals. The private cache layout and native preview-identity rules
-need separate current qualification.</p>
-<p><strong>Procedure.</strong> Adobe’s DNG Converter is a separate batch
-conversion tool; its normal documented purpose is conversion of camera
-raw files to DNG. <a
-href="https://helpx.adobe.com/camera-raw/desktop/dng-and-file-formats/adobe-dng-converter.html">Adobe:
-DNG Converter</a>. The reference experiment used version 17.2 to build
-fresh DNG 1.7, lossy JPEG XL previews with a 2,560-pixel long edge and
-no embedded preview. Its parallel-batch option used the observed ten-CPU
-queue; no numeric maximum-parallelism option was established.</p>
-<p>Treat those outputs as proposed previews, not replacement masters.
-Match the exact installed preview layout, required raw-image payload and
-identity fields, UUID/name binding and permissions before any
-no-overwrite cache placement. Normal SDK <strong>build Smart
-Previews</strong> remains the adoption/control step.</p>
-<p><strong>Verify.</strong> A 392-file finite batch created its outputs
-in 198.51 seconds, around 246 MB. Guarded cache placement followed by
-normal SDK preview building reported all 392 as already existing in 63
-seconds, with zero failures. Required hashes stayed unregistered in that
-experiment. Seven camera-family controls agreed on encoded native raw
-payload and both required identity digests; four were observed
-current-version creations and three older-version creations with
-unobserved creation steps.</p>
-<p>The 32-missing-plus-seven-control validator initially rejected
-Panasonic files because it selected the wrong image directory. Its
-qualified successor used the declared image role to distinguish
-full-resolution CFA data from auxiliary reduced linear raw data.
-Unknown/multiple full-resolution roles and a narrowly observed camera
-warning remained holds. There was no independent all-pixel decode of
-every output.</p>
-<p><strong>Undo.</strong> Retain scratch outputs, originals and the
-pre-publication cache manifest. Remove only proven owned, unused
-additions through a safe cache recovery after native requests close, or
-restore the protected cache family. Never replace an accepted original
-with a lossy preview.</p>
-<p><strong>Limits.</strong> This is a tested private reuse route, not a
-public Adobe cache-installation contract or a general batch command
-supplied by this starter. Successful adoption does not prove every
-camera, warning, profile, crop or encoded plane is interchangeable.</p>
+<h2 data-number="1.23" id="isolate-a-stalled-smart-preview-batch"><span
+class="header-section-number">1.23</span> Isolate a stalled Smart
+Preview batch</h2>
+<p><strong>Prerequisites.</strong> Preserve the exact requested photo
+IDs, batch intent, returned callbacks and existing previews. Keep
+ownership of the native task until it has actually stopped. A responsive
+window or low CPU use alone does not establish completion.</p>
+<p><strong>Procedure.</strong> Cancel the progress task normally. If its
+callback remains pending, quit Classic normally, handle its task
+confirmation explicitly, and reopen only after native closure and
+resource reconciliation. Do not delete preview caches or replay the
+pending batch. Reconcile valid registrations and existing preview files
+before choosing controls.</p>
+<p>Select one exact JPEG and use <strong>Library → Previews → Build
+Smart Previews</strong> independently of the SDK batch loop. When
+Classic asks whether to build all photos or only one, choose
+<strong>Build One</strong>. Test the first pending input separately,
+then a small mixed batch. Verify the selected IDs before every menu
+action; never accept a default <strong>Build All</strong> confirmation
+accidentally.</p>
+<p><strong>Verify.</strong> Distinguish recognizing an existing cache
+file from generating a new preview. In one Classic 15.6 recovery, single
+JPEG/HEIC controls recognized cached files; a subsequent five-photo
+control had no preview files beforehand and produced five nonempty,
+validly registered previews through the Library menu. The bulk SDK
+callback had stalled. This demonstrates the tested UI route, without
+establishing the cause of the stalled callback or completion of the
+remaining queue.</p>
+<p>Subsequent fresh SDK controls also returned normally: one JPEG, a
+six-file JPEG/HEIC batch, and a 25-file HEIC/JPEG/DNG batch. Each
+returned the exact requested created-ID set with zero failures; nonempty
+preview files, valid registrations and unchanged original-file metadata
+were independently checked. This supports restarting with bounded small
+batches, while preserving the earlier stalls as unresolved evidence. It
+does not establish that cached-but-unregistered files caused those
+stalls.</p>
+<p>A later continuation stalled again within a 25-file call after 675
+completed files. After normal recovery, its first missing input worked
+individually and the remaining nine missing previews built together. Ten
+partial cache outputs and seven older cached files were recognized
+through individual native selection without rebuilding; their file
+metadata stayed unchanged. This reconciled the affected inputs without
+establishing a damaged photo or the stall’s cause. Preserve partial
+outputs, distinguish native recognition from generation, and retain the
+exact unresolved batch rather than retrying the whole queue. A
+subsequent window stalled after another 150 completed files. A
+single-file exported-JPEG control wrote its cache output but still did
+not return the SDK callback; native selection during that pending call
+did not resolve it. This separates file creation from callback
+completion. A correlated filename family may be routed to an explicit
+isolated queue, but must remain in the full scope; it is not evidence
+that the originals are corrupt. Do not strip metadata or rewrite
+originals to fit this hypothesis. A subsequent window excluding that
+filename family completed 5,000 new previews through 200 audited SDK
+callbacks and normal owner closure. This proves that finite continuation
+and its checked outputs; it does not establish the cause of the
+excluded-family stalls or complete the remaining queue.</p>
+<p>A returned callback with explicit per-photo errors needs a different
+path from a callback that never returns. One later 250-photo callback
+reported 248 creations and two errors. Independent checks accepted the
+248 registrations/nonempty files and unchanged originals; both errored
+HEICs decoded with macOS, which did not establish Adobe decoder
+compatibility or the cause of its errors. The controller’s zero-error
+assertion had unnecessarily stopped the entire queue. Its successor
+requires an exact, disjoint partition of all requested photo IDs across
+created/existing/failed/error results, verifies successful outputs and
+every original epoch, durably isolates explicit failures without
+automatic retry, and waits for the parent acknowledgement before
+continuing. Missing IDs, incomplete accounting or unknown ownership
+still stop the job. Synthetic controls qualify that policy; each
+subsequent native window still needs its own output and closure
+evidence.</p>
+<p>For a planned IO handoff, finish the in-flight callback and its
+independent audit before stopping. A stop marker should produce an
+ordinary partial-completion receipt with exact attempted, successful,
+failed and deferred counts, then release the retained owner after actual
+task and group closure. It must not turn a known operator pause into an
+unknown-ownership exception. The successor has synthetic controls for
+stopping after an acknowledgement and before the first call; that source
+qualification does not replace the next native handoff’s completion
+evidence.</p>
+<p><strong>Undo and limits.</strong> Preserve generated previews and
+originals. Restore temporary diagnostic menu scripts and retain the
+original failed/pending receipts. Record recovery closure separately
+from successful SDK completion. A small successful batch does not
+qualify an unattended full-catalog controller or justify another large
+retry.</p>
 </body>
 </html>

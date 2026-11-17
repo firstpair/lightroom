@@ -5,7 +5,7 @@
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <meta name="author" content="FirstPair contributors" />
-  <meta name="dcterms.date" content="2026-11-10" />
+  <meta name="dcterms.date" content="2026-11-17" />
   <meta name="description" content="A practical cookbook of verified Lightroom repairs, preservation gates and version-sensitive performance mechanisms." />
   <title>What has actually been repaired</title>
   <style>
@@ -151,6 +151,22 @@ editing</td>
 original-source denial</td>
 <td>Both blocked editing until Legacy Settings Update; no
 update/reset/edit/export ran</td>
+</tr>
+<tr>
+<td>Classic 16.0 stalls after the update</td>
+<td>Stock file triggers took 7–39 s per DELETE and Smart Preview
+building stopped for about 3 hours. After the three 16.0 runtime fixes,
+the triggers took under 1 ms, Main database time fell from 59.5 s to 3.4
+s per 90 s, and preview building resumed at about 105 per minute</td>
+<td>Runtime-only; must be re-applied after each launch</td>
+</tr>
+<tr>
+<td>Cloud uploads stuck in Classic 16.0</td>
+<td>Of 3,236 stuck photos, 2,903 cleared with stock retry, 319 more
+after a develop re-save, and 18 stuck Smart Preview uploads after the
+preview was re-registered at its real path</td>
+<td>Each route has its own symptom; rebuilding previews did not
+help</td>
 </tr>
 <tr>
 <td>Exact cached settings</td>

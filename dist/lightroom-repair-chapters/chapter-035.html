@@ -5,9 +5,9 @@
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <meta name="author" content="FirstPair contributors" />
-  <meta name="dcterms.date" content="2026-11-10" />
+  <meta name="dcterms.date" content="2026-11-17" />
   <meta name="description" content="A practical cookbook of verified Lightroom repairs, preservation gates and version-sensitive performance mechanisms." />
-  <title>Browse and rate with the originals offline</title>
+  <title>Route native fingerprints by format</title>
   <style>
     div.sitenav { display: flex; flex-direction: row; flex-wrap: wrap; }
     span.navlink { flex: 1; }
@@ -47,69 +47,70 @@
 </div>
 <div class="sitenav">
 <span class="navlink">
-<span class="navlink-label">Next:</span> <a href="chapter-036.html" accesskey="n" rel="next">Reconcile catalog, XMP, ratings and dates</a>
+<span class="navlink-label">Next:</span> <a href="chapter-036.html" accesskey="n" rel="next">Prove a backup holds every photo before deleting it</a>
 </span>
 <span class="navlink">
-<span class="navlink-label">Previous:</span> <a href="chapter-034.html" accesskey="p" rel="previous">Replace a damaged original with its intact conversion</a>
+<span class="navlink-label">Previous:</span> <a href="chapter-034.html" accesskey="p" rel="previous">Classify identity before merging or deleting</a>
 </span>
 </div>
 </nav>
-<h2 data-number="1.33"
-id="browse-and-rate-with-the-originals-offline"><span
-class="header-section-number">1.33</span> Browse and rate with the
-originals offline</h2>
-<p><strong>Symptom.</strong> The originals are on a disk that is not
-attached, but you want to cull them in another application, such as
-Photo Mechanic, which needs camera metadata and a good-sized preview to
-be useful.</p>
-<p><strong>Prerequisites.</strong> Previews already exist: Lightroom
-Smart Previews, or a folder of regular preview JPEGs. Install <a
-href="https://firstpair.org/books/diskproxy/">diskproxy</a> and its
-previews plugin; that book owns the configuration, the map-file format
-and the writable modes. Choose a ratings folder outside the source.
-Serve previews that Lightroom is not rebuilding at the same time: a
-served file that changes after the disk is built fails to read.</p>
-<p><strong>Mechanism.</strong> diskproxy presents a folder as a virtual
-disk without writing to the source. The previews plugin composes files
-in one of two ways:</p>
-<ul>
-<li><strong>Smart Previews as DNG stand-ins.</strong> Each Smart Preview
-is served as a DNG with the large preview JPEG added as an extra
-embedded preview; every original byte stays where it was. Browsers that
-show embedded previews see the large JPEG, and the stand-in carries the
-Smart Preview’s camera metadata.</li>
-<li><strong>Preview JPEGs with EXIF stubs.</strong> Each JPEG is served
-with camera, lens, exposure and capture metadata spliced in from a stub:
-an EXIF-only TIFF per photo, written from the phindex metadata records
-and stored in one SQLite file (<code>metadata_store</code>) rather than
-as hundreds of thousands of small files.</li>
-</ul>
-<p>With a writable view, diskproxy accepts the application’s writes into
-a shadow file and the plugin keeps only ratings, labels, color classes
-and tagged flags, as one small XMP sidecar per photo in the ratings
-folder, with every change appended to <code>JOURNAL.jsonl</code>
-together with its previous value. Nothing reaches the source.</p>
-<p><strong>Verify.</strong> Check one file through the mounted volume
-before culling, for example <code>exiftool -b -PreviewImage</code> piped
-to <code>wc -c</code>, which should give the size of its preview JPEG,
-and confirm that the application shows the camera and capture time.
-After rating a few photos, confirm that their sidecars and journal lines
-exist after <code>diskproxy stop</code>, and that the source tree’s
-files are unchanged.</p>
-<p><strong>Undo.</strong> <code>diskproxy stop</code> unmounts the view
-and deletes the session’s written bytes after the final capture. Delete
-the ratings folder to discard the captured ratings. The source and
-Lightroom’s previews were never written.</p>
-<p><strong>Limits.</strong> A Smart Preview stand-in carries reduced raw
-data, not the original; exports from it are previews, not masters.
-Bringing captured ratings back into a Lightroom catalog must go through
-Lightroom’s own writer, and this cookbook has no qualified procedure for
-that yet. Do not write the catalog externally, and do not copy the
-captured sidecars beside the originals and read them with <strong>Read
-Metadata from Files</strong>: that replaces the catalog’s metadata from
-the sidecar, and a four-property sidecar is not the photo’s full state.
-Label names and color classes also differ between applications. Until a
-procedure is qualified, keep the sidecars and journal as the record of
-the culling.</p>
+<h2 data-number="1.33" id="route-native-fingerprints-by-format"><span
+class="header-section-number">1.33</span> Route native fingerprints by
+format</h2>
+<p><strong>Prerequisites.</strong> State which identity the operation
+requires: bytes, exposure provenance, decoded image content, native
+original matcher or Adobe raw-image digest. Bind exact catalog format
+and physical format separately; path extensions can disagree with the
+catalog. Keep a native oracle for each admitted format/metadata
+stratum.</p>
+<p><strong>Procedure.</strong> A full-file SHA is a byte identity.
+Adobe’s DNG raw-image digest and Lightroom’s original matcher have
+different inputs and purposes. A container’s digest tag is not
+automatically the value Lightroom calculates for original matching. DNG
+crop, camera/opcode/orientation context and selected raw planes matter;
+same exposure metadata does not prove a RAW→DNG conversion has identical
+pixels or interpretation.</p>
+<p>The JPEG route also needs its exact metadata stratum.
+Date/timezone/fractional/NUL/XMP handling and encoded image/ICC data
+cannot be generalized from one camera control. A current finite Samsung
+JPEG qualification matched 26 actual native source oracles; 26 peer
+calculations then matched those fingerprints. The peers intentionally
+lacked independently observed native oracles, so they remain matcher
+candidates until fresh native/current/metadata gates. An empty generic
+match list in that manifest was not a mismatch.</p>
+<p>Other container, enhanced/multiplane, JPEG-encoded DNG and
+unsupported decoder strata retain separate routes/holds. A header that
+proves a declared raw strip extends beyond the stable physical file
+length establishes structural truncation without a pixel decode. Do not
+repeatedly submit a known-failing source; find an intact original or
+explicitly qualify preview-only salvage.</p>
+<p><strong>Verify.</strong> Compare the exact candidate engine output
+against actual native <code>calculateDigest</code> for admitted
+controls, retaining current source descriptors, format/metadata facts
+and genuine terminal. A later independently audited phase registered
+143,046 already computed fingerprints in 43 native transactions without
+rereading original pixels, preserving settings/history/metadata/cloud
+scopes. Those registrations are a catalog fact; they do not turn every
+historical calculation into current registration or authorize merging
+variants.</p>
+<p>For identity routing, use the actual indexed filename leading key
+while retaining returned literal names and exact paths. Original
+import-name evidence can expose arbitrary ingestion renames. One finite
+178-source route found 171 represented exposure variants and seven
+unresolved candidates; later complete exposure UIDs distinguished
+consulted peers. Different UIDs close that consulted metadata route
+only. A same-second import hash can come from another camera, and no
+peer in one index is not universal absence.</p>
+<p><strong>Undo.</strong> Preserve historical native receipts and
+existing digest rows. Never overwrite an equal native digest merely to
+normalize file size, invent a missing oracle, or delete a separate Cloud
+record with independent edits. Registration reversal, if actually
+needed, belongs to a separately reviewed native scope or its preserved
+recovery family.</p>
+<p><strong>Limits.</strong> Native original matching is not pure pixel
+equality. Pixel equality is not interchangeable develop settings. Byte
+equality is not automatic duplicate-deletion authority. Keep conversion
+variants and virtual copies until an action-specific preservation
+decision is made.</p>
 </body>
 </html>

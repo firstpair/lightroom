@@ -5,9 +5,9 @@
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <meta name="author" content="FirstPair contributors" />
-  <meta name="dcterms.date" content="2026-11-10" />
+  <meta name="dcterms.date" content="2026-11-17" />
   <meta name="description" content="A practical cookbook of verified Lightroom repairs, preservation gates and version-sensitive performance mechanisms." />
-  <title>Recover a selected proxy-missing upload</title>
+  <title>Register placed clones with Cloud’s own proxy loader</title>
   <style>
     div.sitenav { display: flex; flex-direction: row; flex-wrap: wrap; }
     span.navlink { flex: 1; }
@@ -47,61 +47,63 @@
 </div>
 <div class="sitenav">
 <span class="navlink">
-<span class="navlink-label">Next:</span> <a href="chapter-030.html" accesskey="n" rel="next">Recover verification after a successful native action</a>
+<span class="navlink-label">Next:</span> <a href="chapter-030.html" accesskey="n" rel="next">Test offline rendering and editing without overstating Undo</a>
 </span>
 <span class="navlink">
-<span class="navlink-label">Previous:</span> <a href="chapter-028.html" accesskey="p" rel="previous">Recover exact settings without resetting edits</a>
+<span class="navlink-label">Previous:</span> <a href="chapter-028.html" accesskey="p" rel="previous">Map and clone Classic previews into Cloud precisely</a>
 </span>
 </div>
 </nav>
 <h2 data-number="1.27"
-id="recover-a-selected-proxy-missing-upload"><span
-class="header-section-number">1.27</span> Recover a selected
-proxy-missing upload</h2>
-<p><strong>Prerequisites.</strong> Identify the exact current Cloud
-document/revision and error, expected proxy bytes and current local
-source. Keep independent settings and every other full document
-protected. Verify Main associations and native path-producer semantics.
-A global UI issue count is not a selected error inventory.</p>
-<p><strong>Procedure.</strong> The final twelve-item incident contained
-<code>UploadFailedMissingProxy</code>, not twelve healthy transfers. Two
-current records completed ordinary retry. Ten retained obsolete
-volume/catalog paths; nine old proxies matched their retained expected
-bytes and one required replacement. Current originals had differing
-metadata versions and could not simply replace historical
-identities.</p>
-<p>The accepted remedy used the normal native public cache setters to
-admit the exact reviewed sources, then one stock <strong>clear errors
-and retry Sync</strong> request. It did not modify Cloud SQLite or
-fabricate link/status fields. Its setter chain included genuine
-completed-but-verifier-held steps; independent outcome assembly
-preserved those failures and resumed only unfinished setters.</p>
-<p><strong>Verify.</strong> Require exact full-document comparisons for
-selected and other records, current source/path/byte gates, genuine
-setter callbacks and the actual stock retry’s emitted revisions. The ten
-gained valid revision-bound server proxy links, zero stored upload
-errors and one Main association each. Lightroom created eight virtual
-copies sharing existing files and two base associations, preserving
-distinct Cloud settings. Current Sync Preferences reported no activities
-within that finite observation.</p>
-<p>The native <code>_changeCounter</code> is a global allocated revision
-sequence, not a per-photo edit count. A strict old-plus-one checker held
-after the actual retry; independent installed-counter and outcome
-verification accepted the result. No retry was repeated to satisfy that
-checker. Native label visibility also changed when a setter created a
-new body revision; that exact proven transition was accepted, without
-broadly ignoring labels.</p>
-<p><strong>Undo.</strong> A server-accepted retry cannot be undone by
-deleting a queue row. Preserve the current associations, independent
-edits and source versions, and use ordinary scoped management or
-recovery with later cloud effects accounted for. A verifier failure
-alone does not justify repeating setters or retry.</p>
-<p><strong>Limits.</strong> This cleared the exact ten errors; it did
-not recover every full-resolution original or reconcile every Cloud
-issue. Proxy errors explain these uploads, not every Smart Preview
-stall. Earlier preview work also encountered map/count delays and
-resolver failures; a candidate whole-catalog preview-cache invalidation
-route was researched without establishing it as the runtime cause of
-every stall.</p>
+id="register-placed-clones-with-clouds-own-proxy-loader"><span
+class="header-section-number">1.27</span> Register placed clones with
+Cloud’s own proxy loader</h2>
+<p><strong>Prerequisites.</strong> Clones already placed and verified
+against each document’s <code>importSource.proxySHA256</code>. A fresh
+Cloud launch under network and original-source denial with zero sockets
+observed. A closed read-only ledger of every unregistered document with
+a clone at its literal native path, the full current body, annotation,
+revision and stored labels. Accessibility permission for one menu
+selection. <code>cloud/scripts/proxy_register.py</code> and <a
+href="https://github.com/firstpair/lightroom/blob/4a59cd317e4f51f8d2badcada6baba2d0a083fcf/cloud/docs/CLOUD-PROXY-REGISTRATION.md">docs/CLOUD-PROXY-REGISTRATION.md</a>
+supply the tooling.</p>
+<p><strong>Procedure.</strong> Placement alone registers nothing:
+465,411 exact clones stayed <code>needsProxyDownload</code> for five
+days with local Smart Preview retention enabled. Issue the ordinary
+<code>getProxyPaths</code> request from one user Script, 256 documents
+per batch and at most four batches in flight, reading each document
+before and after through the ordinary asset stream. Approve only the
+first batch until its after-documents show exactly
+<code>{volumeGuid, relativePath, lastSaveTimestamp}</code> added under
+<code>_localOnly.files.proxy["2560"]</code> and nothing else changed.
+Skip, never fabricate: an already annotated document, a document whose
+live body or annotation differs from the ledger, and a native refusal (a
+status such as <code>SendNoDownloadableOriginal</code> instead of a
+path) are per-row holds. Halt only on request-level protocol or owner
+failures.</p>
+<p><strong>Verify.</strong> The reference run recognized about 45
+documents per second with full before/after protection and no body,
+revision or label change. Native refreshes
+<code>_localOnly.cameraProfileInfo</code> after a relaunch, so roughly
+one percent of rows drift from a closed ledger; rebuild the ledger and
+run a second pass instead of weakening the before-guard. After a normal
+quit, the closed audit classifies every row by registration, body,
+annotation minus the added entry, labels and index flags. Subtract only
+the new proxy entry and any now-empty parent maps that were absent from
+the exact baseline. Preserve pre-existing empty maps and all unrelated
+annotations; a new profile value must still hold the row. This
+projection changes only the observer’s comparison, never Lightroom
+data.</p>
+<p><strong>Undo.</strong> The annotation is native-owned cache
+bookkeeping bound to a file that already existed; removing the clone
+through Cloud’s own cache controls is the supported reversal. Keep the
+run journals, the ledger and the guard observations.</p>
+<p><strong>Limits.</strong> A recognized local proxy is not settings
+readiness, a rendered test, numeric-edit readiness or server
+convergence. An inherited design that halted the whole controller on one
+row hold registered nothing on its first attempt; a 5-second guard
+freshness with a once-per-second refresher stalled an earlier settings
+batch. Documents without an expected proxy hash belong to the separately
+qualified route above.</p>
 </body>
 </html>

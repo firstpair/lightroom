@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="FirstPair contributors" />
+  <meta name="dcterms.date" content="2026-11-17" />
+  <meta name="description" content="A practical cookbook of verified Lightroom repairs, preservation gates and version-sensitive performance mechanisms." />
+  <title>Download every Cloud Smart Preview through outages</title>
+  <style>
+    div.sitenav { display: flex; flex-direction: row; flex-wrap: wrap; }
+    span.navlink { flex: 1; }
+    span.navlink-label { display: inline-block; min-width: 4em; }
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="book.css" />
+</head>
+<body>
+<nav id="sitenav">
+<div class="sitenav">
+<span class="navlink">
+<span class="navlink-label">Up:</span> <a href="chapter-002.html" accesskey="u" rel="up">A Lightroom repair cookbook</a>
+</span>
+<span class="navlink">
+<span class="navlink-label">Top:</span> <a href="index.html" accesskey="t" rel="top">FirstPair Lightroom Repair</a>
+</span>
+</div>
+<div class="sitenav">
+<span class="navlink">
+<span class="navlink-label">Next:</span> <a href="chapter-046.html" accesskey="n" rel="next">Explain a Cloud Sync indicator that never settles</a>
+</span>
+<span class="navlink">
+<span class="navlink-label">Previous:</span> <a href="chapter-044.html" accesskey="p" rel="previous">Re-add Cloud indexes at every launch without disturbing the app</a>
+</span>
+</div>
+</nav>
+<h2 data-number="1.43"
+id="download-every-cloud-smart-preview-through-outages"><span
+class="header-section-number">1.43</span> Download every Cloud Smart
+Preview through outages</h2>
+<p><strong>Symptom.</strong> “Store all Smart Previews locally” leaves
+hundreds of thousands pending for days.</p>
+<p><strong>Method.</strong> The <a
+href="https://github.com/firstpair/lightroom/blob/4a59cd317e4f51f8d2badcada6baba2d0a083fcf/cloud/docs/CLOUD-PREVIEW-DOWNLOAD.md">preview
+download controller</a> asks Cloud’s ordinary <code>getProxyPaths</code>
+for each photo: 12 requests of 32 photos at a time. It backs off when a
+batch comes back as all <code>CannotSync</code>, retries transient
+refusals and never retries <code>SendNoDownloadableOriginal</code>.</p>
+<p><strong>Evidence.</strong> 87,257 previews downloaded in one
+overnight run on an 868,000-photo library. The 529 refused during a
+45-minute outage all succeeded on retry.</p>
+<p><strong>Limits.</strong> Quitting Cloud ends the run. Originals are
+not downloaded.</p>
+</body>
+</html>

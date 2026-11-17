@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="FirstPair contributors" />
+  <meta name="dcterms.date" content="2026-11-17" />
+  <meta name="description" content="A practical cookbook of verified Lightroom repairs, preservation gates and version-sensitive performance mechanisms." />
+  <title>Recover exact C2PA auxiliary payloads</title>
+  <style>
+    div.sitenav { display: flex; flex-direction: row; flex-wrap: wrap; }
+    span.navlink { flex: 1; }
+    span.navlink-label { display: inline-block; min-width: 4em; }
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="book.css" />
+</head>
+<body>
+<nav id="sitenav">
+<div class="sitenav">
+<span class="navlink">
+<span class="navlink-label">Up:</span> <a href="chapter-002.html" accesskey="u" rel="up">A Lightroom repair cookbook</a>
+</span>
+<span class="navlink">
+<span class="navlink-label">Top:</span> <a href="index.html" accesskey="t" rel="top">FirstPair Lightroom Repair</a>
+</span>
+</div>
+<div class="sitenav">
+<span class="navlink">
+<span class="navlink-label">Next:</span> <a href="chapter-043.html" accesskey="n" rel="next">Diagnose Cloud throughput and verify native query repairs</a>
+</span>
+<span class="navlink">
+<span class="navlink-label">Previous:</span> <a href="chapter-041.html" accesskey="p" rel="previous">A receipt you can reuse</a>
+</span>
+</div>
+</nav>
+<h2 data-number="1.40" id="recover-exact-c2pa-auxiliary-payloads"><span
+class="header-section-number">1.40</span> Recover exact C2PA auxiliary
+payloads</h2>
+<p><strong>Symptom.</strong> A locally registered preview and cached
+settings can coexist with pending auxiliary downloads. Inspect the
+actual auxiliary type; content-authenticity payloads are distinct from
+editing masks.</p>
+<p><strong>Method.</strong> The optional <a
+href="https://github.com/firstpair/lightroom/blob/4a59cd317e4f51f8d2badcada6baba2d0a083fcf/cloud/docs/BIGTABLE-AUXILIARIES.md">BigTable
+extraction recipe</a> uses an isolated APFS copy of closed Classic
+storage, raw-byte read-only access, and exact requested digest/SHA/size
+checks. It exports payloads without changing Cloud’s catalog or cache.
+The recipe includes prerequisites, verification and undo.</p>
+<p><strong>Evidence and limits.</strong> One qualified recovery exported
+86 exact C2PA payloads and separately verified no-overwrite cache
+placement with settings bodies and revisions preserved. Native auxiliary
+adoption remained pending. This does not prove signature validity,
+offline editing or Sync completion. The public tool has synthetic
+extraction/APFS guard tests; native publication remains a separate
+step.</p>
+<p>Status examples include qualified observations through
+<strong>2026-10-21</strong>, not a claim that the entire catalog/cloud
+recovery is complete. Read the README for the current public
+implementation and release limits.</p>
+</body>
+</html>

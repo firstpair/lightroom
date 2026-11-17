@@ -5,9 +5,9 @@
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <meta name="author" content="FirstPair contributors" />
-  <meta name="dcterms.date" content="2026-11-10" />
+  <meta name="dcterms.date" content="2026-11-17" />
   <meta name="description" content="A practical cookbook of verified Lightroom repairs, preservation gates and version-sensitive performance mechanisms." />
-  <title>Verify a Smart Preview at the level you need</title>
+  <title>Unstick cloud uploads without rebuilding previews</title>
   <style>
     div.sitenav { display: flex; flex-direction: row; flex-wrap: wrap; }
     span.navlink { flex: 1; }
@@ -47,51 +47,63 @@
 </div>
 <div class="sitenav">
 <span class="navlink">
-<span class="navlink-label">Next:</span> <a href="chapter-023.html" accesskey="n" rel="next">Isolate a stalled Smart Preview batch</a>
+<span class="navlink-label">Next:</span> <a href="chapter-023.html" accesskey="n" rel="next">Separate Sync stages and counts</a>
 </span>
 <span class="navlink">
-<span class="navlink-label">Previous:</span> <a href="chapter-021.html" accesskey="p" rel="previous">Separate Sync stages and counts</a>
+<span class="navlink-label">Previous:</span> <a href="chapter-021.html" accesskey="p" rel="previous">Apply the Classic 16.0 fixes after each launch</a>
 </span>
 </div>
 </nav>
 <h2 data-number="1.20"
-id="verify-a-smart-preview-at-the-level-you-need"><span
-class="header-section-number">1.20</span> Verify a Smart Preview at the
-level you need</h2>
-<p><strong>Prerequisites.</strong> Bind the exact existing image/file
-UUID and the literal native preview path. Collision suffixes can be
-legitimate; do not derive every path from a UUID formula. Preserve the
-preview and settings baseline.</p>
-<p><strong>Procedure.</strong> Use normal <strong>Build Smart
-Previews</strong> for admitted sources. Adobe describes Classic’s Smart
-Preview status below the Histogram and the ability to work with
-originals disconnected. <a
-href="https://helpx.adobe.com/lightroom-classic/desktop/viewing-photos/lightroom-smart-previews.html">Adobe:
-Smart Previews</a>.</p>
-<p>Then distinguish four checks: a nonempty file; a structurally
-decodable preview; a native application render; and editing with the
-required settings. A full tile decode is stronger than a header check,
-but does not demonstrate the application’s offline setting/profile
-behavior.</p>
-<p><strong>Verify.</strong> Bind decode results to current catalog IDs,
-native status, stable preview bytes and identities, and full decode
-scope. For offline render testing, use an explicit network and
-original-source denial boundary, observe the selected exact image at Fit
-and 100%, and compare settings afterward. Open read-access descriptors
-support a file-use observation; they are not kernel read traces.</p>
-<p>The retained reuse publication covers 473,531 asset bindings across
-471,373 physical previews. Two PENTAX K-7 legacy controls actually
-rendered offline at Fit and 100%. Both still requested Legacy Settings
-Update before editing; no Update, Reset, edit, or export was completed.
-These controls do not establish readiness of the whole preview
-cohort.</p>
-<p><strong>Undo.</strong> Retain the originals and prior preview state.
-Remove only an exact owned newly published cache entry when it is proven
-safe and no native operation still owns it; avoid deleting the whole
-preview family during recovery.</p>
-<p><strong>Limits.</strong> A preview cannot replace a missing
-full-resolution original for every purpose. Two legacy render controls
-do not establish modern external-XMP readiness or current Classic
-offline editing for the whole library.</p>
+id="unstick-cloud-uploads-without-rebuilding-previews"><span
+class="header-section-number">1.20</span> Unstick cloud uploads without
+rebuilding previews</h2>
+<p><strong>Prerequisites.</strong> A read-only view of the Sync store
+(<code>&lt;Catalog&gt; Sync.lrdata/&lt;cloud catalog id&gt;/Managed Catalog.mcat</code>
+and <code>.wfindex</code>, opened with <code>mode=ro</code>) and the
+list of stuck asset IDs. Decide each photo’s route from what you find
+there; the Sync count alone does not tell you.</p>
+<p><strong>Procedure.</strong> Try 1–5 photos per route first. <a
+href="https://github.com/firstpair/lightroom/blob/4a59cd317e4f51f8d2badcada6baba2d0a083fcf/classic/sync-recovery/README.md">classic/sync-recovery</a>
+generates each action.</p>
+<ol type="1">
+<li><strong>An error is recorded</strong> (for example 404
+<code>BinaryMissingError</code>): run stock <strong>clear errors and
+retry Sync</strong> on the listed IDs.</li>
+<li><strong>Still 404 after retry:</strong> the revision usually refers
+to a develop XMP the server never received. A no-op develop re-save
+makes Classic regenerate and upload the XMP, and re-send the proxy when
+its link is missing. The re-save nudges exposure by +0.01 and then
+restores the exact original value. Final settings are identical; each
+photo gains two history steps.</li>
+<li><strong>No error, but a proxy row sits in
+<code>needsBinaryUpload</code> with
+<code>fileMaybeOnOfflineVolume=1</code>:</strong> the record points to
+the volume where the catalog used to live, for example after copying it
+to another Mac. Run the read-only preflight. Re-register only rows whose
+local preview matches the cloud’s SHA, using the proxy-only
+<code>setOriginalAndProxyInfo</code> with
+<code>filePath</code>/<code>fileSize</code> left out. Native code hashes
+the existing file and records its current path.</li>
+</ol>
+<p>Do not rebuild Smart Previews to unstick an upload. A rebuilt preview
+has a new SHA, and Classic re-sends a proxy only when the local SHA
+equals the cloud’s <code>importSource.proxySHA256</code>.</p>
+<p><strong>Verify.</strong> For each photo:</p>
+<ul>
+<li>the error is cleared;</li>
+<li>the winning revision is listed in the server’s
+<code>revision_ids</code>;</li>
+<li>the photo has no <code>needsBinaryUpload</code> row.</li>
+</ul>
+<p>Read the generated log for each native callback.</p>
+<p><strong>Undo.</strong> Server-accepted revisions cannot be withdrawn.
+The re-save leaves identical final settings plus two history steps, and
+the proxy re-registration changes only the recorded path.</p>
+<p><strong>Limits.</strong> These calls use private modules, checked on
+Classic 16.0. Repointing already-synced records can create one
+metadata-only revision each, accepted by the server, with no binary
+sent. Previews whose local bytes differ from the cloud’s copy must not
+be repointed, because that would upload a replacement.</p>
 </body>
 </html>

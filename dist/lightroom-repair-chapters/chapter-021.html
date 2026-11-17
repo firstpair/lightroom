@@ -5,9 +5,9 @@
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <meta name="author" content="FirstPair contributors" />
-  <meta name="dcterms.date" content="2026-11-10" />
+  <meta name="dcterms.date" content="2026-11-17" />
   <meta name="description" content="A practical cookbook of verified Lightroom repairs, preservation gates and version-sensitive performance mechanisms." />
-  <title>Separate Sync stages and counts</title>
+  <title>Apply the Classic 16.0 fixes after each launch</title>
   <style>
     div.sitenav { display: flex; flex-direction: row; flex-wrap: wrap; }
     span.navlink { flex: 1; }
@@ -47,51 +47,60 @@
 </div>
 <div class="sitenav">
 <span class="navlink">
-<span class="navlink-label">Next:</span> <a href="chapter-022.html" accesskey="n" rel="next">Verify a Smart Preview at the level you need</a>
+<span class="navlink-label">Next:</span> <a href="chapter-022.html" accesskey="n" rel="next">Unstick cloud uploads without rebuilding previews</a>
 </span>
 <span class="navlink">
 <span class="navlink-label">Previous:</span> <a href="chapter-020.html" accesskey="p" rel="previous">Renew bounded fixes after launch</a>
 </span>
 </div>
 </nav>
-<h2 data-number="1.19" id="separate-sync-stages-and-counts"><span
-class="header-section-number">1.19</span> Separate Sync stages and
-counts</h2>
-<p><strong>Prerequisites.</strong> Define which photos, collections,
-revisions, and direction you are measuring. Keep UI counts, pending
-catalog mappings, downloader jobs, binary completion, and server
-evidence as separate populations.</p>
-<p><strong>Procedure.</strong> Use ordinary collection Sync activation.
-Adobe documents that Classic photos sync through synced collections or
-All Synced Photographs, and that Classic-to-cloud sends Smart Previews
-while cloud-to-Classic downloads originals. <a
-href="https://helpx.adobe.com/lightroom-classic/desktop/help/lightroom-mobile-desktop-features.html">Adobe:
-Sync setup</a>, <a
-href="https://helpx.adobe.com/lightroom-classic/desktop/technical-support/workflow-issues/sync-issues/sync-faq.html">Adobe:
-Sync FAQ</a>.</p>
-<p>For a batch, retain exact collection names, parents, and full
-existing-photo membership before enabling Sync. Record all five
-completion arguments when the installed command contract is
-<code>(self, context, descriptor, success, error)</code>. A returned
-command-spec is not a completion promise, and registering a listener
-after the event may not replay it.</p>
-<p><strong>Verify.</strong> Compare complete final collection IDs,
-names, parents and member IDs, then separate album mapping, still
-mapping, binary transfer and server acceptance. The retained batch
-checked 69 collections and 19,314 memberships; all album mappings became
-concrete while some still-image mappings remained pending. Its 283
-videos belonged to membership totals, not the still mapping denominator.
-This is finite native mapping evidence, not an independent Adobe-server
-binary acknowledgement or a global zero backlog.</p>
-<p><strong>Undo.</strong> Change Sync selection through Lightroom after
-considering its normal cloud effects. Keep the exact membership
-manifest; do not delete and recreate catalog records to make a counter
-look right.</p>
-<p><strong>Limits.</strong> Do not replay the completed
-68-new/one-preserved collection batch. A changing UI backlog can include
-different queue stages; subtracting two unrelated counters cannot
-identify completed uploads. A retry receipt must bind actual emitted
-revisions, because the native sequence is globally allocated rather than
-a per-document old-plus-one edit count.</p>
+<h2 data-number="1.19"
+id="apply-the-classic-16.0-fixes-after-each-launch"><span
+class="header-section-number">1.19</span> Apply the Classic 16.0 fixes
+after each launch</h2>
+<p><strong>Prerequisites.</strong> Lightroom Classic 16.0 and a recent
+catalog backup. The fixes touch only TEMP objects and the running
+process, but take the backup anyway.</p>
+<p><strong>Symptom.</strong> After updating to 16.0, folder moves leave
+folders marked missing or missing from the panel until restart, new
+collections don’t appear, Smart Previews stop building, and Classic sits
+at several hundred percent CPU. All of these come from MainServer being
+saturated. The catalog rows are written; only the panels lag. A 90 s
+profile of every Main database call showed two kinds of work:</p>
+<ul>
+<li>the stock file triggers taking seconds per DELETE;</li>
+<li>full image→cloud-asset map and <code>COUNT(*)</code> rebuilds on
+every asset-ID change, which Sync keeps making even while paused.</li>
+</ul>
+<p><strong>Procedure.</strong> Build the action with <a
+href="https://github.com/firstpair/lightroom/blob/4a59cd317e4f51f8d2badcada6baba2d0a083fcf/classic/lrc16/README.md">classic/lrc16</a>
+for your catalog path, restart Classic once so the Scripts menu lists
+it, then run it after every launch. It installs:</p>
+<ul>
+<li>the <code>+id_local</code> trigger correction;</li>
+<li>the indexed <code>isImageIdTracked</code> lookup;</li>
+<li>the incremental map/count with C copies.</li>
+</ul>
+<p><strong>Verify.</strong> Read <code>native.txt</code> in the run
+directory. Each phase reports <code>true</code>,
+<code>ALREADY_ACTIVE</code> or why it changed nothing. On the trigger
+phase, <code>SAME_ROWS … stock=… corrected=…</code> shows the rows
+matched and the time saved. Map/count <code>PROGRESS</code> lines must
+show <code>mismatches=0</code>. CPU and panel refresh should recover
+within a minute.</p>
+<p><strong>Install while busy.</strong> If the catalog is busy, a
+savepoint cannot open. Earlier versions then answered
+<code>WAIT_TRANSACTION</code>, and on a busy catalog that never cleared.
+The current build installs in autocommit (TEMP objects only) and undoes
+a partial step:</p>
+<ul>
+<li>if creating the corrected trigger fails, it recreates the
+original;</li>
+<li>if map/count stops partway, it drops its TEMP objects.</li>
+</ul>
+<p><strong>Undo.</strong> Quit Classic.</p>
+<p><strong>Limits.</strong> Runtime-only: every launch needs a new run.
+Checked on 16.0 only; any other version fails closed on the SQL text
+check.</p>
 </body>
 </html>

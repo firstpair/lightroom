@@ -5,7 +5,7 @@
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <meta name="author" content="FirstPair contributors" />
-  <meta name="dcterms.date" content="2026-11-10" />
+  <meta name="dcterms.date" content="2026-11-17" />
   <meta name="description" content="A practical cookbook of verified Lightroom repairs, preservation gates and version-sensitive performance mechanisms." />
   <title>Stage and qualify the public installer</title>
   <style>
@@ -125,7 +125,7 @@ installer</h2>
 <p>Run commands from the repository root and use an absolute path to
 your intended catalog. The README is authoritative for current CLI
 requirements. A reviewable first step is:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run <span class="at">--no-project</span> python scripts/manage.py install <span class="dt">\</span></span>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run <span class="at">--no-project</span> python classic/scripts/manage.py install <span class="dt">\</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">--catalog</span> /absolute/Example.lrcat <span class="dt">\</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">--backup-confirmed</span> <span class="at">--stage-only</span> <span class="at">--dry-run</span></span></code></pre></div>
 <p><code>--backup-confirmed</code> records your explicit confirmation
@@ -147,14 +147,14 @@ fresh native admission gates, not a way to inherit the private catalog’s
 old acceptance. Bounded map/copy/date wrappers also require actual
 native qualification after manual entry.</p>
 <p>After the genuine native terminal, inspect the receipts with:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run <span class="at">--no-project</span> python scripts/manage.py verify <span class="dt">\</span></span>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run <span class="at">--no-project</span> python classic/scripts/manage.py verify <span class="dt">\</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">--root</span> /absolute/private-install</span></code></pre></div>
 <p>After the required actual seven-phase callback/receipt qualification,
 quit Classic normally before enabling startup automation:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run <span class="at">--no-project</span> python scripts/manage.py enable <span class="dt">\</span></span>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run <span class="at">--no-project</span> python classic/scripts/manage.py enable <span class="dt">\</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">--root</span> /absolute/private-install <span class="at">--accept-menu-automation</span></span></code></pre></div>
 <p>Stop future checks with
-<code>scripts/manage.py disable --root /absolute/private-install</code>,
+<code>classic/scripts/manage.py disable --root /absolute/private-install</code>,
 using the same runner. Disable stops automation; follow the README’s
 native restoration rules for any current owned runtime guard. Do not
 cancel pending requests, force a completion flag, or treat

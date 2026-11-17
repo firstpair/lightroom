@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="FirstPair contributors" />
+  <meta name="dcterms.date" content="2026-11-17" />
+  <meta name="description" content="A practical cookbook of verified Lightroom repairs, preservation gates and version-sensitive performance mechanisms." />
+  <title>Explain a Cloud Sync indicator that never settles</title>
+  <style>
+    div.sitenav { display: flex; flex-direction: row; flex-wrap: wrap; }
+    span.navlink { flex: 1; }
+    span.navlink-label { display: inline-block; min-width: 4em; }
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="book.css" />
+</head>
+<body>
+<nav id="sitenav">
+<div class="sitenav">
+<span class="navlink">
+<span class="navlink-label">Up:</span> <a href="chapter-002.html" accesskey="u" rel="up">A Lightroom repair cookbook</a>
+</span>
+<span class="navlink">
+<span class="navlink-label">Top:</span> <a href="index.html" accesskey="t" rel="top">FirstPair Lightroom Repair</a>
+</span>
+</div>
+<div class="sitenav">
+<span class="navlink">
+</span>
+<span class="navlink">
+<span class="navlink-label">Previous:</span> <a href="chapter-045.html" accesskey="p" rel="previous">Download every Cloud Smart Preview through outages</a>
+</span>
+</div>
+</nav>
+<h2 data-number="1.44"
+id="explain-a-cloud-sync-indicator-that-never-settles"><span
+class="header-section-number">1.44</span> Explain a Cloud Sync indicator
+that never settles</h2>
+<p><strong>Symptom.</strong> Sync keeps showing activity, and View opens
+an empty list.</p>
+<p><strong>Method.</strong> Decode <code>asset_sync_status_ui</code> for
+your keep-locally configuration with the <a
+href="https://github.com/firstpair/lightroom/blob/4a59cd317e4f51f8d2badcada6baba2d0a083fcf/cloud/docs/CLOUD-SYNC-STATUS.md">status-code
+table</a>. In the reference library, 3 photos remained. They were
+imported on an iPad that never finished uploading: no server renditions,
+no thumbnail, and a refusal decided from the photo’s own record.</p>
+<p><strong>Fix.</strong> Open Lightroom on the importing device while
+it’s online. Don’t delete the records first, because the deletion syncs
+to that device too.</p>
+</body>
+</html>

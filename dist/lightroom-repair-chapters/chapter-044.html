@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="FirstPair contributors" />
+  <meta name="dcterms.date" content="2026-11-17" />
+  <meta name="description" content="A practical cookbook of verified Lightroom repairs, preservation gates and version-sensitive performance mechanisms." />
+  <title>Re-add Cloud indexes at every launch without disturbing the
+app</title>
+  <style>
+    div.sitenav { display: flex; flex-direction: row; flex-wrap: wrap; }
+    span.navlink { flex: 1; }
+    span.navlink-label { display: inline-block; min-width: 4em; }
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="book.css" />
+</head>
+<body>
+<nav id="sitenav">
+<div class="sitenav">
+<span class="navlink">
+<span class="navlink-label">Up:</span> <a href="chapter-002.html" accesskey="u" rel="up">A Lightroom repair cookbook</a>
+</span>
+<span class="navlink">
+<span class="navlink-label">Top:</span> <a href="index.html" accesskey="t" rel="top">FirstPair Lightroom Repair</a>
+</span>
+</div>
+<div class="sitenav">
+<span class="navlink">
+<span class="navlink-label">Next:</span> <a href="chapter-045.html" accesskey="n" rel="next">Download every Cloud Smart Preview through outages</a>
+</span>
+<span class="navlink">
+<span class="navlink-label">Previous:</span> <a href="chapter-043.html" accesskey="p" rel="previous">Diagnose Cloud throughput and verify native query repairs</a>
+</span>
+</div>
+</nav>
+<h2 data-number="1.42"
+id="re-add-cloud-indexes-at-every-launch-without-disturbing-the-app"><span
+class="header-section-number">1.42</span> Re-add Cloud indexes at every
+launch without disturbing the app</h2>
+<p><strong>Symptom.</strong> Sync-status panels, cache-size checks and
+settings cleanup run queries that take seconds each on a large Cloud
+library. Indexes fix them, but Cloud deletes undeclared indexes at every
+launch.</p>
+<p><strong>Prerequisites.</strong> A backup of
+<code>Lightroom Library.lrlibrary</code> taken while Cloud is quit.
+Statistics from <code>ANALYZE asset_sync_status_ui</code> (they
+persist). Read <a
+href="https://github.com/firstpair/lightroom/blob/4a59cd317e4f51f8d2badcada6baba2d0a083fcf/cloud/docs/CLOUD-INDEXES.md">Cloud
+indexes</a> first.</p>
+<p><strong>Method.</strong> <code>freeze_build.py</code> waits for 30 s
+without database changes, freezes Cloud with <code>SIGSTOP</code>, takes
+the write lock without waiting, builds one index, commits and resumes
+Cloud, with an independent resume timer as a backstop.
+<code>index_renewal.py</code> runs this once per launch from a
+LaunchAgent, after a 90 s settle and an APFS-clone rollback.</p>
+<p><strong>Verification.</strong> Each query returns identical typed
+results with the index and with <code>NOT INDEXED</code> in one
+snapshot. Cloud’s console log shows no “database is locked” lines.</p>
+<p><strong>Evidence.</strong> Two live runs froze Cloud for 2.3–10.5 s
+per index with zero lock errors. Cache-size queries dropped to
+milliseconds. A third index that sped up sync-status queries (1.5 s to
+0.0001 s) was withdrawn: Lightroom’s photo-list status lookup picked it
+and took 10.7 s, which triggered Versions timeouts when opening photos.
+Check every query on a table before adding an index to it.</p>
+<p><strong>Undo.</strong> Unload the LaunchAgent and restart Cloud,
+which deletes the indexes.</p>
+<p><strong>Limits.</strong> This is an external write to a live Adobe
+database and is not supported by Adobe. Each extra index slows Cloud’s
+own writes slightly.</p>
+</body>
+</html>

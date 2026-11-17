@@ -5,9 +5,9 @@
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <meta name="author" content="FirstPair contributors" />
-  <meta name="dcterms.date" content="2026-11-10" />
+  <meta name="dcterms.date" content="2026-11-17" />
   <meta name="description" content="A practical cookbook of verified Lightroom repairs, preservation gates and version-sensitive performance mechanisms." />
-  <title>Keep a bulk preview build cooperative</title>
+  <title>Verify a Smart Preview at the level you need</title>
   <style>
     div.sitenav { display: flex; flex-direction: row; flex-wrap: wrap; }
     span.navlink { flex: 1; }
@@ -32,71 +32,6 @@
       margin: 0 0.8em 0.2em -1.6em;
       vertical-align: middle;
     }
-    /* CSS for syntax highlighting */
-    html { -webkit-text-size-adjust: 100%; }
-    pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-    pre > code.sourceCode > span:empty { height: 1.2em; }
-    .sourceCode { overflow: visible; }
-    code.sourceCode > span { color: inherit; text-decoration: inherit; }
-    div.sourceCode { margin: 1em 0; }
-    pre.sourceCode { margin: 0; }
-    @media screen {
-    div.sourceCode { overflow: auto; }
-    }
-    @media print {
-    pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-    }
-    pre.numberSource code
-      { counter-reset: source-line 0; }
-    pre.numberSource code > span
-      { position: relative; left: -4em; counter-increment: source-line; }
-    pre.numberSource code > span > a:first-child::before
-      { content: counter(source-line);
-        position: relative; left: -1em; text-align: right; vertical-align: baseline;
-        border: none; display: inline-block;
-        -webkit-touch-callout: none; -webkit-user-select: none;
-        -khtml-user-select: none; -moz-user-select: none;
-        -ms-user-select: none; user-select: none;
-        padding: 0 4px; width: 4em;
-        color: #aaaaaa;
-      }
-    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-    div.sourceCode
-      {   }
-    @media screen {
-    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-    }
-    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-    code span.at { color: #7d9029; } /* Attribute */
-    code span.bn { color: #40a070; } /* BaseN */
-    code span.bu { color: #008000; } /* BuiltIn */
-    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-    code span.ch { color: #4070a0; } /* Char */
-    code span.cn { color: #880000; } /* Constant */
-    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-    code span.dt { color: #902000; } /* DataType */
-    code span.dv { color: #40a070; } /* DecVal */
-    code span.er { color: #ff0000; font-weight: bold; } /* Error */
-    code span.ex { } /* Extension */
-    code span.fl { color: #40a070; } /* Float */
-    code span.fu { color: #06287e; } /* Function */
-    code span.im { color: #008000; font-weight: bold; } /* Import */
-    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-    code span.op { color: #666666; } /* Operator */
-    code span.ot { color: #007020; } /* Other */
-    code span.pp { color: #bc7a00; } /* Preprocessor */
-    code span.sc { color: #4070a0; } /* SpecialChar */
-    code span.ss { color: #bb6688; } /* SpecialString */
-    code span.st { color: #4070a0; } /* String */
-    code span.va { color: #19177c; } /* Variable */
-    code span.vs { color: #4070a0; } /* VerbatimString */
-    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="book.css" />
 </head>
@@ -112,44 +47,51 @@
 </div>
 <div class="sitenav">
 <span class="navlink">
-<span class="navlink-label">Next:</span> <a href="chapter-025.html" accesskey="n" rel="next">Reuse offline converter-built Smart Previews</a>
+<span class="navlink-label">Next:</span> <a href="chapter-025.html" accesskey="n" rel="next">Isolate a stalled Smart Preview batch</a>
 </span>
 <span class="navlink">
-<span class="navlink-label">Previous:</span> <a href="chapter-023.html" accesskey="p" rel="previous">Isolate a stalled Smart Preview batch</a>
+<span class="navlink-label">Previous:</span> <a href="chapter-023.html" accesskey="p" rel="previous">Separate Sync stages and counts</a>
 </span>
 </div>
 </nav>
-<h2 data-number="1.22" id="keep-a-bulk-preview-build-cooperative"><span
-class="header-section-number">1.22</span> Keep a bulk preview build
-cooperative</h2>
-<p><strong>Prerequisites.</strong> Verify the existing Classic
-executable, PID and launch time; record that identity and its observed
-scheduler state. Keep the SDK owner and normal resource/closure
-protocol. A token reservation does not limit Adobe’s internal worker
-threads.</p>
-<p><strong>Procedure.</strong> On macOS, an operator can put that
-verified process into Darwin background scheduling during an unattended
-bulk build:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/usr/sbin/taskpolicy</span> <span class="at">-b</span> <span class="at">-p</span> <span class="st">&quot;</span><span class="va">$CLASSIC_PID</span><span class="st">&quot;</span></span></code></pre></div>
-<p>The installed manual and Apple’s source document this process-policy
-operation and its inverse. Check the command’s return status and keep
-observing actual SDK callbacks. <a
-href="https://github.com/apple-oss-distributions/system_cmds/blob/main/taskpolicy/taskpolicy.8">Apple
-taskpolicy manual</a>, <a
-href="https://github.com/apple-oss-distributions/system_cmds/blob/main/taskpolicy/taskpolicy.c">Apple
-implementation</a>.</p>
-<p><strong>Verify.</strong> A disposable Python control lowered
-scheduler priority and restored it; applying the policy to the bound
-Classic process also lowered its observed priority while preview
-callbacks continued. These observations do not measure contention
-fairness or an eight-core ceiling.</p>
-<p><strong>Undo.</strong> After bulk work stops/completes, reverify the
-same process launch before returning it to normal scheduling:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/usr/sbin/taskpolicy</span> <span class="at">-B</span> <span class="at">-p</span> <span class="st">&quot;</span><span class="va">$CLASSIC_PID</span><span class="st">&quot;</span></span></code></pre></div>
-<p>Record restoration when performed. A saved undo command is pending
-cleanup.</p>
-<p><strong>Limits.</strong> This changes scheduling, not core affinity,
-a CPU quota or an RSS cap. It does not settle native calls, release
-leases or authorize another build.</p>
+<h2 data-number="1.22"
+id="verify-a-smart-preview-at-the-level-you-need"><span
+class="header-section-number">1.22</span> Verify a Smart Preview at the
+level you need</h2>
+<p><strong>Prerequisites.</strong> Bind the exact existing image/file
+UUID and the literal native preview path. Collision suffixes can be
+legitimate; do not derive every path from a UUID formula. Preserve the
+preview and settings baseline.</p>
+<p><strong>Procedure.</strong> Use normal <strong>Build Smart
+Previews</strong> for admitted sources. Adobe describes Classic’s Smart
+Preview status below the Histogram and the ability to work with
+originals disconnected. <a
+href="https://helpx.adobe.com/lightroom-classic/desktop/viewing-photos/lightroom-smart-previews.html">Adobe:
+Smart Previews</a>.</p>
+<p>Then distinguish four checks: a nonempty file; a structurally
+decodable preview; a native application render; and editing with the
+required settings. A full tile decode is stronger than a header check,
+but does not demonstrate the application’s offline setting/profile
+behavior.</p>
+<p><strong>Verify.</strong> Bind decode results to current catalog IDs,
+native status, stable preview bytes and identities, and full decode
+scope. For offline render testing, use an explicit network and
+original-source denial boundary, observe the selected exact image at Fit
+and 100%, and compare settings afterward. Open read-access descriptors
+support a file-use observation; they are not kernel read traces.</p>
+<p>The retained reuse publication covers 473,531 asset bindings across
+471,373 physical previews. Two PENTAX K-7 legacy controls actually
+rendered offline at Fit and 100%. Both still requested Legacy Settings
+Update before editing; no Update, Reset, edit, or export was completed.
+These controls do not establish readiness of the whole preview
+cohort.</p>
+<p><strong>Undo.</strong> Retain the originals and prior preview state.
+Remove only an exact owned newly published cache entry when it is proven
+safe and no native operation still owns it; avoid deleting the whole
+preview family during recovery.</p>
+<p><strong>Limits.</strong> A preview cannot replace a missing
+full-resolution original for every purpose. Two legacy render controls
+do not establish modern external-XMP readiness or current Classic
+offline editing for the whole library.</p>
 </body>
 </html>

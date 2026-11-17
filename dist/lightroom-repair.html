@@ -5,7 +5,7 @@
   <meta name="generator" content="pandoc 3.12.1" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <meta name="author" content="FirstPair contributors" />
-  <meta name="dcterms.date" content="2026-11-10" />
+  <meta name="dcterms.date" content="2026-11-17" />
   <meta name="description" content="A practical cookbook of verified Lightroom repairs, preservation gates and version-sensitive performance mechanisms." />
   <title>FirstPair Lightroom Repair</title>
   <style>
@@ -112,7 +112,7 @@ img { max-width: 100%; height: auto; }
 <p class="subtitle">A practical cookbook for catalogs, previews and
 Sync</p>
 <p class="author">FirstPair contributors</p>
-<p class="date">2026-11-10</p>
+<p class="date">2026-11-17</p>
 </header>
 <nav id="TOC" role="doc-toc">
 <ul>
@@ -153,41 +153,57 @@ metadata work through its owner</a></li>
 download workers</a></li>
 <li><a href="#renew-bounded-fixes-after-launch" id="toc-renew-bounded-fixes-after-launch"><span class="toc-section-number">1.18</span> Renew bounded fixes after
 launch</a></li>
-<li><a href="#separate-sync-stages-and-counts" id="toc-separate-sync-stages-and-counts"><span class="toc-section-number">1.19</span> Separate Sync stages and
+<li><a href="#apply-the-classic-16.0-fixes-after-each-launch" id="toc-apply-the-classic-16.0-fixes-after-each-launch"><span class="toc-section-number">1.19</span> Apply the Classic 16.0 fixes
+after each launch</a></li>
+<li><a href="#unstick-cloud-uploads-without-rebuilding-previews" id="toc-unstick-cloud-uploads-without-rebuilding-previews"><span class="toc-section-number">1.20</span> Unstick cloud uploads without
+rebuilding previews</a></li>
+<li><a href="#separate-sync-stages-and-counts" id="toc-separate-sync-stages-and-counts"><span class="toc-section-number">1.21</span> Separate Sync stages and
 counts</a></li>
-<li><a href="#verify-a-smart-preview-at-the-level-you-need" id="toc-verify-a-smart-preview-at-the-level-you-need"><span class="toc-section-number">1.20</span> Verify a Smart Preview at the
+<li><a href="#verify-a-smart-preview-at-the-level-you-need" id="toc-verify-a-smart-preview-at-the-level-you-need"><span class="toc-section-number">1.22</span> Verify a Smart Preview at the
 level you need</a></li>
-<li><a href="#isolate-a-stalled-smart-preview-batch" id="toc-isolate-a-stalled-smart-preview-batch"><span class="toc-section-number">1.21</span> Isolate a stalled Smart Preview
+<li><a href="#isolate-a-stalled-smart-preview-batch" id="toc-isolate-a-stalled-smart-preview-batch"><span class="toc-section-number">1.23</span> Isolate a stalled Smart Preview
 batch</a></li>
-<li><a href="#keep-a-bulk-preview-build-cooperative" id="toc-keep-a-bulk-preview-build-cooperative"><span class="toc-section-number">1.22</span> Keep a bulk preview build
+<li><a href="#keep-a-bulk-preview-build-cooperative" id="toc-keep-a-bulk-preview-build-cooperative"><span class="toc-section-number">1.24</span> Keep a bulk preview build
 cooperative</a></li>
-<li><a href="#reuse-offline-converter-built-smart-previews" id="toc-reuse-offline-converter-built-smart-previews"><span class="toc-section-number">1.23</span> Reuse offline converter-built
+<li><a href="#reuse-offline-converter-built-smart-previews" id="toc-reuse-offline-converter-built-smart-previews"><span class="toc-section-number">1.25</span> Reuse offline converter-built
 Smart Previews</a></li>
-<li><a href="#map-and-clone-classic-previews-into-cloud-precisely" id="toc-map-and-clone-classic-previews-into-cloud-precisely"><span class="toc-section-number">1.24</span> Map and clone Classic previews
+<li><a href="#map-and-clone-classic-previews-into-cloud-precisely" id="toc-map-and-clone-classic-previews-into-cloud-precisely"><span class="toc-section-number">1.26</span> Map and clone Classic previews
 into Cloud precisely</a></li>
-<li><a href="#test-offline-rendering-and-editing-without-overstating-undo" id="toc-test-offline-rendering-and-editing-without-overstating-undo"><span class="toc-section-number">1.25</span> Test offline rendering and
+<li><a href="#register-placed-clones-with-clouds-own-proxy-loader" id="toc-register-placed-clones-with-clouds-own-proxy-loader"><span class="toc-section-number">1.27</span> Register placed clones with
+Cloud’s own proxy loader</a></li>
+<li><a href="#test-offline-rendering-and-editing-without-overstating-undo" id="toc-test-offline-rendering-and-editing-without-overstating-undo"><span class="toc-section-number">1.28</span> Test offline rendering and
 editing without overstating Undo</a></li>
-<li><a href="#recover-exact-settings-without-resetting-edits" id="toc-recover-exact-settings-without-resetting-edits"><span class="toc-section-number">1.26</span> Recover exact settings without
+<li><a href="#recover-exact-settings-without-resetting-edits" id="toc-recover-exact-settings-without-resetting-edits"><span class="toc-section-number">1.29</span> Recover exact settings without
 resetting edits</a></li>
-<li><a href="#recover-a-selected-proxy-missing-upload" id="toc-recover-a-selected-proxy-missing-upload"><span class="toc-section-number">1.27</span> Recover a selected proxy-missing
+<li><a href="#recover-a-selected-proxy-missing-upload" id="toc-recover-a-selected-proxy-missing-upload"><span class="toc-section-number">1.30</span> Recover a selected proxy-missing
 upload</a></li>
-<li><a href="#recover-verification-after-a-successful-native-action" id="toc-recover-verification-after-a-successful-native-action"><span class="toc-section-number">1.28</span> Recover verification after a
+<li><a href="#recover-verification-after-a-successful-native-action" id="toc-recover-verification-after-a-successful-native-action"><span class="toc-section-number">1.31</span> Recover verification after a
 successful native action</a></li>
-<li><a href="#classify-identity-before-merging-or-deleting" id="toc-classify-identity-before-merging-or-deleting"><span class="toc-section-number">1.29</span> Classify identity before merging
+<li><a href="#classify-identity-before-merging-or-deleting" id="toc-classify-identity-before-merging-or-deleting"><span class="toc-section-number">1.32</span> Classify identity before merging
 or deleting</a></li>
-<li><a href="#route-native-fingerprints-by-format" id="toc-route-native-fingerprints-by-format"><span class="toc-section-number">1.30</span> Route native fingerprints by
+<li><a href="#route-native-fingerprints-by-format" id="toc-route-native-fingerprints-by-format"><span class="toc-section-number">1.33</span> Route native fingerprints by
 format</a></li>
-<li><a href="#prove-a-backup-holds-every-photo-before-deleting-it" id="toc-prove-a-backup-holds-every-photo-before-deleting-it"><span class="toc-section-number">1.31</span> Prove a backup holds every photo
+<li><a href="#prove-a-backup-holds-every-photo-before-deleting-it" id="toc-prove-a-backup-holds-every-photo-before-deleting-it"><span class="toc-section-number">1.34</span> Prove a backup holds every photo
 before deleting it</a></li>
-<li><a href="#replace-a-damaged-original-with-its-intact-conversion" id="toc-replace-a-damaged-original-with-its-intact-conversion"><span class="toc-section-number">1.32</span> Replace a damaged original with
+<li><a href="#replace-a-damaged-original-with-its-intact-conversion" id="toc-replace-a-damaged-original-with-its-intact-conversion"><span class="toc-section-number">1.35</span> Replace a damaged original with
 its intact conversion</a></li>
-<li><a href="#browse-and-rate-with-the-originals-offline" id="toc-browse-and-rate-with-the-originals-offline"><span class="toc-section-number">1.33</span> Browse and rate with the
+<li><a href="#browse-and-rate-with-the-originals-offline" id="toc-browse-and-rate-with-the-originals-offline"><span class="toc-section-number">1.36</span> Browse and rate with the
 originals offline</a></li>
-<li><a href="#reconcile-catalog-xmp-ratings-and-dates" id="toc-reconcile-catalog-xmp-ratings-and-dates"><span class="toc-section-number">1.34</span> Reconcile catalog, XMP, ratings
+<li><a href="#reconcile-catalog-xmp-ratings-and-dates" id="toc-reconcile-catalog-xmp-ratings-and-dates"><span class="toc-section-number">1.37</span> Reconcile catalog, XMP, ratings
 and dates</a></li>
-<li><a href="#start-with-supported-performance-maintenance" id="toc-start-with-supported-performance-maintenance"><span class="toc-section-number">1.35</span> Start with supported performance
+<li><a href="#start-with-supported-performance-maintenance" id="toc-start-with-supported-performance-maintenance"><span class="toc-section-number">1.38</span> Start with supported performance
 maintenance</a></li>
-<li><a href="#a-receipt-you-can-reuse" id="toc-a-receipt-you-can-reuse"><span class="toc-section-number">1.36</span> A receipt you can reuse</a></li>
+<li><a href="#a-receipt-you-can-reuse" id="toc-a-receipt-you-can-reuse"><span class="toc-section-number">1.39</span> A receipt you can reuse</a></li>
+<li><a href="#recover-exact-c2pa-auxiliary-payloads" id="toc-recover-exact-c2pa-auxiliary-payloads"><span class="toc-section-number">1.40</span> Recover exact C2PA auxiliary
+payloads</a></li>
+<li><a href="#diagnose-cloud-throughput-and-verify-native-query-repairs" id="toc-diagnose-cloud-throughput-and-verify-native-query-repairs"><span class="toc-section-number">1.41</span> Diagnose Cloud throughput and
+verify native query repairs</a></li>
+<li><a href="#re-add-cloud-indexes-at-every-launch-without-disturbing-the-app" id="toc-re-add-cloud-indexes-at-every-launch-without-disturbing-the-app"><span class="toc-section-number">1.42</span> Re-add Cloud indexes at every
+launch without disturbing the app</a></li>
+<li><a href="#download-every-cloud-smart-preview-through-outages" id="toc-download-every-cloud-smart-preview-through-outages"><span class="toc-section-number">1.43</span> Download every Cloud Smart
+Preview through outages</a></li>
+<li><a href="#explain-a-cloud-sync-indicator-that-never-settles" id="toc-explain-a-cloud-sync-indicator-that-never-settles"><span class="toc-section-number">1.44</span> Explain a Cloud Sync indicator
+that never settles</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -200,17 +216,17 @@ Dome, photographs, a cloud and a catalog</figcaption>
 <p>This cookbook explains repairs and diagnostic methods developed while
 recovering a large Lightroom Classic catalog and its Lightroom cloud
 state. It is organized by the problem you have, with prerequisites,
-verification, and an exit path for each recipe. Start with <a href="https://github.com/firstpair/lightroom/blob/ebc516f21e39e0272a42304bee009b5c475cc5aa/README.md">the
+verification, and an exit path for each recipe. Start with <a href="https://github.com/firstpair/lightroom/blob/4a59cd317e4f51f8d2badcada6baba2d0a083fcf/classic/README.md">the
 repository README</a> for the available commands and supported
 configuration.</p>
 <p>The reference environment was macOS on Apple silicon, Lightroom
-Classic 15.6, and Lightroom desktop 9.6. Application internals, database
-schemas, and native request contracts are version dependent. The public
-package contains our own configurable helpers; a successful private
-control does not qualify a different app build, catalog, or newly
-generated installer. In particular, the public affinity correction and
-durable schema index are disabled by default pending an actual current
-native qualification.</p>
+Classic 15.6 and then 16.0, and Lightroom desktop 9.6 and 10.0.
+Application internals, database schemas, and native request contracts
+are version dependent. The public package contains our own configurable
+helpers; a successful private control does not qualify a different app
+build, catalog, or newly generated installer. In particular, the public
+affinity correction and durable schema index are disabled by default
+pending an actual current native qualification.</p>
 <h2 data-number="1.1" id="what-has-actually-been-repaired"><span class="header-section-number">1.1</span> What has actually been
 repaired</h2>
 <p>The operator reported years of slow or failed local imports, Smart
@@ -309,6 +325,22 @@ original-source denial</td>
 update/reset/edit/export ran</td>
 </tr>
 <tr>
+<td>Classic 16.0 stalls after the update</td>
+<td>Stock file triggers took 7–39 s per DELETE and Smart Preview
+building stopped for about 3 hours. After the three 16.0 runtime fixes,
+the triggers took under 1 ms, Main database time fell from 59.5 s to 3.4
+s per 90 s, and preview building resumed at about 105 per minute</td>
+<td>Runtime-only; must be re-applied after each launch</td>
+</tr>
+<tr>
+<td>Cloud uploads stuck in Classic 16.0</td>
+<td>Of 3,236 stuck photos, 2,903 cleared with stock retry, 319 more
+after a develop re-save, and 18 stuck Smart Preview uploads after the
+preview was re-registered at its real path</td>
+<td>Each route has its own symptom; rebuilding previews did not
+help</td>
+</tr>
+<tr>
 <td>Exact cached settings</td>
 <td>One normally adopted exact XMP, unchanged develop body/revision,
 Waiting for Settings cleared after cold restart</td>
@@ -319,7 +351,7 @@ admission roster</td>
 </table>
 <h2 data-number="1.2" id="which-parts-are-supplied-as-code"><span class="header-section-number">1.2</span> Which parts are supplied as
 code</h2>
-<p>The <a href="https://github.com/firstpair/lightroom/blob/ebc516f21e39e0272a42304bee009b5c475cc5aa/README.md">README</a>
+<p>The <a href="https://github.com/firstpair/lightroom/blob/4a59cd317e4f51f8d2badcada6baba2d0a083fcf/classic/README.md">README</a>
 describes the current executable package. It contains our own
 installation/verification CLI, native performance adapters, synthetic
 controls, codecs and lifecycle helper under the MIT license. It imports
@@ -340,8 +372,8 @@ those Adobe modules are not redistributed.</p>
 <tr>
 <td>Bounded map/count reuse, isolated C copying, point tracking, paired
 map transport, date equivalence and startup renewal</td>
-<td>Configurable source in <a href="https://github.com/firstpair/lightroom/tree/ebc516f21e39e0272a42304bee009b5c475cc5aa/templates/runtime">templates/runtime</a>
-and <a href="https://github.com/firstpair/lightroom/blob/ebc516f21e39e0272a42304bee009b5c475cc5aa/scripts/manage.py">scripts/manage.py</a>;
+<td>Configurable source in <a href="https://github.com/firstpair/lightroom/tree/4a59cd317e4f51f8d2badcada6baba2d0a083fcf/classic/templates/runtime">templates/runtime</a>
+and <a href="https://github.com/firstpair/lightroom/blob/4a59cd317e4f51f8d2badcada6baba2d0a083fcf/classic/scripts/manage.py">scripts/manage.py</a>;
 fresh manual native qualification required</td>
 </tr>
 <tr>
@@ -351,8 +383,26 @@ index</td>
 default</strong></td>
 </tr>
 <tr>
+<td>Classic 16.0 trigger affinity, point lookup and incremental
+map/count</td>
+<td><a href="https://github.com/firstpair/lightroom/blob/4a59cd317e4f51f8d2badcada6baba2d0a083fcf/classic/lrc16/README.md">classic/lrc16</a>:
+one generated Scripts-menu action, run natively on the reference
+catalog</td>
+</tr>
+<tr>
+<td>Stuck upload recovery (retry, develop re-save, preview
+re-registration)</td>
+<td><a href="https://github.com/firstpair/lightroom/blob/4a59cd317e4f51f8d2badcada6baba2d0a083fcf/classic/sync-recovery/README.md">classic/sync-recovery</a>:
+read-only preflight plus generated per-list actions</td>
+</tr>
+<tr>
+<td>Durable product fixes for Adobe</td>
+<td><a href="https://github.com/firstpair/lightroom/blob/4a59cd317e4f51f8d2badcada6baba2d0a083fcf/docs/ADOBE-ENGINEERS.md">For
+Adobe engineers</a></td>
+</tr>
+<tr>
 <td>Destination-folder admission</td>
-<td><a href="https://github.com/firstpair/lightroom/blob/ebc516f21e39e0272a42304bee009b5c475cc5aa/examples/folder_resolver.lua">An
+<td><a href="https://github.com/firstpair/lightroom/blob/4a59cd317e4f51f8d2badcada6baba2d0a083fcf/classic/examples/folder_resolver.lua">An
 authored example adapter</a>, requiring independent preservation
 admission; it is not automatically dispatched</td>
 </tr>
@@ -429,7 +479,7 @@ installer</h2>
 <p>Run commands from the repository root and use an absolute path to
 your intended catalog. The README is authoritative for current CLI
 requirements. A reviewable first step is:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run <span class="at">--no-project</span> python scripts/manage.py install <span class="dt">\</span></span>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run <span class="at">--no-project</span> python classic/scripts/manage.py install <span class="dt">\</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">--catalog</span> /absolute/Example.lrcat <span class="dt">\</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">--backup-confirmed</span> <span class="at">--stage-only</span> <span class="at">--dry-run</span></span></code></pre></div>
 <p><code>--backup-confirmed</code> records your explicit confirmation
@@ -451,14 +501,14 @@ fresh native admission gates, not a way to inherit the private catalog’s
 old acceptance. Bounded map/copy/date wrappers also require actual
 native qualification after manual entry.</p>
 <p>After the genuine native terminal, inspect the receipts with:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run <span class="at">--no-project</span> python scripts/manage.py verify <span class="dt">\</span></span>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run <span class="at">--no-project</span> python classic/scripts/manage.py verify <span class="dt">\</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">--root</span> /absolute/private-install</span></code></pre></div>
 <p>After the required actual seven-phase callback/receipt qualification,
 quit Classic normally before enabling startup automation:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run <span class="at">--no-project</span> python scripts/manage.py enable <span class="dt">\</span></span>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run <span class="at">--no-project</span> python classic/scripts/manage.py enable <span class="dt">\</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">--root</span> /absolute/private-install <span class="at">--accept-menu-automation</span></span></code></pre></div>
 <p>Stop future checks with
-<code>scripts/manage.py disable --root /absolute/private-install</code>,
+<code>classic/scripts/manage.py disable --root /absolute/private-install</code>,
 using the same runner. Disable stops automation; follow the README’s
 native restoration rules for any current owned runtime guard. Do not
 cancel pending requests, force a completion flag, or treat
@@ -1136,7 +1186,100 @@ expression index is a schema change. Reapplication after launch is not
 an object surviving quit, an indefinite lifetime guarantee, or a
 benchmark of sustained throughput. An app update or changed dependency
 must fail the pin gate and require a fresh qualification.</p>
-<h2 data-number="1.19" id="separate-sync-stages-and-counts"><span class="header-section-number">1.19</span> Separate Sync stages and
+<h2 data-number="1.19" id="apply-the-classic-16.0-fixes-after-each-launch"><span class="header-section-number">1.19</span> Apply the Classic 16.0 fixes
+after each launch</h2>
+<p><strong>Prerequisites.</strong> Lightroom Classic 16.0 and a recent
+catalog backup. The fixes touch only TEMP objects and the running
+process, but take the backup anyway.</p>
+<p><strong>Symptom.</strong> After updating to 16.0, folder moves leave
+folders marked missing or missing from the panel until restart, new
+collections don’t appear, Smart Previews stop building, and Classic sits
+at several hundred percent CPU. All of these come from MainServer being
+saturated. The catalog rows are written; only the panels lag. A 90 s
+profile of every Main database call showed two kinds of work:</p>
+<ul>
+<li>the stock file triggers taking seconds per DELETE;</li>
+<li>full image→cloud-asset map and <code>COUNT(*)</code> rebuilds on
+every asset-ID change, which Sync keeps making even while paused.</li>
+</ul>
+<p><strong>Procedure.</strong> Build the action with <a href="https://github.com/firstpair/lightroom/blob/4a59cd317e4f51f8d2badcada6baba2d0a083fcf/classic/lrc16/README.md">classic/lrc16</a>
+for your catalog path, restart Classic once so the Scripts menu lists
+it, then run it after every launch. It installs:</p>
+<ul>
+<li>the <code>+id_local</code> trigger correction;</li>
+<li>the indexed <code>isImageIdTracked</code> lookup;</li>
+<li>the incremental map/count with C copies.</li>
+</ul>
+<p><strong>Verify.</strong> Read <code>native.txt</code> in the run
+directory. Each phase reports <code>true</code>,
+<code>ALREADY_ACTIVE</code> or why it changed nothing. On the trigger
+phase, <code>SAME_ROWS … stock=… corrected=…</code> shows the rows
+matched and the time saved. Map/count <code>PROGRESS</code> lines must
+show <code>mismatches=0</code>. CPU and panel refresh should recover
+within a minute.</p>
+<p><strong>Install while busy.</strong> If the catalog is busy, a
+savepoint cannot open. Earlier versions then answered
+<code>WAIT_TRANSACTION</code>, and on a busy catalog that never cleared.
+The current build installs in autocommit (TEMP objects only) and undoes
+a partial step:</p>
+<ul>
+<li>if creating the corrected trigger fails, it recreates the
+original;</li>
+<li>if map/count stops partway, it drops its TEMP objects.</li>
+</ul>
+<p><strong>Undo.</strong> Quit Classic.</p>
+<p><strong>Limits.</strong> Runtime-only: every launch needs a new run.
+Checked on 16.0 only; any other version fails closed on the SQL text
+check.</p>
+<h2 data-number="1.20" id="unstick-cloud-uploads-without-rebuilding-previews"><span class="header-section-number">1.20</span> Unstick cloud uploads without
+rebuilding previews</h2>
+<p><strong>Prerequisites.</strong> A read-only view of the Sync store
+(<code>&lt;Catalog&gt; Sync.lrdata/&lt;cloud catalog id&gt;/Managed Catalog.mcat</code>
+and <code>.wfindex</code>, opened with <code>mode=ro</code>) and the
+list of stuck asset IDs. Decide each photo’s route from what you find
+there; the Sync count alone does not tell you.</p>
+<p><strong>Procedure.</strong> Try 1–5 photos per route first. <a href="https://github.com/firstpair/lightroom/blob/4a59cd317e4f51f8d2badcada6baba2d0a083fcf/classic/sync-recovery/README.md">classic/sync-recovery</a>
+generates each action.</p>
+<ol type="1">
+<li><strong>An error is recorded</strong> (for example 404
+<code>BinaryMissingError</code>): run stock <strong>clear errors and
+retry Sync</strong> on the listed IDs.</li>
+<li><strong>Still 404 after retry:</strong> the revision usually refers
+to a develop XMP the server never received. A no-op develop re-save
+makes Classic regenerate and upload the XMP, and re-send the proxy when
+its link is missing. The re-save nudges exposure by +0.01 and then
+restores the exact original value. Final settings are identical; each
+photo gains two history steps.</li>
+<li><strong>No error, but a proxy row sits in
+<code>needsBinaryUpload</code> with
+<code>fileMaybeOnOfflineVolume=1</code>:</strong> the record points to
+the volume where the catalog used to live, for example after copying it
+to another Mac. Run the read-only preflight. Re-register only rows whose
+local preview matches the cloud’s SHA, using the proxy-only
+<code>setOriginalAndProxyInfo</code> with
+<code>filePath</code>/<code>fileSize</code> left out. Native code hashes
+the existing file and records its current path.</li>
+</ol>
+<p>Do not rebuild Smart Previews to unstick an upload. A rebuilt preview
+has a new SHA, and Classic re-sends a proxy only when the local SHA
+equals the cloud’s <code>importSource.proxySHA256</code>.</p>
+<p><strong>Verify.</strong> For each photo:</p>
+<ul>
+<li>the error is cleared;</li>
+<li>the winning revision is listed in the server’s
+<code>revision_ids</code>;</li>
+<li>the photo has no <code>needsBinaryUpload</code> row.</li>
+</ul>
+<p>Read the generated log for each native callback.</p>
+<p><strong>Undo.</strong> Server-accepted revisions cannot be withdrawn.
+The re-save leaves identical final settings plus two history steps, and
+the proxy re-registration changes only the recorded path.</p>
+<p><strong>Limits.</strong> These calls use private modules, checked on
+Classic 16.0. Repointing already-synced records can create one
+metadata-only revision each, accepted by the server, with no binary
+sent. Previews whose local bytes differ from the cloud’s copy must not
+be repointed, because that would upload a replacement.</p>
+<h2 data-number="1.21" id="separate-sync-stages-and-counts"><span class="header-section-number">1.21</span> Separate Sync stages and
 counts</h2>
 <p><strong>Prerequisites.</strong> Define which photos, collections,
 revisions, and direction you are measuring. Keep UI counts, pending
@@ -1172,7 +1315,7 @@ different queue stages; subtracting two unrelated counters cannot
 identify completed uploads. A retry receipt must bind actual emitted
 revisions, because the native sequence is globally allocated rather than
 a per-document old-plus-one edit count.</p>
-<h2 data-number="1.20" id="verify-a-smart-preview-at-the-level-you-need"><span class="header-section-number">1.20</span> Verify a Smart Preview at the
+<h2 data-number="1.22" id="verify-a-smart-preview-at-the-level-you-need"><span class="header-section-number">1.22</span> Verify a Smart Preview at the
 level you need</h2>
 <p><strong>Prerequisites.</strong> Bind the exact existing image/file
 UUID and the literal native preview path. Collision suffixes can be
@@ -1208,7 +1351,7 @@ preview family during recovery.</p>
 full-resolution original for every purpose. Two legacy render controls
 do not establish modern external-XMP readiness or current Classic
 offline editing for the whole library.</p>
-<h2 data-number="1.21" id="isolate-a-stalled-smart-preview-batch"><span class="header-section-number">1.21</span> Isolate a stalled Smart
+<h2 data-number="1.23" id="isolate-a-stalled-smart-preview-batch"><span class="header-section-number">1.23</span> Isolate a stalled Smart
 Preview batch</h2>
 <p><strong>Prerequisites.</strong> Preserve the exact requested photo
 IDs, batch intent, returned callbacks and existing previews. Keep
@@ -1294,7 +1437,7 @@ original failed/pending receipts. Record recovery closure separately
 from successful SDK completion. A small successful batch does not
 qualify an unattended full-catalog controller or justify another large
 retry.</p>
-<h2 data-number="1.22" id="keep-a-bulk-preview-build-cooperative"><span class="header-section-number">1.22</span> Keep a bulk preview build
+<h2 data-number="1.24" id="keep-a-bulk-preview-build-cooperative"><span class="header-section-number">1.24</span> Keep a bulk preview build
 cooperative</h2>
 <p><strong>Prerequisites.</strong> Verify the existing Classic
 executable, PID and launch time; record that identity and its observed
@@ -1323,7 +1466,7 @@ cleanup.</p>
 <p><strong>Limits.</strong> This changes scheduling, not core affinity,
 a CPU quota or an RSS cap. It does not settle native calls, release
 leases or authorize another build.</p>
-<h2 data-number="1.23" id="reuse-offline-converter-built-smart-previews"><span class="header-section-number">1.23</span> Reuse offline converter-built
+<h2 data-number="1.25" id="reuse-offline-converter-built-smart-previews"><span class="header-section-number">1.25</span> Reuse offline converter-built
 Smart Previews</h2>
 <p><strong>Prerequisites.</strong> Originals remain retained and stable.
 Pin the installed converter version and explicit output options. Use a
@@ -1367,7 +1510,7 @@ with a lossy preview.</p>
 public Adobe cache-installation contract or a general batch command
 supplied by this starter. Successful adoption does not prove every
 camera, warning, profile, crop or encoded plane is interchangeable.</p>
-<h2 data-number="1.24" id="map-and-clone-classic-previews-into-cloud-precisely"><span class="header-section-number">1.24</span> Map and clone Classic previews
+<h2 data-number="1.26" id="map-and-clone-classic-previews-into-cloud-precisely"><span class="header-section-number">1.26</span> Map and clone Classic previews
 into Cloud precisely</h2>
 <p><strong>Prerequisites.</strong> Apps are normally closed for file
 publication. Bind each exact Classic image/file UUID to its current
@@ -1415,7 +1558,55 @@ not grounds to remove its original.</p>
 separately qualified identity route. The known-SHA recipe cannot
 silently admit that population. The two legacy tests below used such a
 narrower route and qualify only their tested class.</p>
-<h2 data-number="1.25" id="test-offline-rendering-and-editing-without-overstating-undo"><span class="header-section-number">1.25</span> Test offline rendering and
+<h2 data-number="1.27" id="register-placed-clones-with-clouds-own-proxy-loader"><span class="header-section-number">1.27</span> Register placed clones with
+Cloud’s own proxy loader</h2>
+<p><strong>Prerequisites.</strong> Clones already placed and verified
+against each document’s <code>importSource.proxySHA256</code>. A fresh
+Cloud launch under network and original-source denial with zero sockets
+observed. A closed read-only ledger of every unregistered document with
+a clone at its literal native path, the full current body, annotation,
+revision and stored labels. Accessibility permission for one menu
+selection. <code>cloud/scripts/proxy_register.py</code> and <a href="https://github.com/firstpair/lightroom/blob/4a59cd317e4f51f8d2badcada6baba2d0a083fcf/cloud/docs/CLOUD-PROXY-REGISTRATION.md">docs/CLOUD-PROXY-REGISTRATION.md</a>
+supply the tooling.</p>
+<p><strong>Procedure.</strong> Placement alone registers nothing:
+465,411 exact clones stayed <code>needsProxyDownload</code> for five
+days with local Smart Preview retention enabled. Issue the ordinary
+<code>getProxyPaths</code> request from one user Script, 256 documents
+per batch and at most four batches in flight, reading each document
+before and after through the ordinary asset stream. Approve only the
+first batch until its after-documents show exactly
+<code>{volumeGuid, relativePath, lastSaveTimestamp}</code> added under
+<code>_localOnly.files.proxy[&quot;2560&quot;]</code> and nothing else changed.
+Skip, never fabricate: an already annotated document, a document whose
+live body or annotation differs from the ledger, and a native refusal (a
+status such as <code>SendNoDownloadableOriginal</code> instead of a
+path) are per-row holds. Halt only on request-level protocol or owner
+failures.</p>
+<p><strong>Verify.</strong> The reference run recognized about 45
+documents per second with full before/after protection and no body,
+revision or label change. Native refreshes
+<code>_localOnly.cameraProfileInfo</code> after a relaunch, so roughly
+one percent of rows drift from a closed ledger; rebuild the ledger and
+run a second pass instead of weakening the before-guard. After a normal
+quit, the closed audit classifies every row by registration, body,
+annotation minus the added entry, labels and index flags. Subtract only
+the new proxy entry and any now-empty parent maps that were absent from
+the exact baseline. Preserve pre-existing empty maps and all unrelated
+annotations; a new profile value must still hold the row. This
+projection changes only the observer’s comparison, never Lightroom
+data.</p>
+<p><strong>Undo.</strong> The annotation is native-owned cache
+bookkeeping bound to a file that already existed; removing the clone
+through Cloud’s own cache controls is the supported reversal. Keep the
+run journals, the ledger and the guard observations.</p>
+<p><strong>Limits.</strong> A recognized local proxy is not settings
+readiness, a rendered test, numeric-edit readiness or server
+convergence. An inherited design that halted the whole controller on one
+row hold registered nothing on its first attempt; a 5-second guard
+freshness with a once-per-second refresher stalled an earlier settings
+batch. Documents without an expected proxy hash belong to the separately
+qualified route above.</p>
+<h2 data-number="1.28" id="test-offline-rendering-and-editing-without-overstating-undo"><span class="header-section-number">1.28</span> Test offline rendering and
 editing without overstating Undo</h2>
 <p><strong>Prerequisites.</strong> Keep a complete current
 develop/history baseline and exact preview identities. Define actual
@@ -1453,7 +1644,7 @@ render-only test should require no develop changes.</p>
 external-XMP images ready. Two legacy renders do not qualify every
 absent-proxy-SHA asset or Classic offline editing. An early unchanged
 persisted snapshot can precede later normal settings Sync.</p>
-<h2 data-number="1.26" id="recover-exact-settings-without-resetting-edits"><span class="header-section-number">1.26</span> Recover exact settings without
+<h2 data-number="1.29" id="recover-exact-settings-without-resetting-edits"><span class="header-section-number">1.29</span> Recover exact settings without
 resetting edits</h2>
 <p><strong>Prerequisites.</strong> Observe the current cloud
 asset/revision, exact requested XMP whole-file SHA and size, local XMP
@@ -1497,7 +1688,7 @@ gates. Whole admitted-preview embedded-XMP scanning found zero exact
 requested-hash matches across two temporal read-only snapshots; do not
 call them one atomic snapshot or treat old packets as current
 settings.</p>
-<h2 data-number="1.27" id="recover-a-selected-proxy-missing-upload"><span class="header-section-number">1.27</span> Recover a selected
+<h2 data-number="1.30" id="recover-a-selected-proxy-missing-upload"><span class="header-section-number">1.30</span> Recover a selected
 proxy-missing upload</h2>
 <p><strong>Prerequisites.</strong> Identify the exact current Cloud
 document/revision and error, expected proxy bytes and current local
@@ -1544,7 +1735,7 @@ stall. Earlier preview work also encountered map/count delays and
 resolver failures; a candidate whole-catalog preview-cache invalidation
 route was researched without establishing it as the runtime cause of
 every stall.</p>
-<h2 data-number="1.28" id="recover-verification-after-a-successful-native-action"><span class="header-section-number">1.28</span> Recover verification after a
+<h2 data-number="1.31" id="recover-verification-after-a-successful-native-action"><span class="header-section-number">1.31</span> Recover verification after a
 successful native action</h2>
 <p><strong>Prerequisites.</strong> Preserve the original native journal
 and failed wrapper receipt. Determine whether Add, relink, preview
@@ -1573,7 +1764,7 @@ rollback or repetition.</p>
 <p><strong>Limits.</strong> Do not clear a completed UI owner to satisfy
 a Main guard. Historical owner identity is provenance; validate its
 retained native snapshot in the proper Main-owned preflight.</p>
-<h2 data-number="1.29" id="classify-identity-before-merging-or-deleting"><span class="header-section-number">1.29</span> Classify identity before
+<h2 data-number="1.32" id="classify-identity-before-merging-or-deleting"><span class="header-section-number">1.32</span> Classify identity before
 merging or deleting</h2>
 <p><strong>Prerequisites.</strong> Retain both versions and independent
 catalog/cloud records. Write down which identity is needed for the
@@ -1645,7 +1836,7 @@ rather than overwriting the accepted master.</p>
 universal proof of absence. Filename digits are not independent
 camera-counter evidence. Byte equality does not authorize merging
 records or deleting one copy.</p>
-<h2 data-number="1.30" id="route-native-fingerprints-by-format"><span class="header-section-number">1.30</span> Route native fingerprints by
+<h2 data-number="1.33" id="route-native-fingerprints-by-format"><span class="header-section-number">1.33</span> Route native fingerprints by
 format</h2>
 <p><strong>Prerequisites.</strong> State which identity the operation
 requires: bytes, exposure provenance, decoded image content, native
@@ -1702,7 +1893,7 @@ equality. Pixel equality is not interchangeable develop settings. Byte
 equality is not automatic duplicate-deletion authority. Keep conversion
 variants and virtual copies until an action-specific preservation
 decision is made.</p>
-<h2 data-number="1.31" id="prove-a-backup-holds-every-photo-before-deleting-it"><span class="header-section-number">1.31</span> Prove a backup holds every
+<h2 data-number="1.34" id="prove-a-backup-holds-every-photo-before-deleting-it"><span class="header-section-number">1.34</span> Prove a backup holds every
 photo before deleting it</h2>
 <p><strong>Symptom.</strong> A source tree, such as
 <code>/Volumes/Archive/Photos</code>, should already be held by a
@@ -1779,7 +1970,7 @@ is evidence, not proof for every record. This cookbook links the owning
 books for their tests and qualification; it has no retained deletion
 control of its own, and the procedure says nothing about cloud copies,
 which Lightroom manages separately.</p>
-<h2 data-number="1.32" id="replace-a-damaged-original-with-its-intact-conversion"><span class="header-section-number">1.32</span> Replace a damaged original
+<h2 data-number="1.35" id="replace-a-damaged-original-with-its-intact-conversion"><span class="header-section-number">1.35</span> Replace a damaged original
 with its intact conversion</h2>
 <p><strong>Symptom.</strong> An original DNG is truncated on disk:
 Lightroom cannot build a preview or reports the file as damaged, and
@@ -1834,7 +2025,7 @@ converter version can render the same settings differently, so inspect
 every replaced photo in Lightroom rather than assuming equality. This is
 a procedure, not a retained native control in this cookbook’s evidence
 table.</p>
-<h2 data-number="1.33" id="browse-and-rate-with-the-originals-offline"><span class="header-section-number">1.33</span> Browse and rate with the
+<h2 data-number="1.36" id="browse-and-rate-with-the-originals-offline"><span class="header-section-number">1.36</span> Browse and rate with the
 originals offline</h2>
 <p><strong>Symptom.</strong> The originals are on a disk that is not
 attached, but you want to cull them in another application, such as
@@ -1888,7 +2079,7 @@ the sidecar, and a four-property sidecar is not the photo’s full state.
 Label names and color classes also differ between applications. Until a
 procedure is qualified, keep the sidecars and journal as the record of
 the culling.</p>
-<h2 data-number="1.34" id="reconcile-catalog-xmp-ratings-and-dates"><span class="header-section-number">1.34</span> Reconcile catalog, XMP,
+<h2 data-number="1.37" id="reconcile-catalog-xmp-ratings-and-dates"><span class="header-section-number">1.37</span> Reconcile catalog, XMP,
 ratings and dates</h2>
 <p><strong>Prerequisites.</strong> Retain catalog develop/metadata
 fields, sidecar or embedded XMP, an untouched reference when available,
@@ -1933,7 +2124,7 @@ catalog to clear conflict badges.</p>
 proves a specific historical writer. Do not infer a date’s capture
 meaning from a settings panel’s timestamp, file mtime, filename or a
 single scalar flag.</p>
-<h2 data-number="1.35" id="start-with-supported-performance-maintenance"><span class="header-section-number">1.35</span> Start with supported
+<h2 data-number="1.38" id="start-with-supported-performance-maintenance"><span class="header-section-number">1.38</span> Start with supported
 performance maintenance</h2>
 <p>For ordinary performance trouble, begin with Adobe’s guidance:
 adequate free space, catalog/previews on appropriate fast storage,
@@ -1946,7 +2137,7 @@ maintenance did not explain. They are useful only when exact current
 evidence qualifies the mechanism. A measured API body, copy benchmark,
 native mapping transition, file publication, and server completion are
 different results. Report the one you actually verified.</p>
-<h2 data-number="1.36" id="a-receipt-you-can-reuse"><span class="header-section-number">1.36</span> A receipt you can reuse</h2>
+<h2 data-number="1.39" id="a-receipt-you-can-reuse"><span class="header-section-number">1.39</span> A receipt you can reuse</h2>
 <p>A useful result says: what was requested, which actual sources/owners
 were bound, what was submitted once, the genuine terminal, expected
 native changes, preserved records/bytes, independently observed outcome,
@@ -1971,9 +2162,111 @@ paths and catalog/cloud identifiers with role names and scoped counts.
 Publish your own source and synthetic controls; link primary
 documentation for supported product behavior. Do not redistribute
 decompiled proprietary bodies or signed credentials.</p>
-<p>Status examples in this guide are qualified observations through
-<strong>2026-10-12</strong>, not a claim that the entire catalog/cloud
+<h2 data-number="1.40" id="recover-exact-c2pa-auxiliary-payloads"><span class="header-section-number">1.40</span> Recover exact C2PA auxiliary
+payloads</h2>
+<p><strong>Symptom.</strong> A locally registered preview and cached
+settings can coexist with pending auxiliary downloads. Inspect the
+actual auxiliary type; content-authenticity payloads are distinct from
+editing masks.</p>
+<p><strong>Method.</strong> The optional <a href="https://github.com/firstpair/lightroom/blob/4a59cd317e4f51f8d2badcada6baba2d0a083fcf/cloud/docs/BIGTABLE-AUXILIARIES.md">BigTable
+extraction recipe</a> uses an isolated APFS copy of closed Classic
+storage, raw-byte read-only access, and exact requested digest/SHA/size
+checks. It exports payloads without changing Cloud’s catalog or cache.
+The recipe includes prerequisites, verification and undo.</p>
+<p><strong>Evidence and limits.</strong> One qualified recovery exported
+86 exact C2PA payloads and separately verified no-overwrite cache
+placement with settings bodies and revisions preserved. Native auxiliary
+adoption remained pending. This does not prove signature validity,
+offline editing or Sync completion. The public tool has synthetic
+extraction/APFS guard tests; native publication remains a separate
+step.</p>
+<p>Status examples include qualified observations through
+<strong>2026-10-21</strong>, not a claim that the entire catalog/cloud
 recovery is complete. Read the README for the current public
 implementation and release limits.</p>
+<h2 data-number="1.41" id="diagnose-cloud-throughput-and-verify-native-query-repairs"><span class="header-section-number">1.41</span> Diagnose Cloud throughput and
+verify native query repairs</h2>
+<p>Use <a href="https://github.com/firstpair/lightroom/blob/4a59cd317e4f51f8d2badcada6baba2d0a083fcf/cloud/docs/CLOUD-PERFORMANCE-DIAGNOSIS.md">Cloud
+performance diagnosis</a> to separate preview scheduler capacity, actual
+HTTP cost limits and database work. Four covering indexes and genuine
+status-table statistics have now been installed through the native
+writer in the reference Cloud 9.6 session. Exact typed query results,
+schema scope and closed resources were verified; actual application
+plans confirm the photo-ID route. Representative native SQL checks
+improved from seconds to milliseconds, with write-cost and cache-state
+limits documented.</p>
+<p>One private startup renewal has now completed after a normal restart,
+with native commit/close and restoration of its own temporary pause. Its
+first held attempt remains preserved; future-launch reliability and
+public Cloud automation remain separate. A budget-twenty HTTP trial
+produced ten simultaneous cost-two tasks, but its longer observed
+download rate stayed near the earlier baseline (about 45 versus 44
+previews/minute). More concurrency did not establish a material
+sustained speedup. Preserve pending requests, stop new admissions before
+a maintenance pause, retain rollback copies and do not confuse a faster
+query or returned proxy with complete Classic/cloud Sync.</p>
+<p><strong>Correction (2026-10-21).</strong> That native-writer renewal
+held one write transaction for about 40 seconds. Cloud’s own index
+writers give up after about 5 seconds, so they logged hundreds of
+“database is locked” errors, and the grid, loupe filmstrip and trash
+views stopped updating until restart. No data was damaged, but don’t use
+that method. The next recipe replaces it.</p>
+<h2 data-number="1.42" id="re-add-cloud-indexes-at-every-launch-without-disturbing-the-app"><span class="header-section-number">1.42</span> Re-add Cloud indexes at every
+launch without disturbing the app</h2>
+<p><strong>Symptom.</strong> Sync-status panels, cache-size checks and
+settings cleanup run queries that take seconds each on a large Cloud
+library. Indexes fix them, but Cloud deletes undeclared indexes at every
+launch.</p>
+<p><strong>Prerequisites.</strong> A backup of
+<code>Lightroom Library.lrlibrary</code> taken while Cloud is quit.
+Statistics from <code>ANALYZE asset_sync_status_ui</code> (they
+persist). Read <a href="https://github.com/firstpair/lightroom/blob/4a59cd317e4f51f8d2badcada6baba2d0a083fcf/cloud/docs/CLOUD-INDEXES.md">Cloud
+indexes</a> first.</p>
+<p><strong>Method.</strong> <code>freeze_build.py</code> waits for 30 s
+without database changes, freezes Cloud with <code>SIGSTOP</code>, takes
+the write lock without waiting, builds one index, commits and resumes
+Cloud, with an independent resume timer as a backstop.
+<code>index_renewal.py</code> runs this once per launch from a
+LaunchAgent, after a 90 s settle and an APFS-clone rollback.</p>
+<p><strong>Verification.</strong> Each query returns identical typed
+results with the index and with <code>NOT INDEXED</code> in one
+snapshot. Cloud’s console log shows no “database is locked” lines.</p>
+<p><strong>Evidence.</strong> Two live runs froze Cloud for 2.3–10.5 s
+per index with zero lock errors. Cache-size queries dropped to
+milliseconds. A third index that sped up sync-status queries (1.5 s to
+0.0001 s) was withdrawn: Lightroom’s photo-list status lookup picked it
+and took 10.7 s, which triggered Versions timeouts when opening photos.
+Check every query on a table before adding an index to it.</p>
+<p><strong>Undo.</strong> Unload the LaunchAgent and restart Cloud,
+which deletes the indexes.</p>
+<p><strong>Limits.</strong> This is an external write to a live Adobe
+database and is not supported by Adobe. Each extra index slows Cloud’s
+own writes slightly.</p>
+<h2 data-number="1.43" id="download-every-cloud-smart-preview-through-outages"><span class="header-section-number">1.43</span> Download every Cloud Smart
+Preview through outages</h2>
+<p><strong>Symptom.</strong> “Store all Smart Previews locally” leaves
+hundreds of thousands pending for days.</p>
+<p><strong>Method.</strong> The <a href="https://github.com/firstpair/lightroom/blob/4a59cd317e4f51f8d2badcada6baba2d0a083fcf/cloud/docs/CLOUD-PREVIEW-DOWNLOAD.md">preview
+download controller</a> asks Cloud’s ordinary <code>getProxyPaths</code>
+for each photo: 12 requests of 32 photos at a time. It backs off when a
+batch comes back as all <code>CannotSync</code>, retries transient
+refusals and never retries <code>SendNoDownloadableOriginal</code>.</p>
+<p><strong>Evidence.</strong> 87,257 previews downloaded in one
+overnight run on an 868,000-photo library. The 529 refused during a
+45-minute outage all succeeded on retry.</p>
+<p><strong>Limits.</strong> Quitting Cloud ends the run. Originals are
+not downloaded.</p>
+<h2 data-number="1.44" id="explain-a-cloud-sync-indicator-that-never-settles"><span class="header-section-number">1.44</span> Explain a Cloud Sync indicator
+that never settles</h2>
+<p><strong>Symptom.</strong> Sync keeps showing activity, and View opens
+an empty list.</p>
+<p><strong>Method.</strong> Decode <code>asset_sync_status_ui</code> for
+your keep-locally configuration with the <a href="https://github.com/firstpair/lightroom/blob/4a59cd317e4f51f8d2badcada6baba2d0a083fcf/cloud/docs/CLOUD-SYNC-STATUS.md">status-code
+table</a>. In the reference library, 3 photos remained. They were
+imported on an iPad that never finished uploading: no server renditions,
+no thumbnail, and a refusal decided from the photo’s own record.</p>
+<p><strong>Fix.</strong> Open Lightroom on the importing device while
+it’s online. Don’t delete the records first, because the deletion syncs
+to that device too.</p>
 </body>
 </html>

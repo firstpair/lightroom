@@ -5,9 +5,9 @@
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <meta name="author" content="FirstPair contributors" />
-  <meta name="dcterms.date" content="2026-11-10" />
+  <meta name="dcterms.date" content="2026-11-17" />
   <meta name="description" content="A practical cookbook of verified Lightroom repairs, preservation gates and version-sensitive performance mechanisms." />
-  <title>Recover exact settings without resetting edits</title>
+  <title>Map and clone Classic previews into Cloud precisely</title>
   <style>
     div.sitenav { display: flex; flex-direction: row; flex-wrap: wrap; }
     span.navlink { flex: 1; }
@@ -47,59 +47,62 @@
 </div>
 <div class="sitenav">
 <span class="navlink">
-<span class="navlink-label">Next:</span> <a href="chapter-029.html" accesskey="n" rel="next">Recover a selected proxy-missing upload</a>
+<span class="navlink-label">Next:</span> <a href="chapter-029.html" accesskey="n" rel="next">Register placed clones with Cloud’s own proxy loader</a>
 </span>
 <span class="navlink">
-<span class="navlink-label">Previous:</span> <a href="chapter-027.html" accesskey="p" rel="previous">Test offline rendering and editing without overstating Undo</a>
+<span class="navlink-label">Previous:</span> <a href="chapter-027.html" accesskey="p" rel="previous">Reuse offline converter-built Smart Previews</a>
 </span>
 </div>
 </nav>
 <h2 data-number="1.26"
-id="recover-exact-settings-without-resetting-edits"><span
-class="header-section-number">1.26</span> Recover exact settings without
-resetting edits</h2>
-<p><strong>Prerequisites.</strong> Observe the current cloud
-asset/revision, exact requested XMP whole-file SHA and size, local XMP
-annotation/path/error state, and required masks, auxiliary data, and
-profiles. Keep signed links and private identifiers out of public
-reports.</p>
-<p><strong>Procedure.</strong> A preview supplies image data, not
-necessarily the current settings. In the examined Lightroom build,
-pending or failed settings status can keep Edit waiting even when a
-simpler download flag is clear. An exact cached XMP can be published
-without overwrite under its actual content hash when the current native
-document requests those same bytes; ordinary native selection/load must
-adopt it. The independent SHA/size gate is essential even if the native
-branch happens to accept a filename.</p>
-<p>Do not manufacture settings from an embedded packet merely because it
-contains develop fields. Do not label approximate XML with the requested
-SHA, edit revisions or availability flags externally, or use
-Reset/Legacy Update as recovery of existing edits. Adobe describes
-ordinary catalog/XMP metadata storage; that does not document or approve
-this internal cache route. <a
-href="https://helpx.adobe.com/lightroom-classic/desktop/organize-photos-in-lightroom-classic/metadata-basics-actions.html">Adobe:
-metadata and XMP</a>.</p>
-<p><strong>Verify.</strong> Retain full typed public develop/body
-fields, revisions, annotations, and separately indexed labels. Require
-native adoption and a post-load persisted observation. One exact
-standalone XMP control was adopted offline without a
-develop-body/revision change, and a normal same-sandbox cold restart
-cleared Waiting for Settings. Numeric editing was not tested. The
-50,443-asset exact-cache roster is an admission roster, with
-<strong>zero completed bulk adoption</strong>. A bulk constructor
-attempt failed before admission; a prepared successor is not a runtime
-receipt.</p>
-<p><strong>Undo.</strong> Preserve the cache source and publication
-journal. Withdraw only an exact owned unused publication if needed. A
-settings rewrite, Reset, or new cloud revision is a different operation
-with different rollback consequences.</p>
-<p><strong>Limits.</strong> Keep 5,756 profile-info holds separate from
-accepted candidates. Mutable <code>cameraProfileInfo</code> metadata is
-neither proof of a missing binary nor permission to ignore the
-dictionary. Required masks/profiles and rendering fidelity remain real
-gates. Whole admitted-preview embedded-XMP scanning found zero exact
-requested-hash matches across two temporal read-only snapshots; do not
-call them one atomic snapshot or treat old packets as current
-settings.</p>
+id="map-and-clone-classic-previews-into-cloud-precisely"><span
+class="header-section-number">1.26</span> Map and clone Classic previews
+into Cloud precisely</h2>
+<p><strong>Prerequisites.</strong> Apps are normally closed for file
+publication. Bind each exact Classic image/file UUID to its current
+Cloud asset, requested native proxy SHA, literal native destination and
+settings/auxiliary facts. APFS source and destination placement must
+support cloning. Preserve the destination’s accepted prior bytes and
+metadata.</p>
+<p><strong>Procedure.</strong> Use a clone with an independent inode
+rather than a hard link: later writes can diverge while initial bytes
+remain equal. Keep a no-overwrite intent journal for new destinations.
+For existing cache entries, first prove their accepted whole-byte
+identity and preserve the old inode or a verified rollback before a
+separately authorized exchange. Retain the exact native path, including
+any collision suffix; UUID-only filename formulas can be wrong. A JPEG
+original can legitimately have a DNG proxy.</p>
+<p>The full 170-photo album control had current native proxy SHA
+equality for every Classic preview, 116 matching existing Cloud copies
+and 54 uncached entries. Settings were already local; there were no
+local originals or pending original downloads and no server master link.
+That specific gate supported preview-only work; generic Make Available
+Offline can have a different original-download scope.</p>
+<p><strong>Verify.</strong> Compare every source/destination SHA, stable
+identities and protected filesystem metadata, then check ordinary native
+adoption. The initial 170 invocation published 54 new entries but held
+before the first existing-file exchange over an OS-added provenance
+attribute. Its recovery explicitly retained that exact qualified
+attribute, preserved all other metadata, and processed only the
+untouched 116. The composite proves all 170 publications without forging
+a successful original invocation.</p>
+<p>A normal offline-album action did not immediately register the 54
+entries. A later consistent native roster proved all 170 local proxy
+paths/annotations, no proxy demand, local settings and offline marking.
+That stronger observation supersedes the earlier hold; it does not
+identify the exact adopting action or prove 170 independently traced
+offline renders.</p>
+<p>The larger publication independently audited 473,531 bindings.
+Publication, native recognition, rendered use and edit readiness remain
+separate acceptance steps.</p>
+<p><strong>Undo.</strong> Preserve prior Cloud entries and exact owned
+journals. Withdraw unused owned additions or reverse an authorized
+exchange only after native ownership and later work are accounted for. A
+cache clone is not a backup on another device, and adopting a file is
+not grounds to remove its original.</p>
+<p><strong>Limits.</strong> A missing expected proxy SHA needs a
+separately qualified identity route. The known-SHA recipe cannot
+silently admit that population. The two legacy tests below used such a
+narrower route and qualify only their tested class.</p>
 </body>
 </html>

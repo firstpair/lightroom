@@ -5,9 +5,9 @@
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <meta name="author" content="FirstPair contributors" />
-  <meta name="dcterms.date" content="2026-11-10" />
+  <meta name="dcterms.date" content="2026-11-17" />
   <meta name="description" content="A practical cookbook of verified Lightroom repairs, preservation gates and version-sensitive performance mechanisms." />
-  <title>Prove a backup holds every photo before deleting it</title>
+  <title>Recover verification after a successful native action</title>
   <style>
     div.sitenav { display: flex; flex-direction: row; flex-wrap: wrap; }
     span.navlink { flex: 1; }
@@ -112,94 +112,44 @@
 </div>
 <div class="sitenav">
 <span class="navlink">
-<span class="navlink-label">Next:</span> <a href="chapter-034.html" accesskey="n" rel="next">Replace a damaged original with its intact conversion</a>
+<span class="navlink-label">Next:</span> <a href="chapter-034.html" accesskey="n" rel="next">Classify identity before merging or deleting</a>
 </span>
 <span class="navlink">
-<span class="navlink-label">Previous:</span> <a href="chapter-032.html" accesskey="p" rel="previous">Route native fingerprints by format</a>
+<span class="navlink-label">Previous:</span> <a href="chapter-032.html" accesskey="p" rel="previous">Recover a selected proxy-missing upload</a>
 </span>
 </div>
 </nav>
 <h2 data-number="1.31"
-id="prove-a-backup-holds-every-photo-before-deleting-it"><span
-class="header-section-number">1.31</span> Prove a backup holds every
-photo before deleting it</h2>
-<p><strong>Symptom.</strong> A source tree, such as
-<code>/Volumes/Archive/Photos</code>, should already be held by a
-backup, such as <code>/Volumes/Backup/Photos</code>, and you want to
-free the source. The backup was made over years: folders moved, files
-were renamed, re-dated or rewritten with new metadata, so a path-by-path
-comparison reports thousands of differences that may or may not
-matter.</p>
-<p><strong>Prerequisites.</strong> Both trees are mounted and stable for
-the duration of the run; nothing imports, converts or edits into either.
-Install the indexer from <a
-href="https://firstpair.org/books/phindex/">phindex</a> and
-<code>dngc</code> from <a
-href="https://firstpair.org/books/dng-compare/">DNG Compare</a>; those
-books own their installation, options and archive layout. Choose an
-archive directory that is not on the source you mean to delete. Know
-which Lightroom catalog references the source, because deleting it makes
-those photos missing in that catalog.</p>
-<p><strong>Mechanism.</strong> Index both trees, so that every file has
-its identities: SHA-256, DNG raw blocks, image data, Lightroom’s
-fingerprint and a metadata record.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">phindex</span> <span class="at">--db</span> source.sqlite <span class="at">--root</span> /Volumes/Archive/Photos <span class="at">--workers</span> 8</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">phindex</span> <span class="at">--db</span> backup.sqlite <span class="at">--root</span> /Volumes/Backup/Photos <span class="at">--workers</span> 8</span></code></pre></div>
-<p>Then account for the source in the backup by content rather than by
-name. <code>phindex align</code> groups files into units (a raw with its
-JPEG and sidecar), matches each unit by its strongest shared identity,
-and flags moved, renamed and split units. Units with no counterpart are
-reported as <code>left-only</code>; files not yet read as
-<code>not-indexed</code>.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">phindex</span> align <span class="at">--left</span> source.sqlite <span class="at">--left-root</span> /Volumes/Archive/Photos <span class="dt">\</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">--right</span> backup.sqlite <span class="at">--right-root</span> /Volumes/Backup/Photos <span class="at">--out</span> align-report/</span></code></pre></div>
-<p><code>dngc run</code> turns that accounting into a preserved,
-restorable record. With the indexes it pairs files through
-<code>phindex align</code>, settles unchanged pairs without reading
-them, and keeps every source file in one of three forms: identical to
-its backup counterpart, a verified delta against that counterpart, or a
-full copy when the backup has none. <code>--metadata phindex</code>
-takes metadata from the indexes and writes a searchable metadata
-section.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">dngc</span> run /Volumes/Archive/Photos /Volumes/Backup/Photos /Volumes/Backup/source-proof <span class="dt">\</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">--index</span> source.sqlite backup.sqlite <span class="at">--metadata</span> phindex</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">dngc</span> verify /Volumes/Backup/source-proof <span class="at">--restore-sample</span> 50</span></code></pre></div>
-<p>Equal raw pixels are not permission to delete. Two files with the
-same raw image can differ in the DNG wrapper, embedded previews, XMP,
-ratings, keywords and develop history; the source copy may carry the
-only record of edits made after the backup. That is why the archive
-keeps a delta for every pair whose bytes differ, instead of declaring
-the pair equivalent and dropping the difference.</p>
-<p><strong>Verify.</strong> Read <code>align-report/summary.json</code>
-and account for every <code>left-only</code> and
-<code>not-indexed</code> unit: each must either be preserved as a full
-copy by the run or be deliberately excluded with a reason. Require
-<code>dngc verify</code> to exit 0; it checks the byte records, deltas
-and originals, the metadata index and that the comparison finished, and
-<code>--restore-sample N</code> restores N records at random and checks
-their SHA-256. While the source still exists, restore a few files of
-your own choosing, including a renamed one and one with a metadata
-difference, with <code>dngc restore ARCHIVE RELATIVE_PATH OUTPUT</code>,
-and compare each with the source file byte for byte. Only then delete,
-and settle the source in Lightroom’s terms: relink the catalog’s photos
-to the backup through Lightroom (<a
-href="chapter-012.html#repair-locations-without-reimporting">Repair
-locations</a>) or accept that the catalog will show them as missing.</p>
-<p><strong>Undo.</strong> Nothing above writes to the source or the
-backup tree; the indexes and the archive are new files. After deletion,
-<code>dngc restore ARCHIVE RELATIVE_PATH OUTPUT</code> rebuilds any
-source file byte for byte, and <code>dngc versions</code> lists the
-contents a path has had.</p>
-<p><strong>Limits.</strong> A delta is rebuilt against its backup file,
-so the archive and the backup tree are one unit: keep both, keep the
-backup’s files unedited, and keep a second copy of the archive on
-another device if the source was the only other copy.
-<code>--metadata phindex</code> records come from the exiftool-rs
-engine, a separate metadata identity from Perl ExifTool; never compare
-an archive made one way with one made the other. A random restore sample
-is evidence, not proof for every record. This cookbook links the owning
-books for their tests and qualification; it has no retained deletion
-control of its own, and the procedure says nothing about cloud copies,
-which Lightroom manages separately.</p>
+id="recover-verification-after-a-successful-native-action"><span
+class="header-section-number">1.31</span> Recover verification after a
+successful native action</h2>
+<p><strong>Prerequisites.</strong> Preserve the original native journal
+and failed wrapper receipt. Determine whether Add, relink, preview
+construction, or retry already completed.</p>
+<p><strong>Procedure.</strong> If the action completed but the external
+verifier failed, correct and rerun only verification in a uniquely named
+recovery. Never replay Add to obtain a cleaner receipt. A concrete
+example was a TIFF decoder receiving an already held stream whose
+<code>.name</code> was an integer file descriptor. The verification fix
+is:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> tifffile.TiffFile(stream, name<span class="op">=</span><span class="bu">str</span>(path)) <span class="im">as</span> tif:</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Verify the intended image while continuing to use this held stream.</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    ...</span></code></pre></div>
+<p>The explicit name supplies decoder metadata without reopening the
+pathname or weakening held-descriptor/source guards.</p>
+<p><strong>Verify.</strong> Bind the recovery to the original actual
+action and its source/preview identities. One new DNG import and Smart
+Preview were fully accepted through such a recovery, including all 28
+tiles of its 2560×1693 preview. The original exit-one receipt remains.
+Two other proposed imports are still held; the successful control does
+not admit them.</p>
+<p><strong>Undo.</strong> Undo the native action only if it is actually
+undesired, through its normal route and with preserved later work. A
+diagnostic failure by itself calls for verification recovery, not
+rollback or repetition.</p>
+<p><strong>Limits.</strong> Do not clear a completed UI owner to satisfy
+a Main guard. Historical owner identity is provenance; validate its
+retained native snapshot in the proper Main-owned preflight.</p>
 </body>
 </html>

@@ -5,7 +5,7 @@
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <meta name="author" content="FirstPair contributors" />
-  <meta name="dcterms.date" content="2026-11-10" />
+  <meta name="dcterms.date" content="2026-11-17" />
   <meta name="description" content="A practical cookbook of verified Lightroom repairs, preservation gates and version-sensitive performance mechanisms." />
   <title>Which parts are supplied as code</title>
   <style>
@@ -58,7 +58,7 @@
 class="header-section-number">1.2</span> Which parts are supplied as
 code</h2>
 <p>The <a
-href="https://github.com/firstpair/lightroom/blob/ebc516f21e39e0272a42304bee009b5c475cc5aa/README.md">README</a>
+href="https://github.com/firstpair/lightroom/blob/4a59cd317e4f51f8d2badcada6baba2d0a083fcf/classic/README.md">README</a>
 describes the current executable package. It contains our own
 installation/verification CLI, native performance adapters, synthetic
 controls, codecs and lifecycle helper under the MIT license. It imports
@@ -80,9 +80,9 @@ those Adobe modules are not redistributed.</p>
 <td>Bounded map/count reuse, isolated C copying, point tracking, paired
 map transport, date equivalence and startup renewal</td>
 <td>Configurable source in <a
-href="https://github.com/firstpair/lightroom/tree/ebc516f21e39e0272a42304bee009b5c475cc5aa/templates/runtime">templates/runtime</a>
+href="https://github.com/firstpair/lightroom/tree/4a59cd317e4f51f8d2badcada6baba2d0a083fcf/classic/templates/runtime">templates/runtime</a>
 and <a
-href="https://github.com/firstpair/lightroom/blob/ebc516f21e39e0272a42304bee009b5c475cc5aa/scripts/manage.py">scripts/manage.py</a>;
+href="https://github.com/firstpair/lightroom/blob/4a59cd317e4f51f8d2badcada6baba2d0a083fcf/classic/scripts/manage.py">scripts/manage.py</a>;
 fresh manual native qualification required</td>
 </tr>
 <tr>
@@ -92,9 +92,30 @@ index</td>
 default</strong></td>
 </tr>
 <tr>
+<td>Classic 16.0 trigger affinity, point lookup and incremental
+map/count</td>
+<td><a
+href="https://github.com/firstpair/lightroom/blob/4a59cd317e4f51f8d2badcada6baba2d0a083fcf/classic/lrc16/README.md">classic/lrc16</a>:
+one generated Scripts-menu action, run natively on the reference
+catalog</td>
+</tr>
+<tr>
+<td>Stuck upload recovery (retry, develop re-save, preview
+re-registration)</td>
+<td><a
+href="https://github.com/firstpair/lightroom/blob/4a59cd317e4f51f8d2badcada6baba2d0a083fcf/classic/sync-recovery/README.md">classic/sync-recovery</a>:
+read-only preflight plus generated per-list actions</td>
+</tr>
+<tr>
+<td>Durable product fixes for Adobe</td>
+<td><a
+href="https://github.com/firstpair/lightroom/blob/4a59cd317e4f51f8d2badcada6baba2d0a083fcf/docs/ADOBE-ENGINEERS.md">For
+Adobe engineers</a></td>
+</tr>
+<tr>
 <td>Destination-folder admission</td>
 <td><a
-href="https://github.com/firstpair/lightroom/blob/ebc516f21e39e0272a42304bee009b5c475cc5aa/examples/folder_resolver.lua">An
+href="https://github.com/firstpair/lightroom/blob/4a59cd317e4f51f8d2badcada6baba2d0a083fcf/classic/examples/folder_resolver.lua">An
 authored example adapter</a>, requiring independent preservation
 admission; it is not automatically dispatched</td>
 </tr>

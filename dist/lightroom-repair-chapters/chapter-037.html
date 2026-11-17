@@ -5,9 +5,9 @@
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <meta name="author" content="FirstPair contributors" />
-  <meta name="dcterms.date" content="2026-11-10" />
+  <meta name="dcterms.date" content="2026-11-17" />
   <meta name="description" content="A practical cookbook of verified Lightroom repairs, preservation gates and version-sensitive performance mechanisms." />
-  <title>Start with supported performance maintenance</title>
+  <title>Replace a damaged original with its intact conversion</title>
   <style>
     div.sitenav { display: flex; flex-direction: row; flex-wrap: wrap; }
     span.navlink { flex: 1; }
@@ -47,28 +47,72 @@
 </div>
 <div class="sitenav">
 <span class="navlink">
-<span class="navlink-label">Next:</span> <a href="chapter-038.html" accesskey="n" rel="next">A receipt you can reuse</a>
+<span class="navlink-label">Next:</span> <a href="chapter-038.html" accesskey="n" rel="next">Browse and rate with the originals offline</a>
 </span>
 <span class="navlink">
-<span class="navlink-label">Previous:</span> <a href="chapter-036.html" accesskey="p" rel="previous">Reconcile catalog, XMP, ratings and dates</a>
+<span class="navlink-label">Previous:</span> <a href="chapter-036.html" accesskey="p" rel="previous">Prove a backup holds every photo before deleting it</a>
 </span>
 </div>
 </nav>
 <h2 data-number="1.35"
-id="start-with-supported-performance-maintenance"><span
-class="header-section-number">1.35</span> Start with supported
-performance maintenance</h2>
-<p>For ordinary performance trouble, begin with Adobe’s guidance:
-adequate free space, catalog/previews on appropriate fast storage,
-intentional preview sizes, catalog optimization, and the relevant cache
-and Sync settings. Keep previews available during recovery rather than
-deleting them reflexively. <a
-href="https://helpx.adobe.com/lightroom-classic/desktop/technical-support/performance-guidelines/optimize-performance-lightroom.html">Adobe:
-optimize performance</a>.</p>
-<p>The advanced recipes above answer observed mechanisms that routine
-maintenance did not explain. They are useful only when exact current
-evidence qualifies the mechanism. A measured API body, copy benchmark,
-native mapping transition, file publication, and server completion are
-different results. Report the one you actually verified.</p>
+id="replace-a-damaged-original-with-its-intact-conversion"><span
+class="header-section-number">1.35</span> Replace a damaged original
+with its intact conversion</h2>
+<p><strong>Symptom.</strong> An original DNG is truncated on disk:
+Lightroom cannot build a preview or reports the file as damaged, and
+editing fails, yet Finder, Quick Look or <code>sips</code> thumbnails
+look fine. Elsewhere, an earlier converter’s output of the same
+exposure, such as an Adobe DNG Converter run kept on
+<code>/Volumes/Backup</code>, is intact.</p>
+<p><strong>Prerequisites.</strong> Detect damage at the pixel level, not
+from preview renders. Thumbnailing tools such as <code>sips</code>
+render the embedded preview, which can be complete while the raw data
+behind it is truncated. A full raw decode, a pixel comparison in <a
+href="https://firstpair.org/books/dng-compare/">DNG Compare</a>, or a
+header showing a declared raw strip or tile running past the file’s
+stable length establishes the damage; see <a
+href="chapter-034.html#classify-identity-before-merging-or-deleting">Classify
+identity</a>. Then prove the conversion is the same exposure (capture
+time, camera and serial, exposure UID) and that its own raw data decodes
+in full. Record the damaged file’s path, exact name, SHA-256 and size,
+and the photo’s develop settings and history as Lightroom shows
+them.</p>
+<p><strong>Mechanism.</strong> Lightroom finds an original by its path
+and name. Putting an intact file of the same exposure at that exact path
+and name lets the existing catalog record, with its edits, history,
+virtual copies, collections and cloud association, point at readable raw
+data again, without re-registration.</p>
+<p>Quit Classic normally. Move the damaged files aside to a folder
+outside every catalog folder, mirroring their relative paths, and keep
+them. Copy the conversion to the original’s path under the original’s
+exact name and extension, and check the copy’s SHA-256 against the
+conversion. Reopen Classic, select that folder, and rebuild its previews
+through <strong>Library → Previews</strong> (standard or 1:1, and Smart
+Previews where the photos had them).</p>
+<p>Do not write the catalog, re-import the file, or use <strong>Read
+Metadata from Files</strong> to clear a metadata badge: the conversion’s
+embedded XMP is not the catalog’s current state. Resolve any badge with
+<a
+href="chapter-039.html#reconcile-catalog-xmp-ratings-and-dates">Reconcile
+catalog, XMP, ratings and dates</a>.</p>
+<p><strong>Verify.</strong> In Lightroom, the folder shows no missing or
+damaged-file badges, and each replaced photo renders at Fit and 100%
+from the new original. Develop settings, history, virtual copies and
+collection membership match what you recorded. On disk, the placed
+file’s SHA-256 equals the conversion’s, and the damaged files remain
+intact in the side folder.</p>
+<p><strong>Undo.</strong> Quit Classic, move the conversion out, return
+the damaged file to its path and name, and rebuild the folder’s
+previews. The catalog was not changed by the swap, so nothing else needs
+reversing.</p>
+<p><strong>Limits.</strong> Lightroom’s registered fingerprint and any
+cloud original were computed from the old bytes and are not updated by
+the swap; duplicate detection and Sync may treat the new file
+differently. Develop history was made against the old file’s raw data: a
+conversion with a different crop, opcodes, linear or mosaic data, or
+converter version can render the same settings differently, so inspect
+every replaced photo in Lightroom rather than assuming equality. This is
+a procedure, not a retained native control in this cookbook’s evidence
+table.</p>
 </body>
 </html>
