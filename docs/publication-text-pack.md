@@ -48,6 +48,15 @@ Commit and push generated artifacts only after inspecting their ZIP integrity, e
 
 The actual edition 1.0.0 pack is [lightroom-repair.textpack](blog/lightroom-repair/dist/lightroom-repair.textpack), with its [version marker](blog/lightroom-repair/dist/VERSION.md). The versioned handoff is `lightroom-repair (1.0.0-ba02f1).textpack`. It contains the exact article and supplied cover, routes to `firstpair.press` / `lightroom-repair`, and embeds the full [pushed source commit](https://github.com/firstpair/lightroom/commit/ba02f11ff29e1e1c7bc320e5bfd6cb79cde2f297) plus a portable payload SHA. ZIP integrity, cover bytes, source ancestry and version-link target were verified locally before the artifact commit.
 
+## Edition 1.1.0 (2026-11-17)
+
+Adds the section "Update, November 2026: Lightroom Classic 16.0". The stamped pack is `lightroom-repair (1.1.0-4a59cd).textpack`, built from pushed commit `4a59cd317e4f51f8d2badcada6baba2d0a083fcf`. Checks before commit:
+- ZIP integrity passed.
+- The article body matches the source post.
+- The bundled cover is byte-identical to the supplied artwork.
+
+It was delivered to `~/icloud/blogs`. Delivery does not post it; the live story still shows edition 1.0.0 until the operator republishes it.
+
 ## Verified live publication
 
 The operator published the stamped article from Obsidian through Omnighost on 2026-10-12. The [live story](https://firstpair.press/lightroom-repair/) returned HTTP 200 with the exact title and all seven source section headings. Its hosted cover is visible. This publication did not rebuild or change the canonical article, TextPack or supplied artwork. The TextPack's verified source commit and payload SHA remain handoff provenance; the live HTML exposes a separate Omnighost publication SHA rather than that source-commit tag. See [the publication record](LIBRARY-PUBLICATION.md).

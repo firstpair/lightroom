@@ -58,3 +58,13 @@ hosted cover has the exact supplied SHA-256
 These publication checks do not qualify the public runtime adapters in a native
 Lightroom session. Follow the manual acceptance steps before enabling the
 startup helper; affinity and the durable schema index remain off by default.
+
+## Edition 1.2.0 (2026-11-17)
+
+Adds the Classic 16.0 runtime fixes, stuck-upload recovery and the note for Adobe engineers.
+- Built from source commit `4a59cd31`.
+- The library verifier passed: PDF layout, EPUB and both HTML readers.
+- Page 17 was inspected visually.
+- Published as FirstPair commit `a18469a` (*Publish FirstPair Lightroom Repair 1.2.0-4a59cd31 (full)*), with PDF and EPUB copies in `~/icloud/books`.
+- The production deploy and smoke check ran in the same session.
+- The online reader shows the new recipes.
